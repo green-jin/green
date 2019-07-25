@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><ncipfacades><testclass>com.ncip.facades.suggestion.impl.DefaultSimpleSuggestionFacadeTest</testclass><testclass>com.ncip.facades.suggestion.DefaultSimpleSuggestionFacadeIntegrationTest</testclass></ncipfacades></testclasses>
