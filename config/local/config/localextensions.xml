@@ -1,7 +1,8 @@
 <hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
   <extensions>
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
-    <extension name='ordermanagementaddon' />
+    
+     <extension name='ordermanagementaddon' />
     <extension name='orderselfserviceaddon' />
     <extension name='ordermanagementwebservices' />
     <extension name='b2bordermanagementwebservices' />
@@ -10,7 +11,7 @@
     <extension name='warehousingwebservices' />
     <extension name='adaptivesearchsolr' />
     <extension name='adaptivesearchbackoffice' />
-    <!--<extension name='adaptivesearchsamplesaddon' />-->
+    <extension name='adaptivesearchsamplesaddon' />
     <extension name='b2bcommercebackoffice' />
     <extension name='commerceservicesbackoffice' />
     <!--<extension name='yacceleratorbackoffice' />
@@ -21,9 +22,9 @@
     <extension name='yaddon' />
     <extension name='ycommercewebservices' />
     <extension name='cmsoccaddon' />
-    <!--<extension name='apparelstore' />
-    <extension name='electronicsstore' />
-    <extension name='powertoolsstore' />-->
+<!--     <extension name='apparelstore' /> -->
+<!--     <extension name='electronicsstore' /> -->
+    <extension name='powertoolsstore' />
     <extension name='solrserver' />
     <extension name='acceleratorwebservicesaddon' />
     <extension name='b2bacceleratoraddon' />
@@ -58,13 +59,29 @@
 	<extension name='smartedit' />
 	<extension name='smarteditaddon' />
 	<extension name='smarteditwebservices' />
-	 <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/ncipfulfilmentprocess"/>
- <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/ncipcore"/>
- <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/ncipfacades"/>
- <!--<extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/nciptest"/>-->
- <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/ncipinitialdata"/>
- <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/ncipbackoffice"/>
- <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncip/ncipstorefront"/>
- <extension dir="c:\sap\hybris\1811\ncip\hybris\bin/custom/ncipb2bstorefront"/>
+	
+	<extension name='mcc' />
+	<extension name='cms2' />
+	<extension name='cms2lib' />
+	<extension name='cockpit' />
+	<extension name='addonsupport' />
+	<extension name='acceleratorservices' />
+	<extension name='b2bacceleratorfacades' />
+	
+    <extension name='b2bapprovalprocess' />
+   
+	<extension name='ncipfulfilmentprocess' />
+	<extension name='ncipcore' />
+	<extension name='ncipfacades' />
+	<extension name='ncipinitialdata' />
+	<extension name='ncipbackoffice' />
+	<extension name='ncipstorefront' />
+	<extension name='ncipb2bstorefront' />
+	
+	<extension name='secureportaladdon' />
+	
+	<extension name='assistedservicefacades' /> 
+	<extension name='assistedservicepromotionaddon' /> 
+	
   </extensions>
 </hybrisconfig>
