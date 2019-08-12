@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2019/7/25 上午 08:02:51                       ---
+ * --- Generated at 2019/8/12 下午 03:00:05                       ---
  * ----------------------------------------------------------------
  */
 package com.ncip.initialdata.constants;

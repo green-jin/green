@@ -79,10 +79,3 @@ config/local/*.project
 **/*backoffice/resources/backoffice/*backoffice_bof.jar
 **/*core/hmc/bin/*corehmc.jar
 
-*/ncip/*/build.xml
-*/ncip/*/extensioninfo.xsd
-*/ncip/*/platformhome.properties
-*/ncip/*/resources/items.xsd
-*/ncip/*/resources/*/*-testclasses.xml
-
-
