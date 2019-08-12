@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns="http://www.zeroturnaround.com">
   <classpath>
-    <dir name="C:\sap\hybris\1811\ncip\hybris\bin\custom\ncip\ncipbackoffice/backoffice/classes" />
+    <dir name="C:\Users\Ciny\Documents\NCIP\hybris\bin\custom\ncip\ncipbackoffice/backoffice/classes" />
   </classpath>
 </application>
