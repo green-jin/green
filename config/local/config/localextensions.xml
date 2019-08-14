@@ -1,6 +1,7 @@
 <hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
   <extensions>
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
+	
     <extension name='ordermanagementaddon' />
     <extension name='orderselfserviceaddon' />
     <extension name='ordermanagementwebservices' />
@@ -13,17 +14,10 @@
     <extension name='adaptivesearchsamplesaddon' />
     <extension name='b2bcommercebackoffice' />
     <extension name='commerceservicesbackoffice' />
-    <extension name='yacceleratorbackoffice' />
-    <extension name='yacceleratorinitialdata' />
-    <extension name='yacceleratorordermanagement' />
-    <extension name='yacceleratorstorefront' />
-    <extension name='yb2bacceleratorstorefront' />
-    <extension name='yaddon' />
-    <extension name='ycommercewebservices' />
     <extension name='cmsoccaddon' />
-    <extension name='apparelstore' />
-    <extension name='electronicsstore' />
-    <extension name='powertoolsstore' />
+	<extension name='apparelstore' />
+	<extension name='electronicsstore' />
+	<extension name='powertoolsstore' />
     <extension name='solrserver' />
     <extension name='acceleratorwebservicesaddon' />
     <extension name='b2bacceleratoraddon' />
@@ -43,10 +37,36 @@
     <extension name='consignmenttrackingaddon' />
     <extension name='pcmbackofficesamplesaddon' />
     <extension name='consignmenttrackingoccaddon' />
+	<extension name='b2bapprovalprocess' />
+	
     <extension name='outboundservices' />
     <extension name='odata2webservices' />
     <extension name='odata2webservicesfeaturetests' />
     <extension name='kymaintegrationbackoffice' />
     <extension name='kymaintegrationsampledata' />
+
+	<extension name='cms2' />
+	<extension name='cms2lib' />
+	<extension name='cockpit' />
+	<extension name='addonsupport' />
+	<extension name='acceleratorservices' />
+	<extension name='b2bacceleratorfacades' />
+	<extension name='mcc' />
+	
+    <extension name='ncipstorefront' />
+    <extension name='ncipb2bstorefront' />
+    <extension name='ncipfulfilmentprocess' />
+    <extension name='ncipcore' />
+    <extension name='ncipfacades' />
+    <extension name='ncipinitialdata' />
+    <extension name='ncipbackoffice' />
+    <extension name='nciptest' />
+	
+	<extension name="secureportaladdon" />
+	
+	<extension name='assistedservicefacades' /> 
+	<extension name='assistedservicepromotionaddon' /> 
+	<extension name='assistedserviceatddtests' />
+
   </extensions>
 </hybrisconfig>
