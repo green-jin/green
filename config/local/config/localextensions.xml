@@ -1,81 +1,82 @@
-<hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
+<hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
   <extensions>
-    <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
-    
-     <extension name='ordermanagementaddon' />
-    <extension name='orderselfserviceaddon' />
-    <extension name='ordermanagementwebservices' />
-    <extension name='b2bordermanagementwebservices' />
-    <extension name='warehousing' />
-    <extension name='warehousingbackoffice' />
-    <extension name='warehousingwebservices' />
-    <extension name='adaptivesearchsolr' />
-    <extension name='adaptivesearchbackoffice' />
-    <extension name='adaptivesearchsamplesaddon' />
-    <extension name='b2bcommercebackoffice' />
-    <extension name='commerceservicesbackoffice' />
-	
-    <extension name='yaddon' />
-    <extension name='ycommercewebservices' />
-    <extension name='cmsoccaddon' />
-    <extension name='powertoolsstore' />
-    <extension name='solrserver' />
-    <extension name='acceleratorwebservicesaddon' />
-    <extension name='b2bacceleratoraddon' />
-    <extension name='commerceorgaddon' />
-    <extension name='commerceorgsamplesaddon' />
-    <extension name='assistedservicestorefront' />
-    <extension name='assistedservicewebservices' />
-    <extension name='customerticketingaddon' />
-    <extension name='customersupportbackoffice' />
-    <extension name='ticketsystembackoffice' />
-    <extension name='consignmenttrackingbackoffice' />
-    <extension name='rulebuilderbackoffice' />
-    <extension name='couponbackoffice' />
-    <extension name='droolsruleengineservices' />
-    <extension name='couponfacades' />
-    <extension name='promotionenginesamplesaddon' />
-    <extension name='consignmenttrackingaddon' />
-    <extension name='pcmbackofficesamplesaddon' />
-    <extension name='consignmenttrackingoccaddon' />
-    <extension name='outboundservices' />
-    <extension name='odata2webservices' />
-    <extension name='odata2webservicesfeaturetests' />
-    <extension name='kymaintegrationbackoffice' />
-    <extension name='kymaintegrationsampledata' />
-	<extension name='multicountrysampledataaddon' />
-	<extension name='cmsbackoffice' />
-	<extension name='cmssmartedit' />
-	<extension name='cmssmarteditwebservices' />
-	<extension name='cmswebservices' />
-	<extension name='permissionswebservices' />
-	<extension name='previewwebservices' />
-	<extension name='smartedit' />
-	<extension name='smarteditaddon' />
-	<extension name='smarteditwebservices' />
-	
-	<extension name='mcc' />
-	<extension name='cms2' />
-	<extension name='cms2lib' />
-	<extension name='cockpit' />
-	<extension name='addonsupport' />
-	<extension name='acceleratorservices' />
-	<extension name='b2bacceleratorfacades' />
-	
-    <extension name='b2bapprovalprocess' />
-   
-	<extension name='ncipfulfilmentprocess' />
-	<extension name='ncipcore' />
-	<extension name='ncipfacades' />
-	<extension name='ncipinitialdata' />
-	<extension name='ncipbackoffice' />
-	<extension name='ncipstorefront' />
-	<extension name='ncipb2bstorefront' />
-	
-	<extension name='secureportaladdon' />
-	
-	<extension name='assistedservicefacades' /> 
-	<extension name='assistedservicepromotionaddon' /> 
-	
+    <path dir='${HYBRIS_BIN_DIR}' autoload='false'/>
+
+    <extension name='ordermanagementaddon'/>
+    <extension name='orderselfserviceaddon'/>
+    <extension name='ordermanagementwebservices'/>
+    <extension name='b2bordermanagementwebservices'/>
+    <extension name='warehousing'/>
+    <extension name='warehousingbackoffice'/>
+    <extension name='warehousingwebservices'/>
+    <extension name='adaptivesearchsolr'/>
+    <extension name='adaptivesearchbackoffice'/>
+    <extension name='adaptivesearchsamplesaddon'/>
+    <extension name='b2bcommercebackoffice'/>
+    <extension name='commerceservicesbackoffice'/>
+
+    <extension name='yaddon'/>
+    <extension name='ycommercewebservices'/>
+    <extension name='cmsoccaddon'/>
+    <extension name='powertoolsstore'/>
+    <extension name='solrserver'/>
+    <extension name='acceleratorwebservicesaddon'/>
+    <extension name='b2bacceleratoraddon'/>
+    <extension name='commerceorgaddon'/>
+    <extension name='commerceorgsamplesaddon'/>
+    <extension name='assistedservicestorefront'/>
+    <extension name='assistedservicewebservices'/>
+    <extension name='customerticketingaddon'/>
+    <extension name='customersupportbackoffice'/>
+    <extension name='ticketsystembackoffice'/>
+    <extension name='consignmenttrackingbackoffice'/>
+    <extension name='rulebuilderbackoffice'/>
+    <extension name='couponbackoffice'/>
+    <extension name='droolsruleengineservices'/>
+    <extension name='couponfacades'/>
+    <extension name='promotionenginesamplesaddon'/>
+    <extension name='consignmenttrackingaddon'/>
+    <extension name='pcmbackofficesamplesaddon'/>
+    <extension name='consignmenttrackingoccaddon'/>
+    <extension name='outboundservices'/>
+    <extension name='odata2webservices'/>
+    <extension name='odata2webservicesfeaturetests'/>
+    <extension name='kymaintegrationbackoffice'/>
+    <extension name='kymaintegrationsampledata'/>
+    <extension name='multicountrysampledataaddon'/>
+    <extension name='cmsbackoffice'/>
+    <extension name='cmssmartedit'/>
+    <extension name='cmssmarteditwebservices'/>
+    <extension name='cmswebservices'/>
+    <extension name='permissionswebservices'/>
+    <extension name='previewwebservices'/>
+    <extension name='smartedit'/>
+    <extension name='smarteditaddon'/>
+    <extension name='smarteditwebservices'/>
+
+    <extension name='mcc'/>
+    <extension name='cms2'/>
+    <extension name='cms2lib'/>
+    <extension name='cockpit'/>
+    <extension name='addonsupport'/>
+    <extension name='acceleratorservices'/>
+    <extension name='b2bacceleratorfacades'/>
+
+    <extension name='b2bapprovalprocess'/>
+
+    <extension name='ncipfulfilmentprocess'/>
+    <extension name='ncipcore'/>
+    <extension name='ncipfacades'/>
+    <extension name='ncipinitialdata'/>
+    <extension name='ncipbackoffice'/>
+    <extension name='ncipstorefront'/>
+    <extension name='ncipb2bstorefront'/>
+
+    <extension name='secureportaladdon'/>
+
+    <extension name='assistedservicefacades'/>
+    <extension name='assistedservicepromotionaddon'/>
+
   </extensions>
 </hybrisconfig>
