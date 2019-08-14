@@ -8,6 +8,8 @@ jalo
 solr
 licence
 *.css
+*.less
+*.js
 .project
 .settings
 # Folders to ignore at the root of the repository
@@ -19,6 +21,7 @@ licenses/
 # filter only custom extension
 bin/*
 !bin/custom/
+!config/local/config/
  
 # Filename patterns to ignore
 *.class
@@ -34,6 +37,8 @@ beans.xsd
 ruleset.xml
 *.log
 base.properties
+
+
 
 #  Addon specific copy folders
 **/_ui/addons
@@ -67,6 +72,7 @@ config/local/*.project
 *.ruleset.xml 
 *_bof.jar
 */rebel.xml
+**/wro_addons.xml
 
 **/classes/
 **/gensrc/
@@ -78,4 +84,8 @@ config/local/*.project
 **/resources/*.xsd
 **/*backoffice/resources/backoffice/*backoffice_bof.jar
 **/*core/hmc/bin/*corehmc.jar
+
+**/web/addonsrc/
+
+
 

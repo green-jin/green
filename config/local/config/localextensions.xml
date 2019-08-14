@@ -63,7 +63,7 @@
 	<extension name='mcc' />
 	<extension name='cms2' />
 	<extension name='cms2lib' />
-	<extension name='cockpit' />
+<!--	<extension name='cockpit' />-->
 	<extension name='addonsupport' />
 	<extension name='acceleratorservices' />
 	<extension name='b2bacceleratorfacades' />
