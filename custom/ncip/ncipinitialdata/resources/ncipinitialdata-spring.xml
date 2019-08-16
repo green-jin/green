@@ -18,14 +18,14 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
-
+ 
 	<!-- System Setup -->
-
+	
 	<bean id="yAcceleratorInitialDataSystemSetup"
 	      class="com.ncip.initialdata.setup.InitialDataSystemSetup"
 	      parent="abstractCoreSystemSetup">
 		<property name="coreDataImportService" ref="coreDataImportService"/>
-		<property name="sampleDataImportService" ref="sampleDataImportService"/>
+		<property name="sampleDataImportService" ref="sampleDataImportService"/> 
 	</bean>
 
 </beans>

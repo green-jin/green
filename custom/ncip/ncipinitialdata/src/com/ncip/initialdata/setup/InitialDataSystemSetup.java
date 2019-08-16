@@ -13,23 +13,31 @@ package com.ncip.initialdata.setup;
 import de.hybris.platform.commerceservices.dataimport.impl.CoreDataImportService;
 import de.hybris.platform.commerceservices.dataimport.impl.SampleDataImportService;
 import de.hybris.platform.commerceservices.setup.AbstractSystemSetup;
+import de.hybris.platform.commerceservices.setup.data.ImportData;
+import de.hybris.platform.commerceservices.setup.events.CoreDataImportedEvent;
+import de.hybris.platform.commerceservices.setup.events.SampleDataImportedEvent;
 import de.hybris.platform.core.initialization.SystemSetup;
 import de.hybris.platform.core.initialization.SystemSetup.Process;
 import de.hybris.platform.core.initialization.SystemSetup.Type;
 import de.hybris.platform.core.initialization.SystemSetupContext;
 import de.hybris.platform.core.initialization.SystemSetupParameter;
 import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
-import com.ncip.initialdata.constants.NcipInitialDataConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
+import com.ncip.initialdata.constants.NcipInitialDataConstants;
+
 
 /**
  * This class provides hooks into the system's initialization and update processes.
+ * Hooks for Initialization and Update+Process
+ * 
+ * @see https://help.sap.com/viewer/3fb5dcdfe37f40edbac7098ed40442c0/1811/en-US/02b4f9d4ba0740eabec09508a293e25e.html
  */
 @SystemSetup(extension = NcipInitialDataConstants.EXTENSIONNAME)
 public class InitialDataSystemSetup extends AbstractSystemSetup
@@ -56,6 +64,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 		params.add(createBooleanSystemSetupParameter(IMPORT_CORE_DATA, "Import Core Data", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SAMPLE_DATA, "Import Sample Data", true));
 		params.add(createBooleanSystemSetupParameter(ACTIVATE_SOLR_CRON_JOBS, "Activate Solr Cron Jobs", true));
+
 		// Add more Parameters here as you require
 
 		return params;
@@ -64,7 +73,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	/**
 	 * Implement this method to create initial objects. This method will be called by system creator during
 	 * initialization and system update. Be sure that this method can be called repeatedly.
-	 * 
+	 *
 	 * @param context
 	 *           the context provides the selected parameters and values
 	 */
@@ -104,6 +113,39 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 		/*
 		 * Add import data for each site you have configured
 		 */
+		LOG.info("=== SystemSetup (type = Type.PROJECT, process = Process.ALL) Start ===");
+
+		final List<ImportData> importData = new ArrayList<ImportData>();
+
+		final ImportData sampleImportData = new ImportData();
+		sampleImportData.setProductCatalogName(NcipInitialDataConstants.NCIP);
+		sampleImportData.setContentCatalogNames(Arrays.asList(NcipInitialDataConstants.NCIP));
+		sampleImportData.setStoreNames(Arrays.asList(NcipInitialDataConstants.NCIP));
+		importData.add(sampleImportData);
+
+		getCoreDataImportService().execute(this, context, importData);
+		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
+
+		LOG.info("=== SystemSetup (type = Type.PROJECT, process = Process.ALL) End ===");
+	}
+
+	@SystemSetup(type = Type.PROJECT, process = Process.UPDATE)
+	public void createUpdateProjectData(final SystemSetupContext context)
+	{
+		LOG.info("=== SystemSetup (type = Type.PROJECT, process = Process.UPDATE) Start ===");
+
+		final List<ImportData> importData = new ArrayList<ImportData>();
+
+		final ImportData sampleImportData = new ImportData();
+		sampleImportData.setProductCatalogName(NcipInitialDataConstants.NCIP);
+		sampleImportData.setContentCatalogNames(Arrays.asList(NcipInitialDataConstants.NCIP));
+		sampleImportData.setStoreNames(Arrays.asList(NcipInitialDataConstants.NCIP));
+		importData.add(sampleImportData);
+
+		getSampleDataImportService().execute(this, context, importData);
+		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
+
+		LOG.info("=== SystemSetup (type = Type.PROJECT, process = Process.UPDATE) End ===");
 	}
 
 	public CoreDataImportService getCoreDataImportService()
@@ -127,4 +169,5 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	{
 		this.sampleDataImportService = sampleDataImportService;
 	}
+
 }

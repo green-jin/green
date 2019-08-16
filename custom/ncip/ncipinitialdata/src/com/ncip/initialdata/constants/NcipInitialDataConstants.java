@@ -15,7 +15,10 @@ package com.ncip.initialdata.constants;
  */
 public final class NcipInitialDataConstants extends GeneratedNcipInitialDataConstants
 {
+	public static final String NCIP = "ncip";
 	public static final String EXTENSIONNAME = "ncipinitialdata";
+	public static final String RELEASE_DATA_FOLDER = "importReleaseData";
+
 
 	private NcipInitialDataConstants()
 	{

@@ -1,0 +1,44 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import CMS content for the site
+#
+ 
+$contentCatalog=ncipContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+ 
+# Language
+$lang=zh_TW
+ 
+# Content Pages
+UPDATE ContentPage ; $contentCV[unique=true] ; uid[unique=true]             ; title[lang=$lang] 
+                   ;                         ; account                      ; "我的帳戶"           
+                   ;                         ; add-edit-address             ; "添加/編輯地址"         
+                   ;                         ; address-book                 ; "地址簿"            
+                   ;                         ; cartPage                     ; "您的購物車"           
+                   ;                         ; checkout-login               ; "前去結帳"            
+                   ;                         ; faq                          ; "常見問題解答"        
+                   ;                         ; homepage                     ; "首頁"              
+                   ;                         ; login                        ; "登錄"              
+                   ;                         ; multiStepCheckoutSummaryPage ; "結帳"              
+                   ;                         ; notFound                     ; "未找到"             
+                   ;                         ; order                        ; "訂單詳細信息"          
+                   ;                         ; orderConfirmationPage        ; "訂單確認"            
+                   ;                         ; orders                       ; "訂單歷史紀錄"          
+                   ;                         ; payment-details              ; "付款详细信息"          
+                   ;                         ; profile                      ; "個人資料"           
+                   ;                         ; searchEmpty                  ; "無結果"             
+                   ;                         ; storefinderPage              ; "StoreFinder"     
+                   ;                         ; termsAndConditions           ; "條款和條件"           
+                   ;                         ; update-email                 ; "更新電子郵件"          
+                   ;                         ; update-profile               ; "更新個人資料"          
+                   ;                         ; updatePassword               ; "更新忘記的密碼"         
+                    

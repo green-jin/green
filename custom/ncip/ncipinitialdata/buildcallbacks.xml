@@ -68,8 +68,31 @@
 --><project name="ncipinitialdata_buildcallbacks">
 
 	<import file="${ext.ncipinitialdata.path}/resources/ncipinitialdata/ant/ant-bind-impex-template.xml"/>
-
+	
+	
+	
+		
+	
 	<!-- 
+	
+	<target name="runantbind">
+		   <bindImpexTemplate
+		         addonname="ncipinitialdata"
+		         contentCatalog="ncipContentCatalog"
+		         productCatalog="ncipProductCatalog"
+		         storeName="ncip"
+		         classificationCatalog="ncipClassificationCatalog"
+		         storeUid="ncip"
+		         defaultPromoGrp="ncipDefaultPromoGrp"
+		         contentCatalogName="ncipContentCatalogName"
+		         productCatalogName="ncipProductCatalogName"
+		         vendor="ncipCustomvendor"
+		         indexedType="ncipIndexedType"
+		         facetSearchConfigName="ncipFacetSearchConfigName"
+		   />
+		   <echo message="finished bind config"/>
+		</target>
+		
 		Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
 
 		${ear.path}: 			path to ear
