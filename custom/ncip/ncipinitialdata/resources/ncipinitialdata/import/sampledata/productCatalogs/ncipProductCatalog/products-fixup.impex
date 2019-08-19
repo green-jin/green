@@ -8,10 +8,10 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-#
-# Import Users and Groups for Product Cockpit
-#
- 
-INSERT_UPDATE UserGroup ; UID[unique=true]    ; groups(uid)[mode=append]   
-                        ; productmanagergroup ; cockpitgroup,employeegroup 
-   
+# Macros / Replacement Parameter definitions
+$productCatalog=ncipProductCatalog
+$productCatalogName=ncip Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$categories=source(code, $catalogVersion)[unique=true]
+$products=target(code, $catalogVersion)[unique=true]

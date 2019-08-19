@@ -17,6 +17,9 @@ $picture=media(code, $contentCV);
 #$productResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/productCatalogs/$productCatalog
 #$jarResourceCms=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/cockpits/cmscockpit
 $siteResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+#$siteResource/images/banners/homepage/responsive/Powertools_1400x480_BigSplash_DE_01_1400W.jpg
+#/ncipinitialdata/resources/ncipinitialdata/import/sampledata/contentCatalogs/ncipContentCatalog/images/banners/homepage/responsive/Powertools_1400x480_BigSplash_DE_01_1400W.jpg
+
 $productResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/productCatalogs/$productCatalog
 $jarResourceCms=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/cockpits/cmscockpit
 $medias=medias(code, $contentCV);

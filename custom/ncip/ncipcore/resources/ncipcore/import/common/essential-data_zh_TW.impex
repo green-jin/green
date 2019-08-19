@@ -19,7 +19,7 @@ $lang=zh_TW
 
 
 # Languages
-UPDATE Language;isocode[unique=true];name[lang=$lang]
+INSERT_UPDATE Language;isocode[unique=true];name[lang=$lang]
  ;de;"德语"
  ;en;"英语"
  ;ja;"日语"
@@ -27,7 +27,7 @@ UPDATE Language;isocode[unique=true];name[lang=$lang]
 ; zh_TW;"繁体中文";  
 
 # Currencies
-UPDATE Currency;isocode[unique=true];name[lang=$lang]
+INSERT_UPDATE Currency;isocode[unique=true];name[lang=$lang]
  ;EUR;"欧元"
  ;GBP;"英镑"
  ;JPY;"日元"
@@ -35,7 +35,7 @@ UPDATE Currency;isocode[unique=true];name[lang=$lang]
  ;TWD;"新台幣"
 
 # Titles
-UPDATE Title;code[unique=true];name[lang=$lang]
+INSERT_UPDATE Title;code[unique=true];name[lang=$lang]
  ;dr;"博士"
  ;miss;"小姐"
  ;mr;"先生"
@@ -44,7 +44,7 @@ UPDATE Title;code[unique=true];name[lang=$lang]
  ;rev;"尊敬的"
 
 # Credit / Debit Cards
-UPDATE CreditCardType;code[unique=true];name[lang=$lang]
+INSERT_UPDATE CreditCardType;code[unique=true];name[lang=$lang]
  ;amex;"American Express"
  ;diners;"Diner's Club"
  ;maestro;"Maestro"
@@ -54,12 +54,12 @@ UPDATE CreditCardType;code[unique=true];name[lang=$lang]
  ;visa;"Visa"
 
 # DistanceUnits for Storelocator 
-UPDATE DistanceUnit;code[unique=true];name[lang=$lang]
+INSERT_UPDATE DistanceUnit;code[unique=true];name[lang=$lang]
  ;km;"公里"
  ;miles;"英里"
 
 # MediaFormats
-UPDATE MediaFormat;qualifier[unique=true];name[lang=$lang];
+INSERT_UPDATE MediaFormat;qualifier[unique=true];name[lang=$lang];
  ;1200Wx1200H;"1200Wx1200H"
  ;300Wx300H;"300Wx300H"
  ;30Wx30H;"30Wx30H"
@@ -69,7 +69,7 @@ UPDATE MediaFormat;qualifier[unique=true];name[lang=$lang];
  ;96Wx96H;"96Wx96H"
 
 # Product Tax Groups
-UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
+INSERT_UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
  ;ca-sales-tax-full;"加拿大增值税"
  ;eu-vat-full;"欧盟全税率"
  ;eu-vat-half;"欧盟半税率"
@@ -78,7 +78,7 @@ UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
  ;zh_tw-sales-tax-full;"台灣增值税"
 
 # User Tax Groups
-UPDATE UserTaxGroup;code[unique=true];name[lang=$lang]
+INSERT_UPDATE UserTaxGroup;code[unique=true];name[lang=$lang]
  ;ca-taxes;"加拿大税费"
  ;de-taxes;"德国税费"
  ;jp-taxes;"日本税费"
@@ -87,7 +87,7 @@ UPDATE UserTaxGroup;code[unique=true];name[lang=$lang]
  ;zh_tw-taxes;"台灣税费"
 
 # Tax
-UPDATE Tax;code[unique=true];name[lang=$lang]
+INSERT_UPDATE Tax;code[unique=true];name[lang=$lang]
  ;ca-sales-tax-full;"增值税"
  ;de-vat-full;"德国全增值税"
  ;de-vat-half;"德国半增值税"
@@ -98,7 +98,7 @@ UPDATE Tax;code[unique=true];name[lang=$lang]
  ;zh_tw-sales-tax-full;"台灣增值税"
 
 # Consginment statuses
-UPDATE ConsignmentStatus;code[unique=true];name[lang=$lang]
+INSERT_UPDATE ConsignmentStatus;code[unique=true];name[lang=$lang]
  ;CANCELLED;"已取消"
  ;PICKPACK;"拣配出货"
  ;PICKUP_COMPLETE;"拣货完成"

@@ -13,7 +13,7 @@
 #
 
 $storeUid=ncip
-$checkoutFlowGroup=responsiveCheckoutGroup
+$checkoutFlowGroup=b2bCheckoutGroup
 
 # Base Store
 INSERT_UPDATE BaseStore;uid[unique=true];checkoutFlowGroup;

@@ -14,12 +14,18 @@
 
 $productCatalog=ncipProductCatalog
 $classificationCatalog=ncipClassification
-$currencies=USD,TWD
+#$currencies=USD,TWD
+#$net=true
+#$storeUid=ncip
+#$defaultCurrency=USD,TWD
+#$languages=ja,en,de,zh,zh_TW
+#$defaultLanguage=en,zh_TW
+$currencies=USD
 $net=true
 $storeUid=ncip
-$defaultCurrency=USD,TWD
-$languages=ja,en,de,zh,zh_TW
-$defaultLanguage=en,zh_TW
+$defaultCurrency=USD
+$languages=ja,en,de,zh
+$defaultLanguage=en
 $unitedKingdom=GB,GG,IM,JE
 $europeNotUK=AD,AL,AT,BA,BE,BG,BY,CH,CY,CZ,DE,DK,EE,ES,FI,FO,FR,GI,GL,GR,HR,HU,IE,IS,IT,LI,LT,LU,LV,MC,MD,ME,MK,MT,NL,NO,PL,PT,RO,RS,RU,SE,SI,SK,SM,TR,UA,VA
 $asianCountries=CN,JP,VN,HK,KP,KR

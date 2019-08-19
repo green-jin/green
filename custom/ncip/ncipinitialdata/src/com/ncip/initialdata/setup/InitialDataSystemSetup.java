@@ -106,7 +106,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     /*
      * Add import data for each site you have configured
      */
-    LOG.info("=== NCIP Initialize SystemSetup Type.PROJECT Process.ALL) Start ===");
+    LOG.info("######################################### NCIP Initialize SystemSetup Type.PROJECT Process.ALL Start #########################################");
 
     final List<ImportData> importData = new ArrayList<ImportData>();
 
@@ -119,18 +119,18 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     getCoreDataImportService().execute(this, context, importData);
     getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
 
-    getSampleDataImportService().execute(this, context, importData);
+    // getSampleDataImportService().execute(this, context, importData);
     // import Sample B2B Organizations user-groups.impex
-    getNcipSampleDataImportService().importCommerceOrgData(context);
-    getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
+    // getNcipSampleDataImportService().importCommerceOrgData(context);
+    // getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    LOG.info("=== NCIP Initialize SystemSetup Type.PROJECT Process.ALL) End ===");
+    LOG.info("######################################### NCIP Initialize SystemSetup Type.PROJECT Process.ALL End #########################################");
   }
 
   @SystemSetup(type = Type.PROJECT, process = Process.UPDATE)
   public void createUpdateProjectData(final SystemSetupContext context) {
 
-    LOG.info("=== NCIP Update SystemSetup Type.PROJECT Process.UPDATE) Start ===");
+    LOG.info("######################################### NCIP Update SystemSetup Type.PROJECT Process.UPDATE Start #########################################");
 
     final List<ImportData> importData = new ArrayList<ImportData>();
 
@@ -145,7 +145,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     getNcipSampleDataImportService().importCommerceOrgData(context);
     getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    LOG.info("=== NCIP Update SystemSetup Type.PROJECT Process.UPDATE) End ===");
+    LOG.info("######################################### NCIP Update SystemSetup Type.PROJECT Process.UPDATE End #########################################");
   }
 
   public CoreDataImportService getCoreDataImportService() {

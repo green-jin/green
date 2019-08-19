@@ -9,9 +9,13 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import Users and Groups for Product Cockpit
+# Import Themes
 #
- 
-INSERT_UPDATE UserGroup ; UID[unique=true]    ; groups(uid)[mode=append]   
-                        ; productmanagergroup ; cockpitgroup,employeegroup 
-   
+
+# Language
+$lang=zh_TW
+
+# SiteTheme
+UPDATE SiteTheme;code[unique=true];name[lang=$lang]
+ ;black;"黑"
+ ;blue;"蓝"

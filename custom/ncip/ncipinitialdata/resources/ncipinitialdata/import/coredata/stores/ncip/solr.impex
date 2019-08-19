@@ -18,8 +18,10 @@ $facetSearchConfigDescription=ncip Solr Index
 $searchIndexNamePrefix=ncip
 $solrIndexedType=ncipProductType
 $indexBaseSite=ncip
-$indexLanguages=ja,en,de,zh,zh_TW
-$indexCurrencies=USD,CAD,TWD
+$indexLanguages=ja,en,de,zh
+$indexCurrencies=USD,CAD
+#$indexLanguages=ja,en,de,zh,zh_TW
+#$indexCurrencies=USD,CAD,TWD
 
 #
 # Setup the indexed types, their properties, and the update queries

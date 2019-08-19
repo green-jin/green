@@ -1089,7 +1089,7 @@ INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=d
 ;widescreen;Powertools_1400x401_ErrorPage_1400W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;Powertools_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
-;ncip-errorpage-pagenotfound;Powertools_480x170_ErrorPage_480W.svg,Powertools_770x221_ErrorPage_770W.svg,Powertools_960x275_ErrorPage_960W.svg,Powertools1400x401_ErrorPage_1400W.svg
+;ncip-errorpage-pagenotfound;Powertools_480x170_ErrorPage_480W.svg,Powertools_770x221_ErrorPage_770W.svg,Powertools_960x275_ErrorPage_960W.svg,Powertools_1400x401_ErrorPage_1400W.svg
 
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$mediaContainer
 ;;nciptronicsErrorpageBannerComponent;nciptronics Error Page Banner Component;nciptronicsErrorpageBannerComponent;ncip-errorpage-pagenotfound

@@ -38,6 +38,7 @@ INSERT_UPDATE Currency;isocode[unique=true];conversion;digits;symbol
 ;EUR;1;2;€
 ;USD;1,4;2;$
 ;JPY;120;0;¥
+;TWD;1,4;2;NT$    
 
 # Vendor
 INSERT_UPDATE Vendor;code[unique=true];name
