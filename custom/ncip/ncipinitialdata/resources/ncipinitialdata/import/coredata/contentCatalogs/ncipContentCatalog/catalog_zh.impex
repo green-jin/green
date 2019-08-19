@@ -9,13 +9,12 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import the Content Catalog
+# Import the ncip Content Catalog
 #
- 
-$contentCatalog=ncipContentCatalog
+
 # Language
 $lang=zh
- 
+
 # Create Content Catalog
-UPDATE ContentCatalog ; id[unique=true] ; name[lang=$lang] 
-                      ; $contentCatalog ; 和之合产品目录          
+UPDATE ContentCatalog;id[unique=true];name[lang=$lang]
+ ;ncipContentCatalog;"电动工具内容目录"

@@ -13,8 +13,8 @@
 #
 
 # Language
-$lang=zh
+$lang=zh_TW
 
 # Create CMS Site
 UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
- ;ncip;"电动工具站点";zh_CN
+ ;ncip;"电动工具站点";$lang

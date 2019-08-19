@@ -29,7 +29,7 @@ INSERT_UPDATE Currency ; isocode[unique=true] ; name[lang=$lang]
                 ; CAD                  ; 加拿大元             ;  
                 ; EUR                  ; 欧元               ;  
                 ; USD                  ; 美元               ;  
-                ; TWD                  ; "新台幣;            
+                ; TWD                  ; 新台幣;            
                 
 # Titles        
 INSERT_UPDATE Title ; code[unique=true] ; name[lang=$lang] 
@@ -100,5 +100,5 @@ INSERT_UPDATE ConsignmentStatus ; code[unique=true] ; name[lang=$lang]
                          ; WAITING           ; "正在等待"           
                          
 # Warehouse              
-INSERT_INSERT_UPDATE Warehouse ; code[unique=true] ; name[lang=$lang] 
+INSERT_UPDATE Warehouse ; code[unique=true] ; name[lang=$lang] 
                         ; default           ; 和之合股份有限公司 (倉庫)   

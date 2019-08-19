@@ -9,10 +9,10 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import the Content Catalog
+# Import the ncip Content Catalog
 #
 $contentCatalog=ncipContentCatalog
-$languages=ja,en,de,zh,zh_TW
+$languages=ja,en,de,zh_TW
 
 # Content catalog for CMS contents
 INSERT_UPDATE ContentCatalog;id[unique=true]

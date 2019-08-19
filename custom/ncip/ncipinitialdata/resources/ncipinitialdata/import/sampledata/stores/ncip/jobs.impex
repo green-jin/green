@@ -9,8 +9,8 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 $storeUid=ncip
-$defaultCurrency=USD
-$defaultLanguage=en
+$defaultCurrency=USD,TWD
+$defaultLanguage=en,zh_TW
 $googleHost=setthethirdpartyhost
 $googleUserName=setgoogleusername
 $googlePassword=setgooglepassword

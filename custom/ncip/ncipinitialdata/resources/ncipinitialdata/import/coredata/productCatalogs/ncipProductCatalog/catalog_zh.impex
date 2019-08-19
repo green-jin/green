@@ -20,4 +20,6 @@ $productCatalog=ncipProductCatalog
 $classificationCatalog=ncipClassification
 
 UPDATE Catalog;id[unique=true];name[lang=$lang]
+;$classificationCatalog;"电动工具产品目录 Classification";
 ;$productCatalog;"电动工具产品目录";
+ 

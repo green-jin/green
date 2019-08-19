@@ -27,21 +27,50 @@
 # Languages
 INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
                        ; en                   ;                            ;                      ;  
+                       ; de                   ; en                         ;                      ;  
+                       ; ja                   ; en                         ;                      ;  
                        ; zh                   ; en                         ;                      ;  
                        ; zh_TW                ; en                         ;                      ;  
                        
 # Currencies           
 INSERT_UPDATE Currency ; isocode[unique=true] ; conversion ; digits ; symbol 
+                       ; EUR                  ; 1          ; 2      ; €      
                        ; USD                  ; 1,4        ; 2      ; $      
+                       ; CAD                  ; 1,4        ; 2      ; C$     
                        ; TWD                  ; 1,4        ; 2      ; NT$    
                        
 # Vendor               
 INSERT_UPDATE Vendor ; code[unique=true] ; name                
                      ; default           ; Default NCIP Vendor 
+                     ; ncip              ; ncip                
                      
-INSERT_UPDATE Warehouse ; code[unique=true] ; name                   ; 
-                        ; default           ; Default NCIP Warehouse ;                                                
-                 
+#INSERT_UPDATE Warehouse ; code[unique=true] ; name                   ;  
+#                        ; default           ; Default NCIP Warehouse ; 
+
+INSERT Warehouse;code[unique=true];name;vendor(code)[default=default, forceWrite=true];default[default=true, forceWrite=true]
+"#% beforeEach:
+import de.hybris.platform.core.Registry;
+import de.hybris.platform.ordersplitting.model.WarehouseModel;
+String warehouseCode = line.get(Integer.valueOf(1));
+WarehouseModel warehouse;
+try
+{
+    warehouse = Registry.getApplicationContext().getBean(""warehouseService"").getWarehouseForCode(warehouseCode);
+}
+catch (Exception e)
+{
+    warehouse = null;
+}
+if (warehouse != null)
+{
+    line.clear();
+}"
+;default;Default NCIP Warehouse;
+;pw_warehouse_s;;ncip
+;pw_warehouse_e;;ncip
+;pw_warehouse_w;;ncip
+;pw_warehouse_n;;ncip                         
+                        
 # Disable preview for email pages
 UPDATE CMSPageType ; code[unique=true] ; previewDisabled 
                    ; EmailPage         ; true            
@@ -75,13 +104,13 @@ INSERT_UPDATE MediaFormat ; qualifier[unique=true]
 # Tax & Tax Groups        
 INSERT_UPDATE UserTaxGroup ; code[unique=true] 
                            ; us-taxes          
-                           ; ca-taxes         
-                           ; zh_tw-taxes   
+                           ; ca-taxes          
+                           ; zh_tw-taxes       
                            
 INSERT_UPDATE ProductTaxGroup ; code[unique=true] 
                               ; us-sales-tax-full 
                               ; ca-sales-tax-full 
-                              ; zh_tw-vat-full
+                              ; zh_tw-vat-full    
                               
 INSERT_UPDATE Tax ; code[unique=true] ; value ; currency(isocode) 
                   ; us-sales-tax-full ; 0     

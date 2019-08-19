@@ -14,6 +14,7 @@
 $siteUid=ncip
 
 # Load the storefront context root config param
+#$storefrontContextRoot=/yb2bacceleratorstorefront
 $storefrontContextRoot=/ncipb2bstorefront
 
 # CMS Site

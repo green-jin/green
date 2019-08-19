@@ -9,45 +9,41 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import the CMS content for the site emails
-# 
+# Import the CMS content for the ncip site emails
+#
 $contentCatalog=ncipContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $wideContent=CMSImageComponent,BannerComponent
-$jarEmailResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/coredata/contentCatalogs/ncipContentCatalog/emails 
-
-# Import modulegen config properties into impex macros
-UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
-$jarResourceCms=$config-jarResourceCmsValue
-$emailPackageName=$config-emailContextPackageName 
+#$jarEmailResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/coredata/contentCatalogs/powertoolsContentCatalog/emails
+$jarEmailResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/coredata/contentCatalogs/ncipContentCatalog/emails
  
-# Import config properties into impex macros
+# Import modulegen config properties into impex macros
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
 $jarResourceCms=$config-jarResourceCmsValue                                                                
-                                                                                                           
+$emailPackageName=$config-emailContextPackageName                                                          
                                                                                                            
 # Email page Template                                                                                      
-INSERT_UPDATE EmailPageTemplate ; $contentCV[unique=true] ; uid[unique=true]                            ; name                                              ; active ; frontendTemplateName                ; subject(code)                                             ; htmlTemplate(code)                                     ; restrictedPageTypes(code) 
-                                ;                         ; CustomerRegistrationEmailTemplate           ; Customer Registration Email Template              ; true   ; customerRegistrationEmail           ; powertools_Email_Customer_Registration_Subject            ; powertools_Email_Customer_Registration_Body            ; EmailPage                 
-                                ;                         ; ForgottenPasswordEmailTemplate              ; Forgotten Password Email Template                 ; true   ; forgottenPasswordEmail              ; powertools_Email_Forgotten_Password_Subject               ; powertools_Email_Forgotten_Password_Body               ; EmailPage                 
-                                ;                         ; OrderConfirmationEmailTemplate              ; Order Confirmation Email Template                 ; true   ; orderConfirmationEmail              ; powertools_Email_Order_Confirmation_Subject               ; powertools_Email_Order_Confirmation_Body               ; EmailPage                 
-                                ;                         ; DeliverySentEmailTemplate                   ; Delivery Sent Email Template                      ; true   ; deliverySentEmail                   ; powertools_Email_Delivery_Sent_Subject                    ; powertools_Email_Delivery_Sent_Body                    ; EmailPage                 
-                                ;                         ; ReadyForPickupEmailTemplate                 ; Ready For Pickup Email Template                   ; true   ; readyForPickupEmail                 ; powertools_Email_Ready_For_Pickup_Subject                 ; powertools_Email_Ready_For_Pickup_Body                 ; EmailPage                 
-                                ;                         ; OrderCancelledEmailTemplate                 ; Order Cancelled Email Template                    ; true   ; orderCancelledEmail                 ; powertools_Email_Order_Cancelled_Subject                  ; powertools_Email_Order_Cancelled_Body                  ; EmailPage                 
-                                ;                         ; OrderRefundEmailTemplate                    ; Order Refund Email Template                       ; true   ; orderRefundEmail                    ; powertools_Email_Order_Refund_Subject                     ; powertools_Email_Order_Refund_Body                     ; EmailPage                 
-                                ;                         ; OrderCollectionReminderEmailTemplate        ; Order Collection Reminder Email Template          ; true   ; orderCollectionReminderEmail        ; powertools_Email_Order_Collection_Reminder_Subject        ; powertools_Email_Order_Collection_Reminder_Body        ; EmailPage                 
-                                ;                         ; OrderMoveToCsEmailTemplate                  ; Order Moved To CS Email Template                  ; true   ; orderMoveToCsEmail                  ; powertools_Email_Order_Move_To_CS_Subject                 ; powertools_Email_Order_Move_To_CS_Body                 ; EmailPage                 
-                                ;                         ; OrderPartiallyCanceledEmailTemplate         ; Order Partially Canceled Email Template           ; true   ; orderPartiallyCanceledEmail         ; powertools_Email_Order_Partially_Canceled_Subject         ; powertools_Email_Order_Partially_Canceled_Body         ; EmailPage                 
-                                ;                         ; OrderPartiallyRefundedEmailTemplate         ; Order Partially Refunded Email Template           ; true   ; orderPartiallyRefundedEmail         ; powertools_Email_Order_Partially_Refunded_Subject         ; powertools_Email_Order_Partially_Refunded_Body         ; EmailPage                 
-                                ;                         ; NotPickedUpConsignmentCanceledEmailTemplate ; Not Picked Up Consignment Canceled Email Template ; true   ; notPickedUpConsignmentCanceledEmail ; powertools_Email_NotPickedUpConsignment_Canceled_Subject  ; powertools_Email_NotPickedUpConsignment_Canceled_Body  ; EmailPage                 
-                                ;                         ; OrderApprovalRejectionEmailTemplate         ; Order Approval Rejection Email Template           ; true   ; orderApprovalRejectionEmail         ; powertools_Email_Order_ApprovalRejection_Subject          ; powertools_Email_Order_ApprovalRejection_Body          ; EmailPage                 
-                                ;                         ; OrderPendingApprovalEmailTemplate           ; Order Pending Approval Email Template             ; true   ; orderPendingApprovalEmail           ; powertools_Email_Order_PendingApproval_Subject            ; powertools_Email_Order_PendingApproval_Body            ; EmailPage                 
-                                ;                         ; ReplenishmentOrderPlacedEmailTemplate       ; Replenishment Order Placed Email Template         ; true   ; replenishmentOrderPlacedEmail       ; powertools_Email_Replenishment_Order_Placed_Subject       ; powertools_Email_Replenishment_Order_Placed_Body       ; EmailPage                 
-                                ;                         ; ReplenishmentOrderConfirmationEmailTemplate ; Replenishment Order Confirmation Email Template   ; true   ; replenishmentOrderConfirmationEmail ; powertools_Email_Replenishment_Order_Confirmation_Subject ; powertools_Email_Replenishment_Order_Confirmation_Body ; EmailPage                 
-                                ;                         ; QuoteBuyerSubmissionEmailTemplate           ; Quote Buyer Submission Email Template             ; true   ; quoteBuyerSubmissionEmail           ; powertools_Email_Quote_Buyer_Submission_Subject           ; powertools_Email_Quote_Buyer_Submission_Body           ; EmailPage                 
-                                ;                         ; QuoteToExpireSoonEmailTemplate              ; Quote To Expire Soon Email Template               ; true   ; quoteToExpireSoonEmail              ; powertools_Email_Quote_To_Expire_Soon_Subject             ; powertools_Email_Quote_To_Expire_Soon_Body             ; EmailPage                 
-                                ;                         ; QuoteExpiredEmailTemplate                   ; Quote Expired Email Template                      ; true   ; quoteExpiredEmail                   ; powertools_Email_Quote_Expired_Subject                    ; powertools_Email_Quote_Expired_Body                    ; EmailPage                 
-                                ;                         ; QuoteBuyerCancellationEmailTemplate         ; Quote Buyer Cancellation Email Template           ; true   ; quoteBuyerCancellationEmail         ; powertools_Email_Quote_Buyer_Cancellation_Subject         ; powertools_Email_Quote_Buyer_Cancellation_Body         ; EmailPage                 
+INSERT_UPDATE EmailPageTemplate ; $contentCV[unique=true] ; uid[unique=true]                            ; name                                              ; active ; frontendTemplateName                ; subject(code)                                       ; htmlTemplate(code)                               ; restrictedPageTypes(code) 
+                                ;                         ; CustomerRegistrationEmailTemplate           ; Customer Registration Email Template              ; true   ; customerRegistrationEmail           ; ncip_Email_Customer_Registration_Subject            ; ncip_Email_Customer_Registration_Body            ; EmailPage                 
+                                ;                         ; ForgottenPasswordEmailTemplate              ; Forgotten Password Email Template                 ; true   ; forgottenPasswordEmail              ; ncip_Email_Forgotten_Password_Subject               ; ncip_Email_Forgotten_Password_Body               ; EmailPage                 
+                                ;                         ; OrderConfirmationEmailTemplate              ; Order Confirmation Email Template                 ; true   ; orderConfirmationEmail              ; ncip_Email_Order_Confirmation_Subject               ; ncip_Email_Order_Confirmation_Body               ; EmailPage                 
+                                ;                         ; DeliverySentEmailTemplate                   ; Delivery Sent Email Template                      ; true   ; deliverySentEmail                   ; ncip_Email_Delivery_Sent_Subject                    ; ncip_Email_Delivery_Sent_Body                    ; EmailPage                 
+                                ;                         ; ReadyForPickupEmailTemplate                 ; Ready For Pickup Email Template                   ; true   ; readyForPickupEmail                 ; ncip_Email_Ready_For_Pickup_Subject                 ; ncip_Email_Ready_For_Pickup_Body                 ; EmailPage                 
+                                ;                         ; OrderCancelledEmailTemplate                 ; Order Cancelled Email Template                    ; true   ; orderCancelledEmail                 ; ncip_Email_Order_Cancelled_Subject                  ; ncip_Email_Order_Cancelled_Body                  ; EmailPage                 
+                                ;                         ; OrderRefundEmailTemplate                    ; Order Refund Email Template                       ; true   ; orderRefundEmail                    ; ncip_Email_Order_Refund_Subject                     ; ncip_Email_Order_Refund_Body                     ; EmailPage                 
+                                ;                         ; OrderCollectionReminderEmailTemplate        ; Order Collection Reminder Email Template          ; true   ; orderCollectionReminderEmail        ; ncip_Email_Order_Collection_Reminder_Subject        ; ncip_Email_Order_Collection_Reminder_Body        ; EmailPage                 
+                                ;                         ; OrderMoveToCsEmailTemplate                  ; Order Moved To CS Email Template                  ; true   ; orderMoveToCsEmail                  ; ncip_Email_Order_Move_To_CS_Subject                 ; ncip_Email_Order_Move_To_CS_Body                 ; EmailPage                 
+                                ;                         ; OrderPartiallyCanceledEmailTemplate         ; Order Partially Canceled Email Template           ; true   ; orderPartiallyCanceledEmail         ; ncip_Email_Order_Partially_Canceled_Subject         ; ncip_Email_Order_Partially_Canceled_Body         ; EmailPage                 
+                                ;                         ; OrderPartiallyRefundedEmailTemplate         ; Order Partially Refunded Email Template           ; true   ; orderPartiallyRefundedEmail         ; ncip_Email_Order_Partially_Refunded_Subject         ; ncip_Email_Order_Partially_Refunded_Body         ; EmailPage                 
+                                ;                         ; NotPickedUpConsignmentCanceledEmailTemplate ; Not Picked Up Consignment Canceled Email Template ; true   ; notPickedUpConsignmentCanceledEmail ; ncip_Email_NotPickedUpConsignment_Canceled_Subject  ; ncip_Email_NotPickedUpConsignment_Canceled_Body  ; EmailPage                 
+                                ;                         ; OrderApprovalRejectionEmailTemplate         ; Order Approval Rejection Email Template           ; true   ; orderApprovalRejectionEmail         ; ncip_Email_Order_ApprovalRejection_Subject          ; ncip_Email_Order_ApprovalRejection_Body          ; EmailPage                 
+                                ;                         ; OrderPendingApprovalEmailTemplate           ; Order Pending Approval Email Template             ; true   ; orderPendingApprovalEmail           ; ncip_Email_Order_PendingApproval_Subject            ; ncip_Email_Order_PendingApproval_Body            ; EmailPage                 
+                                ;                         ; ReplenishmentOrderPlacedEmailTemplate       ; Replenishment Order Placed Email Template         ; true   ; replenishmentOrderPlacedEmail       ; ncip_Email_Replenishment_Order_Placed_Subject       ; ncip_Email_Replenishment_Order_Placed_Body       ; EmailPage                 
+                                ;                         ; ReplenishmentOrderConfirmationEmailTemplate ; Replenishment Order Confirmation Email Template   ; true   ; replenishmentOrderConfirmationEmail ; ncip_Email_Replenishment_Order_Confirmation_Subject ; ncip_Email_Replenishment_Order_Confirmation_Body ; EmailPage                 
+                                ;                         ; QuoteBuyerSubmissionEmailTemplate           ; Quote Buyer Submission Email Template             ; true   ; quoteBuyerSubmissionEmail           ; ncip_Email_Quote_Buyer_Submission_Subject           ; ncip_Email_Quote_Buyer_Submission_Body           ; EmailPage                 
+                                ;                         ; QuoteToExpireSoonEmailTemplate              ; Quote To Expire Soon Email Template               ; true   ; quoteToExpireSoonEmail              ; ncip_Email_Quote_To_Expire_Soon_Subject             ; ncip_Email_Quote_To_Expire_Soon_Body             ; EmailPage                 
+                                ;                         ; QuoteExpiredEmailTemplate                   ; Quote Expired Email Template                      ; true   ; quoteExpiredEmail                   ; ncip_Email_Quote_Expired_Subject                    ; ncip_Email_Quote_Expired_Body                    ; EmailPage                 
+                                ;                         ; QuoteBuyerCancellationEmailTemplate         ; Quote Buyer Cancellation Email Template           ; true   ; quoteBuyerCancellationEmail         ; ncip_Email_Quote_Buyer_Cancellation_Subject         ; ncip_Email_Quote_Buyer_Cancellation_Body         ; EmailPage                 
                                 
 # Templates for CMS Cockpit Page Edit
 UPDATE EmailPageTemplate ; $contentCV[unique=true] ; uid[unique=true]                            ; velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator] 
@@ -298,55 +294,55 @@ INSERT_UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]            
                         ;                         ; QuoteBuyerCancellationEmail         ; Quote Buyer Cancellation Email           ; QuoteBuyerCancellationEmailTemplate         ; true        ;                                          
                         
 # CMS components velocity templates
-INSERT_UPDATE RendererTemplate ; code[unique=true]                         ; contextClass  ; rendererType(code)[default='velocity'] 
-                               ; powertools-CMSImageComponent-template     ; java.util.Map 
-                               ; powertools-BannerComponent-template       ; java.util.Map 
-                               ; powertools-SimpleBannerComponent-template ; java.util.Map 
-                               ; powertools-CMSLinkComponent-template      ; java.util.Map 
-                               ; powertools-CMSParagraphComponent-template ; java.util.Map 
+INSERT_UPDATE RendererTemplate ; code[unique=true]                   ; contextClass  ; rendererType(code)[default='velocity'] 
+                               ; ncip-CMSImageComponent-template     ; java.util.Map 
+                               ; ncip-BannerComponent-template       ; java.util.Map 
+                               ; ncip-SimpleBannerComponent-template ; java.util.Map 
+                               ; ncip-CMSLinkComponent-template      ; java.util.Map 
+                               ; ncip-CMSParagraphComponent-template ; java.util.Map 
                                
 # Email velocity templates     
-INSERT_UPDATE RendererTemplate ; code[unique=true]                                         ; contextClass                                                                                 ; rendererType(code)[default='velocity'] 
-                               ; powertools_Email_Customer_Registration_Body               ; $emailPackageName.CustomerEmailContext                                                       
-                               ; powertools_Email_Forgotten_Password_Body                  ; $emailPackageName.ForgottenPasswordEmailContext                                              
-                               ; powertools_Email_Order_Confirmation_Body                  ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Delivery_Sent_Body                       ; $emailPackageName.DeliverySentEmailContext                                                   
-                               ; powertools_Email_Ready_For_Pickup_Body                    ; $emailPackageName.ReadyForPickupEmailContext                                                 
-                               ; powertools_Email_Order_Cancelled_Body                     ; $emailPackageName.OrderCancelledEmailContext                                                 
-                               ; powertools_Email_Order_Refund_Body                        ; $emailPackageName.OrderRefundEmailContext                                                    
-                               ; powertools_Email_Order_Collection_Reminder_Body           ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
-                               ; powertools_Email_Order_Move_To_CS_Body                    ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
-                               ; powertools_Email_Order_Partially_Canceled_Body            ; $emailPackageName.OrderPartiallyCanceledEmailContext                                         
-                               ; powertools_Email_Order_Partially_Refunded_Body            ; $emailPackageName.OrderPartiallyRefundedEmailContext                                         
-                               ; powertools_Email_NotPickedUpConsignment_Canceled_Body     ; $emailPackageName.NotPickedUpConsignmentCanceledEmailContext                                 
-                               ; powertools_Email_Customer_Registration_Subject            ; $emailPackageName.CustomerEmailContext                                                       
-                               ; powertools_Email_Forgotten_Password_Subject               ; $emailPackageName.ForgottenPasswordEmailContext                                              
-                               ; powertools_Email_Order_Confirmation_Subject               ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Delivery_Sent_Subject                    ; $emailPackageName.DeliverySentEmailContext                                                   
-                               ; powertools_Email_Ready_For_Pickup_Subject                 ; $emailPackageName.ReadyForPickupEmailContext                                                 
-                               ; powertools_Email_Order_Cancelled_Subject                  ; $emailPackageName.OrderCancelledEmailContext                                                 
-                               ; powertools_Email_Order_Refund_Subject                     ; $emailPackageName.OrderRefundEmailContext                                                    
-                               ; powertools_Email_Order_Collection_Reminder_Subject        ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
-                               ; powertools_Email_Order_Move_To_CS_Subject                 ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
-                               ; powertools_Email_Order_Partially_Canceled_Subject         ; $emailPackageName.OrderPartiallyCanceledEmailContext                                         
-                               ; powertools_Email_Order_Partially_Refunded_Subject         ; $emailPackageName.OrderPartiallyRefundedEmailContext                                         
-                               ; powertools_Email_NotPickedUpConsignment_Canceled_Subject  ; $emailPackageName.NotPickedUpConsignmentCanceledEmailContext                                 
-                               ; powertools_Email_Order_ApprovalRejection_Body             ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Order_ApprovalRejection_Subject          ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Order_PendingApproval_Subject            ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Order_PendingApproval_Body               ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Replenishment_Order_Placed_Body          ; de.hybris.platform.b2bacceleratoraddon.proccess.email.context.OrderReplenishmentEmailContext 
-                               ; powertools_Email_Replenishment_Order_Placed_Subject       ; de.hybris.platform.b2bacceleratoraddon.proccess.email.context.OrderReplenishmentEmailContext 
-                               ; powertools_Email_Replenishment_Order_Confirmation_Subject ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Replenishment_Order_Confirmation_Body    ; $emailPackageName.OrderNotificationEmailContext                                              
-                               ; powertools_Email_Quote_Buyer_Submission_Subject           ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_Buyer_Submission_Body              ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_To_Expire_Soon_Subject             ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_To_Expire_Soon_Body                ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_Expired_Subject                    ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_Expired_Body                       ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_Buyer_Cancellation_Subject         ; $emailPackageName.QuoteNotificationEmailContext                                              
-                               ; powertools_Email_Quote_Buyer_Cancellation_Body            ; $emailPackageName.QuoteNotificationEmailContext                                              
+INSERT_UPDATE RendererTemplate ; code[unique=true]                                   ; contextClass                                                                                 ; rendererType(code)[default='velocity'] 
+                               ; ncip_Email_Customer_Registration_Body               ; $emailPackageName.CustomerEmailContext                                                       
+                               ; ncip_Email_Forgotten_Password_Body                  ; $emailPackageName.ForgottenPasswordEmailContext                                              
+                               ; ncip_Email_Order_Confirmation_Body                  ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Delivery_Sent_Body                       ; $emailPackageName.DeliverySentEmailContext                                                   
+                               ; ncip_Email_Ready_For_Pickup_Body                    ; $emailPackageName.ReadyForPickupEmailContext                                                 
+                               ; ncip_Email_Order_Cancelled_Body                     ; $emailPackageName.OrderCancelledEmailContext                                                 
+                               ; ncip_Email_Order_Refund_Body                        ; $emailPackageName.OrderRefundEmailContext                                                    
+                               ; ncip_Email_Order_Collection_Reminder_Body           ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
+                               ; ncip_Email_Order_Move_To_CS_Body                    ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
+                               ; ncip_Email_Order_Partially_Canceled_Body            ; $emailPackageName.OrderPartiallyCanceledEmailContext                                         
+                               ; ncip_Email_Order_Partially_Refunded_Body            ; $emailPackageName.OrderPartiallyRefundedEmailContext                                         
+                               ; ncip_Email_NotPickedUpConsignment_Canceled_Body     ; $emailPackageName.NotPickedUpConsignmentCanceledEmailContext                                 
+                               ; ncip_Email_Customer_Registration_Subject            ; $emailPackageName.CustomerEmailContext                                                       
+                               ; ncip_Email_Forgotten_Password_Subject               ; $emailPackageName.ForgottenPasswordEmailContext                                              
+                               ; ncip_Email_Order_Confirmation_Subject               ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Delivery_Sent_Subject                    ; $emailPackageName.DeliverySentEmailContext                                                   
+                               ; ncip_Email_Ready_For_Pickup_Subject                 ; $emailPackageName.ReadyForPickupEmailContext                                                 
+                               ; ncip_Email_Order_Cancelled_Subject                  ; $emailPackageName.OrderCancelledEmailContext                                                 
+                               ; ncip_Email_Order_Refund_Subject                     ; $emailPackageName.OrderRefundEmailContext                                                    
+                               ; ncip_Email_Order_Collection_Reminder_Subject        ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
+                               ; ncip_Email_Order_Move_To_CS_Subject                 ; $emailPackageName.ConsignmentCollectionReminderEmailContext                                  
+                               ; ncip_Email_Order_Partially_Canceled_Subject         ; $emailPackageName.OrderPartiallyCanceledEmailContext                                         
+                               ; ncip_Email_Order_Partially_Refunded_Subject         ; $emailPackageName.OrderPartiallyRefundedEmailContext                                         
+                               ; ncip_Email_NotPickedUpConsignment_Canceled_Subject  ; $emailPackageName.NotPickedUpConsignmentCanceledEmailContext                                 
+                               ; ncip_Email_Order_ApprovalRejection_Body             ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Order_ApprovalRejection_Subject          ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Order_PendingApproval_Subject            ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Order_PendingApproval_Body               ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Replenishment_Order_Placed_Body          ; de.hybris.platform.b2bacceleratoraddon.proccess.email.context.OrderReplenishmentEmailContext 
+                               ; ncip_Email_Replenishment_Order_Placed_Subject       ; de.hybris.platform.b2bacceleratoraddon.proccess.email.context.OrderReplenishmentEmailContext 
+                               ; ncip_Email_Replenishment_Order_Confirmation_Subject ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Replenishment_Order_Confirmation_Body    ; $emailPackageName.OrderNotificationEmailContext                                              
+                               ; ncip_Email_Quote_Buyer_Submission_Subject           ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_Buyer_Submission_Body              ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_To_Expire_Soon_Subject             ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_To_Expire_Soon_Body                ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_Expired_Subject                    ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_Expired_Body                       ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_Buyer_Cancellation_Subject         ; $emailPackageName.QuoteNotificationEmailContext                                              
+                               ; ncip_Email_Quote_Buyer_Cancellation_Body            ; $emailPackageName.QuoteNotificationEmailContext                                              
                                
 # Preview Image for use in the CMS Cockpit
 INSERT_UPDATE Media ; $contentCV[unique=true] ; code[unique=true]      ; mime     ; realfilename               ; @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true] 

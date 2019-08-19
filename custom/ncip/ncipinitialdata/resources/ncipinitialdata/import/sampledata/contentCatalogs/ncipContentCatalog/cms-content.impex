@@ -20,7 +20,10 @@ $media=media(code, $contentCV);
 $page=page(uid, $contentCV);
 $contentPage=contentPage(uid, $contentCV);
 $product=product(code, $productCV)
-$category=category(code, $productCV) 
+$category=category(code, $productCV)
+#$siteResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/contentCatalogs/$contentCatalog
+#$productResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/productCatalogs/$productCatalog
+#$jarResourceCms=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/cockpits/cmscockpit
 $siteResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/contentCatalogs/$contentCatalog
 $productResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/productCatalogs/$productCatalog
 $jarResourceCms=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/cockpits/cmscockpit
@@ -187,35 +190,35 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 ##---- level 4. children of FooterNavNode ----##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;AcceleratorNavNode;;Accelerator Pages;FooterNavNode;;AcceleratorNavNode
-;HybrisNavNode;;Hybris Pages;FooterNavNode;;HybrisNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;FooterNavNode;;SAPCommerceNavNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;FooterNavNode;;SAPCustomerExperienceNavNode
 ;FollowUsNavNode;;Follow Us Pages;FooterNavNode;;FollowUsNavNode
 
-##----- level 5. children of HybrisNavNode -----##
+##----- level 5. children of SAPCustomerExperienceNavNode -----##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;AboutAcceleratorNavNode;;About Accelerator Page;AcceleratorNavNode;;AboutAcceleratorNavNode
-;DocumentationNavNode;;Documentation Page;AcceleratorNavNode;;DocumentationNavNode
+;AboutSAPCommerceNavNode;;About SAP Commerce Cloud Page;SAPCommerceNavNode;;AboutSAPCommerceNavNode
+;DocumentationNavNode;;Documentation Page;SAPCommerceNavNode;;DocumentationNavNode
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;AboutAcceleratorNavNodeEntry;;About Accelerator Navigation Node Entry;AboutAcceleratorNavNode;AboutAcceleratorLink;
+;AboutSAPCommerceNavNodeEntry;;About SAP Commerce Cloud Navigation Node Entry;AboutSAPCommerceNavNode;AboutSAPCommerceLink;
 ;DocumentationNavNodeEntry;;Documentation Navigation Node Entry;DocumentationNavNode;DocumentationLink;
 ## links of the above navigation nodes ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;AboutAcceleratorLink;About Accelerator Link;"http://www.hybris.com/multichannel-accelerator";AboutAcceleratorLink;AboutAcceleratorLink;newWindow
+;;AboutSAPCommerceLink;About SAP Commerce Cloud Link;"http://www.cx.sap.com/products/commerce";AboutSAPCommerceLink;AboutSAPCommerceLink;newWindow
 ;;DocumentationLink;Documentation Link;"https://help.hybris.com";DocumentationLink;DocumentationLink;newWindow
 
-##----- level 5. children of AcceleratorNavNode -----##
+##----- level 5. children of SAPCommerceNavNode -----##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;AboutHybrisNavNode;;About Hybris Page;HybrisNavNode;;AboutHybrisNavNode
-;ContactUsNavNode;;Contact Us Page;HybrisNavNode;;ContactUsNavNode
+;AboutSAPCustomerExperienceNavNode;;About SAP Customer Experience Page;SAPCustomerExperienceNavNode;;AboutSAPCustomerExperienceNavNode
+;ContactUsNavNode;;Contact Us Page;SAPCustomerExperienceNavNode;;ContactUsNavNode
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;AboutHybrisNavNodeEntry;;About Hybris Navigation Node Entry;AboutHybrisNavNode;AboutHybrisLink;
+;AboutSAPCustomerExperienceNavNodeEntry;;About SAP Customer Experience Navigation Node Entry;AboutSAPCustomerExperienceNavNode;VisitSAPLink;
 ;ContactUsNavNodeEntry;;Contact Us Navigation Node Entry;ContactUsNavNode;ContactUsLink;
 ## links of the above navigation nodes ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;AboutHybrisLink;About Hybris Link;"http://www.hybris.com";AboutHybrisLink;AboutHybrisLink;newWindow
-;;ContactUsLink;Contact Us Link;"http://www.hybris.com/contact";ContactUsLink;ContactUsLink;newWindow
+;;VisitSAPLink;Visit SAP Link;"http://www.cx.sap.com";VisitSAPLink;VisitSAPLink;newWindow
+;;ContactUsLink;Contact Us Link;"http://www.cx.sap.com/contact";ContactUsLink;ContactUsLink;newWindow
 
 ##----- level 5. children of FollowUsNavNode -----##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
@@ -232,9 +235,9 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ## links of the above navigation nodes ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
 ;;AgileCommerceBlogLink;Agile Commerce Blog Link;"http://www.agile-commerce.com/";AgileCommerceBlogLink;AgileCommerceBlogLink;newWindow
-;;LinkedInLink;Linked In Link;"http://www.linkedin.com/company/97435";LinkedInLink;LinkedInLink;newWindow
-;;FacebookLink;Facebook Link;"http://www.facebook.com/hybrissoftware";FacebookLink;FacebookLink;newWindow
-;;TwitterLink;Twitter Link;"http://twitter.com/#!/hybris_software";TwitterLink;TwitterLink;newWindow
+;;LinkedInLink;Linked In Link;"www.linkedin.com/groups/5063400";LinkedInLink;LinkedInLink;newWindow
+;;FacebookLink;Facebook Link;"http://www.facebook.com/sapcx/";FacebookLink;FacebookLink;newWindow
+;;TwitterLink;Twitter Link;"http://www.twitter.com/SAP_CX";TwitterLink;TwitterLink;newWindow
 
 ###### Navigation End ######
 
@@ -329,11 +332,11 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];name;actions(&actionRef);&componentRef
 ;;AddToCart;Product Add To Cart;AddToCartAction,PickUpInStoreAction;AddToCart
 
-INSERT_UPDATE AddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;AddToCartAction;/cart/add;Product Add To Cart Action;ActionRestriction;AddToCartAction
+INSERT_UPDATE AddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;AddToCartAction;/cart/add;Product Add To Cart Action;AddToCartAction
 
-INSERT_UPDATE PickUpInStoreAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;PickUpInStoreAction;/store-pickup/{productCode}/pointOfServices;Pickup in Store Action;ActionRestriction;PickUpInStoreAction
+INSERT_UPDATE PickUpInStoreAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;PickUpInStoreAction;/store-pickup/{productCode}/pointOfServices;Pickup in Store Action;PickUpInStoreAction
 
 ## upselling slot ##
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
@@ -385,14 +388,14 @@ INSERT_UPDATE SearchResultsGridComponent;$contentCV[unique=true];uid[unique=true
 ;;SearchResultsGrid;Search Result Grid Component;ListPickUpInStoreAction,ListAddToCartAction,ListOrderFormAction;SearchResultsGrid
 
 ## cms actions used in product list/gird, search result list/grid slot ##
-INSERT_UPDATE ListPickUpInStoreAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ListPickUpInStoreAction;/store-pickup/{productCode}/pointOfServices;List Pickup in Store Action;ActionRestriction;ListPickUpInStoreAction
+INSERT_UPDATE ListPickUpInStoreAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ListPickUpInStoreAction;/store-pickup/{productCode}/pointOfServices;List Pickup in Store Action;ListPickUpInStoreAction
 
-INSERT_UPDATE ListAddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ListAddToCartAction;/cart/add;List Add To Cart Action;ActionRestriction;ListAddToCartAction
+INSERT_UPDATE ListAddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ListAddToCartAction;/cart/add;List Add To Cart Action;ListAddToCartAction
 
-INSERT_UPDATE ListOrderFormAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ListOrderFormAction;/orderForm;Order Form Action;ActionRestriction;ListOrderFormAction
+INSERT_UPDATE ListOrderFormAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ListOrderFormAction;/orderForm;Order Form Action;ListOrderFormAction
 ###### ConentSlot for Templates End ######
 
 
@@ -607,8 +610,8 @@ INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];nam
 INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
 ;;StoreFinderComponent;Store Finder Component;storeFinderContent.jsp;ViewStoreAction;StoreFinderComponent
 
-INSERT_UPDATE ViewStoreAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ViewStoreAction;;View Store Action;ActionRestriction;ViewStoreAction
+INSERT_UPDATE ViewStoreAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ViewStoreAction;;View Store Action;ViewStoreAction
 ###### Store Finder Page End ######
 
 
@@ -726,8 +729,8 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
 ;;AccountOrderHistoryComponent;Account Order History Component;/WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderHistoryPage.jsp;ViewOrderAction;AccountOrderHistoryComponent
 
-INSERT_UPDATE ViewOrderAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ViewOrderAction;/my-account/order/{orderCode};View Order Action;ActionRestriction;ViewOrderAction
+INSERT_UPDATE ViewOrderAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ViewOrderAction;/my-account/order/{orderCode};View Order Action;ViewOrderAction
 ###### Account Order History End ######
 
 
@@ -782,8 +785,8 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;AccountOrderDetailsReorderComponent;Account Order Details Reorder Component;/WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailReorder.jsp;ReorderAction;AccountOrderDetailsReorderComponent
 ;;AccountOrderDetailsApprovalDetailsComponent;Account Order Details Approval Details Component;/WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailApprovalDetails.jsp;;AccountOrderDetailsApprovalDetailsComponent
 
-INSERT_UPDATE ReorderAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ReorderAction;/checkout/summary/reorder;Reorder Action;ActionRestriction;ReorderAction
+INSERT_UPDATE ReorderAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ReorderAction;/checkout/summary/reorder;Reorder Action;ReorderAction
 ###### Account Order Details End ######
 
 
@@ -874,8 +877,8 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;AccountOrderApprovalDetailsComponent;Account Order Approval Details Component;/WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderApprovalDetailsPage.jsp;;AccountOrderApprovalDetailsComponent
 ;;AccountOrderApprovalDetailsBottomActionsComponent;Account Order Approval Details Bottom Actions Component;/WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderApprovalDetailBottomActions.jsp;ApproveOrderAction;AccountOrderApprovalDetailsBottomActionsComponent
 
-INSERT_UPDATE ApproveOrderAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
-;;ApproveOrderAction;/my-account/order/approvalDecision;Accept Order Action;ActionRestriction;ApproveOrderAction
+INSERT_UPDATE ApproveOrderAction;$contentCV[unique=true];uid[unique=true];url;name;&actionRef
+;;ApproveOrderAction;/my-account/order/approvalDecision;Accept Order Action;ApproveOrderAction
 ###### Account order approval details End ######
 
 
@@ -975,10 +978,8 @@ INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];nam
 INSERT_UPDATE CMSActionRestriction;$contentCV[unique=true];uid[unique=true];name;
 ;;ActionRestriction;A CMSAction restriction;
 
-INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];&userRestriction;name;uid[unique=true];users(uid)
-;;anonymousUserRestriction;Anonymous User Restriction;anonymousUserRestriction;anonymous
-INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];uid[unique=true];name;users(uid);components(&componentRef);&componentRef
-;;AnonymousUserRestriction;Anonymous User Restriction;anonymous;LoginLink;AnonymousUserRestriction
+INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];&userRestriction;name;uid[unique=true];users(uid);components(&componentRef)
+;;anonymousUserRestriction;Anonymous User Restriction;anonymousUserRestriction;anonymous;LoginLink
 
 INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];name;originalRestriction(&userRestriction)[allownull=true];uid[unique=true];components(&componentRef)
 ;;Logged in User;anonymousUserRestriction;loggedInUser;MyAccountComponent
@@ -1082,13 +1083,13 @@ UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $
 
 ########  Responsive Error Page (Eng) #######
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/svg+xml'];$contentCV[unique=true];folder(qualifier)[default=images]
-;mobile;ncip_480x170_ErrorPage_480W.svg;$siteResource/images/banners/site/ncip_1400x401_ErrorPage_EN_1400W.svg;ncip_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
-;tablet;ncip_770x221_ErrorPage_770W.svg;$siteResource/images/banners/site/ncip_1400x401_ErrorPage_EN_1400W.svg;ncip_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
-;desktop;ncip_960x275_ErrorPage_960W.svg;$siteResource/images/banners/site/ncip_1400x401_ErrorPage_EN_1400W.svg;ncip_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
-;widescreen;ncip_1400x401_ErrorPage_1400W.svg;$siteResource/images/banners/site/ncip_1400x401_ErrorPage_EN_1400W.svg;ncip_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
+;mobile;Powertools_480x170_ErrorPage_480W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;Powertools_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
+;tablet;Powertools_770x221_ErrorPage_770W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;Powertools_1400x401_ErrorPage_EN_1400fv;"Page not found";
+;desktop;Powertools_960x275_ErrorPage_960W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;Powertools_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
+;widescreen;Powertools_1400x401_ErrorPage_1400W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;Powertools_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
-;ncip-errorpage-pagenotfound;ncip_480x170_ErrorPage_480W.svg,ncip_770x221_ErrorPage_770W.svg,ncip_960x275_ErrorPage_960W.svg,ncip_1400x401_ErrorPage_1400W.svg
+;ncip-errorpage-pagenotfound;Powertools_480x170_ErrorPage_480W.svg,Powertools_770x221_ErrorPage_770W.svg,Powertools_960x275_ErrorPage_960W.svg,Powertools1400x401_ErrorPage_1400W.svg
 
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$mediaContainer
 ;;nciptronicsErrorpageBannerComponent;nciptronics Error Page Banner Component;nciptronicsErrorpageBannerComponent;ncip-errorpage-pagenotfound

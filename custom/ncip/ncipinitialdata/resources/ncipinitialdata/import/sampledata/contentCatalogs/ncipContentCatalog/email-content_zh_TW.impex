@@ -14,11 +14,13 @@ $contentCatalog=ncipContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $picture=media(code, $contentCV);
 $wideContent=CMSImageComponent,BannerComponent
+#$jarResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import
+#$siteResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/contentCatalogs/$contentCatalog
 $jarResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import 
 $siteResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/contentCatalogs/$contentCatalog
 
 # Language
-$lang=zh
+$lang=zh_TW
 
 
 # Language

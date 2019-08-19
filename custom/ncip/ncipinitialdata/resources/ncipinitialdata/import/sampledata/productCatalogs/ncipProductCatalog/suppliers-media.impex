@@ -16,7 +16,7 @@ $productCatalogName=ncip Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $superCategories=superCategories(code, $catalogVersion)
 $thumbnail=thumbnail(code, $catalogVersion)
-$siteResource=jjar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/productCatalogs/$productCatalog
+$siteResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/productCatalogs/$productCatalog
  
 
 

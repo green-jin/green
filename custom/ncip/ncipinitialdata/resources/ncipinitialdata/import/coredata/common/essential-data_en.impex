@@ -21,7 +21,7 @@ INSERT_UPDATE Language ; isocode[unique=true] ; name[lang=$lang]
                 ; en                   ; English          ;  
                 ; ja                   ; Japanese         ;  
                 ; zh                   ; Chinese          ;  
-                ; zh_TW                ; 'Taiwan'         ;  
+                ; zh_TW                ; Taiwan         ;  
                 
                 
 # Currencies    

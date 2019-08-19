@@ -13,8 +13,7 @@
 # Macros / Replacement Parameter definitions
 $productCatalog=ncipProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$siteResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/productCatalogs/$productCatalog 
-
+$siteResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/sampledata/productCatalogs/$productCatalog  
 $thumbnail=thumbnail(code, $catalogVersion)
 $picture=picture(code, $catalogVersion)
 $thumbnails=thumbnails(code, $catalogVersion)

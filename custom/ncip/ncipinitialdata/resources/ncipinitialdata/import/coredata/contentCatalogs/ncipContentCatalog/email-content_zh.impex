@@ -9,13 +9,14 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import the CMS content for the site emails
+# Import the CMS content for the ncip site emails
 #
 $contentCatalog=ncipContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+#$jarEmailResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/coredata/contentCatalogs/powertoolsContentCatalog/emails
 $jarEmailResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/coredata/contentCatalogs/ncipContentCatalog/emails 
- 
-# Import config properties into impex macros
+
+# Import config properties into impex macros for modulegen
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
 $emailResource=$config-emailResourceValue
 
