@@ -16,7 +16,7 @@
 
 $lang=de
 
-$storeUid=powertools
+$storeUid=ncip
 
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
-;$storeUid;"Powertools-Verkaufsstelle";
+;$storeUid;"ncip-Verkaufsstelle";

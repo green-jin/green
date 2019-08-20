@@ -20,15 +20,15 @@ $regulargroup=regulargroup
 $productCatalog=ncipProductCatalog
 $catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Online])[default=$productCatalog:Online]
 
-#INSERT_UPDATE PromotionPriceRow;&tresholdId;Currency(isocode);price
+INSERT_UPDATE PromotionPriceRow;&tresholdId;Currency(isocode);price
 
-#INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
 
-#INSERT_UPDATE OrderThresholdDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;messageFired[lang=en];messageFired[lang=de];messageFired[lang=ja];priority;thresholdTotals(&tresholdId);discountPrices(&priceId)
+INSERT_UPDATE OrderThresholdDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;messageFired[lang=en];messageFired[lang=de];messageFired[lang=ja];priority;thresholdTotals(&tresholdId);discountPrices(&priceId)
 
-#INSERT_UPDATE PromotionUserRestriction;positive;promotion(code)[unique=true];users(uid)
+INSERT_UPDATE PromotionUserRestriction;positive;promotion(code)[unique=true];users(uid)
 
-#INSERT_UPDATE PromotionPriceRow;&tresholdId;Currency(isocode);price
+INSERT_UPDATE PromotionPriceRow;&tresholdId;Currency(isocode);price
 
 INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
 ;40;USD;40
@@ -55,17 +55,17 @@ INSERT_UPDATE ProductBundlePromotion;PromotionGroup(Identifier[default=$defaultP
 INSERT_UPDATE ProductPercentageDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;messageFired[lang=en];percentageDiscount;priority;categories(code,$catalogVersion)
 ;;;10DiscountSanders;10% off on Sanders;10% off on Sanders;10% off on Sanders;10;900;1596
 
-#INSERT_UPDATE ProductMultiBuyPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;bundlePrices(&priceId)
+INSERT_UPDATE ProductMultiBuyPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;bundlePrices(&priceId)
 
-#INSERT_UPDATE AcceleratorProductBOGOFPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;freeCount
+INSERT_UPDATE AcceleratorProductBOGOFPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;freeCount
 
-#INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
 
-#INSERT_UPDATE ProductPerfectPartnerPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);partnerProducts(code,$catalogVersion);partnerPrices(&priceId)
+INSERT_UPDATE ProductPerfectPartnerPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);partnerProducts(code,$catalogVersion);partnerPrices(&priceId)
 
-#INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT_UPDATE PromotionPriceRow;&priceId;Currency(isocode);price
 
-#INSERT_UPDATE ProductBundlePromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);bundlePrices(&priceId)
+INSERT_UPDATE ProductBundlePromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);bundlePrices(&priceId)
 
 
 # Vouchers (legacy)

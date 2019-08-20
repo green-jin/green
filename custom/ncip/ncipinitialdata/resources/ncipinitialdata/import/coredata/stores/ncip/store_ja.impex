@@ -16,7 +16,7 @@
 
 $lang=ja
 
-$storeUid=powertools
+$storeUid=ncip
 
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
 ;$storeUid;"動力工具ストア";
