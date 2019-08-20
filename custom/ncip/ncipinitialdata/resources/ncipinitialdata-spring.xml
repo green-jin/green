@@ -31,5 +31,43 @@
 		class="com.ncip.initialdata.impl.NcipSampleDataImportService"
 		parent="sampleDataImportService">
 	</bean>
+	
+	<!-- Solr field value providers TEMPORARY FOR NOW SO DO NOT NEED TO DEPEND ON yb2bacceleratorcore -->
+	 
+	<bean id="ncipCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="ncipCategorySource"/>
+    </bean>
+     
+    <bean id="ncipBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="ncipBrandCategorySource"/>
+    </bean>
+     
+    <bean id="ncipVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="ncipVariantCategorySource"/>
+    </bean>
+
+	<!-- SolrIndexedProperty extends -->
+    <bean id="ncipCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="ncipCategorySource"/>
+    </bean>
+    
+    <!-- SolrIndexedProperty extends -->
+    <bean id="ncipBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="ncipBrandCategorySource"/>
+    </bean>
+    
+    <bean id="ncipCategorySource" parent="variantCategorySource">
+        <property name="rootCategory" value="1"/> 
+        <!-- '1' is the root icecat category -->
+    </bean>
+    
+    <bean id="ncipVariantCategorySource" parent="variantCategorySource"/>
+
+    <bean id="ncipBrandCategorySource" parent="defaultCategorySource">
+        <property name="rootCategory" value="brands"/> 
+        <!-- 'brands' is the root of the brands hierarchy -->
+    </bean>
+
+	<!-- Solr field value providers TEMPORARY FOR NOW SO DO NOT NEED TO DEPEND ON yb2bacceleratorcore -->
 
 </beans>

@@ -48,27 +48,28 @@
         <property name="priceService" ref="priceService"/>
     </bean>
 
+<!-- 	<bean id="electronicsCategorySource" parent="abstractCategorySource"> -->
+<!-- 		<property name="rootCategory" value="1"/> -->
+<!-- 		'1' is the root icecat category  -->
+<!-- 	</bean> -->
+<!-- 	<bean id="electronicsBrandCategorySource" parent="abstractCategorySource"> -->
+<!-- 		<property name="rootCategory" value="brands"/> -->
+<!-- 		'brands' is the root of the brands hierarchy -->
+<!-- 	</bean> -->
 
-	<bean id="electronicsCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="1"/>
-		<!-- '1' is the root icecat category -->
-	</bean>
-	<bean id="electronicsBrandCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="brands"/>
-		<!-- 'brands' is the root of the brands hierarchy -->
-	</bean>
-
-	<bean id="apparelCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="categories"/>
-		<!-- 'categories' is the root apparel category -->
-	</bean>
-	<bean id="apparelBrandCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="brands"/>
-		<!-- 'brands' is the root of the brands hierarchy -->
-	</bean>
-	<bean id="apparelCollectionCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="collections"/> <!-- 'collections' is the root of the collections hierarchy -->
-	</bean>
+<!-- 	<bean id="apparelCategorySource" parent="abstractCategorySource"> -->
+<!-- 		<property name="rootCategory" value="categories"/> -->
+<!-- 		'categories' is the root apparel category  -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelBrandCategorySource" parent="abstractCategorySource"> -->
+<!-- 		<property name="rootCategory" value="brands"/> -->
+<!-- 		 'brands' is the root of the brands hierarchy  -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelCollectionCategorySource" parent="abstractCategorySource"> -->
+<!-- 		<property name="rootCategory" value="collections"/>  -->
+<!-- 		 'collections' is the root of the collections hierarchy -->
+<!-- 	</bean> -->
+	
 
 	<bean id="abstractCategoryCodeValueProvider" abstract="true"
 	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
@@ -83,38 +84,74 @@
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
 
-	<bean id="electronicsCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="electronicsCategorySource"/>
-	</bean>
-	<bean id="electronicsBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="electronicsBrandCategorySource"/>
-	</bean>
-	<bean id="electronicsCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="electronicsCategorySource"/>
-	</bean>
-	<bean id="electronicsBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="electronicsBrandCategorySource"/>
-	</bean>
+<!-- 	<bean id="electronicsCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider"> -->
+<!-- 		<property name="categorySource" ref="electronicsCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="electronicsBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider"> -->
+<!-- 		<property name="categorySource" ref="electronicsBrandCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="electronicsCategoryNameValueProvider" parent="abstractCategoryNameValueProvider"> -->
+<!-- 		<property name="categorySource" ref="electronicsCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="electronicsBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider"> -->
+<!-- 		<property name="categorySource" ref="electronicsBrandCategorySource"/> -->
+<!-- 	</bean> -->
 
-	<bean id="apparelCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="apparelCategorySource"/>
-	</bean>
-	<bean id="apparelBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="apparelBrandCategorySource"/>
-	</bean>
-	<bean id="apparelCollectionCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="apparelCollectionCategorySource"/>
-	</bean>
-	<bean id="apparelCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="apparelCategorySource"/>
-	</bean>
-	<bean id="apparelBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="apparelBrandCategorySource"/>
-	</bean>
-	<bean id="apparelCollectionCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="apparelCollectionCategorySource"/>
-	</bean>
+<!-- 	<bean id="apparelCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider"> -->
+<!-- 		<property name="categorySource" ref="apparelCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider"> -->
+<!-- 		<property name="categorySource" ref="apparelBrandCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelCollectionCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider"> -->
+<!-- 		<property name="categorySource" ref="apparelCollectionCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelCategoryNameValueProvider" parent="abstractCategoryNameValueProvider"> -->
+<!-- 		<property name="categorySource" ref="apparelCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider"> -->
+<!-- 		<property name="categorySource" ref="apparelBrandCategorySource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="apparelCollectionCategoryNameValueProvider" parent="abstractCategoryNameValueProvider"> -->
+<!-- 		<property name="categorySource" ref="apparelCollectionCategorySource"/> -->
+<!-- 	</bean> -->
+	 
+	<!-- Solr field value providers TEMPORARY FOR NOW SO DO NOT NEED TO DEPEND ON yb2bacceleratorcore -->
+	 
+	<bean id="ncipCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="ncipCategorySource"/>
+    </bean>
+     
+    <bean id="ncipBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="ncipBrandCategorySource"/>
+    </bean>
+     
+    <bean id="ncipVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="ncipVariantCategorySource"/>
+    </bean>
 
+	<!-- SolrIndexedProperty extends -->
+    <bean id="ncipCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="ncipCategorySource"/>
+    </bean>
+    
+    <!-- SolrIndexedProperty extends -->
+    <bean id="ncipBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="ncipBrandCategorySource"/>
+    </bean>
+    
+    <bean id="ncipCategorySource" parent="variantCategorySource">
+        <property name="rootCategory" value="1"/> 
+        <!-- '1' is the root icecat category -->
+    </bean>
+    
+    <bean id="ncipVariantCategorySource" parent="variantCategorySource"/>
+
+    <bean id="ncipBrandCategorySource" parent="defaultCategorySource">
+        <property name="rootCategory" value="brands"/> 
+        <!-- 'brands' is the root of the brands hierarchy -->
+    </bean>
+    
 	<bean id="image515ValueProvider" parent="abstractImageValueProvider" >
 		<property name="mediaFormat" value="515Wx515H"/>
 	</bean>
