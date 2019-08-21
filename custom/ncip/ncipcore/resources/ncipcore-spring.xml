@@ -211,7 +211,7 @@
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
-	<bean id="electronicsPointOfServiceFacetDisplayNameProvider"
+	<bean id="ncipPointOfServiceFacetDisplayNameProvider"
 	      class="com.ncip.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>

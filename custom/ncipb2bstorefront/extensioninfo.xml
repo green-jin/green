@@ -13,6 +13,8 @@
 	<extension abstractclassprefix="Generated" classprefix="Ncipb2bstorefront" name="ncipb2bstorefront" usemaven="false">		
         <requires-extension name="commerceorgaddon"/>
 <requires-extension name="b2bacceleratoraddon"/>
+
+
 <requires-extension name="multicountrysampledataaddon"/>
 <requires-extension name="assistedservicestorefront"/>
 <requires-extension name="consignmenttrackingaddon"/>
