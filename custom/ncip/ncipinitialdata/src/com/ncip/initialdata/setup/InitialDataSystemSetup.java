@@ -27,7 +27,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import com.ncip.initialdata.constants.NcipInitialDataConstants;
-import com.ncip.initialdata.impl.NcipSampleDataImportService;
+import com.ncip.initialdata.impl.Ncipb2bSampleDataImportService;
 
 
 /**
@@ -47,7 +47,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
 
   private CoreDataImportService coreDataImportService;
   private SampleDataImportService sampleDataImportService;
-  private NcipSampleDataImportService ncipSampleDataImportService;
+  private Ncipb2bSampleDataImportService ncipb2bSampleDataImportService;
 
   /**
    * Generates the Dropdown and Multi-select boxes for the project data import
@@ -106,14 +106,14 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     /*
      * Add import data for each site you have configured
      */
-    LOG.info("######################################### NCIP Initialize SystemSetup Type.PROJECT Process.ALL Start #########################################");
+    LOG.info("######################################### NCIP B2B Initialize SystemSetup Type.PROJECT Process.ALL Start #########################################");
 
     final List<ImportData> importData = new ArrayList<ImportData>();
 
     final ImportData sampleImportData = new ImportData();
-    sampleImportData.setProductCatalogName(NcipInitialDataConstants.NCIP);
-    sampleImportData.setContentCatalogNames(Arrays.asList(NcipInitialDataConstants.NCIP));
-    sampleImportData.setStoreNames(Arrays.asList(NcipInitialDataConstants.NCIP));
+    sampleImportData.setProductCatalogName(NcipInitialDataConstants.NCIPB2B);
+    sampleImportData.setContentCatalogNames(Arrays.asList(NcipInitialDataConstants.NCIPB2B));
+    sampleImportData.setStoreNames(Arrays.asList(NcipInitialDataConstants.NCIPB2B));
     importData.add(sampleImportData);
 
     getCoreDataImportService().execute(this, context, importData);
@@ -124,28 +124,28 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     // getNcipSampleDataImportService().importCommerceOrgData(context);
     // getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    LOG.info("######################################### NCIP Initialize SystemSetup Type.PROJECT Process.ALL End #########################################");
+    LOG.info("######################################### NCIP B2B Initialize SystemSetup Type.PROJECT Process.ALL End #########################################");
   }
 
   @SystemSetup(type = Type.PROJECT, process = Process.UPDATE)
   public void createUpdateProjectData(final SystemSetupContext context) {
 
-    LOG.info("######################################### NCIP Update SystemSetup Type.PROJECT Process.UPDATE Start #########################################");
+    LOG.info("######################################### NCIP B2B Update SystemSetup Type.PROJECT Process.UPDATE Start #########################################");
 
     final List<ImportData> importData = new ArrayList<ImportData>();
 
     final ImportData sampleImportData = new ImportData();
-    sampleImportData.setProductCatalogName(NcipInitialDataConstants.NCIP);
-    sampleImportData.setContentCatalogNames(Arrays.asList(NcipInitialDataConstants.NCIP));
-    sampleImportData.setStoreNames(Arrays.asList(NcipInitialDataConstants.NCIP));
+    sampleImportData.setProductCatalogName(NcipInitialDataConstants.NCIPB2B);
+    sampleImportData.setContentCatalogNames(Arrays.asList(NcipInitialDataConstants.NCIPB2B));
+    sampleImportData.setStoreNames(Arrays.asList(NcipInitialDataConstants.NCIPB2B));
     importData.add(sampleImportData);
 
     getSampleDataImportService().execute(this, context, importData);
     // import Sample B2B Organizations
-    getNcipSampleDataImportService().importCommerceOrgData(context);
+    getNcipb2bSampleDataImportService().importCommerceOrgData(context);
     getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    LOG.info("######################################### NCIP Update SystemSetup Type.PROJECT Process.UPDATE End #########################################");
+    LOG.info("################################# NCIP B2B Update SystemSetup Type.PROJECT Process.UPDATE End #########################################");
   }
 
   public CoreDataImportService getCoreDataImportService() {
@@ -167,18 +167,18 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
   }
 
   /**
-   * @return the ncipSampleDataImportService
+   * @return the ncipb2bSampleDataImportService
    */
-  public NcipSampleDataImportService getNcipSampleDataImportService() {
-    return ncipSampleDataImportService;
+  public Ncipb2bSampleDataImportService getNcipb2bSampleDataImportService() {
+    return ncipb2bSampleDataImportService;
   }
 
   /**
-   * @param ncipSampleDataImportService the ncipSampleDataImportService to set
+   * @param ncipb2bSampleDataImportService the ncipb2bSampleDataImportService to set
    */
-  public void setNcipSampleDataImportService(
-      final NcipSampleDataImportService ncipSampleDataImportService) {
-    this.ncipSampleDataImportService = ncipSampleDataImportService;
+  public void setNcipb2bSampleDataImportService(
+      final Ncipb2bSampleDataImportService ncipb2bSampleDataImportService) {
+    this.ncipb2bSampleDataImportService = ncipb2bSampleDataImportService;
   }
 
 }
