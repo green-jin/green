@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<process xmlns="http://www.hybris.de/xsd/processdefinition" start="initialReturnAction"
+         name="return-b2bprocess" processClass="de.hybris.platform.returns.model.ReturnProcessModel">
+
+    <action id="initialReturnAction" bean="initialB2BReturnAction">
+        <transition name="ONLINE" to="waitForConfirmOrCancelReturnAction"/>
+        <transition name="INSTORE" to="captureRefundAction"/>
+    </action>
+
+    <wait id="waitForConfirmOrCancelReturnAction" prependProcessCode="true" then="failed">
+        <case event="ConfirmOrCancelRefundEvent">
+            <choice id="cancelReturn" then="cancelReturnAction"/>
+            <choice id="approveReturn" then="approveReturnAction"/>
+        </case>
+    </wait>
+
+    <action id="cancelReturnAction" bean="cancelB2BReturnAction">
+        <transition name="OK" to="success"/>
+    </action>
+
+    <action id="approveReturnAction" bean="approveB2BReturnAction">
+        <transition name="OK" to="printReturnLabelAction"/>
+    </action>
+
+    <action id="printReturnLabelAction" bean="printB2BReturnLabelAction">
+        <transition name="OK" to="printPackingLabelAction"/>
+    </action>
+
+    <action id="printPackingLabelAction" bean="printB2BPackingLabelAction">
+        <transition name="OK" to="waitForGoodsAction"/>
+    </action>
+
+    <wait id="waitForGoodsAction" prependProcessCode="true" then="failed">
+        <case event="ApproveOrCancelGoodsEvent">
+            <choice id="cancelReturn" then="cancelReturnAction"/>
+            <choice id="acceptGoods" then="acceptGoodsAction"/>
+        </case>
+    </wait>
+
+    <action id="acceptGoodsAction" bean="acceptB2BGoodsAction">
+        <transition name="OK" to="captureRefundAction"/>
+    </action>
+
+    <action id="captureRefundAction" bean="captureB2BRefundAction">
+        <transition name="OK" to="successCaptureAction"/>
+        <transition name="NOK" to="waitForFailCaptureAction"/>
+    </action>
+
+    <wait id="waitForFailCaptureAction" prependProcessCode="true" then="failed">
+        <case event="FailCaptureActionEvent">
+            <choice id="bypassCapture" then="taxReverseAction"/>
+            <choice id="cancelReturn" then="cancelReturnAction"/>
+        </case>
+    </wait>
+
+    <action id="successCaptureAction" bean="successB2BCaptureAction">
+        <transition name="OK" to="taxReverseAction"/>
+    </action>
+
+    <action id="taxReverseAction" bean="b2bTaxReverseAction">
+        <transition name="OK" to="successTaxReverseAction"/>
+        <transition name="NOK" to="waitForFailTaxReverseAction"/>
+    </action>
+
+    <wait id="waitForFailTaxReverseAction" then="inventoryUpdateAction" prependProcessCode="true">
+        <event>FailTaxReverseEvent</event>
+    </wait>
+
+    <action id="successTaxReverseAction" bean="successB2BTaxReverseAction">
+        <transition name="OK" to="inventoryUpdateAction"/>
+    </action>
+
+    <action id="inventoryUpdateAction" bean="b2bInventoryUpdateAction">
+        <transition name="OK" to="success"/>
+    </action>
+    
+    <end id="failed" state="FAILED">Return issue detected.</end>
+    <end id="success" state="SUCCEEDED">Return process ended as expected.</end>
+</process>

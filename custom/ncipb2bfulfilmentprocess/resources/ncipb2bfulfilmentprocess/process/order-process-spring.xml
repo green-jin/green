@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/>
+
+	<!-- Order Process Actions -->
+
+	<bean id="abstractB2BOrderAction" class="com.ncipb2b.fulfilmentprocess.actions.order.AbstractOrderAction"  abstract="true" parent="abstractAction">
+		<property name="timeService" ref="timeService"/>
+	</bean>
+
+	<bean id="checkB2BOrderAction" class="com.ncipb2b.fulfilmentprocess.actions.order.CheckOrderAction"  parent="abstractAction">
+		<property name="checkB2BOrderService" ref="checkB2BOrderService"/>
+	</bean>
+
+	<bean id="cancelWholeB2BOrderAuthorizationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.CancelWholeOrderAuthorizationAction"
+            parent="abstractAction">
+		<property name="paymentService" ref="paymentService"/>
+    </bean>
+
+	<bean id="sendB2BOrderPlacedNotificationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SendOrderPlacedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="takeB2BPaymentAction" class="com.ncipb2b.fulfilmentprocess.actions.order.TakePaymentAction"  parent="abstractAction">
+		<property name="paymentService" ref="paymentService"/>
+    </bean>
+
+	<bean id="sendB2BPaymentFailedNotificationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SendPaymentFailedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="checkB2BTransactionReviewStatusAction" class="com.ncipb2b.fulfilmentprocess.actions.order.CheckTransactionReviewStatusAction"  parent="abstractAction">
+		<property name="ticketBusinessService" ref="ticketBusinessService"/>
+	</bean>
+
+	<bean id="fraudcheckB2BOrderAction" class="com.ncipb2b.fulfilmentprocess.actions.order.FraudCheckOrderAction"  parent="abstractB2BOrderAction">
+		<property name="fraudService" ref="fraudService"/>
+		<property name="providerName" value="Mockup_3rdPartyProvider"/>
+	</bean>
+
+	<bean id="prepareB2BOrderForManualCheckAction" class="com.ncipb2b.fulfilmentprocess.actions.order.PrepareOrderForManualCheckAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="sendB2BFraudErrorNotificationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SendFraudErrorNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="checkB2BAuthorizeOrderPaymentAction" class="com.ncipb2b.fulfilmentprocess.actions.order.CheckAuthorizeOrderPaymentAction"  parent="abstractAction"/>
+
+	<bean id="sendB2BAuthorizationFailedNotificationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SendAuthorizationFailedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="reserveB2BOrderAmountAction" class="com.ncipb2b.fulfilmentprocess.actions.order.ReserveOrderAmountAction"  parent="abstractAction"/>
+
+	<bean id="fraudCheckB2BOrderInternalAction" class="com.ncipb2b.fulfilmentprocess.actions.order.FraudCheckOrderInternalAction"  parent="abstractB2BOrderAction">
+		<property name="fraudService" ref="fraudService"/>
+		<property name="providerName" value="hybris"/>
+	</bean>
+
+	<bean id="b2bOrderManualCheckedAction" class="com.ncipb2b.fulfilmentprocess.actions.order.OrderManualCheckedAction"  parent="abstractB2BOrderAction"/>
+
+	<bean id="splitB2BOrderAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SplitOrderAction"  parent="abstractAction">
+		<property name="orderSplittingService" ref="b2bOrderSplittingService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="b2bSubProcessesCompletedAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SubprocessesCompletedAction"  parent="abstractAction"/>
+
+	<bean id="setB2BOrderExpirationTimeAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SetOrderExpirationTimeAction"  parent="abstractAction">
+		<property name="timeService" ref="timeService"/>
+	</bean>
+	
+	<bean id="sendB2BOrderCompletedNotificationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SendOrderCompletedNotificationAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+	<bean id="scheduleForB2BCleanUpAction" class="com.ncipb2b.fulfilmentprocess.actions.order.ScheduleForCleanUpAction"  parent="abstractAction">
+		<property name="timeService" ref="timeService"/>
+	</bean>
+
+	<bean id="notifyB2BCustomerAboutFraudAction" class="com.ncipb2b.fulfilmentprocess.actions.order.NotifyCustomerAboutFraudAction"  parent="abstractAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<process xmlns="http://www.hybris.de/xsd/processdefinition" start="waitBeforeTransmission" name="consignment-b2bprocess" processClass="de.hybris.platform.ordersplitting.model.ConsignmentProcessModel">
+
+	<action id="waitBeforeTransmission" bean="waitBeforeB2BTransmissionAction">
+		<transition name="NOK" to="waitBeforeTransmission"/>
+		<transition name="OK" to="sendConsignmentToWarehouse"/>
+	</action>
+
+	<action id="sendConsignmentToWarehouse" bean="sendB2BConsignmentToWarehouseAction">
+		<transition name="OK" to="waitForWarehouse"/>
+	</action>
+
+	<wait id="waitForWarehouse" then="receiveConsignmentStatus" prependProcessCode="false">
+		<event>${process.code}_WaitForWarehouse</event>
+	</wait>
+
+	<action id="receiveConsignmentStatus" bean="receiveB2BConsignmentStatusAction">
+		<transition name="OK" to="allowShipment"/>
+		<transition name="CANCEL" to="cancelConsignment"/>
+		<transition name="ERROR" to="error"/>
+	</action>
+
+	<action id="allowShipment" bean="allowB2BShipmentAction">
+		<transition name="DELIVERY" to="sendDeliveryMessage"/>
+		<transition name="PICKUP" to="sendReadyForPickupMessage"/>
+		<transition name="ERROR" to="error"/>
+		<transition name="CANCEL" to="cancelConsignment"/>
+	</action>
+
+	<action id="sendDeliveryMessage" bean="sendB2BDeliveryMessageAction">
+		<transition name="OK" to="subprocessEnd"/>
+	</action>
+	
+	<action id="sendReadyForPickupMessage" bean="sendReadyForB2BPickupMessageAction">
+		<transition name="OK" to="waitForPickup"/>
+	</action>
+
+	<action id="cancelConsignment" bean="cancelB2BConsignmentAction">
+		<transition name="OK" to="sendCancelMessage"/>
+	</action>
+
+	<action id="sendCancelMessage" bean="sendB2BCancelMessageAction">
+		<transition name="OK" to="subprocessEnd"/>
+	</action>
+
+	<wait id="waitForPickup" then="confirmConsignmentPickup" prependProcessCode="false">
+		<event>${process.code}_ConsignmentPickup</event>
+	</wait>
+	
+	<action id="confirmConsignmentPickup" bean="confirmB2BConsignmentPickupAction">
+		<transition name="OK" to="sendPickedUpMessage"/>
+		<transition name="CANCEL" to="cancelConsignment"/>
+		<transition name="ERROR" to="error"/>
+	</action>
+	
+	<action id="sendPickedUpMessage" bean="sendB2BPickedUpMessageAction">
+		<transition name="OK" to="subprocessEnd"/>
+	</action>
+
+	<action id="subprocessEnd" bean="b2bSubProcessEndAction">
+		<transition name="OK" to="success"/>
+	</action>
+
+	<end id="error" state="ERROR">All went wrong.</end>
+	<end id="failed" state="FAILED">Order not placed.</end>
+	<end id="success" state="SUCCEEDED">Order placed.</end>
+</process>
