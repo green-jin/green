@@ -29,11 +29,6 @@
 		<property name="checkB2BOrderService" ref="checkB2BOrderService"/>
 	</bean>
 
-	<bean id="cancelWholeB2BOrderAuthorizationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.CancelWholeOrderAuthorizationAction"
-            parent="abstractAction">
-		<property name="paymentService" ref="paymentService"/>
-    </bean>
-
 	<bean id="sendB2BOrderPlacedNotificationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SendOrderPlacedNotificationAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>

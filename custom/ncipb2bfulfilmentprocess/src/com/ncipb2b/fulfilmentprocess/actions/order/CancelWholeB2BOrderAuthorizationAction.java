@@ -28,9 +28,9 @@ import org.apache.log4j.Logger;
  * Cancels the authorized payment. The code expects previously authorized payment transaction, otherwise the order is
  * set to PROCESSING_ERROR status.
  */
-public class CancelWholeOrderAuthorizationAction extends AbstractProceduralAction<OrderProcessModel>
+public class CancelWholeB2BOrderAuthorizationAction extends AbstractProceduralAction<OrderProcessModel>
 {
-	private static final Logger LOG = Logger.getLogger(CancelWholeOrderAuthorizationAction.class);
+	private static final Logger LOG = Logger.getLogger(CancelWholeB2BOrderAuthorizationAction.class);
 
 	private PaymentService paymentService;
 
