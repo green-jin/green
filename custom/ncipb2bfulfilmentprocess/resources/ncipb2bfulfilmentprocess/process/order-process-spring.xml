@@ -96,5 +96,9 @@
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
+	<bean id="cancelWholeB2BOrderAuthorizationAction" class="com.ncipb2b.fulfilmentprocess.actions.order.CancelWholeB2BOrderAuthorizationAction"
+		parent="abstractAction">
+		<property name="paymentService" ref="paymentService"/>
+	</bean>
 
 </beans>

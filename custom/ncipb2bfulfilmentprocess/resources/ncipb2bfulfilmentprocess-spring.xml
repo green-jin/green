@@ -49,15 +49,15 @@
 	
 	<!-- Process Definitions -->
 
-	<bean id="orderProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	<bean id="orderB2BProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/ncipb2bfulfilmentprocess/process/order-process.xml"/>
 	</bean>
 
-	<bean id="consignmentProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	<bean id="consignmentB2BProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/ncipb2bfulfilmentprocess/process/consignment-process.xml"/>
 	</bean>
 
-	<bean id="returnProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	<bean id="returnB2BProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/ncipb2bfulfilmentprocess/process/return-process.xml"/>
 	</bean>
 
