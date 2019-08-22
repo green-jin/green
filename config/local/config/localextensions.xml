@@ -13,19 +13,13 @@
 		<extension name='warehousingwebservices' />
 
 		<extension name='mcc' />
-
 		<extension name='adaptivesearchsolr' />
 		<extension name='adaptivesearchbackoffice' />
-
 		<extension name='adaptivesearchsamplesaddon' />
-
 		<extension name='b2bcommercebackoffice' />
 		<extension name='commerceservicesbackoffice' />
-
-		<!-- <extension name='yaddon'/> -->
-		<!-- <extension name='ycommercewebservices'/> -->
+		
 		<extension name='cmsoccaddon' />
-		<!-- <extension name='powertoolsstore'/> -->
 		<extension name='solrserver' />
 		<extension name='acceleratorwebservicesaddon' />
 		<extension name='b2bacceleratoraddon' />
@@ -62,15 +56,13 @@
 		<extension name='smarteditaddon' />
 		<extension name='smarteditwebservices' />
 
-
 		<extension name='cms2' />
 		<extension name='cms2lib' />
 		<extension name='cockpit'/>
 		<extension name='addonsupport' />
 		<extension name='acceleratorservices' />
 		<extension name='b2bacceleratorfacades' />
-
-		<extension name='b2bapprovalprocess' />
+		<extension dir= '${HYBRIS_BIN_DIR}/custom/b2bapprovalprocess' />
 
 		<extension name='ncipfulfilmentprocess' />
 		<extension name='ncipcore' />
