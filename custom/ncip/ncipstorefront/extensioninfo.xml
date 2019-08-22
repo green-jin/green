@@ -11,7 +11,8 @@
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
 
 	<extension abstractclassprefix="Generated" classprefix="NcipStorefront" name="ncipstorefront" usemaven="false">		
-        <requires-extension name="assistedservicestorefront"/>
+        <requires-extension name="multicountrysampledataaddon"/>
+<requires-extension name="assistedservicestorefront"/>
 <requires-extension name="consignmenttrackingaddon"/>
 <requires-extension name="orderselfserviceaddon"/>
 <requires-extension name="ordermanagementaddon"/>

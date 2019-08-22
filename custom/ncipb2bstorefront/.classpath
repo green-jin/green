@@ -41,6 +41,9 @@
 <classpathentry combineaccessrules="false" kind="src" path="/orderselfserviceaddon"/>
 <classpathentry combineaccessrules="false" kind="src" path="/consignmenttrackingaddon"/>
 <classpathentry combineaccessrules="false" kind="src" path="/assistedservicestorefront"/>
+
+
+
 <classpathentry combineaccessrules="false" kind="src" path="/multicountrysampledataaddon"/>
 <classpathentry combineaccessrules="false" kind="src" path="/b2bacceleratoraddon"/>
 <classpathentry combineaccessrules="false" kind="src" path="/commerceorgaddon"/>
