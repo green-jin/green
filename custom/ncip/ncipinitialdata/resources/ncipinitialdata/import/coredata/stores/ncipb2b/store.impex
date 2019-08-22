@@ -25,13 +25,13 @@ $europeNotUK=AD,AL,AT,BA,BE,BG,BY,CH,CY,CZ,DE,DK,EE,ES,FI,FO,FR,GI,GL,GR,HR,HU,I
 $asianCountries=CN,JP,VN,HK,KP,KR
 $deliveryCountries=$unitedKingdom,$europeNotUK,$asianCountries,US,CA
 $billingCountries=$unitedKingdom,$europeNotUK,CN,JP,VN,HK,KR,US,CA
-$orderProcessCode=order-process
+$orderProcessCode=order-b2bprocess
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
 $paymentProvider=Mockup
 $expressCheckoutEnabled=false
 $checkoutGroup=b2bCheckoutGroup
-$returnProcessCode=return-process
+$returnProcessCode=return-b2bprocess
 
 INSERT_UPDATE PromotionGroup;Identifier[unique=true];
 ;ncipb2bPromoGrp;
