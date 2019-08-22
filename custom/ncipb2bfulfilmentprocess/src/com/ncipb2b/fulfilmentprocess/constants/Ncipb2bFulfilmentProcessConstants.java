@@ -14,8 +14,8 @@ package com.ncipb2b.fulfilmentprocess.constants;
 public final class Ncipb2bFulfilmentProcessConstants extends GeneratedNcipb2bFulfilmentProcessConstants
 {
 	public static final String CONSIGNMENT_SUBPROCESS_END_EVENT_NAME = "ConsignmentSubprocessEnd";
-	public static final String ORDER_PROCESS_NAME = "order-process";
-	public static final String CONSIGNMENT_SUBPROCESS_NAME = "consignment-process";
+	public static final String ORDER_PROCESS_NAME = "order-b2bprocess";
+	public static final String CONSIGNMENT_SUBPROCESS_NAME = "consignment-b2bprocess";
 	public static final String WAIT_FOR_WAREHOUSE = "WaitForWarehouse";
 	public static final String CONSIGNMENT_PICKUP = "ConsignmentPickup";
 	public static final String CONSIGNMENT_COUNTER = "CONSIGNMENT_COUNTER";

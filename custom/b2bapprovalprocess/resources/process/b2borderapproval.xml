@@ -114,8 +114,8 @@
 
 	<!-- de.hybris.platform.b2bacceleratoraddon.actions.B2BAcceleratorInformOfOrderApproval 
 		(bean eq informOfOrderApproval) -->
-	<action id="informOfOrderApproval" bean="informOfOrderApproval">
-<!-- 	bean="sendOrderPendingApprovalNotification" -->
+	<action id="informOfOrderApproval" bean="sendOrderPendingApprovalNotification">
+<!-- 	bean="informOfOrderApproval" -->
 		<transition name="OK"
 			to="accountStartFulfilmentProcessAction" />
 	</action>
