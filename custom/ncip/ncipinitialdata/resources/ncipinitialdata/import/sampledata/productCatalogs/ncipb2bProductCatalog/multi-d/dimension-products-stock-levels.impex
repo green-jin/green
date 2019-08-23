@@ -15,7 +15,6 @@ $productCatalog=ncipb2bProductCatalog
 $productCatalogName=ncipb2b Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
-
 INSERT_UPDATE StockLevel ; productCode[unique=true] ; warehouse(code)[unique=true,default=default] ; available                         ; inStockStatus(code) ; maxPreOrder[default=1] ; maxStockLevelHistoryCount[default=-1] ; overSelling[default=0] ; preOrder[default=0] ; reserved[default=0]
                          ; 26002000_1               ; pw_warehouse_s                               ; 402                               ; forceInStock
                          ; 26002000_2               ; pw_warehouse_e                               ; 510                               ; forceInStock

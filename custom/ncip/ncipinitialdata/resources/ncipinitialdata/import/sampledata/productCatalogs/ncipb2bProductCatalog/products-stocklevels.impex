@@ -9,884 +9,884 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ImpEx for Importing Products stock levels into ncip Store
-
+ 
 # Macros / Replacement Parameter definitions
 $productCatalog=ncipb2bProductCatalog
 $productCatalogName=ncipb2b Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $vendor=ncipb2b
-
-INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
-;pw_warehouse_s;ncipb2b Warehouse South
-;pw_warehouse_e;ncipb2b Warehouse East
-;pw_warehouse_w;ncipb2b Warehouse West
-;pw_warehouse_n;ncipb2b Warehouse North
-
-INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;637227;pw_warehouse_s;414;forceInStock
-;693923;pw_warehouse_e;228;forceInStock
-;1101690;pw_warehouse_n;335;forceInStock
-;1101695;pw_warehouse_w;161;forceInStock
-;1128762;pw_warehouse_s;215;forceInStock
-;1128763;pw_warehouse_e;122;forceInStock
-;1221408;pw_warehouse_n;496;forceInStock
-;1221409;pw_warehouse_w;241;forceInStock
-;1221411;pw_warehouse_s;386;forceInStock
-;1221417;pw_warehouse_e;410;forceInStock
-;1249191;pw_warehouse_n;305;forceInStock
-;1249198;pw_warehouse_w;331;forceInStock
-;1249200;pw_warehouse_s;425;forceInStock
-;1399957;pw_warehouse_e;309;forceInStock
-;1399958;pw_warehouse_n;192;forceInStock
-;1399966;pw_warehouse_w;366;forceInStock
-;1399984;pw_warehouse_s;261;forceInStock
-;1399988;pw_warehouse_e;3;forceInStock
-;1408366;pw_warehouse_n;247;forceInStock
-;1664617;pw_warehouse_w;302;forceInStock
-;1666884;pw_warehouse_s;286;forceInStock
-;1669869;pw_warehouse_e;342;forceInStock
-;1670353;pw_warehouse_n;236;forceInStock
-;1670354;pw_warehouse_w;493;forceInStock
-;1670355;pw_warehouse_s;375;forceInStock
-;1670427;pw_warehouse_e;63;forceInStock
-;1670428;pw_warehouse_n;223;forceInStock
-;1670429;pw_warehouse_w;421;forceInStock
-;1670430;pw_warehouse_s;256;forceInStock
-;1670435;pw_warehouse_e;479;forceInStock
-;1670436;pw_warehouse_n;14;forceInStock
-;1670448;pw_warehouse_w;236;forceInStock
-;1670449;pw_warehouse_s;69;forceInStock
-;1670548;pw_warehouse_e;48;forceInStock
-;1670549;pw_warehouse_n;121;forceInStock
-;1670597;pw_warehouse_w;378;forceInStock
-;1670599;pw_warehouse_s;476;forceInStock
-;1672248;pw_warehouse_e;393;forceInStock
-;1672249;pw_warehouse_n;284;forceInStock
-;1672250;pw_warehouse_w;491;forceInStock
-;1672251;pw_warehouse_s;201;forceInStock
-;1677056;pw_warehouse_e;327;forceInStock
-;1677065;pw_warehouse_n;49;forceInStock
-;1677069;pw_warehouse_w;195;forceInStock
-;1677071;pw_warehouse_s;163;forceInStock
-;1677074;pw_warehouse_e;148;forceInStock
-;1677076;pw_warehouse_n;249;forceInStock
-;1677078;pw_warehouse_w;298;forceInStock
-;1677083;pw_warehouse_s;337;forceInStock
-;1677084;pw_warehouse_e;252;forceInStock
-;1677089;pw_warehouse_n;18;forceInStock
-;1677104;pw_warehouse_w;238;forceInStock
-;1677105;pw_warehouse_s;45;forceInStock
-;1677107;pw_warehouse_e;366;forceInStock
-;1677109;pw_warehouse_n;257;forceInStock
-;1677125;pw_warehouse_w;153;forceInStock
-;1677207;pw_warehouse_s;229;forceInStock
-;1677787;pw_warehouse_e;51;forceInStock
-;1678066;pw_warehouse_n;447;forceInStock
-;1979039;pw_warehouse_w;466;forceInStock
-;2114093;pw_warehouse_s;471;forceInStock
-;2114099;pw_warehouse_e;16;forceInStock
-;2114103;pw_warehouse_n;53;forceInStock
-;2114104;pw_warehouse_w;411;forceInStock
-;2114105;pw_warehouse_s;216;forceInStock
-;2114106;pw_warehouse_e;271;forceInStock
-;2114110;pw_warehouse_n;100;forceInStock
-;2114114;pw_warehouse_w;468;forceInStock
-;2114122;pw_warehouse_s;306;forceInStock
-;2114124;pw_warehouse_e;187;forceInStock
-;2116266;pw_warehouse_n;317;forceInStock
-;2116274;pw_warehouse_w;117;forceInStock
-;2116275;pw_warehouse_s;384;forceInStock
-;2116277;pw_warehouse_e;89;forceInStock
-;2116279;pw_warehouse_n;12;forceInStock
-;2116282;pw_warehouse_w;335;forceInStock
-;2116283;pw_warehouse_s;353;forceInStock
-;2121511;pw_warehouse_e;398;forceInStock
-;2217258;pw_warehouse_n;168;forceInStock
-;2219181;pw_warehouse_w;499;forceInStock
-;2221933;pw_warehouse_s;385;forceInStock
-;2222485;pw_warehouse_e;3;forceInStock
-;2682248;pw_warehouse_w;394;forceInStock
-;3092788;pw_warehouse_s;134;forceInStock
-;3318057;pw_warehouse_e;243;forceInStock
-;3536546;pw_warehouse_n;114;forceInStock
-;3591524;pw_warehouse_w;112;forceInStock
-;3591525;pw_warehouse_s;261;forceInStock
-;3591526;pw_warehouse_e;319;forceInStock
-;3591527;pw_warehouse_n;78;forceInStock
-;3591528;pw_warehouse_w;207;forceInStock
-;3591529;pw_warehouse_s;331;forceInStock
-;3591530;pw_warehouse_e;312;forceInStock
-;3591753;pw_warehouse_n;298;forceInStock
-;3591754;pw_warehouse_w;302;forceInStock
-;3591758;pw_warehouse_s;277;forceInStock
-;3592865;pw_warehouse_e;115;forceInStock
-;3626881;pw_warehouse_n;308;forceInStock
-;3631964;pw_warehouse_w;357;forceInStock
-;3659943;pw_warehouse_s;318;forceInStock
-;3715400;pw_warehouse_e;248;forceInStock
-;3755201;pw_warehouse_n;162;forceInStock
-;3755204;pw_warehouse_w;6;forceInStock
-;3755205;pw_warehouse_s;324;forceInStock
-;3755207;pw_warehouse_e;6;forceInStock
-;3755210;pw_warehouse_n;143;forceInStock
-;3755211;pw_warehouse_w;310;forceInStock
-;3755212;pw_warehouse_s;382;forceInStock
-;3755213;pw_warehouse_e;398;forceInStock
-;3755217;pw_warehouse_n;241;forceInStock
-;3755218;pw_warehouse_w;92;forceInStock
-;3755219;pw_warehouse_s;470;forceInStock
-;3755225;pw_warehouse_e;489;forceInStock
-;3756505;pw_warehouse_n;187;forceInStock
-;3756515;pw_warehouse_w;197;forceInStock
-;3758751;pw_warehouse_s;435;forceInStock
-;3774127;pw_warehouse_e;315;forceInStock
-;3774128;pw_warehouse_n;165;forceInStock
-;3774129;pw_warehouse_w;274;forceInStock
-;3774131;pw_warehouse_s;116;forceInStock
-;3774134;pw_warehouse_e;484;forceInStock
-;3774135;pw_warehouse_n;486;forceInStock
-;3774136;pw_warehouse_w;112;forceInStock
-;3778914;pw_warehouse_s;24;forceInStock
-;3778915;pw_warehouse_e;118;forceInStock
-;3778917;pw_warehouse_n;181;forceInStock
-;3778919;pw_warehouse_w;255;forceInStock
-;3778921;pw_warehouse_s;170;forceInStock
-;3778922;pw_warehouse_e;49;forceInStock
-;3778923;pw_warehouse_n;446;forceInStock
-;3778926;pw_warehouse_w;391;forceInStock
-;3778927;pw_warehouse_s;293;forceInStock
-;3778928;pw_warehouse_e;46;forceInStock
-;3780171;pw_warehouse_n;52;forceInStock
-;3782130;pw_warehouse_w;478;forceInStock
-;3788611;pw_warehouse_s;95;forceInStock
-;3788612;pw_warehouse_e;45;forceInStock
-;3788614;pw_warehouse_n;19;forceInStock
-;3788616;pw_warehouse_w;200;forceInStock
-;3788618;pw_warehouse_s;0;forceInStock
-;3788619;pw_warehouse_e;94;forceInStock
-;3791317;pw_warehouse_n;308;forceInStock
-;3791322;pw_warehouse_w;171;forceInStock
-;3793191;pw_warehouse_s;62;forceInStock
-;3793682;pw_warehouse_e;420;forceInStock
-;3793683;pw_warehouse_n;173;forceInStock
-;3793687;pw_warehouse_w;258;forceInStock
-;3793693;pw_warehouse_s;197;forceInStock
-;3793695;pw_warehouse_e;367;forceInStock
-;3793702;pw_warehouse_n;141;forceInStock
-;3793707;pw_warehouse_w;480;forceInStock
-;3793710;pw_warehouse_s;2;forceInStock
-;3793711;pw_warehouse_e;469;forceInStock
-;3794506;pw_warehouse_n;71;forceInStock
-;3794509;pw_warehouse_w;314;forceInStock
-;3794514;pw_warehouse_s;325;forceInStock
-;3794524;pw_warehouse_e;292;forceInStock
-;3794560;pw_warehouse_n;227;forceInStock
-;3794561;pw_warehouse_w;428;forceInStock
-;3794596;pw_warehouse_s;224;forceInStock
-;3794597;pw_warehouse_e;403;forceInStock
-;3794607;pw_warehouse_n;199;forceInStock
-;3794609;pw_warehouse_w;92;forceInStock
-;3794612;pw_warehouse_s;92;forceInStock
-;3794615;pw_warehouse_e;94;forceInStock
-;3794619;pw_warehouse_n;58;forceInStock
-;3794621;pw_warehouse_w;194;forceInStock
-;3794631;pw_warehouse_s;425;forceInStock
-;3794633;pw_warehouse_e;277;forceInStock
-;3794635;pw_warehouse_n;143;forceInStock
-;3794640;pw_warehouse_w;219;forceInStock
-;3795253;pw_warehouse_s;401;forceInStock
-;3803058;pw_warehouse_e;365;forceInStock
-;3844571;pw_warehouse_n;387;forceInStock
-;3857331;pw_warehouse_w;268;forceInStock
-;3857731;pw_warehouse_s;66;forceInStock
-;3857732;pw_warehouse_e;73;forceInStock
-;3857733;pw_warehouse_n;221;forceInStock
-;3857734;pw_warehouse_w;358;forceInStock
-;3857735;pw_warehouse_s;331;forceInStock
-;3857736;pw_warehouse_e;436;forceInStock
-;3857738;pw_warehouse_n;16;forceInStock
-;3857744;pw_warehouse_w;452;forceInStock
-;3857747;pw_warehouse_s;23;forceInStock
-;3857750;pw_warehouse_e;63;forceInStock
-;3857757;pw_warehouse_n;77;forceInStock
-;3864520;pw_warehouse_w;31;forceInStock
-;3864534;pw_warehouse_s;305;forceInStock
-;3864539;pw_warehouse_e;469;forceInStock
-;3864748;pw_warehouse_n;316;forceInStock
-;3864770;pw_warehouse_w;0;forceInStock
-;3865361;pw_warehouse_s;189;forceInStock
-;3865362;pw_warehouse_e;46;forceInStock
-;3865614;pw_warehouse_n;254;forceInStock
-;3865725;pw_warehouse_w;388;forceInStock
-;3879434;pw_warehouse_s;0;forceInStock
-;3879435;pw_warehouse_e;351;forceInStock
-;3879436;pw_warehouse_n;332;forceInStock
-;3879437;pw_warehouse_w;434;forceInStock
-;3879438;pw_warehouse_s;103;forceInStock
-;3879440;pw_warehouse_e;302;forceInStock
-;3879442;pw_warehouse_n;5;forceInStock
-;3879443;pw_warehouse_w;1;forceInStock
-;3879444;pw_warehouse_s;363;forceInStock
-;3879445;pw_warehouse_e;358;forceInStock
-;3879446;pw_warehouse_n;435;forceInStock
-;3879447;pw_warehouse_w;146;forceInStock
-;3879448;pw_warehouse_s;145;forceInStock
-;3879450;pw_warehouse_e;71;forceInStock
-;3880499;pw_warehouse_n;404;forceInStock
-;3880500;pw_warehouse_w;447;forceInStock
-;3880501;pw_warehouse_s;60;forceInStock
-;3880502;pw_warehouse_e;119;forceInStock
-;3880504;pw_warehouse_n;403;forceInStock
-;3880507;pw_warehouse_w;147;forceInStock
-;3880508;pw_warehouse_s;119;forceInStock
-;3880510;pw_warehouse_e;28;forceInStock
-;3880511;pw_warehouse_n;312;forceInStock
-;3880513;pw_warehouse_w;80;forceInStock
-;3880516;pw_warehouse_s;332;forceInStock
-;3880517;pw_warehouse_e;390;forceInStock
-;3880519;pw_warehouse_n;206;forceInStock
-;3880520;pw_warehouse_w;306;forceInStock
-;3880525;pw_warehouse_s;315;forceInStock
-;3880527;pw_warehouse_e;157;forceInStock
-;3880528;pw_warehouse_n;185;forceInStock
-;3880530;pw_warehouse_w;363;forceInStock
-;3880590;pw_warehouse_s;479;forceInStock
-;3880591;pw_warehouse_e;411;forceInStock
-;3880595;pw_warehouse_n;221;forceInStock
-;3880596;pw_warehouse_w;180;forceInStock
-;3880598;pw_warehouse_s;427;forceInStock
-;3881014;pw_warehouse_e;36;forceInStock
-;3881016;pw_warehouse_n;34;forceInStock
-;3881017;pw_warehouse_w;200;forceInStock
-;3881018;pw_warehouse_s;193;forceInStock
-;3881020;pw_warehouse_e;343;forceInStock
-;3881021;pw_warehouse_n;132;forceInStock
-;3881022;pw_warehouse_w;56;forceInStock
-;3881023;pw_warehouse_s;424;forceInStock
-;3881024;pw_warehouse_e;209;forceInStock
-;3881025;pw_warehouse_n;165;forceInStock
-;3881026;pw_warehouse_w;32;forceInStock
-;3881027;pw_warehouse_s;179;forceInStock
-;3881028;pw_warehouse_e;358;forceInStock
-;3881029;pw_warehouse_n;203;forceInStock
-;3881030;pw_warehouse_w;309;forceInStock
-;3881031;pw_warehouse_s;142;forceInStock
-;3881032;pw_warehouse_e;348;forceInStock
-;3881033;pw_warehouse_n;493;forceInStock
-;3881034;pw_warehouse_w;394;forceInStock
-;3881035;pw_warehouse_s;410;forceInStock
-;3881036;pw_warehouse_e;342;forceInStock
-;3881037;pw_warehouse_n;46;forceInStock
-;3881038;pw_warehouse_w;341;forceInStock
-;3881039;pw_warehouse_s;78;forceInStock
-;3881040;pw_warehouse_e;96;forceInStock
-;3881041;pw_warehouse_n;462;forceInStock
-;3881042;pw_warehouse_w;336;forceInStock
-;3881043;pw_warehouse_s;495;forceInStock
-;3881044;pw_warehouse_e;289;forceInStock
-;3881050;pw_warehouse_n;320;forceInStock
-;3881051;pw_warehouse_w;285;forceInStock
-;3881057;pw_warehouse_s;112;forceInStock
-;3881058;pw_warehouse_e;168;forceInStock
-;3881059;pw_warehouse_n;161;forceInStock
-;3881060;pw_warehouse_w;284;forceInStock
-;3881061;pw_warehouse_s;78;forceInStock
-;3881062;pw_warehouse_e;76;forceInStock
-;3881063;pw_warehouse_n;114;forceInStock
-;3881064;pw_warehouse_w;440;forceInStock
-;3881065;pw_warehouse_s;62;forceInStock
-;3881066;pw_warehouse_e;43;forceInStock
-;3881067;pw_warehouse_n;422;forceInStock
-;3881070;pw_warehouse_w;494;forceInStock
-;3881071;pw_warehouse_s;372;forceInStock
-;3881072;pw_warehouse_e;156;forceInStock
-;3881074;pw_warehouse_n;259;forceInStock
-;3881075;pw_warehouse_w;467;forceInStock
-;3881076;pw_warehouse_s;139;forceInStock
-;3881077;pw_warehouse_e;488;forceInStock
-;3881078;pw_warehouse_n;350;forceInStock
-;3881338;pw_warehouse_w;480;forceInStock
-;3881339;pw_warehouse_s;167;forceInStock
-;3881380;pw_warehouse_e;144;forceInStock
-;3881381;pw_warehouse_n;476;forceInStock
-;3881382;pw_warehouse_w;213;forceInStock
-;3881383;pw_warehouse_s;383;forceInStock
-;3881384;pw_warehouse_e;99;forceInStock
-;3881389;pw_warehouse_n;268;forceInStock
-;3881396;pw_warehouse_w;360;forceInStock
-;3881397;pw_warehouse_s;222;forceInStock
-;3881412;pw_warehouse_e;73;forceInStock
-;3881414;pw_warehouse_n;381;forceInStock
-;3881417;pw_warehouse_w;316;forceInStock
-;3881419;pw_warehouse_s;58;forceInStock
-;3881422;pw_warehouse_e;320;forceInStock
-;3881424;pw_warehouse_n;444;forceInStock
-;3881427;pw_warehouse_w;197;forceInStock
-;3883690;pw_warehouse_s;65;forceInStock
-;3883692;pw_warehouse_e;227;forceInStock
-;3883695;pw_warehouse_n;400;forceInStock
-;3883696;pw_warehouse_w;413;forceInStock
-;3884593;pw_warehouse_s;391;forceInStock
-;3884599;pw_warehouse_e;410;forceInStock
-;3884600;pw_warehouse_n;97;forceInStock
-;3884601;pw_warehouse_w;131;forceInStock
-;3884632;pw_warehouse_s;334;forceInStock
-;3884633;pw_warehouse_e;10;forceInStock
-;3884634;pw_warehouse_n;474;forceInStock
-;3884636;pw_warehouse_w;491;forceInStock
-;3884637;pw_warehouse_s;324;forceInStock
-;3884638;pw_warehouse_e;81;forceInStock
-;3884640;pw_warehouse_n;98;forceInStock
-;3884642;pw_warehouse_w;341;forceInStock
-;3884645;pw_warehouse_s;170;forceInStock
-;3884646;pw_warehouse_e;46;forceInStock
-;3887119;pw_warehouse_n;492;forceInStock
-;3887120;pw_warehouse_w;22;forceInStock
-;3887121;pw_warehouse_s;48;forceInStock
-;3887122;pw_warehouse_e;288;forceInStock
-;3887123;pw_warehouse_n;387;forceInStock
-;3887124;pw_warehouse_w;238;forceInStock
-;3887125;pw_warehouse_s;187;forceInStock
-;3887126;pw_warehouse_e;197;forceInStock
-;3887127;pw_warehouse_n;2;forceInStock
-;3887128;pw_warehouse_w;252;forceInStock
-;3887129;pw_warehouse_s;290;forceInStock
-;3887130;pw_warehouse_e;180;forceInStock
-;3887131;pw_warehouse_n;284;forceInStock
-;3887475;pw_warehouse_w;249;forceInStock
-;3887477;pw_warehouse_s;108;forceInStock
-;3887479;pw_warehouse_e;88;forceInStock
-;3887482;pw_warehouse_n;321;forceInStock
-;3887483;pw_warehouse_w;155;forceInStock
-;3887487;pw_warehouse_s;362;forceInStock
-;3887491;pw_warehouse_e;434;forceInStock
-;3887493;pw_warehouse_n;223;forceInStock
-;3887499;pw_warehouse_w;423;forceInStock
-;3887504;pw_warehouse_s;196;forceInStock
-;3887505;pw_warehouse_e;423;forceInStock
-;3887506;pw_warehouse_n;312;forceInStock
-;3887511;pw_warehouse_w;86;forceInStock
-;3887512;pw_warehouse_s;48;forceInStock
-;3887513;pw_warehouse_e;236;forceInStock
-;3887514;pw_warehouse_n;122;forceInStock
-;3887523;pw_warehouse_w;275;forceInStock
-;3887524;pw_warehouse_s;199;forceInStock
-;3887529;pw_warehouse_e;33;forceInStock
-;3887530;pw_warehouse_n;332;forceInStock
-;3915890;pw_warehouse_w;222;forceInStock
-;3916437;pw_warehouse_s;415;forceInStock
-;3917378;pw_warehouse_e;171;forceInStock
-;3917448;pw_warehouse_n;479;forceInStock
-;3917449;pw_warehouse_w;77;forceInStock
-;3917455;pw_warehouse_s;399;forceInStock
-;3919465;pw_warehouse_e;96;forceInStock
-;3920606;pw_warehouse_n;57;forceInStock
-;3920607;pw_warehouse_w;147;forceInStock
-;3920608;pw_warehouse_s;313;forceInStock
-;3920613;pw_warehouse_e;397;forceInStock
-;3920614;pw_warehouse_n;389;forceInStock
-;3921090;pw_warehouse_w;319;forceInStock
-;3921093;pw_warehouse_s;65;forceInStock
-;3921095;pw_warehouse_e;300;forceInStock
-;3921097;pw_warehouse_n;279;forceInStock
-;3921099;pw_warehouse_w;245;forceInStock
-;3921100;pw_warehouse_s;407;forceInStock
-;3921101;pw_warehouse_e;446;forceInStock
-;3922855;pw_warehouse_n;131;forceInStock
-;3922856;pw_warehouse_w;110;forceInStock
-;3923098;pw_warehouse_s;35;forceInStock
-;3923110;pw_warehouse_e;220;forceInStock
-;3923111;pw_warehouse_n;158;forceInStock
-;3942767;pw_warehouse_w;71;forceInStock
-;3942803;pw_warehouse_s;261;forceInStock
-;3942823;pw_warehouse_e;312;forceInStock
-;3942829;pw_warehouse_n;104;forceInStock
-;3942838;pw_warehouse_w;101;forceInStock
-;3942841;pw_warehouse_s;126;forceInStock
-;3942849;pw_warehouse_e;412;forceInStock
-;3942853;pw_warehouse_n;24;forceInStock
-;4019849;pw_warehouse_w;172;forceInStock
-;4491784;pw_warehouse_s;25;forceInStock
-;4567130;pw_warehouse_e;223;forceInStock
-;4567131;pw_warehouse_n;242;forceInStock
-;4567133;pw_warehouse_w;8;forceInStock
-;4567134;pw_warehouse_s;428;forceInStock
-;4567162;pw_warehouse_e;100;forceInStock
-;4567163;pw_warehouse_n;189;forceInStock
-;4567165;pw_warehouse_w;46;forceInStock
-;4567167;pw_warehouse_s;409;forceInStock
-;4567173;pw_warehouse_e;221;forceInStock
-;4567174;pw_warehouse_n;416;forceInStock
-;4567175;pw_warehouse_w;88;forceInStock
-;4567176;pw_warehouse_s;48;forceInStock
-;4567177;pw_warehouse_e;478;forceInStock
-;4567179;pw_warehouse_n;261;forceInStock
-;4567180;pw_warehouse_w;110;forceInStock
-;4567181;pw_warehouse_s;350;forceInStock
-;4567182;pw_warehouse_e;334;forceInStock
-;4567183;pw_warehouse_n;26;forceInStock
-;4567184;pw_warehouse_w;46;forceInStock
-;4567185;pw_warehouse_s;372;forceInStock
-;4567186;pw_warehouse_e;166;forceInStock
-;4567187;pw_warehouse_n;423;forceInStock
-;4567188;pw_warehouse_w;367;forceInStock
-;4567189;pw_warehouse_s;481;forceInStock
-;4567190;pw_warehouse_e;430;forceInStock
-;4567191;pw_warehouse_n;496;forceInStock
-;4567192;pw_warehouse_w;65;forceInStock
-;4567193;pw_warehouse_s;35;forceInStock
-;4567194;pw_warehouse_e;253;forceInStock
-;4567196;pw_warehouse_n;67;forceInStock
-;4567223;pw_warehouse_w;413;forceInStock
-;4598185;pw_warehouse_s;79;forceInStock
-;4600658;pw_warehouse_e;150;forceInStock
-;4763600;pw_warehouse_n;75;forceInStock
-;4763682;pw_warehouse_w;247;forceInStock
-;4763692;pw_warehouse_s;35;forceInStock
-;4763696;pw_warehouse_e;146;forceInStock
-;4763915;pw_warehouse_n;183;forceInStock
-;5874577;pw_warehouse_w;352;forceInStock
-;5888798;pw_warehouse_s;297;forceInStock
-;6100520;pw_warehouse_e;57;forceInStock
-;6100521;pw_warehouse_n;18;forceInStock
-;1678256;pw_warehouse_n;188;forceInStock
-;1678313;pw_warehouse_n;818;forceInStock
-;2613282;pw_warehouse_n;118;forceInStock
-;3756512;pw_warehouse_n;181;forceInStock
-;3756514;pw_warehouse_n;18;forceInStock
-
-
-
-
-INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
-;637227;637227:pw_warehouse_s
-;693923;693923:pw_warehouse_e
-;1101690;1101690:pw_warehouse_n
-;1101695;1101695:pw_warehouse_w
-;1128762;1128762:pw_warehouse_s
-;1128763;1128763:pw_warehouse_e
-;1221408;1221408:pw_warehouse_n
-;1221409;1221409:pw_warehouse_w
-;1221411;1221411:pw_warehouse_s
-;1221417;1221417:pw_warehouse_e
-;1249191;1249191:pw_warehouse_n
-;1249198;1249198:pw_warehouse_w
-;1249200;1249200:pw_warehouse_s
-;1399957;1399957:pw_warehouse_e
-;1399958;1399958:pw_warehouse_n
-;1399966;1399966:pw_warehouse_w
-;1399984;1399984:pw_warehouse_s
-;1399988;1399988:pw_warehouse_e
-;1408366;1408366:pw_warehouse_n
-;1664617;1664617:pw_warehouse_w
-;1666884;1666884:pw_warehouse_s
-;1669869;1669869:pw_warehouse_e
-;1670353;1670353:pw_warehouse_n
-;1670354;1670354:pw_warehouse_w
-;1670355;1670355:pw_warehouse_s
-;1670427;1670427:pw_warehouse_e
-;1670428;1670428:pw_warehouse_n
-;1670429;1670429:pw_warehouse_w
-;1670430;1670430:pw_warehouse_s
-;1670435;1670435:pw_warehouse_e
-;1670436;1670436:pw_warehouse_n
-;1670448;1670448:pw_warehouse_w
-;1670449;1670449:pw_warehouse_s
-;1670548;1670548:pw_warehouse_e
-;1670549;1670549:pw_warehouse_n
-;1670597;1670597:pw_warehouse_w
-;1670599;1670599:pw_warehouse_s
-;1672248;1672248:pw_warehouse_e
-;1672249;1672249:pw_warehouse_n
-;1672250;1672250:pw_warehouse_w
-;1672251;1672251:pw_warehouse_s
-;1677056;1677056:pw_warehouse_e
-;1677065;1677065:pw_warehouse_n
-;1677069;1677069:pw_warehouse_w
-;1677071;1677071:pw_warehouse_s
-;1677074;1677074:pw_warehouse_e
-;1677076;1677076:pw_warehouse_n
-;1677078;1677078:pw_warehouse_w
-;1677083;1677083:pw_warehouse_s
-;1677084;1677084:pw_warehouse_e
-;1677089;1677089:pw_warehouse_n
-;1677104;1677104:pw_warehouse_w
-;1677105;1677105:pw_warehouse_s
-;1677107;1677107:pw_warehouse_e
-;1677109;1677109:pw_warehouse_n
-;1677125;1677125:pw_warehouse_w
-;1677207;1677207:pw_warehouse_s
-;1677787;1677787:pw_warehouse_e
-;1678066;1678066:pw_warehouse_n
-;1979039;1979039:pw_warehouse_w
-;2114093;2114093:pw_warehouse_s
-;2114099;2114099:pw_warehouse_e
-;2114103;2114103:pw_warehouse_n
-;2114104;2114104:pw_warehouse_w
-;2114105;2114105:pw_warehouse_s
-;2114106;2114106:pw_warehouse_e
-;2114110;2114110:pw_warehouse_n
-;2114114;2114114:pw_warehouse_w
-;2114122;2114122:pw_warehouse_s
-;2114124;2114124:pw_warehouse_e
-;2116266;2116266:pw_warehouse_n
-;2116274;2116274:pw_warehouse_w
-;2116275;2116275:pw_warehouse_s
-;2116277;2116277:pw_warehouse_e
-;2116279;2116279:pw_warehouse_n
-;2116282;2116282:pw_warehouse_w
-;2116283;2116283:pw_warehouse_s
-;2121511;2121511:pw_warehouse_e
-;2217258;2217258:pw_warehouse_n
-;2219181;2219181:pw_warehouse_w
-;2221933;2221933:pw_warehouse_s
-;2222485;2222485:pw_warehouse_e
-;2682248;2682248:pw_warehouse_w
-;3092788;3092788:pw_warehouse_s
-;3318057;3318057:pw_warehouse_e
-;3536546;3536546:pw_warehouse_n
-;3591524;3591524:pw_warehouse_w
-;3591525;3591525:pw_warehouse_s
-;3591526;3591526:pw_warehouse_e
-;3591527;3591527:pw_warehouse_n
-;3591528;3591528:pw_warehouse_w
-;3591529;3591529:pw_warehouse_s
-;3591530;3591530:pw_warehouse_e
-;3591753;3591753:pw_warehouse_n
-;3591754;3591754:pw_warehouse_w
-;3591758;3591758:pw_warehouse_s
-;3592865;3592865:pw_warehouse_e
-;3626881;3626881:pw_warehouse_n
-;3631964;3631964:pw_warehouse_w
-;3659943;3659943:pw_warehouse_s
-;3715400;3715400:pw_warehouse_e
-;3755201;3755201:pw_warehouse_n
-;3755204;3755204:pw_warehouse_w
-;3755205;3755205:pw_warehouse_s
-;3755207;3755207:pw_warehouse_e
-;3755210;3755210:pw_warehouse_n
-;3755211;3755211:pw_warehouse_w
-;3755212;3755212:pw_warehouse_s
-;3755213;3755213:pw_warehouse_e
-;3755217;3755217:pw_warehouse_n
-;3755218;3755218:pw_warehouse_w
-;3755219;3755219:pw_warehouse_s
-;3755225;3755225:pw_warehouse_e
-;3756505;3756505:pw_warehouse_n
-;3756515;3756515:pw_warehouse_w
-;3758751;3758751:pw_warehouse_s
-;3774127;3774127:pw_warehouse_e
-;3774128;3774128:pw_warehouse_n
-;3774129;3774129:pw_warehouse_w
-;3774131;3774131:pw_warehouse_s
-;3774134;3774134:pw_warehouse_e
-;3774135;3774135:pw_warehouse_n
-;3774136;3774136:pw_warehouse_w
-;3778914;3778914:pw_warehouse_s
-;3778915;3778915:pw_warehouse_e
-;3778917;3778917:pw_warehouse_n
-;3778919;3778919:pw_warehouse_w
-;3778921;3778921:pw_warehouse_s
-;3778922;3778922:pw_warehouse_e
-;3778923;3778923:pw_warehouse_n
-;3778926;3778926:pw_warehouse_w
-;3778927;3778927:pw_warehouse_s
-;3778928;3778928:pw_warehouse_e
-;3780171;3780171:pw_warehouse_n
-;3782130;3782130:pw_warehouse_w
-;3788611;3788611:pw_warehouse_s
-;3788612;3788612:pw_warehouse_e
-;3788614;3788614:pw_warehouse_n
-;3788616;3788616:pw_warehouse_w
-;3788618;3788618:pw_warehouse_s
-;3788619;3788619:pw_warehouse_e
-;3791317;3791317:pw_warehouse_n
-;3791322;3791322:pw_warehouse_w
-;3793191;3793191:pw_warehouse_s
-;3793682;3793682:pw_warehouse_e
-;3793683;3793683:pw_warehouse_n
-;3793687;3793687:pw_warehouse_w
-;3793693;3793693:pw_warehouse_s
-;3793695;3793695:pw_warehouse_e
-;3793702;3793702:pw_warehouse_n
-;3793707;3793707:pw_warehouse_w
-;3793710;3793710:pw_warehouse_s
-;3793711;3793711:pw_warehouse_e
-;3794506;3794506:pw_warehouse_n
-;3794509;3794509:pw_warehouse_w
-;3794514;3794514:pw_warehouse_s
-;3794524;3794524:pw_warehouse_e
-;3794560;3794560:pw_warehouse_n
-;3794561;3794561:pw_warehouse_w
-;3794596;3794596:pw_warehouse_s
-;3794597;3794597:pw_warehouse_e
-;3794607;3794607:pw_warehouse_n
-;3794609;3794609:pw_warehouse_w
-;3794612;3794612:pw_warehouse_s
-;3794615;3794615:pw_warehouse_e
-;3794619;3794619:pw_warehouse_n
-;3794621;3794621:pw_warehouse_w
-;3794631;3794631:pw_warehouse_s
-;3794633;3794633:pw_warehouse_e
-;3794635;3794635:pw_warehouse_n
-;3794640;3794640:pw_warehouse_w
-;3795253;3795253:pw_warehouse_s
-;3803058;3803058:pw_warehouse_e
-;3844571;3844571:pw_warehouse_n
-;3857331;3857331:pw_warehouse_w
-;3857731;3857731:pw_warehouse_s
-;3857732;3857732:pw_warehouse_e
-;3857733;3857733:pw_warehouse_n
-;3857734;3857734:pw_warehouse_w
-;3857735;3857735:pw_warehouse_s
-;3857736;3857736:pw_warehouse_e
-;3857738;3857738:pw_warehouse_n
-;3857744;3857744:pw_warehouse_w
-;3857747;3857747:pw_warehouse_s
-;3857750;3857750:pw_warehouse_e
-;3857757;3857757:pw_warehouse_n
-;3864520;3864520:pw_warehouse_w
-;3864534;3864534:pw_warehouse_s
-;3864539;3864539:pw_warehouse_e
-;3864748;3864748:pw_warehouse_n
-;3864770;3864770:pw_warehouse_w
-;3865361;3865361:pw_warehouse_s
-;3865362;3865362:pw_warehouse_e
-;3865614;3865614:pw_warehouse_n
-;3865725;3865725:pw_warehouse_w
-;3879434;3879434:pw_warehouse_s
-;3879435;3879435:pw_warehouse_e
-;3879436;3879436:pw_warehouse_n
-;3879437;3879437:pw_warehouse_w
-;3879438;3879438:pw_warehouse_s
-;3879440;3879440:pw_warehouse_e
-;3879442;3879442:pw_warehouse_n
-;3879443;3879443:pw_warehouse_w
-;3879444;3879444:pw_warehouse_s
-;3879445;3879445:pw_warehouse_e
-;3879446;3879446:pw_warehouse_n
-;3879447;3879447:pw_warehouse_w
-;3879448;3879448:pw_warehouse_s
-;3879450;3879450:pw_warehouse_e
-;3880499;3880499:pw_warehouse_n
-;3880500;3880500:pw_warehouse_w
-;3880501;3880501:pw_warehouse_s
-;3880502;3880502:pw_warehouse_e
-;3880504;3880504:pw_warehouse_n
-;3880507;3880507:pw_warehouse_w
-;3880508;3880508:pw_warehouse_s
-;3880510;3880510:pw_warehouse_e
-;3880511;3880511:pw_warehouse_n
-;3880513;3880513:pw_warehouse_w
-;3880516;3880516:pw_warehouse_s
-;3880517;3880517:pw_warehouse_e
-;3880519;3880519:pw_warehouse_n
-;3880520;3880520:pw_warehouse_w
-;3880525;3880525:pw_warehouse_s
-;3880527;3880527:pw_warehouse_e
-;3880528;3880528:pw_warehouse_n
-;3880530;3880530:pw_warehouse_w
-;3880590;3880590:pw_warehouse_s
-;3880591;3880591:pw_warehouse_e
-;3880595;3880595:pw_warehouse_n
-;3880596;3880596:pw_warehouse_w
-;3880598;3880598:pw_warehouse_s
-;3881014;3881014:pw_warehouse_e
-;3881016;3881016:pw_warehouse_n
-;3881017;3881017:pw_warehouse_w
-;3881018;3881018:pw_warehouse_s
-;3881020;3881020:pw_warehouse_e
-;3881021;3881021:pw_warehouse_n
-;3881022;3881022:pw_warehouse_w
-;3881023;3881023:pw_warehouse_s
-;3881024;3881024:pw_warehouse_e
-;3881025;3881025:pw_warehouse_n
-;3881026;3881026:pw_warehouse_w
-;3881027;3881027:pw_warehouse_s
-;3881028;3881028:pw_warehouse_e
-;3881029;3881029:pw_warehouse_n
-;3881030;3881030:pw_warehouse_w
-;3881031;3881031:pw_warehouse_s
-;3881032;3881032:pw_warehouse_e
-;3881033;3881033:pw_warehouse_n
-;3881034;3881034:pw_warehouse_w
-;3881035;3881035:pw_warehouse_s
-;3881036;3881036:pw_warehouse_e
-;3881037;3881037:pw_warehouse_n
-;3881038;3881038:pw_warehouse_w
-;3881039;3881039:pw_warehouse_s
-;3881040;3881040:pw_warehouse_e
-;3881041;3881041:pw_warehouse_n
-;3881042;3881042:pw_warehouse_w
-;3881043;3881043:pw_warehouse_s
-;3881044;3881044:pw_warehouse_e
-;3881050;3881050:pw_warehouse_n
-;3881051;3881051:pw_warehouse_w
-;3881057;3881057:pw_warehouse_s
-;3881058;3881058:pw_warehouse_e
-;3881059;3881059:pw_warehouse_n
-;3881060;3881060:pw_warehouse_w
-;3881061;3881061:pw_warehouse_s
-;3881062;3881062:pw_warehouse_e
-;3881063;3881063:pw_warehouse_n
-;3881064;3881064:pw_warehouse_w
-;3881065;3881065:pw_warehouse_s
-;3881066;3881066:pw_warehouse_e
-;3881067;3881067:pw_warehouse_n
-;3881070;3881070:pw_warehouse_w
-;3881071;3881071:pw_warehouse_s
-;3881072;3881072:pw_warehouse_e
-;3881074;3881074:pw_warehouse_n
-;3881075;3881075:pw_warehouse_w
-;3881076;3881076:pw_warehouse_s
-;3881077;3881077:pw_warehouse_e
-;3881078;3881078:pw_warehouse_n
-;3881338;3881338:pw_warehouse_w
-;3881339;3881339:pw_warehouse_s
-;3881380;3881380:pw_warehouse_e
-;3881381;3881381:pw_warehouse_n
-;3881382;3881382:pw_warehouse_w
-;3881383;3881383:pw_warehouse_s
-;3881384;3881384:pw_warehouse_e
-;3881389;3881389:pw_warehouse_n
-;3881396;3881396:pw_warehouse_w
-;3881397;3881397:pw_warehouse_s
-;3881412;3881412:pw_warehouse_e
-;3881414;3881414:pw_warehouse_n
-;3881417;3881417:pw_warehouse_w
-;3881419;3881419:pw_warehouse_s
-;3881422;3881422:pw_warehouse_e
-;3881424;3881424:pw_warehouse_n
-;3881427;3881427:pw_warehouse_w
-;3883690;3883690:pw_warehouse_s
-;3883692;3883692:pw_warehouse_e
-;3883695;3883695:pw_warehouse_n
-;3883696;3883696:pw_warehouse_w
-;3884593;3884593:pw_warehouse_s
-;3884599;3884599:pw_warehouse_e
-;3884600;3884600:pw_warehouse_n
-;3884601;3884601:pw_warehouse_w
-;3884632;3884632:pw_warehouse_s
-;3884633;3884633:pw_warehouse_e
-;3884634;3884634:pw_warehouse_n
-;3884636;3884636:pw_warehouse_w
-;3884637;3884637:pw_warehouse_s
-;3884638;3884638:pw_warehouse_e
-;3884640;3884640:pw_warehouse_n
-;3884642;3884642:pw_warehouse_w
-;3884645;3884645:pw_warehouse_s
-;3884646;3884646:pw_warehouse_e
-;3887119;3887119:pw_warehouse_n
-;3887120;3887120:pw_warehouse_w
-;3887121;3887121:pw_warehouse_s
-;3887122;3887122:pw_warehouse_e
-;3887123;3887123:pw_warehouse_n
-;3887124;3887124:pw_warehouse_w
-;3887125;3887125:pw_warehouse_s
-;3887126;3887126:pw_warehouse_e
-;3887127;3887127:pw_warehouse_n
-;3887128;3887128:pw_warehouse_w
-;3887129;3887129:pw_warehouse_s
-;3887130;3887130:pw_warehouse_e
-;3887131;3887131:pw_warehouse_n
-;3887475;3887475:pw_warehouse_w
-;3887477;3887477:pw_warehouse_s
-;3887479;3887479:pw_warehouse_e
-;3887482;3887482:pw_warehouse_n
-;3887483;3887483:pw_warehouse_w
-;3887487;3887487:pw_warehouse_s
-;3887491;3887491:pw_warehouse_e
-;3887493;3887493:pw_warehouse_n
-;3887499;3887499:pw_warehouse_w
-;3887504;3887504:pw_warehouse_s
-;3887505;3887505:pw_warehouse_e
-;3887506;3887506:pw_warehouse_n
-;3887511;3887511:pw_warehouse_w
-;3887512;3887512:pw_warehouse_s
-;3887513;3887513:pw_warehouse_e
-;3887514;3887514:pw_warehouse_n
-;3887523;3887523:pw_warehouse_w
-;3887524;3887524:pw_warehouse_s
-;3887529;3887529:pw_warehouse_e
-;3887530;3887530:pw_warehouse_n
-;3915890;3915890:pw_warehouse_w
-;3916437;3916437:pw_warehouse_s
-;3917378;3917378:pw_warehouse_e
-;3917448;3917448:pw_warehouse_n
-;3917449;3917449:pw_warehouse_w
-;3917455;3917455:pw_warehouse_s
-;3919465;3919465:pw_warehouse_e
-;3920606;3920606:pw_warehouse_n
-;3920607;3920607:pw_warehouse_w
-;3920608;3920608:pw_warehouse_s
-;3920613;3920613:pw_warehouse_e
-;3920614;3920614:pw_warehouse_n
-;3921090;3921090:pw_warehouse_w
-;3921093;3921093:pw_warehouse_s
-;3921095;3921095:pw_warehouse_e
-;3921097;3921097:pw_warehouse_n
-;3921099;3921099:pw_warehouse_w
-;3921100;3921100:pw_warehouse_s
-;3921101;3921101:pw_warehouse_e
-;3922855;3922855:pw_warehouse_n
-;3922856;3922856:pw_warehouse_w
-;3923098;3923098:pw_warehouse_s
-;3923110;3923110:pw_warehouse_e
-;3923111;3923111:pw_warehouse_n
-;3942767;3942767:pw_warehouse_w
-;3942803;3942803:pw_warehouse_s
-;3942823;3942823:pw_warehouse_e
-;3942829;3942829:pw_warehouse_n
-;3942838;3942838:pw_warehouse_w
-;3942841;3942841:pw_warehouse_s
-;3942849;3942849:pw_warehouse_e
-;3942853;3942853:pw_warehouse_n
-;4019849;4019849:pw_warehouse_w
-;4491784;4491784:pw_warehouse_s
-;4567130;4567130:pw_warehouse_e
-;4567131;4567131:pw_warehouse_n
-;4567133;4567133:pw_warehouse_w
-;4567134;4567134:pw_warehouse_s
-;4567162;4567162:pw_warehouse_e
-;4567163;4567163:pw_warehouse_n
-;4567165;4567165:pw_warehouse_w
-;4567167;4567167:pw_warehouse_s
-;4567173;4567173:pw_warehouse_e
-;4567174;4567174:pw_warehouse_n
-;4567175;4567175:pw_warehouse_w
-;4567176;4567176:pw_warehouse_s
-;4567177;4567177:pw_warehouse_e
-;4567179;4567179:pw_warehouse_n
-;4567180;4567180:pw_warehouse_w
-;4567181;4567181:pw_warehouse_s
-;4567182;4567182:pw_warehouse_e
-;4567183;4567183:pw_warehouse_n
-;4567184;4567184:pw_warehouse_w
-;4567185;4567185:pw_warehouse_s
-;4567186;4567186:pw_warehouse_e
-;4567187;4567187:pw_warehouse_n
-;4567188;4567188:pw_warehouse_w
-;4567189;4567189:pw_warehouse_s
-;4567190;4567190:pw_warehouse_e
-;4567191;4567191:pw_warehouse_n
-;4567192;4567192:pw_warehouse_w
-;4567193;4567193:pw_warehouse_s
-;4567194;4567194:pw_warehouse_e
-;4567196;4567196:pw_warehouse_n
-;4567223;4567223:pw_warehouse_w
-;4598185;4598185:pw_warehouse_s
-;4600658;4600658:pw_warehouse_e
-;4763600;4763600:pw_warehouse_n
-;4763682;4763682:pw_warehouse_w
-;4763692;4763692:pw_warehouse_s
-;4763696;4763696:pw_warehouse_e
-;4763915;4763915:pw_warehouse_n
-;5874577;5874577:pw_warehouse_w
-;5888798;5888798:pw_warehouse_s
-;6100520;6100520:pw_warehouse_e
-;6100521;6100521:pw_warehouse_n
-;1678256;1678256:pw_warehouse_n
-;1678313;1678313:pw_warehouse_n
-;2613282;2613282:pw_warehouse_n
-;3756512;3756512:pw_warehouse_n
-;3756514;3756514:pw_warehouse_n
+ 
+INSERT_UPDATE Warehouse ; code[unique=true] ; name[lang=en]           
+                        ; pw_warehouse_s    ; ncipb2b Warehouse South 
+                        ; pw_warehouse_e    ; ncipb2b Warehouse East  
+                        ; pw_warehouse_w    ; ncipb2b Warehouse West  
+                        ; pw_warehouse_n    ; ncipb2b Warehouse North 
+                        
+INSERT_UPDATE StockLevel ; productCode[unique=true] ; warehouse(code)[unique=true,default=default] ; available ; inStockStatus(code) ; maxPreOrder[default=1] ; maxStockLevelHistoryCount[default=-1] ; overSelling[default=0] ; preOrder[default=0] ; reserved[default=0] 
+                         ; 637227                   ; pw_warehouse_s                               ; 414       ; forceInStock        
+                         ; 693923                   ; pw_warehouse_e                               ; 228       ; forceInStock        
+                         ; 1101690                  ; pw_warehouse_n                               ; 335       ; forceInStock        
+                         ; 1101695                  ; pw_warehouse_w                               ; 161       ; forceInStock        
+                         ; 1128762                  ; pw_warehouse_s                               ; 215       ; forceInStock        
+                         ; 1128763                  ; pw_warehouse_e                               ; 122       ; forceInStock        
+                         ; 1221408                  ; pw_warehouse_n                               ; 496       ; forceInStock        
+                         ; 1221409                  ; pw_warehouse_w                               ; 241       ; forceInStock        
+                         ; 1221411                  ; pw_warehouse_s                               ; 386       ; forceInStock        
+                         ; 1221417                  ; pw_warehouse_e                               ; 410       ; forceInStock        
+                         ; 1249191                  ; pw_warehouse_n                               ; 305       ; forceInStock        
+                         ; 1249198                  ; pw_warehouse_w                               ; 331       ; forceInStock        
+                         ; 1249200                  ; pw_warehouse_s                               ; 425       ; forceInStock        
+                         ; 1399957                  ; pw_warehouse_e                               ; 309       ; forceInStock        
+                         ; 1399958                  ; pw_warehouse_n                               ; 192       ; forceInStock        
+                         ; 1399966                  ; pw_warehouse_w                               ; 366       ; forceInStock        
+                         ; 1399984                  ; pw_warehouse_s                               ; 261       ; forceInStock        
+                         ; 1399988                  ; pw_warehouse_e                               ; 3         ; forceInStock        
+                         ; 1408366                  ; pw_warehouse_n                               ; 247       ; forceInStock        
+                         ; 1664617                  ; pw_warehouse_w                               ; 302       ; forceInStock        
+                         ; 1666884                  ; pw_warehouse_s                               ; 286       ; forceInStock        
+                         ; 1669869                  ; pw_warehouse_e                               ; 342       ; forceInStock        
+                         ; 1670353                  ; pw_warehouse_n                               ; 236       ; forceInStock        
+                         ; 1670354                  ; pw_warehouse_w                               ; 493       ; forceInStock        
+                         ; 1670355                  ; pw_warehouse_s                               ; 375       ; forceInStock        
+                         ; 1670427                  ; pw_warehouse_e                               ; 63        ; forceInStock        
+                         ; 1670428                  ; pw_warehouse_n                               ; 223       ; forceInStock        
+                         ; 1670429                  ; pw_warehouse_w                               ; 421       ; forceInStock        
+                         ; 1670430                  ; pw_warehouse_s                               ; 256       ; forceInStock        
+                         ; 1670435                  ; pw_warehouse_e                               ; 479       ; forceInStock        
+                         ; 1670436                  ; pw_warehouse_n                               ; 14        ; forceInStock        
+                         ; 1670448                  ; pw_warehouse_w                               ; 236       ; forceInStock        
+                         ; 1670449                  ; pw_warehouse_s                               ; 69        ; forceInStock        
+                         ; 1670548                  ; pw_warehouse_e                               ; 48        ; forceInStock        
+                         ; 1670549                  ; pw_warehouse_n                               ; 121       ; forceInStock        
+                         ; 1670597                  ; pw_warehouse_w                               ; 378       ; forceInStock        
+                         ; 1670599                  ; pw_warehouse_s                               ; 476       ; forceInStock        
+                         ; 1672248                  ; pw_warehouse_e                               ; 393       ; forceInStock        
+                         ; 1672249                  ; pw_warehouse_n                               ; 284       ; forceInStock        
+                         ; 1672250                  ; pw_warehouse_w                               ; 491       ; forceInStock        
+                         ; 1672251                  ; pw_warehouse_s                               ; 201       ; forceInStock        
+                         ; 1677056                  ; pw_warehouse_e                               ; 327       ; forceInStock        
+                         ; 1677065                  ; pw_warehouse_n                               ; 49        ; forceInStock        
+                         ; 1677069                  ; pw_warehouse_w                               ; 195       ; forceInStock        
+                         ; 1677071                  ; pw_warehouse_s                               ; 163       ; forceInStock        
+                         ; 1677074                  ; pw_warehouse_e                               ; 148       ; forceInStock        
+                         ; 1677076                  ; pw_warehouse_n                               ; 249       ; forceInStock        
+                         ; 1677078                  ; pw_warehouse_w                               ; 298       ; forceInStock        
+                         ; 1677083                  ; pw_warehouse_s                               ; 337       ; forceInStock        
+                         ; 1677084                  ; pw_warehouse_e                               ; 252       ; forceInStock        
+                         ; 1677089                  ; pw_warehouse_n                               ; 18        ; forceInStock        
+                         ; 1677104                  ; pw_warehouse_w                               ; 238       ; forceInStock        
+                         ; 1677105                  ; pw_warehouse_s                               ; 45        ; forceInStock        
+                         ; 1677107                  ; pw_warehouse_e                               ; 366       ; forceInStock        
+                         ; 1677109                  ; pw_warehouse_n                               ; 257       ; forceInStock        
+                         ; 1677125                  ; pw_warehouse_w                               ; 153       ; forceInStock        
+                         ; 1677207                  ; pw_warehouse_s                               ; 229       ; forceInStock        
+                         ; 1677787                  ; pw_warehouse_e                               ; 51        ; forceInStock        
+                         ; 1678066                  ; pw_warehouse_n                               ; 447       ; forceInStock        
+                         ; 1979039                  ; pw_warehouse_w                               ; 466       ; forceInStock        
+                         ; 2114093                  ; pw_warehouse_s                               ; 471       ; forceInStock        
+                         ; 2114099                  ; pw_warehouse_e                               ; 16        ; forceInStock        
+                         ; 2114103                  ; pw_warehouse_n                               ; 53        ; forceInStock        
+                         ; 2114104                  ; pw_warehouse_w                               ; 411       ; forceInStock        
+                         ; 2114105                  ; pw_warehouse_s                               ; 216       ; forceInStock        
+                         ; 2114106                  ; pw_warehouse_e                               ; 271       ; forceInStock        
+                         ; 2114110                  ; pw_warehouse_n                               ; 100       ; forceInStock        
+                         ; 2114114                  ; pw_warehouse_w                               ; 468       ; forceInStock        
+                         ; 2114122                  ; pw_warehouse_s                               ; 306       ; forceInStock        
+                         ; 2114124                  ; pw_warehouse_e                               ; 187       ; forceInStock        
+                         ; 2116266                  ; pw_warehouse_n                               ; 317       ; forceInStock        
+                         ; 2116274                  ; pw_warehouse_w                               ; 117       ; forceInStock        
+                         ; 2116275                  ; pw_warehouse_s                               ; 384       ; forceInStock        
+                         ; 2116277                  ; pw_warehouse_e                               ; 89        ; forceInStock        
+                         ; 2116279                  ; pw_warehouse_n                               ; 12        ; forceInStock        
+                         ; 2116282                  ; pw_warehouse_w                               ; 335       ; forceInStock        
+                         ; 2116283                  ; pw_warehouse_s                               ; 353       ; forceInStock        
+                         ; 2121511                  ; pw_warehouse_e                               ; 398       ; forceInStock        
+                         ; 2217258                  ; pw_warehouse_n                               ; 168       ; forceInStock        
+                         ; 2219181                  ; pw_warehouse_w                               ; 499       ; forceInStock        
+                         ; 2221933                  ; pw_warehouse_s                               ; 385       ; forceInStock        
+                         ; 2222485                  ; pw_warehouse_e                               ; 3         ; forceInStock        
+                         ; 2682248                  ; pw_warehouse_w                               ; 394       ; forceInStock        
+                         ; 3092788                  ; pw_warehouse_s                               ; 134       ; forceInStock        
+                         ; 3318057                  ; pw_warehouse_e                               ; 243       ; forceInStock        
+                         ; 3536546                  ; pw_warehouse_n                               ; 114       ; forceInStock        
+                         ; 3591524                  ; pw_warehouse_w                               ; 112       ; forceInStock        
+                         ; 3591525                  ; pw_warehouse_s                               ; 261       ; forceInStock        
+                         ; 3591526                  ; pw_warehouse_e                               ; 319       ; forceInStock        
+                         ; 3591527                  ; pw_warehouse_n                               ; 78        ; forceInStock        
+                         ; 3591528                  ; pw_warehouse_w                               ; 207       ; forceInStock        
+                         ; 3591529                  ; pw_warehouse_s                               ; 331       ; forceInStock        
+                         ; 3591530                  ; pw_warehouse_e                               ; 312       ; forceInStock        
+                         ; 3591753                  ; pw_warehouse_n                               ; 298       ; forceInStock        
+                         ; 3591754                  ; pw_warehouse_w                               ; 302       ; forceInStock        
+                         ; 3591758                  ; pw_warehouse_s                               ; 277       ; forceInStock        
+                         ; 3592865                  ; pw_warehouse_e                               ; 115       ; forceInStock        
+                         ; 3626881                  ; pw_warehouse_n                               ; 308       ; forceInStock        
+                         ; 3631964                  ; pw_warehouse_w                               ; 357       ; forceInStock        
+                         ; 3659943                  ; pw_warehouse_s                               ; 318       ; forceInStock        
+                         ; 3715400                  ; pw_warehouse_e                               ; 248       ; forceInStock        
+                         ; 3755201                  ; pw_warehouse_n                               ; 162       ; forceInStock        
+                         ; 3755204                  ; pw_warehouse_w                               ; 6         ; forceInStock        
+                         ; 3755205                  ; pw_warehouse_s                               ; 324       ; forceInStock        
+                         ; 3755207                  ; pw_warehouse_e                               ; 6         ; forceInStock        
+                         ; 3755210                  ; pw_warehouse_n                               ; 143       ; forceInStock        
+                         ; 3755211                  ; pw_warehouse_w                               ; 310       ; forceInStock        
+                         ; 3755212                  ; pw_warehouse_s                               ; 382       ; forceInStock        
+                         ; 3755213                  ; pw_warehouse_e                               ; 398       ; forceInStock        
+                         ; 3755217                  ; pw_warehouse_n                               ; 241       ; forceInStock        
+                         ; 3755218                  ; pw_warehouse_w                               ; 92        ; forceInStock        
+                         ; 3755219                  ; pw_warehouse_s                               ; 470       ; forceInStock        
+                         ; 3755225                  ; pw_warehouse_e                               ; 489       ; forceInStock        
+                         ; 3756505                  ; pw_warehouse_n                               ; 187       ; forceInStock        
+                         ; 3756515                  ; pw_warehouse_w                               ; 197       ; forceInStock        
+                         ; 3758751                  ; pw_warehouse_s                               ; 435       ; forceInStock        
+                         ; 3774127                  ; pw_warehouse_e                               ; 315       ; forceInStock        
+                         ; 3774128                  ; pw_warehouse_n                               ; 165       ; forceInStock        
+                         ; 3774129                  ; pw_warehouse_w                               ; 274       ; forceInStock        
+                         ; 3774131                  ; pw_warehouse_s                               ; 116       ; forceInStock        
+                         ; 3774134                  ; pw_warehouse_e                               ; 484       ; forceInStock        
+                         ; 3774135                  ; pw_warehouse_n                               ; 486       ; forceInStock        
+                         ; 3774136                  ; pw_warehouse_w                               ; 112       ; forceInStock        
+                         ; 3778914                  ; pw_warehouse_s                               ; 24        ; forceInStock        
+                         ; 3778915                  ; pw_warehouse_e                               ; 118       ; forceInStock        
+                         ; 3778917                  ; pw_warehouse_n                               ; 181       ; forceInStock        
+                         ; 3778919                  ; pw_warehouse_w                               ; 255       ; forceInStock        
+                         ; 3778921                  ; pw_warehouse_s                               ; 170       ; forceInStock        
+                         ; 3778922                  ; pw_warehouse_e                               ; 49        ; forceInStock        
+                         ; 3778923                  ; pw_warehouse_n                               ; 446       ; forceInStock        
+                         ; 3778926                  ; pw_warehouse_w                               ; 391       ; forceInStock        
+                         ; 3778927                  ; pw_warehouse_s                               ; 293       ; forceInStock        
+                         ; 3778928                  ; pw_warehouse_e                               ; 46        ; forceInStock        
+                         ; 3780171                  ; pw_warehouse_n                               ; 52        ; forceInStock        
+                         ; 3782130                  ; pw_warehouse_w                               ; 478       ; forceInStock        
+                         ; 3788611                  ; pw_warehouse_s                               ; 95        ; forceInStock        
+                         ; 3788612                  ; pw_warehouse_e                               ; 45        ; forceInStock        
+                         ; 3788614                  ; pw_warehouse_n                               ; 19        ; forceInStock        
+                         ; 3788616                  ; pw_warehouse_w                               ; 200       ; forceInStock        
+                         ; 3788618                  ; pw_warehouse_s                               ; 0         ; forceInStock        
+                         ; 3788619                  ; pw_warehouse_e                               ; 94        ; forceInStock        
+                         ; 3791317                  ; pw_warehouse_n                               ; 308       ; forceInStock        
+                         ; 3791322                  ; pw_warehouse_w                               ; 171       ; forceInStock        
+                         ; 3793191                  ; pw_warehouse_s                               ; 62        ; forceInStock        
+                         ; 3793682                  ; pw_warehouse_e                               ; 420       ; forceInStock        
+                         ; 3793683                  ; pw_warehouse_n                               ; 173       ; forceInStock        
+                         ; 3793687                  ; pw_warehouse_w                               ; 258       ; forceInStock        
+                         ; 3793693                  ; pw_warehouse_s                               ; 197       ; forceInStock        
+                         ; 3793695                  ; pw_warehouse_e                               ; 367       ; forceInStock        
+                         ; 3793702                  ; pw_warehouse_n                               ; 141       ; forceInStock        
+                         ; 3793707                  ; pw_warehouse_w                               ; 480       ; forceInStock        
+                         ; 3793710                  ; pw_warehouse_s                               ; 2         ; forceInStock        
+                         ; 3793711                  ; pw_warehouse_e                               ; 469       ; forceInStock        
+                         ; 3794506                  ; pw_warehouse_n                               ; 71        ; forceInStock        
+                         ; 3794509                  ; pw_warehouse_w                               ; 314       ; forceInStock        
+                         ; 3794514                  ; pw_warehouse_s                               ; 325       ; forceInStock        
+                         ; 3794524                  ; pw_warehouse_e                               ; 292       ; forceInStock        
+                         ; 3794560                  ; pw_warehouse_n                               ; 227       ; forceInStock        
+                         ; 3794561                  ; pw_warehouse_w                               ; 428       ; forceInStock        
+                         ; 3794596                  ; pw_warehouse_s                               ; 224       ; forceInStock        
+                         ; 3794597                  ; pw_warehouse_e                               ; 403       ; forceInStock        
+                         ; 3794607                  ; pw_warehouse_n                               ; 199       ; forceInStock        
+                         ; 3794609                  ; pw_warehouse_w                               ; 92        ; forceInStock        
+                         ; 3794612                  ; pw_warehouse_s                               ; 92        ; forceInStock        
+                         ; 3794615                  ; pw_warehouse_e                               ; 94        ; forceInStock        
+                         ; 3794619                  ; pw_warehouse_n                               ; 58        ; forceInStock        
+                         ; 3794621                  ; pw_warehouse_w                               ; 194       ; forceInStock        
+                         ; 3794631                  ; pw_warehouse_s                               ; 425       ; forceInStock        
+                         ; 3794633                  ; pw_warehouse_e                               ; 277       ; forceInStock        
+                         ; 3794635                  ; pw_warehouse_n                               ; 143       ; forceInStock        
+                         ; 3794640                  ; pw_warehouse_w                               ; 219       ; forceInStock        
+                         ; 3795253                  ; pw_warehouse_s                               ; 401       ; forceInStock        
+                         ; 3803058                  ; pw_warehouse_e                               ; 365       ; forceInStock        
+                         ; 3844571                  ; pw_warehouse_n                               ; 387       ; forceInStock        
+                         ; 3857331                  ; pw_warehouse_w                               ; 268       ; forceInStock        
+                         ; 3857731                  ; pw_warehouse_s                               ; 66        ; forceInStock        
+                         ; 3857732                  ; pw_warehouse_e                               ; 73        ; forceInStock        
+                         ; 3857733                  ; pw_warehouse_n                               ; 221       ; forceInStock        
+                         ; 3857734                  ; pw_warehouse_w                               ; 358       ; forceInStock        
+                         ; 3857735                  ; pw_warehouse_s                               ; 331       ; forceInStock        
+                         ; 3857736                  ; pw_warehouse_e                               ; 436       ; forceInStock        
+                         ; 3857738                  ; pw_warehouse_n                               ; 16        ; forceInStock        
+                         ; 3857744                  ; pw_warehouse_w                               ; 452       ; forceInStock        
+                         ; 3857747                  ; pw_warehouse_s                               ; 23        ; forceInStock        
+                         ; 3857750                  ; pw_warehouse_e                               ; 63        ; forceInStock        
+                         ; 3857757                  ; pw_warehouse_n                               ; 77        ; forceInStock        
+                         ; 3864520                  ; pw_warehouse_w                               ; 31        ; forceInStock        
+                         ; 3864534                  ; pw_warehouse_s                               ; 305       ; forceInStock        
+                         ; 3864539                  ; pw_warehouse_e                               ; 469       ; forceInStock        
+                         ; 3864748                  ; pw_warehouse_n                               ; 316       ; forceInStock        
+                         ; 3864770                  ; pw_warehouse_w                               ; 0         ; forceInStock        
+                         ; 3865361                  ; pw_warehouse_s                               ; 189       ; forceInStock        
+                         ; 3865362                  ; pw_warehouse_e                               ; 46        ; forceInStock        
+                         ; 3865614                  ; pw_warehouse_n                               ; 254       ; forceInStock        
+                         ; 3865725                  ; pw_warehouse_w                               ; 388       ; forceInStock        
+                         ; 3879434                  ; pw_warehouse_s                               ; 0         ; forceInStock        
+                         ; 3879435                  ; pw_warehouse_e                               ; 351       ; forceInStock        
+                         ; 3879436                  ; pw_warehouse_n                               ; 332       ; forceInStock        
+                         ; 3879437                  ; pw_warehouse_w                               ; 434       ; forceInStock        
+                         ; 3879438                  ; pw_warehouse_s                               ; 103       ; forceInStock        
+                         ; 3879440                  ; pw_warehouse_e                               ; 302       ; forceInStock        
+                         ; 3879442                  ; pw_warehouse_n                               ; 5         ; forceInStock        
+                         ; 3879443                  ; pw_warehouse_w                               ; 1         ; forceInStock        
+                         ; 3879444                  ; pw_warehouse_s                               ; 363       ; forceInStock        
+                         ; 3879445                  ; pw_warehouse_e                               ; 358       ; forceInStock        
+                         ; 3879446                  ; pw_warehouse_n                               ; 435       ; forceInStock        
+                         ; 3879447                  ; pw_warehouse_w                               ; 146       ; forceInStock        
+                         ; 3879448                  ; pw_warehouse_s                               ; 145       ; forceInStock        
+                         ; 3879450                  ; pw_warehouse_e                               ; 71        ; forceInStock        
+                         ; 3880499                  ; pw_warehouse_n                               ; 404       ; forceInStock        
+                         ; 3880500                  ; pw_warehouse_w                               ; 447       ; forceInStock        
+                         ; 3880501                  ; pw_warehouse_s                               ; 60        ; forceInStock        
+                         ; 3880502                  ; pw_warehouse_e                               ; 119       ; forceInStock        
+                         ; 3880504                  ; pw_warehouse_n                               ; 403       ; forceInStock        
+                         ; 3880507                  ; pw_warehouse_w                               ; 147       ; forceInStock        
+                         ; 3880508                  ; pw_warehouse_s                               ; 119       ; forceInStock        
+                         ; 3880510                  ; pw_warehouse_e                               ; 28        ; forceInStock        
+                         ; 3880511                  ; pw_warehouse_n                               ; 312       ; forceInStock        
+                         ; 3880513                  ; pw_warehouse_w                               ; 80        ; forceInStock        
+                         ; 3880516                  ; pw_warehouse_s                               ; 332       ; forceInStock        
+                         ; 3880517                  ; pw_warehouse_e                               ; 390       ; forceInStock        
+                         ; 3880519                  ; pw_warehouse_n                               ; 206       ; forceInStock        
+                         ; 3880520                  ; pw_warehouse_w                               ; 306       ; forceInStock        
+                         ; 3880525                  ; pw_warehouse_s                               ; 315       ; forceInStock        
+                         ; 3880527                  ; pw_warehouse_e                               ; 157       ; forceInStock        
+                         ; 3880528                  ; pw_warehouse_n                               ; 185       ; forceInStock        
+                         ; 3880530                  ; pw_warehouse_w                               ; 363       ; forceInStock        
+                         ; 3880590                  ; pw_warehouse_s                               ; 479       ; forceInStock        
+                         ; 3880591                  ; pw_warehouse_e                               ; 411       ; forceInStock        
+                         ; 3880595                  ; pw_warehouse_n                               ; 221       ; forceInStock        
+                         ; 3880596                  ; pw_warehouse_w                               ; 180       ; forceInStock        
+                         ; 3880598                  ; pw_warehouse_s                               ; 427       ; forceInStock        
+                         ; 3881014                  ; pw_warehouse_e                               ; 36        ; forceInStock        
+                         ; 3881016                  ; pw_warehouse_n                               ; 34        ; forceInStock        
+                         ; 3881017                  ; pw_warehouse_w                               ; 200       ; forceInStock        
+                         ; 3881018                  ; pw_warehouse_s                               ; 193       ; forceInStock        
+                         ; 3881020                  ; pw_warehouse_e                               ; 343       ; forceInStock        
+                         ; 3881021                  ; pw_warehouse_n                               ; 132       ; forceInStock        
+                         ; 3881022                  ; pw_warehouse_w                               ; 56        ; forceInStock        
+                         ; 3881023                  ; pw_warehouse_s                               ; 424       ; forceInStock        
+                         ; 3881024                  ; pw_warehouse_e                               ; 209       ; forceInStock        
+                         ; 3881025                  ; pw_warehouse_n                               ; 165       ; forceInStock        
+                         ; 3881026                  ; pw_warehouse_w                               ; 32        ; forceInStock        
+                         ; 3881027                  ; pw_warehouse_s                               ; 179       ; forceInStock        
+                         ; 3881028                  ; pw_warehouse_e                               ; 358       ; forceInStock        
+                         ; 3881029                  ; pw_warehouse_n                               ; 203       ; forceInStock        
+                         ; 3881030                  ; pw_warehouse_w                               ; 309       ; forceInStock        
+                         ; 3881031                  ; pw_warehouse_s                               ; 142       ; forceInStock        
+                         ; 3881032                  ; pw_warehouse_e                               ; 348       ; forceInStock        
+                         ; 3881033                  ; pw_warehouse_n                               ; 493       ; forceInStock        
+                         ; 3881034                  ; pw_warehouse_w                               ; 394       ; forceInStock        
+                         ; 3881035                  ; pw_warehouse_s                               ; 410       ; forceInStock        
+                         ; 3881036                  ; pw_warehouse_e                               ; 342       ; forceInStock        
+                         ; 3881037                  ; pw_warehouse_n                               ; 46        ; forceInStock        
+                         ; 3881038                  ; pw_warehouse_w                               ; 341       ; forceInStock        
+                         ; 3881039                  ; pw_warehouse_s                               ; 78        ; forceInStock        
+                         ; 3881040                  ; pw_warehouse_e                               ; 96        ; forceInStock        
+                         ; 3881041                  ; pw_warehouse_n                               ; 462       ; forceInStock        
+                         ; 3881042                  ; pw_warehouse_w                               ; 336       ; forceInStock        
+                         ; 3881043                  ; pw_warehouse_s                               ; 495       ; forceInStock        
+                         ; 3881044                  ; pw_warehouse_e                               ; 289       ; forceInStock        
+                         ; 3881050                  ; pw_warehouse_n                               ; 320       ; forceInStock        
+                         ; 3881051                  ; pw_warehouse_w                               ; 285       ; forceInStock        
+                         ; 3881057                  ; pw_warehouse_s                               ; 112       ; forceInStock        
+                         ; 3881058                  ; pw_warehouse_e                               ; 168       ; forceInStock        
+                         ; 3881059                  ; pw_warehouse_n                               ; 161       ; forceInStock        
+                         ; 3881060                  ; pw_warehouse_w                               ; 284       ; forceInStock        
+                         ; 3881061                  ; pw_warehouse_s                               ; 78        ; forceInStock        
+                         ; 3881062                  ; pw_warehouse_e                               ; 76        ; forceInStock        
+                         ; 3881063                  ; pw_warehouse_n                               ; 114       ; forceInStock        
+                         ; 3881064                  ; pw_warehouse_w                               ; 440       ; forceInStock        
+                         ; 3881065                  ; pw_warehouse_s                               ; 62        ; forceInStock        
+                         ; 3881066                  ; pw_warehouse_e                               ; 43        ; forceInStock        
+                         ; 3881067                  ; pw_warehouse_n                               ; 422       ; forceInStock        
+                         ; 3881070                  ; pw_warehouse_w                               ; 494       ; forceInStock        
+                         ; 3881071                  ; pw_warehouse_s                               ; 372       ; forceInStock        
+                         ; 3881072                  ; pw_warehouse_e                               ; 156       ; forceInStock        
+                         ; 3881074                  ; pw_warehouse_n                               ; 259       ; forceInStock        
+                         ; 3881075                  ; pw_warehouse_w                               ; 467       ; forceInStock        
+                         ; 3881076                  ; pw_warehouse_s                               ; 139       ; forceInStock        
+                         ; 3881077                  ; pw_warehouse_e                               ; 488       ; forceInStock        
+                         ; 3881078                  ; pw_warehouse_n                               ; 350       ; forceInStock        
+                         ; 3881338                  ; pw_warehouse_w                               ; 480       ; forceInStock        
+                         ; 3881339                  ; pw_warehouse_s                               ; 167       ; forceInStock        
+                         ; 3881380                  ; pw_warehouse_e                               ; 144       ; forceInStock        
+                         ; 3881381                  ; pw_warehouse_n                               ; 476       ; forceInStock        
+                         ; 3881382                  ; pw_warehouse_w                               ; 213       ; forceInStock        
+                         ; 3881383                  ; pw_warehouse_s                               ; 383       ; forceInStock        
+                         ; 3881384                  ; pw_warehouse_e                               ; 99        ; forceInStock        
+                         ; 3881389                  ; pw_warehouse_n                               ; 268       ; forceInStock        
+                         ; 3881396                  ; pw_warehouse_w                               ; 360       ; forceInStock        
+                         ; 3881397                  ; pw_warehouse_s                               ; 222       ; forceInStock        
+                         ; 3881412                  ; pw_warehouse_e                               ; 73        ; forceInStock        
+                         ; 3881414                  ; pw_warehouse_n                               ; 381       ; forceInStock        
+                         ; 3881417                  ; pw_warehouse_w                               ; 316       ; forceInStock        
+                         ; 3881419                  ; pw_warehouse_s                               ; 58        ; forceInStock        
+                         ; 3881422                  ; pw_warehouse_e                               ; 320       ; forceInStock        
+                         ; 3881424                  ; pw_warehouse_n                               ; 444       ; forceInStock        
+                         ; 3881427                  ; pw_warehouse_w                               ; 197       ; forceInStock        
+                         ; 3883690                  ; pw_warehouse_s                               ; 65        ; forceInStock        
+                         ; 3883692                  ; pw_warehouse_e                               ; 227       ; forceInStock        
+                         ; 3883695                  ; pw_warehouse_n                               ; 400       ; forceInStock        
+                         ; 3883696                  ; pw_warehouse_w                               ; 413       ; forceInStock        
+                         ; 3884593                  ; pw_warehouse_s                               ; 391       ; forceInStock        
+                         ; 3884599                  ; pw_warehouse_e                               ; 410       ; forceInStock        
+                         ; 3884600                  ; pw_warehouse_n                               ; 97        ; forceInStock        
+                         ; 3884601                  ; pw_warehouse_w                               ; 131       ; forceInStock        
+                         ; 3884632                  ; pw_warehouse_s                               ; 334       ; forceInStock        
+                         ; 3884633                  ; pw_warehouse_e                               ; 10        ; forceInStock        
+                         ; 3884634                  ; pw_warehouse_n                               ; 474       ; forceInStock        
+                         ; 3884636                  ; pw_warehouse_w                               ; 491       ; forceInStock        
+                         ; 3884637                  ; pw_warehouse_s                               ; 324       ; forceInStock        
+                         ; 3884638                  ; pw_warehouse_e                               ; 81        ; forceInStock        
+                         ; 3884640                  ; pw_warehouse_n                               ; 98        ; forceInStock        
+                         ; 3884642                  ; pw_warehouse_w                               ; 341       ; forceInStock        
+                         ; 3884645                  ; pw_warehouse_s                               ; 170       ; forceInStock        
+                         ; 3884646                  ; pw_warehouse_e                               ; 46        ; forceInStock        
+                         ; 3887119                  ; pw_warehouse_n                               ; 492       ; forceInStock        
+                         ; 3887120                  ; pw_warehouse_w                               ; 22        ; forceInStock        
+                         ; 3887121                  ; pw_warehouse_s                               ; 48        ; forceInStock        
+                         ; 3887122                  ; pw_warehouse_e                               ; 288       ; forceInStock        
+                         ; 3887123                  ; pw_warehouse_n                               ; 387       ; forceInStock        
+                         ; 3887124                  ; pw_warehouse_w                               ; 238       ; forceInStock        
+                         ; 3887125                  ; pw_warehouse_s                               ; 187       ; forceInStock        
+                         ; 3887126                  ; pw_warehouse_e                               ; 197       ; forceInStock        
+                         ; 3887127                  ; pw_warehouse_n                               ; 2         ; forceInStock        
+                         ; 3887128                  ; pw_warehouse_w                               ; 252       ; forceInStock        
+                         ; 3887129                  ; pw_warehouse_s                               ; 290       ; forceInStock        
+                         ; 3887130                  ; pw_warehouse_e                               ; 180       ; forceInStock        
+                         ; 3887131                  ; pw_warehouse_n                               ; 284       ; forceInStock        
+                         ; 3887475                  ; pw_warehouse_w                               ; 249       ; forceInStock        
+                         ; 3887477                  ; pw_warehouse_s                               ; 108       ; forceInStock        
+                         ; 3887479                  ; pw_warehouse_e                               ; 88        ; forceInStock        
+                         ; 3887482                  ; pw_warehouse_n                               ; 321       ; forceInStock        
+                         ; 3887483                  ; pw_warehouse_w                               ; 155       ; forceInStock        
+                         ; 3887487                  ; pw_warehouse_s                               ; 362       ; forceInStock        
+                         ; 3887491                  ; pw_warehouse_e                               ; 434       ; forceInStock        
+                         ; 3887493                  ; pw_warehouse_n                               ; 223       ; forceInStock        
+                         ; 3887499                  ; pw_warehouse_w                               ; 423       ; forceInStock        
+                         ; 3887504                  ; pw_warehouse_s                               ; 196       ; forceInStock        
+                         ; 3887505                  ; pw_warehouse_e                               ; 423       ; forceInStock        
+                         ; 3887506                  ; pw_warehouse_n                               ; 312       ; forceInStock        
+                         ; 3887511                  ; pw_warehouse_w                               ; 86        ; forceInStock        
+                         ; 3887512                  ; pw_warehouse_s                               ; 48        ; forceInStock        
+                         ; 3887513                  ; pw_warehouse_e                               ; 236       ; forceInStock        
+                         ; 3887514                  ; pw_warehouse_n                               ; 122       ; forceInStock        
+                         ; 3887523                  ; pw_warehouse_w                               ; 275       ; forceInStock        
+                         ; 3887524                  ; pw_warehouse_s                               ; 199       ; forceInStock        
+                         ; 3887529                  ; pw_warehouse_e                               ; 33        ; forceInStock        
+                         ; 3887530                  ; pw_warehouse_n                               ; 332       ; forceInStock        
+                         ; 3915890                  ; pw_warehouse_w                               ; 222       ; forceInStock        
+                         ; 3916437                  ; pw_warehouse_s                               ; 415       ; forceInStock        
+                         ; 3917378                  ; pw_warehouse_e                               ; 171       ; forceInStock        
+                         ; 3917448                  ; pw_warehouse_n                               ; 479       ; forceInStock        
+                         ; 3917449                  ; pw_warehouse_w                               ; 77        ; forceInStock        
+                         ; 3917455                  ; pw_warehouse_s                               ; 399       ; forceInStock        
+                         ; 3919465                  ; pw_warehouse_e                               ; 96        ; forceInStock        
+                         ; 3920606                  ; pw_warehouse_n                               ; 57        ; forceInStock        
+                         ; 3920607                  ; pw_warehouse_w                               ; 147       ; forceInStock        
+                         ; 3920608                  ; pw_warehouse_s                               ; 313       ; forceInStock        
+                         ; 3920613                  ; pw_warehouse_e                               ; 397       ; forceInStock        
+                         ; 3920614                  ; pw_warehouse_n                               ; 389       ; forceInStock        
+                         ; 3921090                  ; pw_warehouse_w                               ; 319       ; forceInStock        
+                         ; 3921093                  ; pw_warehouse_s                               ; 65        ; forceInStock        
+                         ; 3921095                  ; pw_warehouse_e                               ; 300       ; forceInStock        
+                         ; 3921097                  ; pw_warehouse_n                               ; 279       ; forceInStock        
+                         ; 3921099                  ; pw_warehouse_w                               ; 245       ; forceInStock        
+                         ; 3921100                  ; pw_warehouse_s                               ; 407       ; forceInStock        
+                         ; 3921101                  ; pw_warehouse_e                               ; 446       ; forceInStock        
+                         ; 3922855                  ; pw_warehouse_n                               ; 131       ; forceInStock        
+                         ; 3922856                  ; pw_warehouse_w                               ; 110       ; forceInStock        
+                         ; 3923098                  ; pw_warehouse_s                               ; 35        ; forceInStock        
+                         ; 3923110                  ; pw_warehouse_e                               ; 220       ; forceInStock        
+                         ; 3923111                  ; pw_warehouse_n                               ; 158       ; forceInStock        
+                         ; 3942767                  ; pw_warehouse_w                               ; 71        ; forceInStock        
+                         ; 3942803                  ; pw_warehouse_s                               ; 261       ; forceInStock        
+                         ; 3942823                  ; pw_warehouse_e                               ; 312       ; forceInStock        
+                         ; 3942829                  ; pw_warehouse_n                               ; 104       ; forceInStock        
+                         ; 3942838                  ; pw_warehouse_w                               ; 101       ; forceInStock        
+                         ; 3942841                  ; pw_warehouse_s                               ; 126       ; forceInStock        
+                         ; 3942849                  ; pw_warehouse_e                               ; 412       ; forceInStock        
+                         ; 3942853                  ; pw_warehouse_n                               ; 24        ; forceInStock        
+                         ; 4019849                  ; pw_warehouse_w                               ; 172       ; forceInStock        
+                         ; 4491784                  ; pw_warehouse_s                               ; 25        ; forceInStock        
+                         ; 4567130                  ; pw_warehouse_e                               ; 223       ; forceInStock        
+                         ; 4567131                  ; pw_warehouse_n                               ; 242       ; forceInStock        
+                         ; 4567133                  ; pw_warehouse_w                               ; 8         ; forceInStock        
+                         ; 4567134                  ; pw_warehouse_s                               ; 428       ; forceInStock        
+                         ; 4567162                  ; pw_warehouse_e                               ; 100       ; forceInStock        
+                         ; 4567163                  ; pw_warehouse_n                               ; 189       ; forceInStock        
+                         ; 4567165                  ; pw_warehouse_w                               ; 46        ; forceInStock        
+                         ; 4567167                  ; pw_warehouse_s                               ; 409       ; forceInStock        
+                         ; 4567173                  ; pw_warehouse_e                               ; 221       ; forceInStock        
+                         ; 4567174                  ; pw_warehouse_n                               ; 416       ; forceInStock        
+                         ; 4567175                  ; pw_warehouse_w                               ; 88        ; forceInStock        
+                         ; 4567176                  ; pw_warehouse_s                               ; 48        ; forceInStock        
+                         ; 4567177                  ; pw_warehouse_e                               ; 478       ; forceInStock        
+                         ; 4567179                  ; pw_warehouse_n                               ; 261       ; forceInStock        
+                         ; 4567180                  ; pw_warehouse_w                               ; 110       ; forceInStock        
+                         ; 4567181                  ; pw_warehouse_s                               ; 350       ; forceInStock        
+                         ; 4567182                  ; pw_warehouse_e                               ; 334       ; forceInStock        
+                         ; 4567183                  ; pw_warehouse_n                               ; 26        ; forceInStock        
+                         ; 4567184                  ; pw_warehouse_w                               ; 46        ; forceInStock        
+                         ; 4567185                  ; pw_warehouse_s                               ; 372       ; forceInStock        
+                         ; 4567186                  ; pw_warehouse_e                               ; 166       ; forceInStock        
+                         ; 4567187                  ; pw_warehouse_n                               ; 423       ; forceInStock        
+                         ; 4567188                  ; pw_warehouse_w                               ; 367       ; forceInStock        
+                         ; 4567189                  ; pw_warehouse_s                               ; 481       ; forceInStock        
+                         ; 4567190                  ; pw_warehouse_e                               ; 430       ; forceInStock        
+                         ; 4567191                  ; pw_warehouse_n                               ; 496       ; forceInStock        
+                         ; 4567192                  ; pw_warehouse_w                               ; 65        ; forceInStock        
+                         ; 4567193                  ; pw_warehouse_s                               ; 35        ; forceInStock        
+                         ; 4567194                  ; pw_warehouse_e                               ; 253       ; forceInStock        
+                         ; 4567196                  ; pw_warehouse_n                               ; 67        ; forceInStock        
+                         ; 4567223                  ; pw_warehouse_w                               ; 413       ; forceInStock        
+                         ; 4598185                  ; pw_warehouse_s                               ; 79        ; forceInStock        
+                         ; 4600658                  ; pw_warehouse_e                               ; 150       ; forceInStock        
+                         ; 4763600                  ; pw_warehouse_n                               ; 75        ; forceInStock        
+                         ; 4763682                  ; pw_warehouse_w                               ; 247       ; forceInStock        
+                         ; 4763692                  ; pw_warehouse_s                               ; 35        ; forceInStock        
+                         ; 4763696                  ; pw_warehouse_e                               ; 146       ; forceInStock        
+                         ; 4763915                  ; pw_warehouse_n                               ; 183       ; forceInStock        
+                         ; 5874577                  ; pw_warehouse_w                               ; 352       ; forceInStock        
+                         ; 5888798                  ; pw_warehouse_s                               ; 297       ; forceInStock        
+                         ; 6100520                  ; pw_warehouse_e                               ; 57        ; forceInStock        
+                         ; 6100521                  ; pw_warehouse_n                               ; 18        ; forceInStock        
+                         ; 1678256                  ; pw_warehouse_n                               ; 188       ; forceInStock        
+                         ; 1678313                  ; pw_warehouse_n                               ; 818       ; forceInStock        
+                         ; 2613282                  ; pw_warehouse_n                               ; 118       ; forceInStock        
+                         ; 3756512                  ; pw_warehouse_n                               ; 181       ; forceInStock        
+                         ; 3756514                  ; pw_warehouse_n                               ; 18        ; forceInStock        
+                         
+                         
+                         
+                         
+INSERT_UPDATE Product ; code[unique=true] ; stockLevels(productCode,warehouse(code)) ; vendors(code)[default=$vendor] ; $catalogVersion 
+                      ; 637227            ; 637227:pw_warehouse_s                    
+                      ; 693923            ; 693923:pw_warehouse_e                    
+                      ; 1101690           ; 1101690:pw_warehouse_n                   
+                      ; 1101695           ; 1101695:pw_warehouse_w                   
+                      ; 1128762           ; 1128762:pw_warehouse_s                   
+                      ; 1128763           ; 1128763:pw_warehouse_e                   
+                      ; 1221408           ; 1221408:pw_warehouse_n                   
+                      ; 1221409           ; 1221409:pw_warehouse_w                   
+                      ; 1221411           ; 1221411:pw_warehouse_s                   
+                      ; 1221417           ; 1221417:pw_warehouse_e                   
+                      ; 1249191           ; 1249191:pw_warehouse_n                   
+                      ; 1249198           ; 1249198:pw_warehouse_w                   
+                      ; 1249200           ; 1249200:pw_warehouse_s                   
+                      ; 1399957           ; 1399957:pw_warehouse_e                   
+                      ; 1399958           ; 1399958:pw_warehouse_n                   
+                      ; 1399966           ; 1399966:pw_warehouse_w                   
+                      ; 1399984           ; 1399984:pw_warehouse_s                   
+                      ; 1399988           ; 1399988:pw_warehouse_e                   
+                      ; 1408366           ; 1408366:pw_warehouse_n                   
+                      ; 1664617           ; 1664617:pw_warehouse_w                   
+                      ; 1666884           ; 1666884:pw_warehouse_s                   
+                      ; 1669869           ; 1669869:pw_warehouse_e                   
+                      ; 1670353           ; 1670353:pw_warehouse_n                   
+                      ; 1670354           ; 1670354:pw_warehouse_w                   
+                      ; 1670355           ; 1670355:pw_warehouse_s                   
+                      ; 1670427           ; 1670427:pw_warehouse_e                   
+                      ; 1670428           ; 1670428:pw_warehouse_n                   
+                      ; 1670429           ; 1670429:pw_warehouse_w                   
+                      ; 1670430           ; 1670430:pw_warehouse_s                   
+                      ; 1670435           ; 1670435:pw_warehouse_e                   
+                      ; 1670436           ; 1670436:pw_warehouse_n                   
+                      ; 1670448           ; 1670448:pw_warehouse_w                   
+                      ; 1670449           ; 1670449:pw_warehouse_s                   
+                      ; 1670548           ; 1670548:pw_warehouse_e                   
+                      ; 1670549           ; 1670549:pw_warehouse_n                   
+                      ; 1670597           ; 1670597:pw_warehouse_w                   
+                      ; 1670599           ; 1670599:pw_warehouse_s                   
+                      ; 1672248           ; 1672248:pw_warehouse_e                   
+                      ; 1672249           ; 1672249:pw_warehouse_n                   
+                      ; 1672250           ; 1672250:pw_warehouse_w                   
+                      ; 1672251           ; 1672251:pw_warehouse_s                   
+                      ; 1677056           ; 1677056:pw_warehouse_e                   
+                      ; 1677065           ; 1677065:pw_warehouse_n                   
+                      ; 1677069           ; 1677069:pw_warehouse_w                   
+                      ; 1677071           ; 1677071:pw_warehouse_s                   
+                      ; 1677074           ; 1677074:pw_warehouse_e                   
+                      ; 1677076           ; 1677076:pw_warehouse_n                   
+                      ; 1677078           ; 1677078:pw_warehouse_w                   
+                      ; 1677083           ; 1677083:pw_warehouse_s                   
+                      ; 1677084           ; 1677084:pw_warehouse_e                   
+                      ; 1677089           ; 1677089:pw_warehouse_n                   
+                      ; 1677104           ; 1677104:pw_warehouse_w                   
+                      ; 1677105           ; 1677105:pw_warehouse_s                   
+                      ; 1677107           ; 1677107:pw_warehouse_e                   
+                      ; 1677109           ; 1677109:pw_warehouse_n                   
+                      ; 1677125           ; 1677125:pw_warehouse_w                   
+                      ; 1677207           ; 1677207:pw_warehouse_s                   
+                      ; 1677787           ; 1677787:pw_warehouse_e                   
+                      ; 1678066           ; 1678066:pw_warehouse_n                   
+                      ; 1979039           ; 1979039:pw_warehouse_w                   
+                      ; 2114093           ; 2114093:pw_warehouse_s                   
+                      ; 2114099           ; 2114099:pw_warehouse_e                   
+                      ; 2114103           ; 2114103:pw_warehouse_n                   
+                      ; 2114104           ; 2114104:pw_warehouse_w                   
+                      ; 2114105           ; 2114105:pw_warehouse_s                   
+                      ; 2114106           ; 2114106:pw_warehouse_e                   
+                      ; 2114110           ; 2114110:pw_warehouse_n                   
+                      ; 2114114           ; 2114114:pw_warehouse_w                   
+                      ; 2114122           ; 2114122:pw_warehouse_s                   
+                      ; 2114124           ; 2114124:pw_warehouse_e                   
+                      ; 2116266           ; 2116266:pw_warehouse_n                   
+                      ; 2116274           ; 2116274:pw_warehouse_w                   
+                      ; 2116275           ; 2116275:pw_warehouse_s                   
+                      ; 2116277           ; 2116277:pw_warehouse_e                   
+                      ; 2116279           ; 2116279:pw_warehouse_n                   
+                      ; 2116282           ; 2116282:pw_warehouse_w                   
+                      ; 2116283           ; 2116283:pw_warehouse_s                   
+                      ; 2121511           ; 2121511:pw_warehouse_e                   
+                      ; 2217258           ; 2217258:pw_warehouse_n                   
+                      ; 2219181           ; 2219181:pw_warehouse_w                   
+                      ; 2221933           ; 2221933:pw_warehouse_s                   
+                      ; 2222485           ; 2222485:pw_warehouse_e                   
+                      ; 2682248           ; 2682248:pw_warehouse_w                   
+                      ; 3092788           ; 3092788:pw_warehouse_s                   
+                      ; 3318057           ; 3318057:pw_warehouse_e                   
+                      ; 3536546           ; 3536546:pw_warehouse_n                   
+                      ; 3591524           ; 3591524:pw_warehouse_w                   
+                      ; 3591525           ; 3591525:pw_warehouse_s                   
+                      ; 3591526           ; 3591526:pw_warehouse_e                   
+                      ; 3591527           ; 3591527:pw_warehouse_n                   
+                      ; 3591528           ; 3591528:pw_warehouse_w                   
+                      ; 3591529           ; 3591529:pw_warehouse_s                   
+                      ; 3591530           ; 3591530:pw_warehouse_e                   
+                      ; 3591753           ; 3591753:pw_warehouse_n                   
+                      ; 3591754           ; 3591754:pw_warehouse_w                   
+                      ; 3591758           ; 3591758:pw_warehouse_s                   
+                      ; 3592865           ; 3592865:pw_warehouse_e                   
+                      ; 3626881           ; 3626881:pw_warehouse_n                   
+                      ; 3631964           ; 3631964:pw_warehouse_w                   
+                      ; 3659943           ; 3659943:pw_warehouse_s                   
+                      ; 3715400           ; 3715400:pw_warehouse_e                   
+                      ; 3755201           ; 3755201:pw_warehouse_n                   
+                      ; 3755204           ; 3755204:pw_warehouse_w                   
+                      ; 3755205           ; 3755205:pw_warehouse_s                   
+                      ; 3755207           ; 3755207:pw_warehouse_e                   
+                      ; 3755210           ; 3755210:pw_warehouse_n                   
+                      ; 3755211           ; 3755211:pw_warehouse_w                   
+                      ; 3755212           ; 3755212:pw_warehouse_s                   
+                      ; 3755213           ; 3755213:pw_warehouse_e                   
+                      ; 3755217           ; 3755217:pw_warehouse_n                   
+                      ; 3755218           ; 3755218:pw_warehouse_w                   
+                      ; 3755219           ; 3755219:pw_warehouse_s                   
+                      ; 3755225           ; 3755225:pw_warehouse_e                   
+                      ; 3756505           ; 3756505:pw_warehouse_n                   
+                      ; 3756515           ; 3756515:pw_warehouse_w                   
+                      ; 3758751           ; 3758751:pw_warehouse_s                   
+                      ; 3774127           ; 3774127:pw_warehouse_e                   
+                      ; 3774128           ; 3774128:pw_warehouse_n                   
+                      ; 3774129           ; 3774129:pw_warehouse_w                   
+                      ; 3774131           ; 3774131:pw_warehouse_s                   
+                      ; 3774134           ; 3774134:pw_warehouse_e                   
+                      ; 3774135           ; 3774135:pw_warehouse_n                   
+                      ; 3774136           ; 3774136:pw_warehouse_w                   
+                      ; 3778914           ; 3778914:pw_warehouse_s                   
+                      ; 3778915           ; 3778915:pw_warehouse_e                   
+                      ; 3778917           ; 3778917:pw_warehouse_n                   
+                      ; 3778919           ; 3778919:pw_warehouse_w                   
+                      ; 3778921           ; 3778921:pw_warehouse_s                   
+                      ; 3778922           ; 3778922:pw_warehouse_e                   
+                      ; 3778923           ; 3778923:pw_warehouse_n                   
+                      ; 3778926           ; 3778926:pw_warehouse_w                   
+                      ; 3778927           ; 3778927:pw_warehouse_s                   
+                      ; 3778928           ; 3778928:pw_warehouse_e                   
+                      ; 3780171           ; 3780171:pw_warehouse_n                   
+                      ; 3782130           ; 3782130:pw_warehouse_w                   
+                      ; 3788611           ; 3788611:pw_warehouse_s                   
+                      ; 3788612           ; 3788612:pw_warehouse_e                   
+                      ; 3788614           ; 3788614:pw_warehouse_n                   
+                      ; 3788616           ; 3788616:pw_warehouse_w                   
+                      ; 3788618           ; 3788618:pw_warehouse_s                   
+                      ; 3788619           ; 3788619:pw_warehouse_e                   
+                      ; 3791317           ; 3791317:pw_warehouse_n                   
+                      ; 3791322           ; 3791322:pw_warehouse_w                   
+                      ; 3793191           ; 3793191:pw_warehouse_s                   
+                      ; 3793682           ; 3793682:pw_warehouse_e                   
+                      ; 3793683           ; 3793683:pw_warehouse_n                   
+                      ; 3793687           ; 3793687:pw_warehouse_w                   
+                      ; 3793693           ; 3793693:pw_warehouse_s                   
+                      ; 3793695           ; 3793695:pw_warehouse_e                   
+                      ; 3793702           ; 3793702:pw_warehouse_n                   
+                      ; 3793707           ; 3793707:pw_warehouse_w                   
+                      ; 3793710           ; 3793710:pw_warehouse_s                   
+                      ; 3793711           ; 3793711:pw_warehouse_e                   
+                      ; 3794506           ; 3794506:pw_warehouse_n                   
+                      ; 3794509           ; 3794509:pw_warehouse_w                   
+                      ; 3794514           ; 3794514:pw_warehouse_s                   
+                      ; 3794524           ; 3794524:pw_warehouse_e                   
+                      ; 3794560           ; 3794560:pw_warehouse_n                   
+                      ; 3794561           ; 3794561:pw_warehouse_w                   
+                      ; 3794596           ; 3794596:pw_warehouse_s                   
+                      ; 3794597           ; 3794597:pw_warehouse_e                   
+                      ; 3794607           ; 3794607:pw_warehouse_n                   
+                      ; 3794609           ; 3794609:pw_warehouse_w                   
+                      ; 3794612           ; 3794612:pw_warehouse_s                   
+                      ; 3794615           ; 3794615:pw_warehouse_e                   
+                      ; 3794619           ; 3794619:pw_warehouse_n                   
+                      ; 3794621           ; 3794621:pw_warehouse_w                   
+                      ; 3794631           ; 3794631:pw_warehouse_s                   
+                      ; 3794633           ; 3794633:pw_warehouse_e                   
+                      ; 3794635           ; 3794635:pw_warehouse_n                   
+                      ; 3794640           ; 3794640:pw_warehouse_w                   
+                      ; 3795253           ; 3795253:pw_warehouse_s                   
+                      ; 3803058           ; 3803058:pw_warehouse_e                   
+                      ; 3844571           ; 3844571:pw_warehouse_n                   
+                      ; 3857331           ; 3857331:pw_warehouse_w                   
+                      ; 3857731           ; 3857731:pw_warehouse_s                   
+                      ; 3857732           ; 3857732:pw_warehouse_e                   
+                      ; 3857733           ; 3857733:pw_warehouse_n                   
+                      ; 3857734           ; 3857734:pw_warehouse_w                   
+                      ; 3857735           ; 3857735:pw_warehouse_s                   
+                      ; 3857736           ; 3857736:pw_warehouse_e                   
+                      ; 3857738           ; 3857738:pw_warehouse_n                   
+                      ; 3857744           ; 3857744:pw_warehouse_w                   
+                      ; 3857747           ; 3857747:pw_warehouse_s                   
+                      ; 3857750           ; 3857750:pw_warehouse_e                   
+                      ; 3857757           ; 3857757:pw_warehouse_n                   
+                      ; 3864520           ; 3864520:pw_warehouse_w                   
+                      ; 3864534           ; 3864534:pw_warehouse_s                   
+                      ; 3864539           ; 3864539:pw_warehouse_e                   
+                      ; 3864748           ; 3864748:pw_warehouse_n                   
+                      ; 3864770           ; 3864770:pw_warehouse_w                   
+                      ; 3865361           ; 3865361:pw_warehouse_s                   
+                      ; 3865362           ; 3865362:pw_warehouse_e                   
+                      ; 3865614           ; 3865614:pw_warehouse_n                   
+                      ; 3865725           ; 3865725:pw_warehouse_w                   
+                      ; 3879434           ; 3879434:pw_warehouse_s                   
+                      ; 3879435           ; 3879435:pw_warehouse_e                   
+                      ; 3879436           ; 3879436:pw_warehouse_n                   
+                      ; 3879437           ; 3879437:pw_warehouse_w                   
+                      ; 3879438           ; 3879438:pw_warehouse_s                   
+                      ; 3879440           ; 3879440:pw_warehouse_e                   
+                      ; 3879442           ; 3879442:pw_warehouse_n                   
+                      ; 3879443           ; 3879443:pw_warehouse_w                   
+                      ; 3879444           ; 3879444:pw_warehouse_s                   
+                      ; 3879445           ; 3879445:pw_warehouse_e                   
+                      ; 3879446           ; 3879446:pw_warehouse_n                   
+                      ; 3879447           ; 3879447:pw_warehouse_w                   
+                      ; 3879448           ; 3879448:pw_warehouse_s                   
+                      ; 3879450           ; 3879450:pw_warehouse_e                   
+                      ; 3880499           ; 3880499:pw_warehouse_n                   
+                      ; 3880500           ; 3880500:pw_warehouse_w                   
+                      ; 3880501           ; 3880501:pw_warehouse_s                   
+                      ; 3880502           ; 3880502:pw_warehouse_e                   
+                      ; 3880504           ; 3880504:pw_warehouse_n                   
+                      ; 3880507           ; 3880507:pw_warehouse_w                   
+                      ; 3880508           ; 3880508:pw_warehouse_s                   
+                      ; 3880510           ; 3880510:pw_warehouse_e                   
+                      ; 3880511           ; 3880511:pw_warehouse_n                   
+                      ; 3880513           ; 3880513:pw_warehouse_w                   
+                      ; 3880516           ; 3880516:pw_warehouse_s                   
+                      ; 3880517           ; 3880517:pw_warehouse_e                   
+                      ; 3880519           ; 3880519:pw_warehouse_n                   
+                      ; 3880520           ; 3880520:pw_warehouse_w                   
+                      ; 3880525           ; 3880525:pw_warehouse_s                   
+                      ; 3880527           ; 3880527:pw_warehouse_e                   
+                      ; 3880528           ; 3880528:pw_warehouse_n                   
+                      ; 3880530           ; 3880530:pw_warehouse_w                   
+                      ; 3880590           ; 3880590:pw_warehouse_s                   
+                      ; 3880591           ; 3880591:pw_warehouse_e                   
+                      ; 3880595           ; 3880595:pw_warehouse_n                   
+                      ; 3880596           ; 3880596:pw_warehouse_w                   
+                      ; 3880598           ; 3880598:pw_warehouse_s                   
+                      ; 3881014           ; 3881014:pw_warehouse_e                   
+                      ; 3881016           ; 3881016:pw_warehouse_n                   
+                      ; 3881017           ; 3881017:pw_warehouse_w                   
+                      ; 3881018           ; 3881018:pw_warehouse_s                   
+                      ; 3881020           ; 3881020:pw_warehouse_e                   
+                      ; 3881021           ; 3881021:pw_warehouse_n                   
+                      ; 3881022           ; 3881022:pw_warehouse_w                   
+                      ; 3881023           ; 3881023:pw_warehouse_s                   
+                      ; 3881024           ; 3881024:pw_warehouse_e                   
+                      ; 3881025           ; 3881025:pw_warehouse_n                   
+                      ; 3881026           ; 3881026:pw_warehouse_w                   
+                      ; 3881027           ; 3881027:pw_warehouse_s                   
+                      ; 3881028           ; 3881028:pw_warehouse_e                   
+                      ; 3881029           ; 3881029:pw_warehouse_n                   
+                      ; 3881030           ; 3881030:pw_warehouse_w                   
+                      ; 3881031           ; 3881031:pw_warehouse_s                   
+                      ; 3881032           ; 3881032:pw_warehouse_e                   
+                      ; 3881033           ; 3881033:pw_warehouse_n                   
+                      ; 3881034           ; 3881034:pw_warehouse_w                   
+                      ; 3881035           ; 3881035:pw_warehouse_s                   
+                      ; 3881036           ; 3881036:pw_warehouse_e                   
+                      ; 3881037           ; 3881037:pw_warehouse_n                   
+                      ; 3881038           ; 3881038:pw_warehouse_w                   
+                      ; 3881039           ; 3881039:pw_warehouse_s                   
+                      ; 3881040           ; 3881040:pw_warehouse_e                   
+                      ; 3881041           ; 3881041:pw_warehouse_n                   
+                      ; 3881042           ; 3881042:pw_warehouse_w                   
+                      ; 3881043           ; 3881043:pw_warehouse_s                   
+                      ; 3881044           ; 3881044:pw_warehouse_e                   
+                      ; 3881050           ; 3881050:pw_warehouse_n                   
+                      ; 3881051           ; 3881051:pw_warehouse_w                   
+                      ; 3881057           ; 3881057:pw_warehouse_s                   
+                      ; 3881058           ; 3881058:pw_warehouse_e                   
+                      ; 3881059           ; 3881059:pw_warehouse_n                   
+                      ; 3881060           ; 3881060:pw_warehouse_w                   
+                      ; 3881061           ; 3881061:pw_warehouse_s                   
+                      ; 3881062           ; 3881062:pw_warehouse_e                   
+                      ; 3881063           ; 3881063:pw_warehouse_n                   
+                      ; 3881064           ; 3881064:pw_warehouse_w                   
+                      ; 3881065           ; 3881065:pw_warehouse_s                   
+                      ; 3881066           ; 3881066:pw_warehouse_e                   
+                      ; 3881067           ; 3881067:pw_warehouse_n                   
+                      ; 3881070           ; 3881070:pw_warehouse_w                   
+                      ; 3881071           ; 3881071:pw_warehouse_s                   
+                      ; 3881072           ; 3881072:pw_warehouse_e                   
+                      ; 3881074           ; 3881074:pw_warehouse_n                   
+                      ; 3881075           ; 3881075:pw_warehouse_w                   
+                      ; 3881076           ; 3881076:pw_warehouse_s                   
+                      ; 3881077           ; 3881077:pw_warehouse_e                   
+                      ; 3881078           ; 3881078:pw_warehouse_n                   
+                      ; 3881338           ; 3881338:pw_warehouse_w                   
+                      ; 3881339           ; 3881339:pw_warehouse_s                   
+                      ; 3881380           ; 3881380:pw_warehouse_e                   
+                      ; 3881381           ; 3881381:pw_warehouse_n                   
+                      ; 3881382           ; 3881382:pw_warehouse_w                   
+                      ; 3881383           ; 3881383:pw_warehouse_s                   
+                      ; 3881384           ; 3881384:pw_warehouse_e                   
+                      ; 3881389           ; 3881389:pw_warehouse_n                   
+                      ; 3881396           ; 3881396:pw_warehouse_w                   
+                      ; 3881397           ; 3881397:pw_warehouse_s                   
+                      ; 3881412           ; 3881412:pw_warehouse_e                   
+                      ; 3881414           ; 3881414:pw_warehouse_n                   
+                      ; 3881417           ; 3881417:pw_warehouse_w                   
+                      ; 3881419           ; 3881419:pw_warehouse_s                   
+                      ; 3881422           ; 3881422:pw_warehouse_e                   
+                      ; 3881424           ; 3881424:pw_warehouse_n                   
+                      ; 3881427           ; 3881427:pw_warehouse_w                   
+                      ; 3883690           ; 3883690:pw_warehouse_s                   
+                      ; 3883692           ; 3883692:pw_warehouse_e                   
+                      ; 3883695           ; 3883695:pw_warehouse_n                   
+                      ; 3883696           ; 3883696:pw_warehouse_w                   
+                      ; 3884593           ; 3884593:pw_warehouse_s                   
+                      ; 3884599           ; 3884599:pw_warehouse_e                   
+                      ; 3884600           ; 3884600:pw_warehouse_n                   
+                      ; 3884601           ; 3884601:pw_warehouse_w                   
+                      ; 3884632           ; 3884632:pw_warehouse_s                   
+                      ; 3884633           ; 3884633:pw_warehouse_e                   
+                      ; 3884634           ; 3884634:pw_warehouse_n                   
+                      ; 3884636           ; 3884636:pw_warehouse_w                   
+                      ; 3884637           ; 3884637:pw_warehouse_s                   
+                      ; 3884638           ; 3884638:pw_warehouse_e                   
+                      ; 3884640           ; 3884640:pw_warehouse_n                   
+                      ; 3884642           ; 3884642:pw_warehouse_w                   
+                      ; 3884645           ; 3884645:pw_warehouse_s                   
+                      ; 3884646           ; 3884646:pw_warehouse_e                   
+                      ; 3887119           ; 3887119:pw_warehouse_n                   
+                      ; 3887120           ; 3887120:pw_warehouse_w                   
+                      ; 3887121           ; 3887121:pw_warehouse_s                   
+                      ; 3887122           ; 3887122:pw_warehouse_e                   
+                      ; 3887123           ; 3887123:pw_warehouse_n                   
+                      ; 3887124           ; 3887124:pw_warehouse_w                   
+                      ; 3887125           ; 3887125:pw_warehouse_s                   
+                      ; 3887126           ; 3887126:pw_warehouse_e                   
+                      ; 3887127           ; 3887127:pw_warehouse_n                   
+                      ; 3887128           ; 3887128:pw_warehouse_w                   
+                      ; 3887129           ; 3887129:pw_warehouse_s                   
+                      ; 3887130           ; 3887130:pw_warehouse_e                   
+                      ; 3887131           ; 3887131:pw_warehouse_n                   
+                      ; 3887475           ; 3887475:pw_warehouse_w                   
+                      ; 3887477           ; 3887477:pw_warehouse_s                   
+                      ; 3887479           ; 3887479:pw_warehouse_e                   
+                      ; 3887482           ; 3887482:pw_warehouse_n                   
+                      ; 3887483           ; 3887483:pw_warehouse_w                   
+                      ; 3887487           ; 3887487:pw_warehouse_s                   
+                      ; 3887491           ; 3887491:pw_warehouse_e                   
+                      ; 3887493           ; 3887493:pw_warehouse_n                   
+                      ; 3887499           ; 3887499:pw_warehouse_w                   
+                      ; 3887504           ; 3887504:pw_warehouse_s                   
+                      ; 3887505           ; 3887505:pw_warehouse_e                   
+                      ; 3887506           ; 3887506:pw_warehouse_n                   
+                      ; 3887511           ; 3887511:pw_warehouse_w                   
+                      ; 3887512           ; 3887512:pw_warehouse_s                   
+                      ; 3887513           ; 3887513:pw_warehouse_e                   
+                      ; 3887514           ; 3887514:pw_warehouse_n                   
+                      ; 3887523           ; 3887523:pw_warehouse_w                   
+                      ; 3887524           ; 3887524:pw_warehouse_s                   
+                      ; 3887529           ; 3887529:pw_warehouse_e                   
+                      ; 3887530           ; 3887530:pw_warehouse_n                   
+                      ; 3915890           ; 3915890:pw_warehouse_w                   
+                      ; 3916437           ; 3916437:pw_warehouse_s                   
+                      ; 3917378           ; 3917378:pw_warehouse_e                   
+                      ; 3917448           ; 3917448:pw_warehouse_n                   
+                      ; 3917449           ; 3917449:pw_warehouse_w                   
+                      ; 3917455           ; 3917455:pw_warehouse_s                   
+                      ; 3919465           ; 3919465:pw_warehouse_e                   
+                      ; 3920606           ; 3920606:pw_warehouse_n                   
+                      ; 3920607           ; 3920607:pw_warehouse_w                   
+                      ; 3920608           ; 3920608:pw_warehouse_s                   
+                      ; 3920613           ; 3920613:pw_warehouse_e                   
+                      ; 3920614           ; 3920614:pw_warehouse_n                   
+                      ; 3921090           ; 3921090:pw_warehouse_w                   
+                      ; 3921093           ; 3921093:pw_warehouse_s                   
+                      ; 3921095           ; 3921095:pw_warehouse_e                   
+                      ; 3921097           ; 3921097:pw_warehouse_n                   
+                      ; 3921099           ; 3921099:pw_warehouse_w                   
+                      ; 3921100           ; 3921100:pw_warehouse_s                   
+                      ; 3921101           ; 3921101:pw_warehouse_e                   
+                      ; 3922855           ; 3922855:pw_warehouse_n                   
+                      ; 3922856           ; 3922856:pw_warehouse_w                   
+                      ; 3923098           ; 3923098:pw_warehouse_s                   
+                      ; 3923110           ; 3923110:pw_warehouse_e                   
+                      ; 3923111           ; 3923111:pw_warehouse_n                   
+                      ; 3942767           ; 3942767:pw_warehouse_w                   
+                      ; 3942803           ; 3942803:pw_warehouse_s                   
+                      ; 3942823           ; 3942823:pw_warehouse_e                   
+                      ; 3942829           ; 3942829:pw_warehouse_n                   
+                      ; 3942838           ; 3942838:pw_warehouse_w                   
+                      ; 3942841           ; 3942841:pw_warehouse_s                   
+                      ; 3942849           ; 3942849:pw_warehouse_e                   
+                      ; 3942853           ; 3942853:pw_warehouse_n                   
+                      ; 4019849           ; 4019849:pw_warehouse_w                   
+                      ; 4491784           ; 4491784:pw_warehouse_s                   
+                      ; 4567130           ; 4567130:pw_warehouse_e                   
+                      ; 4567131           ; 4567131:pw_warehouse_n                   
+                      ; 4567133           ; 4567133:pw_warehouse_w                   
+                      ; 4567134           ; 4567134:pw_warehouse_s                   
+                      ; 4567162           ; 4567162:pw_warehouse_e                   
+                      ; 4567163           ; 4567163:pw_warehouse_n                   
+                      ; 4567165           ; 4567165:pw_warehouse_w                   
+                      ; 4567167           ; 4567167:pw_warehouse_s                   
+                      ; 4567173           ; 4567173:pw_warehouse_e                   
+                      ; 4567174           ; 4567174:pw_warehouse_n                   
+                      ; 4567175           ; 4567175:pw_warehouse_w                   
+                      ; 4567176           ; 4567176:pw_warehouse_s                   
+                      ; 4567177           ; 4567177:pw_warehouse_e                   
+                      ; 4567179           ; 4567179:pw_warehouse_n                   
+                      ; 4567180           ; 4567180:pw_warehouse_w                   
+                      ; 4567181           ; 4567181:pw_warehouse_s                   
+                      ; 4567182           ; 4567182:pw_warehouse_e                   
+                      ; 4567183           ; 4567183:pw_warehouse_n                   
+                      ; 4567184           ; 4567184:pw_warehouse_w                   
+                      ; 4567185           ; 4567185:pw_warehouse_s                   
+                      ; 4567186           ; 4567186:pw_warehouse_e                   
+                      ; 4567187           ; 4567187:pw_warehouse_n                   
+                      ; 4567188           ; 4567188:pw_warehouse_w                   
+                      ; 4567189           ; 4567189:pw_warehouse_s                   
+                      ; 4567190           ; 4567190:pw_warehouse_e                   
+                      ; 4567191           ; 4567191:pw_warehouse_n                   
+                      ; 4567192           ; 4567192:pw_warehouse_w                   
+                      ; 4567193           ; 4567193:pw_warehouse_s                   
+                      ; 4567194           ; 4567194:pw_warehouse_e                   
+                      ; 4567196           ; 4567196:pw_warehouse_n                   
+                      ; 4567223           ; 4567223:pw_warehouse_w                   
+                      ; 4598185           ; 4598185:pw_warehouse_s                   
+                      ; 4600658           ; 4600658:pw_warehouse_e                   
+                      ; 4763600           ; 4763600:pw_warehouse_n                   
+                      ; 4763682           ; 4763682:pw_warehouse_w                   
+                      ; 4763692           ; 4763692:pw_warehouse_s                   
+                      ; 4763696           ; 4763696:pw_warehouse_e                   
+                      ; 4763915           ; 4763915:pw_warehouse_n                   
+                      ; 5874577           ; 5874577:pw_warehouse_w                   
+                      ; 5888798           ; 5888798:pw_warehouse_s                   
+                      ; 6100520           ; 6100520:pw_warehouse_e                   
+                      ; 6100521           ; 6100521:pw_warehouse_n                   
+                      ; 1678256           ; 1678256:pw_warehouse_n                   
+                      ; 1678313           ; 1678313:pw_warehouse_n                   
+                      ; 2613282           ; 2613282:pw_warehouse_n                   
+                      ; 3756512           ; 3756512:pw_warehouse_n                   
+                      ; 3756514           ; 3756514:pw_warehouse_n                   
