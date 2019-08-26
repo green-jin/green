@@ -51,7 +51,7 @@ public class SplitOrderAction extends AbstractProceduralAction<OrderProcessModel
 				entriesToSplit.add(entry);
 			}
 		}
-
+		// TODO: 2019/8/22 Spilt Consignment start
 		final List<ConsignmentModel> consignments = getOrderSplittingService().splitOrderForConsignment(process.getOrder(),
 				entriesToSplit);
 

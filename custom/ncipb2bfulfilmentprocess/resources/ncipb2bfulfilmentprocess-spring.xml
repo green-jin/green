@@ -75,42 +75,68 @@
 	
 	<!-- Order Splitting -->
 	<alias name="ncipb2bfulfilmentprocessOrderSplittingService" alias="b2bOrderSplittingService"/>
-	<bean id="ncipb2bfulfilmentprocessOrderSplittingService" parent="defaultOrderSplittingService" >
-		<property name="strategiesList">
-			<list>
-				<ref bean="splitByAvailableCount"/>
-				<ref bean="splitByDeliveryMode" />
-				<ref bean="splitByPoS" />
-				<ref bean="splitByNamedDeliveryDate" />
-				<ref bean="splitByEntryDeliveryAddress" />
-				<ref bean="splitByWarehouse" />
-			</list>
-		</property>
+	<bean id="ncipb2bfulfilmentprocessOrderSplittingService"
+		class="com.ncipb2b.fulfilmentprocess.impl.DefaultB2BOrderSplittingService">
+
+<!--		<property name="strategiesList">-->
+<!--			<list>-->
+<!--				<ref bean="splitByAvailableCount"/>-->
+<!--				<ref bean="splitByDeliveryMode" />-->
+<!--				<ref bean="splitByPoS" />-->
+<!--				<ref bean="splitByNamedDeliveryDate" />-->
+<!--				<ref bean="splitByEntryDeliveryAddress" />-->
+<!--				<ref bean="splitByWarehouse" />-->
+<!--			</list>-->
+<!--		</property>-->
 	</bean>
-	
+
+	<!--	add to create new spilt consignment-->
+<!--	<alias name="defaultOrderSplittingService" alias="orderSplittingService"/>-->
+<!--	<bean id="defaultOrderSplittingService"-->
+<!--		class="de.hybris.platform.ordersplitting.impl.DefaultOrderSplittingService">-->
+<!--		<property name="modelService" ref="modelService"/>-->
+<!--		<property name="consignmentService" ref="consignmentService"/>-->
+<!--		<property name="strategiesList">-->
+<!--			<list>-->
+<!--				<ref bean="splitByAvailableCount"/>-->
+<!--				<ref bean="splitByDeliveryMode"/>-->
+<!--				<ref bean="splitByNamedDeliveryDate"/>-->
+<!--				<ref bean="splitByWarehouse"/>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
 	<!-- Split Strategies -->
-	
-	<alias name="defaultSplitByPoS" alias="splitByPoS"/>
-	<bean id="defaultSplitByPoS" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByPoS" />
-	
-	<alias name="defaultSplitByEntryDeliveryAddress" alias="splitByEntryDeliveryAddress"/>
-	<bean id="defaultSplitByEntryDeliveryAddress" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />
-	
-	<alias name="defaultSplitByDeliveryMode" alias="splitByDeliveryMode"/>
-	<bean id="defaultSplitByDeliveryMode" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >
-		<property name="pickupDeliveryModeDao" ref="pickupDeliveryModeDao"/>
+
+	<alias name="defaultConsignmentB2BNonStockService" alias="consignmentB2BNonStockService"/>
+	<bean id="defaultConsignmentB2BNonStockService"
+		class="com.ncipb2b.fulfilmentprocess.impl.DefaultConsignmentB2BNonStockService">
+		<property name="modelService" ref="modelService"/>
+<!--		<property name="warehouseService" ref="warehouseService"/>-->
 	</bean>
-	
+
 	<alias name="defaultSplitByAvailableCount" alias="splitByAvailableCount"/>
 	<bean id="defaultSplitByAvailableCount" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByAvailableCount" >
 		<property name="commerceStockService" ref="commerceStockService"/>
 	</bean>
-	
-	<alias name="defaultSplitByWarehouse" alias="splitByWarehouse"/>
-	<bean id="defaultSplitByWarehouse" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByWarehouse">
-		<property name="stockService" ref="stockService"/>
-		<property name="commerceAvailabilityCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>
+
+	<alias name="defaultSplitByPoS" alias="splitByPoS"/>
+	<bean id="defaultSplitByPoS" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByPoS" />
+
+	<alias name="defaultSplitByEntryDeliveryAddress" alias="splitByEntryDeliveryAddress"/>
+	<bean id="defaultSplitByEntryDeliveryAddress" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />
+
+	<alias name="defaultSplitByDeliveryMode" alias="splitByDeliveryMode"/>
+	<bean id="defaultSplitByDeliveryMode" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >
+		<property name="pickupDeliveryModeDao" ref="pickupDeliveryModeDao"/>
 	</bean>
+
+
+<!--	-->
+<!--	<alias name="defaultSplitByWarehouse" alias="splitByWarehouse"/>-->
+<!--	<bean id="defaultSplitByWarehouse" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByWarehouse">-->
+<!--		<property name="stockService" ref="stockService"/>-->
+<!--		<property name="commerceAvailabilityCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>-->
+<!--	</bean>-->
 	
 	<!--  Jobs -->
 	
