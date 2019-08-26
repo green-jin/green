@@ -110,6 +110,61 @@
                 </attributes>
             </itemtype>
         </typegroup>
-
+        
+        <typegroup name="newBaseStore"> 
+	        <itemtype code="BaseStore" autocreate="false" generate="false" >
+				<attributes>
+					<attribute qualifier="vkorg" type="java.lang.String">
+						<description>銷售組織</description>
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+        
+        <typegroup name="newOrders">
+			<itemtype code="Order" autocreate="false" generate="false" >
+				<attributes>
+					<attribute qualifier="vkorg" type="java.lang.String">
+						<description>銷售組織 (1000：和之合股份有限公司,2000：江門市德邑大衛浴有限公司,3000：AFEEL CORP DBA HUNTINGTON BRASS)</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="pernr" type="java.lang.String">
+						<description>負責業務</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="lifnr" type="java.lang.String">
+						<description>負責經銷商</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>  
+				</attributes>
+			</itemtype>
+		</typegroup>
+		
+		<typegroup name="newConsignment">
+			<itemtype code="Consignment" autocreate="false" generate="false" >
+				<attributes>
+					<attribute qualifier="dely_type" type="java.lang.String">
+						<description>1.訂製品,2.一般品有庫存,3.一般品無庫存,4.預購品 </description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="lfdat" type="java.util.Date">
+						<description>預計出貨日期</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="arrivalDate" type="java.lang.String">
+						<description>配達日期(格式: YYYYMMDD)</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup> 
+		
     </itemtypes>
 </items>
