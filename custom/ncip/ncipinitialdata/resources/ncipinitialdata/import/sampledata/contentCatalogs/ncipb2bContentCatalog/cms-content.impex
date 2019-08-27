@@ -1030,6 +1030,7 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;
 ;;savedCartsPagePreview;text/png;SavedCartsPage.png;$jarResourceCms/preview-images/ncipb2b/SavedCartsPage.png
 ;;savedCartDetailsPagePreview;text/png;SavedCartDetailsPage.png;$jarResourceCms/preview-images/ncipb2b/SavedCartDetailsPage.png
 ;;replenishmentConfirmationPagePreview;text/png;ReplenishmentConfirmationPage.png;$jarResourceCms/preview-images/ncipb2b/ReplenishmentConfirmationPage.png
+;;updateEmailPreview;text/png;UpdatePasswordPage.png;$jarResourceCms/preview-images/ncipb2b/Ncipb2b_email_logo.png 
 ###### Media End ######
 
 

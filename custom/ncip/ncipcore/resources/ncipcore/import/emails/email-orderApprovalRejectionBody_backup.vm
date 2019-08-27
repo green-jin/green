@@ -1,4 +1,4 @@
-## messageSource=classpath:/ncipinitialdata/messages/email-replenishmentOrderPlaced_$lang.properties
+## messageSource=classpath:/powertoolsstore/messages/email-orderApprovalRejection_$lang.properties
 #macro( genHtmlBoldFont $text )
 <font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
 #end
@@ -57,8 +57,7 @@
 								<tr>
 									<td align="left" valign="top">
 										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('salutation', ${ctx.title},${ctx.displayName})}</b>,</font></p>
-										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('thankYouForOrder', "#genHtmlBoldFont(${ctx.scheduledCartData.totalPrice.formattedValue})")}</font></p>
-                                        <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('thankYouForOrder2', "#genHtmlBoldFont(${ctx.scheduledCartData.jobCode})", "#genHtmlBoldFont(${ctx.scheduledCartData.triggerData.displayTimeTable})")}</font></p>
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('thankYouForOrder', "#genHtmlBoldFont(${ctx.order.code})")}</font></p>
 										<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#bfc1c0">
 											<tr>
 												<td>
@@ -69,8 +68,7 @@
 															<td width="17%"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.itemPrice}</b></font></td>
 															<td width="16%"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.total}</b></font></td>
 														</tr>
-														#foreach( $entry in ${ctx.scheduledCartData.entries} )
-
+														#foreach( $entry in ${ctx.order.entries} )
 														<!--<tr>
 															<td height="1" bgcolor="#666666" colspan="4"></td>
 														</tr>-->
@@ -80,9 +78,11 @@
 																	<tr>
 																		<td valign="middle">
 																			<a href="${ctx.baseUrl}$entry.product.url">
-																				#foreach($image in $entry.product.images) #if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
-																				<img src="${ctx.mediaBaseUrl}$image.url" alt="" title="$entry.product.name" />
-																				#end #end
+																				#foreach($image in $entry.product.images)
+																					#if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+																						<img src="${ctx.mediaBaseUrl}$image.url" alt="" title="$entry.product.name"/>
+																					#end
+																				#end
 																			</a>
 																		</td>
 																		<td>
@@ -112,11 +112,10 @@
 																				#end
 																				#end
 																				#end
-
-																				#if (!$ctx.scheduledCartData.appliedProductPromotions.isEmpty())
+																				#if (!$ctx.order.appliedProductPromotions.isEmpty())
 																				<tr>
 																					<td valign="top">
-																						#foreach( $promotion in $ctx.scheduledCartData.appliedProductPromotions)
+																						#foreach( $promotion in $ctx.order.appliedProductPromotions)
 																						#set ($displayed = false)
 																						#foreach ($consumedEntry in $promotion.consumedEntries)
 																						#if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
@@ -143,8 +142,7 @@
 											</tr>
 										</table>
 										<br/>
-
-										#if ($!ctx.scheduledCartData.purchaseOrderNumber)
+										#if ($!ctx.order.purchaseOrderNumber)
 										<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#bfc1c0">
 											<tr>
 												<td>
@@ -152,7 +150,7 @@
 														<tr>
 															<td width="70%"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.purchaseOrderNumber}:</b></font></td>
 															<td width="20%">&nbsp;</td>
-															<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.scheduledCartData.purchaseOrderNumber}</b></font></p></td>
+															<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.purchaseOrderNumber}</b></font></p></td>
 														</tr>
 													</table>
 												</td>
@@ -160,8 +158,7 @@
 										</table>
 										#end
 										<br/>
-
-										#if(${ctx.scheduledCartData.costCenter})
+										#if(${ctx.order.costCenter})
 										<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#bfc1c0">
 											<tr>
 												<td>
@@ -169,8 +166,24 @@
 														<tr>
 															<td width="60%"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.costCenter}:</b></font></td>
 															<td width="20%">&nbsp;</td>
-															<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.scheduledCartData.costCenter.code}</b></font></p></td>
+															<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.costCenter.code}</b></font></p></td>
 														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+										#end
+										<br/>
+										#if(!$ctx.order.b2bPermissionResult.isEmpty())
+										<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#bfc1c0">
+											<tr>
+												<td>
+													<table>
+														#foreach($permissionResult in $ctx.order.b2bPermissionResult)
+														<tr>
+															<td width="100%"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('rejectionDetails', "#genHtmlBoldFont($permissionResult.approver)", "#genHtmlBoldFont($permissionResult.permissionTypeCode)")}</font></td>
+														</tr>
+														#end
 													</table>
 												</td>
 											</tr>
@@ -193,21 +206,21 @@
 														</tr>
 														<tr>
 															<td>
-																#if(${ctx.scheduledCartData.deliveryCost.value} > 0)
-																<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.scheduledCartData.deliveryMode.name}</font></p>
+																#if(${ctx.order.deliveryCost.value} > 0)
+																<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.deliveryMode.name}</font></p>
 																#else
 																<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.freeDelivery}</font></p>
 																#end
-																<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('deliveryETA', ${ctx.scheduledCartData.deliveryMode.description})}</font></p>
+																<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('deliveryETA', ${ctx.order.deliveryMode.description})}</font></p>
 															</td>
 															<td>&nbsp;</td>
 															<td><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
-																${ctx.scheduledCartData.deliveryAddress.title} ${ctx.scheduledCartData.deliveryAddress.firstName} ${ctx.scheduledCartData.deliveryAddress.lastName}<br/>
-																${ctx.scheduledCartData.deliveryAddress.line1}<br/>
-																#if(${ctx.scheduledCartData.deliveryAddress.line2}) ${ctx.scheduledCartData.deliveryAddress.line2}<br/>#end
-																${ctx.scheduledCartData.deliveryAddress.town}<br/>
-																${ctx.scheduledCartData.deliveryAddress.postalCode}<br/>
-																${ctx.scheduledCartData.deliveryAddress.country.name}
+																${ctx.order.deliveryAddress.title} ${ctx.order.deliveryAddress.firstName} ${ctx.order.deliveryAddress.lastName}<br/>
+																${ctx.order.deliveryAddress.line1}<br/>
+																#if(${ctx.order.deliveryAddress.line2}) ${ctx.order.deliveryAddress.line2}<br/>#end
+																${ctx.order.deliveryAddress.town}<br/>
+																${ctx.order.deliveryAddress.postalCode}<br/>
+																${ctx.order.deliveryAddress.country.name}
 															</font></p></td>
 														</tr>
 													</table>
@@ -221,9 +234,9 @@
 													<table width="100%">
 														<tr>
 															<td width="30%">
-															#if(${ctx.scheduledCartData.paymentInfo})
+																#if(${ctx.order.paymentInfo})
 																<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.paymentDetails}</b></font></p>
-															#end
+																#end
 															</td>
 															<td width="20%">&nbsp;</td>
 															<td width="50%"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.orderTotals}</b></font></td>
@@ -235,17 +248,17 @@
 														</tr>
 														<tr>
 															<td valign="top">
-																#if(${ctx.scheduledCartData.paymentInfo})
-																	<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('paymentCardType', ${ctx.scheduledCartData.paymentInfo.cardType})}</font></p>
+																#if(${ctx.order.paymentInfo})
+																	<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('paymentCardType', ${ctx.order.paymentInfo.cardType})}</font></p>
 																	<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.billingAddress}</b></font></p>
 																	<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
 																		${ctx.messages.billingAddress}:<br/>
-																		${ctx.scheduledCartData.paymentInfo.billingAddress.firstName} ${ctx.scheduledCartData.paymentInfo.billingAddress.lastName}<br/>
-																		${ctx.scheduledCartData.paymentInfo.billingAddress.line1} <br/>
-																		#if(${ctx.scheduledCartData.paymentInfo.billingAddress.line2}) ${ctx.scheduledCartData.paymentInfo.billingAddress.line2}<br/>#end
-																		${ctx.scheduledCartData.paymentInfo.billingAddress.town}<br/>
-																		${ctx.scheduledCartData.paymentInfo.billingAddress.postalCode}<br/>
-																		${ctx.scheduledCartData.paymentInfo.billingAddress.country.name}
+																		${ctx.order.paymentInfo.billingAddress.firstName} ${ctx.order.paymentInfo.billingAddress.lastName}<br/>
+																		${ctx.order.paymentInfo.billingAddress.line1} <br/>
+																		#if(${ctx.order.paymentInfo.billingAddress.line2}) ${ctx.order.paymentInfo.billingAddress.line2}<br/>#end
+																		${ctx.order.paymentInfo.billingAddress.town}<br/>
+																		${ctx.order.paymentInfo.billingAddress.postalCode}<br/>
+																		${ctx.order.paymentInfo.billingAddress.country.name}
 																	</font></p>
 																#end
 															</td>
@@ -255,25 +268,32 @@
 																	<tr>
 																		<td valign="top" width="45%"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.subtotal}:</b></font></p></td>
 																		<td valign="top" width="10%">&nbsp;</td>
-																		<td valign="top" width="45%"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.scheduledCartData.subTotal.formattedValue}</b></font></p></td>
+																		<td valign="top" width="45%"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.subTotal.formattedValue}</b></font></p></td>
 																	</tr>
 																	<tr>
 																		<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.orderDiscounts}:</b></font></p></td>
 																		<td valign="top">&nbsp;</td>
-																		<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>#displayNegationForDiscount($ctx.scheduledCartData.totalDiscounts)</b></font></p></td>
+																		<td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>#displayNegationForDiscount($ctx.order.totalDiscounts)</b></font></p></td>
 																	</tr>
+																	#if (${ctx.order.quoteDiscounts.value} > 0)
+                                                                        <tr>
+                                                                            <td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.quoteDiscounts}:</b></font></p></td>
+                                                                            <td valign="top">&nbsp;</td>
+                                                                            <td valign="top"><p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>- ${ctx.order.quoteDiscounts.formattedValue}</b></font></p></td>
+                                                                        </tr>
+																	#end
 																	<tr>
 																		<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.delivery}:</b></font></p></td>
 																		<td valign="top">&nbsp;</td>
-																		<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>#if(${ctx.scheduledCartData.deliveryCost.value} > 0) ${ctx.scheduledCartData.deliveryCost.formattedValue} #else ${ctx.messages.free} #end</b></font></p></td>
+																		<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>#if(${ctx.order.deliveryCost.value} > 0) ${ctx.order.deliveryCost.formattedValue} #else FREE #end</b></font></p></td>
 																	</tr>
 																	<tr>
 																		<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.total}:</b></font></p></td>
 																		<td valign="top">&nbsp;</td>
-																		<td valign="top"><p><font color="#666666" size="3" face="Arial, Helvetica, sans-serif"><b>${ctx.scheduledCartData.totalPrice.formattedValue}</b></font></p></td>
+																		<td valign="top"><p><font color="#666666" size="3" face="Arial, Helvetica, sans-serif"><b>${ctx.order.totalPrice.formattedValue}</b></font></p></td>
 																	</tr>
 																</table>
-															<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('includesTax', ${ctx.scheduledCartData.totalTax.formattedValue})}</font></p>
+															<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('includesTax', ${ctx.order.totalTax.formattedValue})}</font></p>
 															</td>
 														</tr>
 													</table>

@@ -76,13 +76,13 @@
 		<event>APPROVAL_WORKFLOW_COMPLETE_EVENT</event>
 	</wait>
 
-	<!-- OrderStatus.PENDING_APPROVAL_FROM_MERCHANT -->
+	<!--add send mail order.setStatus(OrderStatus.PENDING_APPROVAL_FROM_MERCHANT) -->
 	<action id="checkWorkflowResults" bean="checkWorkflowResults">
 		<transition name="OK" to="performMerchantCheck" />
 		<transition name="NOK" to="informOfOrderRejection" />
 	</action>
 
-	<!-- OrderStatus.PENDING_APPROVAL_FROM_MERCHANT -->
+	<!--add send mail order.setStatus(OrderStatus.PENDING_APPROVAL_FROM_MERCHANT) -->
 	<action id="performMerchantCheck" bean="performMerchantCheck">
 		<transition name="OK" to="informOfOrderApproval" />
 		<transition name="NOK"
@@ -100,7 +100,8 @@
 	<wait id="waitProcessCreditLimit" then="checkCreditLimitResults">
 		<event>APPROVAL_WORKFLOW_COMPLETE_EVENT</event>
 	</wait>
-
+	
+	<!--add send mail order.setStatus(OrderStatus.REJECTED_BY_MERCHANT) -->
 	<action id="checkCreditLimitResults"
 		bean="checkCreditLimitResults">
 		<transition name="OK" to="informOfOrderApproval" />
@@ -115,7 +116,7 @@
 	<!-- de.hybris.platform.b2bacceleratoraddon.actions.B2BAcceleratorInformOfOrderApproval 
 		(bean eq informOfOrderApproval) -->
 	<action id="informOfOrderApproval" bean="sendOrderPendingApprovalNotification">
-<!-- 	bean="informOfOrderApproval" -->
+	<!-- 	bean="informOfOrderApproval" -->
 		<transition name="OK"
 			to="accountStartFulfilmentProcessAction" />
 	</action>
