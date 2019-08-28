@@ -90,3 +90,94 @@ UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[l
 ;;1710;Jigsaws;
 ;;1711;Rotary Hammers;
 ;;1731;Universal Cutters;
+
+############# NCIP Category Start ##################
+# Insert Categories
+INSERT_UPDATE Category; code[unique = true]; allowedPrincipals(uid)[default = 'customergroup']; $catalogVersion
+                      ; 1000
+                      ; 1100
+                      ; 1200
+
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation; $categories; $supercategories
+                                      ; 1100       ; 1
+                                      ; 1000       ; 1
+                                      ; 1200       ; 1
+
+
+UPDATE Category; $catalogVersion; code[unique = true]; name[lang = $lang]; description[lang = $lang]
+               ;                ; 1000               ; Bathroom          ;
+               ;                ; 1100               ; Kitchen           ;
+               ;                ; 1200               ; Style             ;
+
+
+######################################################################################
+#For dimension
+INSERT_UPDATE Category; code[unique = true]; allowedPrincipals(uid)[default = 'customergroup']; $catalogVersion
+#Bathroom
+                      ; 1001
+                      ; 1002
+                      ; 1003
+                      ; 1004
+                      ; 1005
+                      ; 1006
+                      ; 1007
+                      ; 1008
+                      ; 1009
+#Kitchen
+                      ; 1101
+                      ; 1102
+                      ; 1103
+#Style
+                      ; 1201
+                      ; 1202
+                      ; 1203
+                      ; 1204
+                      ; 1205
+
+INSERT_UPDATE CategoryCategoryRelation; $categories; $supercategories
+#Bathroom
+                                      ; 1001       ; 1000
+                                      ; 1002       ; 1000
+                                      ; 1003       ; 1000
+                                      ; 1004       ; 1000
+                                      ; 1005       ; 1000
+                                      ; 1006       ; 1000
+                                      ; 1007       ; 1000
+                                      ; 1008       ; 1000
+                                      ; 1009       ; 1000
+
+#Kitchen
+                                      ; 1101       ; 1100
+                                      ; 1102       ; 1100
+                                      ; 1103       ; 1100
+#Style
+                                      ; 1201       ; 1200
+                                      ; 1202       ; 1200
+                                      ; 1203       ; 1200
+                                      ; 1204       ; 1200
+                                      ; 1205       ; 1200
+
+UPDATE Category; code[unique = true]; name[lang = $lang]   ; description[lang = $lang]; $catalogVersion
+#Bathroom
+               ; 1001               ; Washbasin Faucet     ;
+               ; 1002               ; Roman bathtub Faucet ;
+               ; 1003               ; Wall Hanging Faucet  ;
+               ; 1004               ; Insert Faucet        ;
+               ; 1005               ; Bathroom Accessories ;
+               ; 1006               ; Bathtub              ;
+               ; 1007               ; Smart Bathroom       ;
+               ; 1008               ; Ceramic Products     ;
+               ; 1009               ; Mirror               ;
+#Kitchen
+               ; 1101               ; Single Faucet        ;
+               ; 1102               ; Pull-up Faucet       ;
+               ; 1103               ; Pull-down Faucet     ;
+#Style
+               ; 1201               ; Chic                 ;
+               ; 1202               ; Mimimal              ;
+               ; 1203               ; Contempo             ;
+               ; 1204               ; Neo-Classic          ;
+               ; 1205               ; Classic              ;
+############# NCIP Category End ##################

@@ -1103,3 +1103,101 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='notFound'];contentSlot(uid,$contentCV)[unique=true]
 ;;MiddleContent-Errorpage;MiddleContent;;MiddleContent-Errorpage
 ######## End of Responsive Error Page #######
+
+
+############# NCIP Category Start ##################
+##---- level 4. children of Category Nav ----##
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]; $contentCV[unique = true]; name     ; parent(uid, $contentCV)   ; links(&linkRef); &nodeRef
+                               ; BathroomNavNode   ;                          ; Bathroom ; ncipb2bCategoryNavNode ;                ; BathroomNavNode
+                               ; KitchenNavNode    ;                          ; Kitchen  ; ncipb2bCategoryNavNode ;                ; KitchenNavNode
+                               ; StyleNavNode      ;                          ; Style    ; ncipb2bCategoryNavNode ;                ; StyleNavNode
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry; uid[unique = true]   ; $contentCV[unique = true]; name                           ; navigationNode(&nodeRef); item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
+                                ; BathroomNavNodeEntry ;                          ; Bathroom Navigation Node Entry ; BathroomNavNode         ; BathroomCategoryLink                                   ;
+                                ; KitchenNavNodeEntry  ;                          ; Kitchen Navigation Node Entry  ; KitchenNavNode          ; KitchenCategoryLink                                    ;
+                                ; StyleNavNodeEntry    ;                          ; Style Navigation Node Entry    ; StyleNavNode            ; StyleCategoryLink                                      ;
+
+## links of the above navigation nodes ##
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]   ; name                   ; url                                                                                     ; &linkRef             ; &componentRef        ; target(code)[default = 'sameWindow']; linkName
+                              ;                          ; BathroomCategoryLink ; Bathroom Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Bathroom/c/1000 ; BathroomCategoryLink ; BathroomCategoryLink ;; "Bathroom"
+                              ;                          ; KitchenCategoryLink  ; Kitchen Category Link  ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Kitchen/c/1100  ; KitchenCategoryLink  ; KitchenCategoryLink  ;; "Kitchen"
+                              ;                          ; StyleCategoryLink    ; Style Category Link    ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Style/c/1200    ; StyleCategoryLink    ; StyleCategoryLink    ;; "Style"
+
+##----- leve 5. children of HandToolsNavNode -----##
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]   ; $contentCV[unique = true]; name                             ; parent(uid, $contentCV); links(&linkRef); &nodeRef             ; title
+                               ; BathroomLinksNavNode ;                          ; Bathroom Category Links          ; BathroomNavNode        ;                ; BathroomLinksNavNode ; "Bathroom"
+                               ; KitchenLinksNavNode  ;                          ; Kitchen Category Links           ; KitchenNavNode         ;                ; KitchenLinksNavNode  ; "Kitchen"
+                               ; StyleLinksNavNode    ;                          ; Style Category LinksStyleNavNode ; StyleNavNode           ;                ; StyleLinksNavNode    ; "Style"
+
+##------ level 6. children of HandToolsLinksNavNode ------##
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]             ; $contentCV[unique = true]; name                      ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+#Bathroom
+                               ; WashbasinFaucetCategoryNavNode ;                          ; Washbasin Faucet Category ; BathroomLinksNavNode   ;                ; WashbasinFaucetCategoryNavNode
+                               ; RomanFaucetCategoryNavNode     ;                          ; Roman Faucet Category     ; BathroomLinksNavNode   ;                ; RomanFaucetCategoryNavNode
+                               ; HangingFaucetCategoryNavNode   ;                          ; Hanging Faucet Category   ; BathroomLinksNavNode   ;                ; HangingFaucetCategoryNavNode
+                               ; InsertFaucetCategoryNavNode    ;                          ; Insert Faucet Category    ; BathroomLinksNavNode   ;                ; InsertFaucetCategoryNavNode
+                               ; BathAccessoriesCategoryNavNode ;                          ; Bath Accessories Category ; BathroomLinksNavNode   ;                ; BathAccessoriesCategoryNavNode
+                               ; BathtubCategoryNavNode         ;                          ; Bathtub Category          ; BathroomLinksNavNode   ;                ; BathtubCategoryNavNode
+                               ; SmartBathCategoryNavNode       ;                          ; Smart Bath Category       ; BathroomLinksNavNode   ;                ; SmartBathCategoryNavNode
+                               ; CeramicCategoryNavNode         ;                          ; Ceramic Category          ; BathroomLinksNavNode   ;                ; CeramicCategoryNavNode
+                               ; MirrorCategoryNavNode          ;                          ; Mirror Category           ; BathroomLinksNavNode   ;                ; MirrorCategoryNavNode
+#Kitchen
+                               ; SingleFaucetCategoryNavNode    ;                          ; Single Faucet Category    ; KitchenLinksNavNode    ;                ; SingleFaucetCategoryNavNode
+                               ; PullUpFaucetCategoryNavNode    ;                          ; Pull-up Faucet Category   ; KitchenLinksNavNode    ;                ; PullUpFaucetCategoryNavNode
+                               ; PullDownFaucetCategoryNavNode  ;                          ; Pull-down Faucet Category ; KitchenLinksNavNode    ;                ; PullDownFaucetCategoryNavNode
+#Style
+                               ; ChicCategoryNavNode            ;                          ; Chic Category             ; StyleLinksNavNode      ;                ; ChicCategoryNavNode
+                               ; MimimalCategoryNavNode         ;                          ; Mimimal Category          ; StyleLinksNavNode      ;                ; MimimalCategoryNavNode
+                               ; ContempoCategoryNavNode        ;                          ; Contempo Category         ; StyleLinksNavNode      ;                ; ContempoCategoryNavNode
+                               ; NeoClassicCategoryNavNode      ;                          ; Neo Classic Category      ; StyleLinksNavNode      ;                ; NeoClassicCategoryNavNode
+                               ; ClassicCategoryNavNode         ;                          ; Classic Category          ; StyleLinksNavNode      ;                ; ClassicCategoryNavNode
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                  ; $contentCV[unique = true]; name                                            ; navigationNode(&nodeRef)       ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
+#Bathroom
+                                ; WashbasinFaucetCategoryNavNodeEntry ;                          ; Washbasin Faucet Category Navigation Node Entry ; WashbasinFaucetCategoryNavNode ; WashbasinFaucetCategoryLink                            ;
+                                ; RomanFaucetCategoryNavNodeEntry     ;                          ; Roman Faucet Category Navigation Node Entry     ; RomanFaucetCategoryNavNode     ; RomanFaucetCategoryLink                                ;
+                                ; HangingFaucetCategoryNavNodeEntry   ;                          ; Hanging Faucet Category Navigation Node Entry   ; HangingFaucetCategoryNavNode   ; HangingFaucetCategoryLink                              ;
+                                ; InsertFaucetCategoryNavNodeEntry    ;                          ; Insert Faucet Category Navigation Node Entry    ; InsertFaucetCategoryNavNode    ; InsertFaucetCategoryLink                               ;
+                                ; BathAccessoriesCategoryNavNodeEntry ;                          ; Bath Accessories Category Navigation Node Entry ; BathAccessoriesCategoryNavNode ; BathAccessoriesCategoryLink                            ;
+                                ; BathtubCategoryNavNodeEntry         ;                          ; Bathtub Category Navigation Node Entry          ; BathtubCategoryNavNode         ; BathtubCategoryLink                                    ;
+                                ; SmartBathCategoryNavNodeEntry       ;                          ; Smart BathCategory Navigation Node Entry        ; SmartBathCategoryNavNode       ; SmartBathCategoryLink                                  ;
+                                ; CeramicCategoryNavNodeEntry         ;                          ; Ceramic Category Navigation Node Entry          ; CeramicCategoryNavNode         ; CeramicCategoryLink                                    ;
+                                ; MirrorCategoryNavNodeEntry          ;                          ; Mirror Category Navigation Node Entry           ; MirrorCategoryNavNode          ; MirrorCategoryLink                                     ;
+#Kitchen
+                                ; SingleFaucetCategoryNavNodeEntry    ;                          ; Single Faucet Category Navigation Node Entry    ; SingleFaucetCategoryNavNode    ; SingleFaucetCategoryLink                               ;
+                                ; PullUpFaucetCategoryNavNodeEntry    ;                          ; Pull Up Faucet Category Navigation Node Entry   ; PullUpFaucetCategoryNavNode    ; PullUpFaucetCategoryLink
+                                ; PullDownFaucetCategoryNavNodeEntry  ;                          ; Pull Down Faucet Category Navigation Node Entry ; PullDownFaucetCategoryNavNode  ; PullDownFaucetCategoryLink
+#Style
+                                ; ChicCategoryNavNodeEntry            ;                          ; Chic Category Navigation Node Entry             ; ChicCategoryNavNode            ; ChicCategoryLink
+                                ; MimimalCategoryNavNodeEntry         ;                          ; Mimimal Category Navigation Node Entry          ; MimimalCategoryNavNode         ; MimimalCategoryLink
+                                ; ContempoCategoryNavNodeEntry        ;                          ; Contempo Category Navigation Node Entry         ; ContempoCategoryNavNode        ; ContempoCategoryLink
+                                ; NeoClassicCategoryNavNodeEntry      ;                          ; Neo Classic Navigation Node Entry               ; NeoClassicCategoryNavNode      ; NeoClassicCategoryLink
+                                ; ClassicCategoryNavNodeEntry         ;                          ; Classic Category Navigation Node Entry          ; ClassicCategoryNavNode         ; ClassicCategoryLink
+
+## links of the above navigation nodes ##
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]          ; name                                  ; url                                                                                             ; &linkRef                    ; &componentRef; target(code)[default = 'sameWindow'];linkName
+#                              ;                          ; HandSawsCategoryLink       ; Hand Saws Category Link       ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354            ; HandSawsCategoryLink       ; HandSawsCategoryLink
+#Bathroom
+                              ;                          ; WashbasinFaucetCategoryLink ; Washbasin Faucet Category Link        ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Washbasin-Faucet/c/1001 ; WashbasinFaucetCategoryLink ; WashbasinFaucetCategoryLink;;"WashbasinFaucet"
+                              ;                          ; RomanFaucetCategoryLink     ; Roman Faucet Category Link            ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Roman-Faucet/c/1002     ; RomanFaucetCategoryLink     ; RomanFaucetCategoryLink;;"RomanFaucet"
+                              ;                          ; HangingFaucetCategoryLink   ; Hanging Faucet Category Link          ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hanging-Faucet/c/1003   ; HangingFaucetCategoryLink   ; HangingFaucetCategoryLink;;"HangingFaucet"
+                              ;                          ; InsertFaucetCategoryLink    ; Insert Faucet Category Link           ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Insert-Faucet/c/1004    ; InsertFaucetCategoryLink    ; InsertFaucetCategoryLink;;"InsertFaucet"
+                              ;                          ; BathAccessoriesCategoryLink ; Bath Accessories Faucet Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Bath-Accessories/c/1005 ; BathAccessoriesCategoryLink ; BathAccessoriesCategoryLink;;"BathAccessories"
+                              ;                          ; BathtubCategoryLink         ; Bathtub Category Link                 ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Bathtub/c/1006          ; BathtubCategoryLink         ; BathtubCategoryLink;;"Bathtub"
+                              ;                          ; SmartBathCategoryLink       ; Smart Bath Category Link              ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Smart-Bath/c/1007       ; SmartBathCategoryLink       ; SmartBathCategoryLink;;"SmartBath"
+                              ;                          ; CeramicCategoryLink         ; Ceramic  Category Link                ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Ceramic/c/1008          ; CeramicCategoryLink         ; CeramicCategoryLink;;"Ceramic"
+                              ;                          ; MirrorCategoryLink          ; Mirror Faucet Category Link           ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Mirror/c/1009           ; MirrorCategoryLink          ; MirrorCategoryLink;;"Mirror"
+#Kitchen
+                              ;                          ; SingleFaucetCategoryLink    ; Single Faucet Category Link           ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Single-Faucet/c/1101    ; SingleFaucetCategoryLink    ; SingleFaucetCategoryLink;;"SingleFaucet"
+                              ;                          ; PullUpFaucetCategoryLink    ; Pull Up Faucet Category Link          ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/PullUp-Faucet/c/1102    ; PullUpFaucetCategoryLink    ; PullUpFaucetCategoryLink;;"PullUpFaucet"
+                              ;                          ; PullDownFaucetCategoryLink  ; Pull Down Faucet Category Link        ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/PullDown-Faucet/c/1103  ; PullDownFaucetCategoryLink  ; PullDownFaucetCategoryLink;;"PullDownFaucet"
+#Style
+                              ;                          ; ChicCategoryLink            ; Chic Category Link                    ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Chic/c/1201             ; ChicCategoryLink            ; ChicCategoryLink;;"Chic"
+                              ;                          ; MimimalCategoryLink         ; Mimimal Category Link                 ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Mimimal/c/1202          ; MimimalCategoryLink         ; MimimalCategoryLink;;"Mimimal"
+                              ;                          ; ContempoCategoryLink        ; Contempo Category Link                ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Contempo/c/1203         ; ContempoCategoryLink        ; ContempoCategoryLink;;"Contempo"
+                              ;                          ; NeoClassicCategoryLink      ; Neo Classic Category Link             ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Neo-Classic/c/1204      ; NeoClassicCategoryLink      ; NeoClassicCategoryLink;;"Neo Classic"
+                              ;                          ; ClassicCategoryLink         ; Classic Category Link                 ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Classic/c/1205          ; ClassicCategoryLink         ; ClassicCategoryLink;;"Classic"
+
+############# NCIP Category End ##################

@@ -19,4 +19,29 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<!--ProductData add video-->
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="videos"
+			type="java.util.Collection&lt;com.ncip.facades.product.data.VideoData>"/>
+		<property name="files"
+			type="java.util.Collection&lt;com.ncip.facades.product.data.FileData>"/>
+	</bean>
+
+	<bean class="com.ncip.facades.product.data.VideoData">
+		<property name="imageType" type="de.hybris.platform.commercefacades.product.data.ImageDataType"/>
+		<property name="format" type="String"/>
+		<property name="url" type="String"/>
+		<property name="altText" type="String"/>
+		<property name="galleryIndex" type="Integer"/>
+	</bean>
+
+	<bean class="com.ncip.facades.product.data.FileData">
+		<property name="imageType" type="de.hybris.platform.commercefacades.product.data.ImageDataType"/>
+		<property name="format" type="String"/>
+		<property name="url" type="String"/>
+		<property name="altText" type="String"/>
+		<property name="galleryIndex" type="Integer"/>
+	</bean>
+
 </beans>

@@ -99,6 +99,7 @@
 				<entry key="thumbnail" value="96Wx96H"/>
 				<entry key="cartIcon" value="65Wx65H"/>
 				<entry key="styleSwatch" value="30Wx30H"/>
+				<entry key="video" value="mp4"/>
 			</map>
 		</property>
 	</bean>
@@ -189,4 +190,17 @@
 	</bean>
 
 	<bean id="genderData" class="com.ncip.facades.product.data.GenderData" scope="prototype"/>
+
+	<alias name="videoDataPopulatorImpl" alias="videoDataPopulator" />
+	<bean id="videoDataPopulatorImpl" class="com.ncip.facades.populators.VideoDataPopulator"
+				parent="baseProductPopulator">
+		<property name="videoFormats" value="video"/>
+		<property name="pdfFormats" value="pdf"/>
+		<property name="dwgFormats" value="dwg"/>
+	</bean>
+
+	<alias name="productVideoFacadeImpl" alias="productVideoFacade"/>
+	<bean id="productVideoFacadeImpl"
+		class="com.ncip.facades.suggestion.impl.ProductVideoFacadeImpl" />
+
 </beans>
