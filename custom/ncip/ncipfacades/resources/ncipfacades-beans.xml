@@ -20,6 +20,7 @@
 	</bean> -->
 	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders" type="java.util.List&lt;com.ncip.facades.product.data.GenderData>" />
 		<property name="vkorg" type="java.lang.String"/>
 		<property name="listpr" type="java.math.BigDecimal"/>
 		<property name="plifz" type="java.math.BigDecimal"/>
