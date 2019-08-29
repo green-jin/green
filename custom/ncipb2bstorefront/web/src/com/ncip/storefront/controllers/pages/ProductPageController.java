@@ -12,6 +12,7 @@ package com.ncip.storefront.controllers.pages;
 
 import com.ncip.facades.product.data.FileData;
 import com.ncip.facades.suggestion.ProductVideoFacade;
+import com.ncip.storefront.forms.FileDownloadForm;
 import de.hybris.platform.acceleratorfacades.futurestock.FutureStockFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ProductBreadcrumbBuilder;
@@ -162,6 +163,7 @@ public class ProductPageController extends AbstractPageController {
     model.addAttribute("pageType", PageType.PRODUCT.name());
     model.addAttribute("futureStockEnabled",
         Boolean.valueOf(Config.getBoolean(FUTURE_STOCK_ENABLED, false)));
+//    model.addAttribute(new FileDownloadForm());
 
     final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
     final String metaDescription = MetaSanitizerUtil
@@ -412,49 +414,53 @@ public class ProductPageController extends AbstractPageController {
   }
 
   //Lancy Add for download PDF & DWG
-  @RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/downloadFile", method =  RequestMethod.POST)
-  public String downloadFiles(
-      @PathVariable("productCode") final String encodedProductCode,
-      Model model
-      ,HttpServletRequest request
-      ,HttpServletResponse response
-  )
-      throws CMSItemNotFoundException, IOException {
-    final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
-
-    //下載檔案的網址
-    String path = "https://127.0.0.1:9002/ncipb2bstorefront/medias/NCIP-B2B-20190802.pdf?context=bWFzdGVyfHBkZnN8NDgzOTcxMnxhcHBsaWNhdGlvbi9wZGZ8cGRmcy9oODgvaGUzLzg3OTY3MTU2Nzk3NzQucGRmfGNmMTJlN2RkN2ZkNmMzNzllMmRkMjc3ZTNhODIzODhkYTkxMTNlYjdiMTMwN2RmNjgyNTVkOTQwZWIwNDQzMDc";
-    String fileName ="LancytestDownlad.pdf";    //儲存檔名
-    String outputFile = "C:/Users/1800361.SYSTEX/Desktop/Download/"+fileName; // 要下載檔案的位置
-
-     File desFile = new File(outputFile);
-
-    if (desFile.exists())
-      desFile.delete();
-
-    URL url = new URL(path);
-
-    URLConnection connection = url.openConnection();
-
-    byte[] buffer = new byte[1024]; // InputStream
-
-    // 設定接收資料流來源 ,就是要下載的網址
-    BufferedInputStream bufferedInputStream = new BufferedInputStream(connection.getInputStream());
-    // 設定　儲存要下載檔案的位置.
-    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(desFile));
-    int length = -1;
-    while ((length = bufferedInputStream.read(buffer)) != -1) {
-      bufferedOutputStream.write(buffer,0,length);
-    }
-    bufferedOutputStream.flush();// 將緩衝區中的資料全部寫出
-    bufferedInputStream.close(); // 關閉資料流
-    bufferedOutputStream.close();
-    LOG.info("Download success!!");
-
-//    storeCmsPageInModel(model, getPageForProduct(productCode));
-    return getViewForPage(model);
-
-}
+//  @RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/downloadFile", method =  RequestMethod.POST)
+//  public String downloadFiles(
+//      @PathVariable("productCode") final String encodedProductCode,
+//      final FileDownloadForm fileDownloadForm,
+//      Model model
+//      ,HttpServletRequest request
+//      ,HttpServletResponse response
+//  )
+//      throws CMSItemNotFoundException, IOException {
+//    final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
+//    LOG.info("fromURL="+ fileDownloadForm.getFromURL());
+//    LOG.info("downloadURL="+ fileDownloadForm.getDownloadURL());
+//    LOG.info("fileName=" + fileDownloadForm.getFileName());
+//
+//    //下載檔案的網址
+//    String path = "https://127.0.0.1:9002/ncipb2bstorefront/medias/?context=bWFzdGVyfHBkZnN8NDgzOTcxMnxhcHBsaWNhdGlvbi9wZGZ8cGRmcy9oZmIvaDFiLzg3OTY1ODk2MjEyNzgucGRmfGQ3ODU1MTc3MGExZThmOGEyZTc3ZDc1ZmUyZjE4NmZkYjkxYWU4ODMyMzUzMDIyNjI3NmNmMDg1ZjJkNDdkYmY";
+//    String fileName ="LancytestDownlad.pdf";    //儲存檔名
+//    String outputFile = "C:/Users/1800361.SYSTEX/Desktop/Download/"+fileName; // 要下載檔案的位置
+//
+//     File desFile = new File(outputFile);
+//
+//    if (desFile.exists())
+//      desFile.delete();
+//
+//    URL url = new URL(path);
+//
+//    URLConnection connection = url.openConnection();
+//
+//    byte[] buffer = new byte[1024]; // InputStream
+//
+//    // 設定接收資料流來源 ,就是要下載的網址
+//    BufferedInputStream bufferedInputStream = new BufferedInputStream(connection.getInputStream());
+//    // 設定　儲存要下載檔案的位置.
+//    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(desFile));
+//    int length = -1;
+//    while ((length = bufferedInputStream.read(buffer)) != -1) {
+//      bufferedOutputStream.write(buffer,0,length);
+//    }
+//    bufferedOutputStream.flush();// 將緩衝區中的資料全部寫出
+//    bufferedInputStream.close(); // 關閉資料流
+//    bufferedOutputStream.close();
+//    LOG.info("Download success!!");
+//
+////    storeCmsPageInModel(model, getPageForProduct(productCode));
+//    return getViewForPage(model);
+//
+//}
 
 
   @ExceptionHandler(UnknownIdentifierException.class)

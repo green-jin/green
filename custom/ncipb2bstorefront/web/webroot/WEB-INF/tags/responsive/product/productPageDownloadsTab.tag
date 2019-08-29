@@ -7,6 +7,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%--<c:url value="${product.url}/downloadFile" var="downloadFileUrl"/>--%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -21,6 +22,7 @@
 
 	<form:form method="post" action="${productDownloadsActionUrl}"
 		commandName="reviewForm">
+
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -31,10 +33,12 @@
 			</thead>
 			<tbody>
 				<tr>
+					<c:forEach items="${galleryFiles}" var= "fileData" varStatus="dataStatus">
 					<td>1</td>
 					<td><spring:theme code="downloads.InstallSpec" /></td>
-					<td><i class="fa fa-file-pdf-o">&nbsp;</i><a href="#"><spring:theme
-								code="downloads.downloadfile" /></a></td>
+					<td><i class="fa fa-file-pdf-o">&nbsp;</i>
+						<a href=${fileData.url} download="${fileData.altText}" ><spring:theme code="downloads.downloadfile"  /></a></td>
+					</c:forEach>
 				</tr>
 				<tr>
 					<td>2</td>
@@ -45,7 +49,7 @@
 				<tr>
 					<td>3</td>
 					<td><spring:theme code="downloads.dwg"/></td>
-					<td><i class="fa fa-download">&nbsp;</i><a href="#"><spring:theme
+					<td><i class="fa fa-download">&nbsp;</i><a href=${fileData.url}><spring:theme
 								code="downloads.downloadfile" /></a></td>
 					</div>
 				</tr>
