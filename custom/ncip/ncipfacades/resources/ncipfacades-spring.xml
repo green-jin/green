@@ -76,6 +76,16 @@
 	<bean id="defaultGenderDataPopulator" class="com.ncip.facades.populators.GenderDataPopulator" >
 		<property name="typeService" ref="typeService"/>
 	</bean>
+	
+	<!-- add ProductBasicPopulator -->
+    <alias name="ncipProductBasicPopulator" alias="productBasicPopulator"/>
+	<bean id="ncipProductBasicPopulator" parent="defaultProductBasicPopulator"
+			class="com.ncip.facades.populators.NcipProductBasicPopulator">
+			<property name="productConfigurableChecker" ref="productConfigurableChecker" />                     
+    </bean>
+    
+
+	
 
 	<bean id="apparelProductPopulator" class="com.ncip.facades.populators.ApparelProductPopulator" >
 		<property name="genderConverter" ref="genderConverter"/>
@@ -189,4 +199,10 @@
 	</bean>
 
 	<bean id="genderData" class="com.ncip.facades.product.data.GenderData" scope="prototype"/>
+	
+	<!-- <alias name="ncipProductData" alias="productData" />
+	<bean id="ncipProductData" parent="productData" class="com.ncip.facades.product.data.NcipProductData" scope="prototype">
+			                
+    </bean>-->
+
 </beans>

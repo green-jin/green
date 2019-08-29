@@ -23,6 +23,7 @@
 						<product:productPromotionSection product="${product}"/>
 						<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 							<product:productPricePanel product="${product}" />
+							${product.listpr}
 						</ycommerce:testId>
 						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>
 					</div>

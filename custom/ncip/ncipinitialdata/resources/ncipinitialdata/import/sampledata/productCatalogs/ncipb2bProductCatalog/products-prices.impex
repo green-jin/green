@@ -257,3 +257,32 @@ UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
 ;6100520;1 pieces = 38 USD N
 ;6100521;1 pieces = 88 USD N
 ;693923;1 pieces = 39 USD N
+
+
+##########PRICE ROW######################
+
+INSERT_UPDATE UserPriceGroup ; code[unique=true] ; name[lang=en] 
+                             ; group1            ; "Group 1"     
+                             ; group2            ; "Group 2"     
+
+              
+INSERT_UPDATE PriceRow ; product(code, catalogVersion(catalog(id),version))[unique=true] ; ug(code)[unique=true] ; currency(isocode)[unique=true] ; price[unique=true] ; $catalogVersion                 ; minqtd ; net[default=true,virtual=true] ; unit(code)[default=pieces,virtual=true]     
+                       ; 1234567_1_1:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 70                 ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_1_1:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 71                 ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_1_2:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 80                 ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_1_2:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 81                 ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_1_3:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 90                 ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_1_3:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 91                 ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_2_1:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 100                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 1234567_2_1:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 101                ; ncipb2bProductCatalog:Staged ; 1      ;                                  
+                       ; 1234567_2_2:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 110                ; ncipb2bProductCatalog:Staged ; 1      ;                                  
+                       ; 1234567_2_2:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 111                ; ncipb2bProductCatalog:Staged ; 1      ;                                  
+                       ; 1234567_2_3:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 120                ; ncipb2bProductCatalog:Staged ; 1      ;                                  
+                       ; 1234567_2_3:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 121                ; ncipb2bProductCatalog:Staged ; 1      ;                                  
+                       ; 2345678_1_1:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 130                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 2345678_1_1:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 131                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 2345678_2_2:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 140                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 2345678_2_2:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 141                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 7654321_1_1:ncipb2bProductCatalog:Staged                     ; group1                ; USD                            ; 150                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+                       ; 7654321_1_1:ncipb2bProductCatalog:Staged                     ; group2                ; USD                            ; 151                ; ncipb2bProductCatalog:Staged ; 1      ;                                
+#########################################
