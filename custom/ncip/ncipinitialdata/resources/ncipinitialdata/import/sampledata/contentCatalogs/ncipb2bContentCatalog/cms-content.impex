@@ -1104,7 +1104,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 ;;MiddleContent-Errorpage;MiddleContent;;MiddleContent-Errorpage
 ######## End of Responsive Error Page #######
 
-
 ############# NCIP Category Start ##################
 ##---- level 4. children of Category Nav ----##
 INSERT_UPDATE CMSNavigationNode; uid[unique = true]; $contentCV[unique = true]; name     ; parent(uid, $contentCV)   ; links(&linkRef); &nodeRef
@@ -1201,3 +1200,17 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]   
                               ;                          ; ClassicCategoryLink         ; Classic Category Link                 ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Classic/c/1205          ; ClassicCategoryLink         ; ClassicCategoryLink;;"Classic"
 
 ############# NCIP Category End ##################
+
+############相關下載###################
+# JSP include components
+UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title[lang=en]
+;;ProductDownloadComponent;相關下載
+
+# CMS tabs components
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;ProductDownloadComponent;Product Related Downloads Tab;/WEB-INF/views/responsive/pages/product/productDownloadsTab.jsp;;ProductDownloadComponent
+
+INSERT_UPDATE CMSTabParagraphContainer;$contentCV[unique=true];uid[unique=true];name;visible;simpleCMSComponents(uid, $contentCV);&componentRef
+;;TabPanelContainer;Tab container;true;ProductDetailsTabComponent,ProductSpecsTabComponent,ProductReviewsTabComponent,ProductDownloadComponent,deliveryTab;TabPanelContainer
+######################################
+
