@@ -127,6 +127,7 @@ public class VideoDataPopulator<SOURCE extends ProductModel, TARGET extends Prod
           FileData fileData = new FileData();
           fileData.setUrl((media.getURL()));
           fileData.setFormat(media.getMediaFormat().getQualifier());
+          fileData.setFileItems(media.getFileItem());
           if(media.getAltText() == null){
             fileData.setAltText(productModel.getName());
           }else{

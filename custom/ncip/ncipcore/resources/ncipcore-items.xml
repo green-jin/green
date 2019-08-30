@@ -38,10 +38,10 @@
         <!-- Add your item definitions here -->
            
 		  <itemtype generate="true" code="Product" autocreate="false">
-		      <attributes>
-		        
-		        <attribute qualifier="vkorg" type="java.lang.String">
-		            <description>銷售組織</description>
+			<attributes>
+
+				<attribute qualifier="vkorg" type="java.lang.String">
+					<description>銷售組織</description>
 					<modifiers read="true" write="true" search="true"
 						optional="true" />
 					<persistence type="property" />
@@ -84,10 +84,20 @@
 		       
 			</attributes>
 		  </itemtype>
-		
-				
 
-        <!-- TypeGroups are for structure of this file only -->
+			<itemtype generate="true" code="Media" autocreate="false">
+				<attributes>
+					<attribute qualifier="fileItem" type="java.lang.String">
+						<description>相關下載_項目</description>
+						<modifiers read="true" write="true" search="true"
+							optional="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+
+			<!-- TypeGroups are for structure of this file only -->
 
         <typegroup name="Apparel">
             <itemtype code="ApparelProduct" extends="Product"
@@ -212,7 +222,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-		</typegroup> 
-		
+		</typegroup>
+
     </itemtypes>
 </items>

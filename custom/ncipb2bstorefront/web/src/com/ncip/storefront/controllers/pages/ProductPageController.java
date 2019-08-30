@@ -12,7 +12,6 @@ package com.ncip.storefront.controllers.pages;
 
 import com.ncip.facades.product.data.FileData;
 import com.ncip.facades.suggestion.ProductVideoFacade;
-import com.ncip.storefront.forms.FileDownloadForm;
 import de.hybris.platform.acceleratorfacades.futurestock.FutureStockFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ProductBreadcrumbBuilder;

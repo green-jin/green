@@ -53,7 +53,12 @@
 		<property name="imageType" type="de.hybris.platform.commercefacades.product.data.ImageDataType"/>
 		<property name="format" type="String"/>
 		<property name="url" type="String"/>
-		<property name="altText" type="String"/>
+		<property name="altText" type="String">
+		<description>file name</description>
+		</property>
+		<property name="fileItems" type="String">
+			<description>I:Installation, S:Specifications, D:DWG</description>
+		</property>
 		<property name="galleryIndex" type="Integer"/>
 	</bean>
 
