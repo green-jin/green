@@ -346,11 +346,24 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="processParameterHelper" ref="processParameterHelper"/>
 	</bean>
-
-	<bean id="sendEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"
+	   
+	<alias alias="emailService" name="defaultEmailService"/>
+	<bean id="defaultEmailService"
+	      class="com.ncip.core.service.impl.NcipDefaultEmailServiceImpl">
+	    <property name="modelService" ref="modelService"/>
+		<property name="mediaService" ref="mediaService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+		<property name="catalogService" ref="catalogService"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="emailAttachmentsMediaFolderName" value="email-attachments"/>
+		<property name="emailBodyMediaFolderName" value="email-body"/>
+		<property name="emailAddressFetchStrategy" ref="emailAddressFetchStrategy"/>
+	</bean>
+	 
+	<bean id="sendEmail" class="com.ncip.core.process.actions.NcipSendEmailAction"
 	       parent="abstractAction">
 		<property name="emailService" ref="emailService"/>
-	</bean>
+	</bean> 
 
 	<bean id="abstractGenerateEmailAction" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
 	      parent="abstractAction" abstract="true">

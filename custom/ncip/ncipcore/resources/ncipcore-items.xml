@@ -164,7 +164,19 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-		</typegroup> 
+		</typegroup>
+		
+		<typegroup name="newEmailMessage">
+			<itemtype code="EmailMessage" autocreate="false" generate="false" >
+				<attributes>
+					<attribute qualifier="emailPageTemplateProcess" type="java.lang.String">
+						<description>emailPageTemplateProcess</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>  
 		
     </itemtypes>
 </items>

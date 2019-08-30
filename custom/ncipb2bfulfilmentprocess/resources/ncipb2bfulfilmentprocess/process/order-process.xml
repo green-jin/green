@@ -12,7 +12,7 @@
 <process xmlns="http://www.hybris.de/xsd/processdefinition" start="checkOrder" name="order-b2bprocess" processClass="de.hybris.platform.orderprocessing.model.OrderProcessModel">
 
 	<action id="checkOrder" bean="checkB2BOrderAction">
-		<transition name="OK" to="sendOrderPlacedNotification"/>
+		<transition name="OK" to="splitOrder"/>
 		<transition name="NOK" to="error"/>
 	</action>
 
@@ -69,9 +69,9 @@
 <!-- 		<transition name="NOK" to="orderManualChecked" />  -->
 <!-- 	</action> -->
 
-	<action id="sendOrderPlacedNotification" bean="sendB2BOrderPlacedNotificationAction">
-		<transition name="OK" to="splitOrder"/>
-	</action>
+<!-- 	<action id="sendOrderPlacedNotification" bean="sendB2BOrderPlacedNotificationAction"> -->
+<!-- 		<transition name="OK" to="splitOrder"/> -->
+<!-- 	</action> -->
 	
 <!-- 	<action id="takePayment" bean="takeB2BPaymentAction"> -->
 <!-- 		<transition name="OK" to="splitOrder"/> -->

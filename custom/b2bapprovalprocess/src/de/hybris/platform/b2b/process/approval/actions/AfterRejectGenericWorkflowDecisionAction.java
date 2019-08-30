@@ -47,7 +47,7 @@ public class AfterRejectGenericWorkflowDecisionAction extends AbstractWorkflowAu
 			Assert.notNull(process, String.format("Process attachment missing for action %s", action.getCode()));
 			order = ((B2BApprovalProcessModel) this.getModelService().toModelLayer(process)).getOrder();
 
-			LOG.info(
+			LOG.debug(
 					"##### [custom b2borderapproval.xml] AfterRejectGenericWorkflowDecisionAction executeAction Start ##### orderProcessCode:"
 					+ process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
 
