@@ -1,4 +1,4 @@
-package com.ncipb2b.fulfilmentprocess;
+package com.ncipb2b.fulfilmentprocess.service;
 
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;

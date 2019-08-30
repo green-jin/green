@@ -8,7 +8,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with SAP.
  */
-package com.ncipb2b.fulfilmentprocess;
+package com.ncipb2b.fulfilmentprocess.service;
 
 import de.hybris.platform.core.model.order.OrderModel;
 

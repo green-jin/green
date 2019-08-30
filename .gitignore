@@ -74,6 +74,7 @@ config/local/*.project
 */rebel.xml
 *.prefs
 **/wro_addons.xml
+**/*-webtestclasses.xml
 
 **/classes/
 **/gensrc/
