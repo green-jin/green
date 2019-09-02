@@ -10,10 +10,10 @@
  */
 package com.ncipb2b.fulfilmentprocess.actions.order;
 
+import com.ncipb2b.fulfilmentprocess.service.B2BOrderSplittingService;
 import de.hybris.platform.core.enums.OrderStatus;
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.orderprocessing.model.OrderProcessModel;
-import de.hybris.platform.ordersplitting.OrderSplittingService;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentProcessModel;
 import de.hybris.platform.processengine.BusinessProcessService;
@@ -31,7 +31,7 @@ public class SplitOrderAction extends AbstractProceduralAction<OrderProcessModel
 {
 	private static final Logger LOG = Logger.getLogger(SplitOrderAction.class);
 
-	private OrderSplittingService orderSplittingService;
+	private B2BOrderSplittingService b2BOrderSplittingService;
 	private BusinessProcessService businessProcessService;
 
 	@Override
@@ -39,7 +39,7 @@ public class SplitOrderAction extends AbstractProceduralAction<OrderProcessModel
 	{
 		if (LOG.isInfoEnabled())
 		{
-			LOG.info("Process: " + process.getCode() + " in step " + getClass());
+			LOG.info("Process: \" + process.getCode() + \" in step " + getClass());
 		}
 
 		// find the order's entries that are not already allocated to consignments
@@ -52,7 +52,7 @@ public class SplitOrderAction extends AbstractProceduralAction<OrderProcessModel
 			}
 		}
 		// TODO: 2019/8/22 Spilt Consignment start
-		final List<ConsignmentModel> consignments = getOrderSplittingService().splitOrderForConsignment(process.getOrder(),
+		final List<ConsignmentModel> consignments = getB2BOrderSplittingService().splitOrderForConsignment(process.getOrder(),
 				entriesToSplit);
 
 		if (LOG.isDebugEnabled())
@@ -77,15 +77,14 @@ public class SplitOrderAction extends AbstractProceduralAction<OrderProcessModel
 		setOrderStatus(process.getOrder(), OrderStatus.ORDER_SPLIT);
 	}
 
-	protected OrderSplittingService getOrderSplittingService()
-	{
-		return orderSplittingService;
+	public B2BOrderSplittingService getB2BOrderSplittingService() {
+		return b2BOrderSplittingService;
 	}
 
 	@Required
-	public void setOrderSplittingService(final OrderSplittingService orderSplittingService)
-	{
-		this.orderSplittingService = orderSplittingService;
+	public void setB2BOrderSplittingService(
+			B2BOrderSplittingService b2BOrderSplittingService) {
+		this.b2BOrderSplittingService = b2BOrderSplittingService;
 	}
 
 	protected BusinessProcessService getBusinessProcessService()

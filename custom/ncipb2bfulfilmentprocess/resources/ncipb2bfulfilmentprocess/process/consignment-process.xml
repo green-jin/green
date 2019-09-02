@@ -25,10 +25,20 @@
 	</wait>
 
 	<action id="receiveConsignmentStatus" bean="receiveB2BConsignmentStatusAction">
-		<transition name="OK" to="allowShipment"/>
+		<transition name="OK" to="waitForLogistics"/>
 		<transition name="CANCEL" to="cancelConsignment"/>
 		<transition name="ERROR" to="error"/>
 	</action>
+
+
+		<action id="waitForLogistics" bean="waitForB2BLogisticsAction">
+			<transition name="OK" to="waitingLogistics"/>
+		</action>
+
+	<wait id="waitingLogistics" then="allowShipment" prependProcessCode="false">
+		<event>${process.code}_WaitForShipping</event>
+	</wait>
+
 
 	<action id="allowShipment" bean="allowB2BShipmentAction">
 		<transition name="DELIVERY" to="sendDeliveryMessage"/>

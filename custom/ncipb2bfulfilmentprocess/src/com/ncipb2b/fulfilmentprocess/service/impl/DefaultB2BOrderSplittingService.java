@@ -67,37 +67,77 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
     for (AbstractOrderEntryModel orderEntryModel : orderEntryList
     ) {
 //      Set Producttype
-
-      switch (orderEntryModel.getProduct().getDely_type().getCode()) {
-        case "GENERAL":
-          orderEntryNormalGroup.add(orderEntryModel);
-          break;
-        case "CUSTOM":
-          orderEntryCustomGroup.add(orderEntryModel);
-          break;
-        case "PREORDER":
-          orderEntryPreOrderGroup.add(orderEntryModel);
-          break;
-        default:
-          LOG.info("Product Dely_type Code Error");
-          break;
+      if (orderEntryModel.getProduct().getDely_type() == null) {
+        orderEntryNormalGroup.add(orderEntryModel);
+      } else {
+        switch (orderEntryModel.getProduct().getDely_type().getCode()) {
+          case "GENERAL":
+            orderEntryNormalGroup.add(orderEntryModel);
+            break;
+          case "CUSTOM":
+            orderEntryCustomGroup.add(orderEntryModel);
+            break;
+          case "PREORDER":
+            orderEntryPreOrderGroup.add(orderEntryModel);
+            break;
+          default:
+            LOG.info("Product Dely_type Code Error");
+            break;
+        }
       }
 
-      ConsignmentModel consignmentModel;
-      char prefixCode = 'a';
+      List<OrderEntryGroup> orderEntryGroup1 = new ArrayList<>();
+      orderEntryGroup1.add(orderEntryNormalGroup);
 
+      List<OrderEntryGroup> orderEntryGroup2 = new ArrayList<>();
+      orderEntryGroup2.add(orderEntryCustomGroup);
+
+      List<OrderEntryGroup> orderEntryGroup3 = new ArrayList();
+      orderEntryGroup3.add(orderEntryPreOrderGroup);
+
+      SplittingStrategy strategy;
+      for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
+          orderEntryGroup1 = strategy.perform(orderEntryGroup1)) {
+        strategy = (SplittingStrategy) var6.next();
+        if (LOG.isDebugEnabled()) {
+          LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
+        }
+      }
+      for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
+          orderEntryGroup2 = strategy.perform(orderEntryGroup2)) {
+        strategy = (SplittingStrategy) var6.next();
+        if (LOG.isDebugEnabled()) {
+          LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
+        }
+      }
+      for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
+          orderEntryGroup3 = strategy.perform(orderEntryGroup3)) {
+        strategy = (SplittingStrategy) var6.next();
+        if (LOG.isDebugEnabled()) {
+          LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
+        }
+      }
+    }
+
+    ConsignmentModel consignmentModel;
+    char prefixCode = 'a';
+    if (orderEntryNormalGroup.size() > 0) {
       consignmentModel = createNormalConsignmentList(orderEntryNormalGroup, order, prefixCode,
           orderCode);
       ++prefixCode;
       if (consignmentModel != null) {
         consignmentList.add(consignmentModel);
       }
+    }
+    if (orderEntryNormalGroup.size() > 0) {
       consignmentModel = createNonStockConsignmentList(orderEntryCustomGroup, order, prefixCode,
           orderCode);
       ++prefixCode;
       if (consignmentModel != null) {
         consignmentList.add(consignmentModel);
       }
+    }
+    if (orderEntryNormalGroup.size() > 0) {
       consignmentModel = createNonStockConsignmentList(orderEntryPreOrderGroup, order, prefixCode,
           orderCode);
       ++prefixCode;
@@ -105,6 +145,7 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
         consignmentList.add(consignmentModel);
       }
     }
+
     return consignmentList;
   }
 

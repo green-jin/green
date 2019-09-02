@@ -55,4 +55,8 @@
 		<property name="process2WarehouseAdapter" ref="process2WarehouseAdapter"/>
 	</bean>
 
+	<bean id="waitForB2BLogisticsAction" class="com.ncipb2b.fulfilmentprocess.actions.consignment.WaitForLogisticsAction"  parent="abstractAction">
+		<property name="ship2ProcessAdapter" ref="ship2ProcessAdapter"/>
+	</bean>
+
 </beans>

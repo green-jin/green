@@ -46,7 +46,33 @@
 		</property>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	
+
+
+
+	<!-- Waiting LogProcess Definitions-->
+	<alias name="mockProcess2ShipAdapter" alias="process2ShipAdapter"/>
+	<bean id="mockProcess2ShipAdapter" class="com.ncipb2b.fulfilmentprocess.adapter.impl.MockProcess2ShipAdapter" >
+		<property name="modelService" ref="modelService"/>
+		<property name="ship2ProcessAdapter" ref="ship2ProcessAdapter"/>
+		<property name="timeService" ref="timeService"/>
+	</bean>
+
+	<alias name="defaultShip2ProcessAdapter" alias="ship2ProcessAdapter"/>
+	<bean id="defaultShip2ProcessAdapter" class="com.ncipb2b.fulfilmentprocess.adapter.impl.DefaultShip2ProcessAdapter" >
+		<property name="modelService" ref="modelService"/>
+<!--		<property name="ship2ProcessAdapter" ref="ship2ProcessAdapter"/>-->
+		<property name="timeService" ref="timeService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+
+<!--		<property name="statusMap">-->
+<!--			<map key-type="de.hybris.platform.warehouse.WarehouseConsignmentStatus" value-type="de.hybris.platform.commerceservices.enums.WarehouseConsignmentState">-->
+<!--				<entry key="CANCEL" value="CANCEL"/>-->
+<!--				<entry key="COMPLETE" value="COMPLETE"/>-->
+<!--				<entry key="PARTIAL" value="PARTIAL"/>-->
+<!--			</map>-->
+<!--		</property>-->
+	</bean>
+
 	<!-- Process Definitions -->
 
 	<bean id="orderB2BProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
@@ -71,27 +97,54 @@
 	<!-- Performs some basic validation for the order as part of the first stage of the process. -->
 
 	<alias name="defaultCheckB2BOrderService" alias="checkB2BOrderService"/>
-	<bean id="defaultCheckB2BOrderService" class="com.ncipb2b.fulfilmentprocess.impl.DefaultCheckB2bOrderService" />
+	<bean id="defaultCheckB2BOrderService" class="com.ncipb2b.fulfilmentprocess.service.impl.DefaultCheckB2bOrderService" />
 	
 	<!-- Order Splitting -->
-	<alias name="ncipb2bfulfilmentprocessOrderSplittingService" alias="b2bOrderSplittingService"/>
+	<alias name="ncipb2bfulfilmentprocessOrderSplittingService" alias="b2BOrderSplittingService"/>
 	<bean id="ncipb2bfulfilmentprocessOrderSplittingService"
-		class="com.ncipb2b.fulfilmentprocess.impl.DefaultB2BOrderSplittingService">
+		class="com.ncipb2b.fulfilmentprocess.service.impl.DefaultB2BOrderSplittingService">
+		<property name="modelService" ref="modelService"/>
+		<property name="ncipB2BConsignmentService" ref="ncipB2BConsignmentService"/>
+		<property name="commerceStockService" ref="commerceStockService"/>
 
-<!--		<property name="strategiesList">-->
-<!--			<list>-->
-<!--				<ref bean="splitByAvailableCount"/>-->
+		<property name="strategiesList">
+			<list>
+				<ref bean="splitByAvailableCount"/>
+				<ref bean="splitByWarehouse" />
+				<ref bean="splitByPoS" />
+
 <!--				<ref bean="splitByDeliveryMode" />-->
-<!--				<ref bean="splitByPoS" />-->
 <!--				<ref bean="splitByNamedDeliveryDate" />-->
 <!--				<ref bean="splitByEntryDeliveryAddress" />-->
-<!--				<ref bean="splitByWarehouse" />-->
-<!--			</list>-->
-<!--		</property>-->
+			</list>
+		</property>
+
+	</bean>
+	<alias name="defaultNcipB2BConsignmentService" alias="ncipB2BConsignmentService"/>
+	<bean id="defaultNcipB2BConsignmentService"
+		class="com.ncipb2b.fulfilmentprocess.service.impl.DefaultNcipB2BConsignmentService" >
+		<property name="modelService" ref="modelService"/>
+		<property name="warehouseService" ref="warehouseService"/>
 	</bean>
 
-	<!--	add to create new spilt consignment-->
-<!--	<alias name="defaultOrderSplittingService" alias="orderSplittingService"/>-->
+<!--		add to create new spilt consignment-->
+	<alias name="defaultOrderSplittingService" alias="orderSplittingService"/>
+	<bean id="defaultOrderSplittingService"
+		class="de.hybris.platform.ordersplitting.impl.DefaultOrderSplittingService">
+		<property name="modelService" ref="modelService"/>
+		<property name="consignmentService" ref="consignmentService"/>
+		<property name="strategiesList">
+			<list>
+				<ref bean="splitByAvailableCount"/>
+				<ref bean="splitByDeliveryMode"/>
+				<ref bean="splitByNamedDeliveryDate"/>
+				<ref bean="splitByWarehouse"/>
+			</list>
+		</property>
+	</bean>
+
+<!--	add to create new spilt consignment-->
+<!--	<alias name="defaultOrderSplittingService" alias="processTriggerService"/>-->
 <!--	<bean id="defaultOrderSplittingService"-->
 <!--		class="de.hybris.platform.ordersplitting.impl.DefaultOrderSplittingService">-->
 <!--		<property name="modelService" ref="modelService"/>-->
@@ -105,14 +158,7 @@
 <!--			</list>-->
 <!--		</property>-->
 <!--	</bean>-->
-	<!-- Split Strategies -->
-
-	<alias name="defaultConsignmentB2BNonStockService" alias="consignmentB2BNonStockService"/>
-	<bean id="defaultConsignmentB2BNonStockService"
-		class="com.ncipb2b.fulfilmentprocess.impl.DefaultConsignmentB2BNonStockService">
-		<property name="modelService" ref="modelService"/>
-<!--		<property name="warehouseService" ref="warehouseService"/>-->
-	</bean>
+<!--	 Split Strategies -->
 
 	<alias name="defaultSplitByAvailableCount" alias="splitByAvailableCount"/>
 	<bean id="defaultSplitByAvailableCount" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByAvailableCount" >
@@ -122,22 +168,23 @@
 	<alias name="defaultSplitByPoS" alias="splitByPoS"/>
 	<bean id="defaultSplitByPoS" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByPoS" />
 
-	<alias name="defaultSplitByEntryDeliveryAddress" alias="splitByEntryDeliveryAddress"/>
-	<bean id="defaultSplitByEntryDeliveryAddress" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />
-
-	<alias name="defaultSplitByDeliveryMode" alias="splitByDeliveryMode"/>
-	<bean id="defaultSplitByDeliveryMode" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >
-		<property name="pickupDeliveryModeDao" ref="pickupDeliveryModeDao"/>
+	<alias name="defaultSplitByWarehouse" alias="splitByWarehouse"/>
+	<bean id="defaultSplitByWarehouse" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByWarehouse">
+		<property name="stockService" ref="stockService"/>
+		<property name="commerceAvailabilityCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>
 	</bean>
 
 
-<!--	-->
-<!--	<alias name="defaultSplitByWarehouse" alias="splitByWarehouse"/>-->
-<!--	<bean id="defaultSplitByWarehouse" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByWarehouse">-->
-<!--		<property name="stockService" ref="stockService"/>-->
-<!--		<property name="commerceAvailabilityCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>-->
+<!--	<alias name="defaultSplitByEntryDeliveryAddress" alias="splitByEntryDeliveryAddress"/>-->
+<!--	<bean id="defaultSplitByEntryDeliveryAddress" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />-->
+
+<!--	<alias name="defaultSplitByDeliveryMode" alias="splitByDeliveryMode"/>-->
+<!--	<bean id="defaultSplitByDeliveryMode" class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >-->
+<!--		<property name="pickupDeliveryModeDao" ref="pickupDeliveryModeDao"/>-->
 <!--	</bean>-->
-	
+
+
+
 	<!--  Jobs -->
 	
 	<bean id="cleanUpFraudOrderJob" class="com.ncipb2b.fulfilmentprocess.jobs.CleanUpFraudOrderJob"  >
