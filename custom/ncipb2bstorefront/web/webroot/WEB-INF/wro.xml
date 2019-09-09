@@ -88,7 +88,21 @@
 		<js>/_ui/responsive/common/js/acc.quickorder.js</js>
 		<js>/_ui/responsive/common/js/acc.csv-import.js</js>
 		<js>/_ui/responsive/common/js/_autoload.js</js>
-		
+
+		<!--ncip-->
+		<js>/_ui/responsive/common/js/contact_me_ncip.js</js>
+		<js>/_ui/responsive/common/js/jqBootstrapValidation_ncip.js</js>
+
+		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.js</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.min.js</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.js</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.min.js</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.js.map</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.min.js.map</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.js.map</js>
+		<js>/_ui/responsive/common/js/ncip/bootstrap.min.js.map</js>
+<!--		ncip-->
+
 		<!-- Cms Action JavaScript files -->
         <js>/_ui/responsive/common/js/cms/*.js</js>
     </group>

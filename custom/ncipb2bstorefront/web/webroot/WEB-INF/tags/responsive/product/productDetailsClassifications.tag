@@ -2,8 +2,11 @@
 <%@ attribute name="product" required="true" type="de.hybris.platform.commercefacades.product.data.ProductData" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:url value="${product.url}/downloadFile" var="downloadFileUrl"/>
 
 <div class="product-classifications">
+
 	<c:if test="${not empty product.classifications}">
 		<c:forEach items="${product.classifications}" var="classification">
 			<div class="headline">${fn:escapeXml(classification.name)}</div>

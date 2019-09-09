@@ -12,10 +12,9 @@
 <c:url value="${product.url}/reviewhtml/all" var="getAllReviewsUrl"/>
 <c:url value="${product.url}/review" var="productReviewActionUrl"/>
 
-<div class="tab-review">
+	<div class="tab-review">
 	<div class="review-pagination-bar">
 		<button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button>
-
 		<div class="right">
 			<button class="btn btn-default all-reviews-btn"><spring:theme code="review.show.all" /></button>
 			<button class="btn btn-default less-reviews-btn"><spring:theme code="review.show.less" /></button>
@@ -48,7 +47,6 @@
 	
 				<formElement:formInputBox idKey="alias" labelKey="review.alias" path="alias" inputCSS="form-control" mandatory="false"/>
 			</div>
-
 			<button type="submit" class="btn btn-primary" value="<spring:theme code="review.submit"/>"><spring:theme code="review.submit"/></button>
 		</form:form>
 
