@@ -10,6 +10,7 @@
  */
 package com.ncip.storefront.controllers;
 
+ 
 import de.hybris.platform.acceleratorcms.model.components.CMSTabParagraphContainerModel;
 import de.hybris.platform.acceleratorcms.model.components.CartSuggestionComponentModel;
 import de.hybris.platform.acceleratorcms.model.components.CategoryFeatureComponentModel;
@@ -23,6 +24,8 @@ import de.hybris.platform.acceleratorcms.model.components.SimpleResponsiveBanner
 import de.hybris.platform.acceleratorcms.model.components.SubCategoryListComponentModel;
 import de.hybris.platform.cms2.model.contents.components.CMSLinkComponentModel;
 import de.hybris.platform.cms2lib.model.components.ProductCarouselComponentModel;
+import com.ncip.core.model.components.BrandContainerComponentModel;
+import com.ncip.core.model.components.HomeSimpleBannerComponentModel;
 
 
 /**
@@ -62,6 +65,10 @@ public interface ControllerConstants
 			String SubCategoryListComponent = _Prefix + SubCategoryListComponentModel._TYPECODE + _Suffix; // NOSONAR
 			String SimpleResponsiveBannerComponent = _Prefix + SimpleResponsiveBannerComponentModel._TYPECODE + _Suffix; // NOSONAR
 			String CMSTabParagraphContainer = _Prefix + CMSTabParagraphContainerModel._TYPECODE + _Suffix; // NOSONAR
+			
+			String BrandContainerComponent = _Prefix + BrandContainerComponentModel._TYPECODE + _Suffix; //經銷商專區,我們的保證 Container
+			String HomeSimpleBannerComponent = _Prefix + HomeSimpleBannerComponentModel._TYPECODE + _Suffix; //經銷商專區,我們的保證 Component
+			 
 		}
 	}
 
