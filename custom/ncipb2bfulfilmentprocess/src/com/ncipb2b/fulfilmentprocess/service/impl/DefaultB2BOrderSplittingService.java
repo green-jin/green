@@ -1,5 +1,6 @@
 package com.ncipb2b.fulfilmentprocess.service.impl;
 
+import com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants;
 import com.ncipb2b.fulfilmentprocess.service.B2BOrderSplittingService;
 import com.ncipb2b.fulfilmentprocess.service.NcipB2BConsignmentService;
 import de.hybris.platform.commerceservices.stock.CommerceStockService;
@@ -99,10 +100,22 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
       for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
           orderEntryGroup1 = strategy.perform(orderEntryGroup1)) {
         strategy = (SplittingStrategy) var6.next();
+        for (OrderEntryGroup orderEntryGroup : orderEntryGroup1
+        ) {
+          LOG.info(orderEntryGroup.getParameter(Ncipb2bFulfilmentProcessConstants.WAREHOUSE_LIST)
+              .toString());
+        }
         if (LOG.isDebugEnabled()) {
           LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
         }
       }
+      try {
+        List<Object> warehouseModels = (List<Object>) orderEntryGroup1.get(0)
+            .getParameter(Ncipb2bFulfilmentProcessConstants.WAREHOUSE_LIST);
+
+      } catch (Exception e) {
+      }
+
       for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
           orderEntryGroup2 = strategy.perform(orderEntryGroup2)) {
         strategy = (SplittingStrategy) var6.next();
