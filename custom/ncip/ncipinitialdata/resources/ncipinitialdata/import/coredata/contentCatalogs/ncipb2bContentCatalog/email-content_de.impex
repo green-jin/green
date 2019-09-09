@@ -14,7 +14,9 @@
 $contentCatalog=ncipb2bContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 #$jarEmailResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/coredata/contentCatalogs/powertoolsContentCatalog/emails
-$jarEmailResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/coredata/contentCatalogs/ncipb2bContentCatalog/emails 
+#$jarEmailResource=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/ncipinitialdata/import/coredata/contentCatalogs/ncipb2bContentCatalog/emails 
+#$jarEmailResource=$config-emailResourceValue
+$jarEmailResource=jar:com.ncip.core.setup.CoreSystemSetup&/ncipcore/import/emails
 
 # Import config properties into impex macros for modulegen
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]

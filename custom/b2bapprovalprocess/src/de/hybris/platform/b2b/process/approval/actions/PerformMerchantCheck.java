@@ -1,12 +1,11 @@
 /*
  * [y] hybris Platform
  *
- * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
  *
  * This software is the confidential and proprietary information of SAP
- * ("Confidential Information"). You shall not disclose such Confidential
- * Information and shall use it only in accordance with the terms of the
- * license agreement you entered into with SAP.
+ * ("Confidential Information"). You shall not disclose such Confidential Information and shall use
+ * it only in accordance with the terms of the license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.process.approval.actions;
 
@@ -27,6 +26,7 @@ import de.hybris.platform.core.enums.OrderStatus;
 import de.hybris.platform.core.model.ItemModel;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.orderprocessing.model.OrderProcessModel;
 import de.hybris.platform.processengine.BusinessProcessService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.UserService;
@@ -35,14 +35,12 @@ import de.hybris.platform.workflow.WorkflowProcessingService;
 import de.hybris.platform.workflow.WorkflowService;
 import de.hybris.platform.workflow.model.WorkflowModel;
 import de.hybris.platform.workflow.model.WorkflowTemplateModel;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
@@ -51,293 +49,267 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
 
-public class PerformMerchantCheck extends AbstractB2BApproveOrderDecisionAction
-{
-	private static final Logger LOG = Logger.getLogger(PerformMerchantCheck.class);
-	private B2BMerchantCheckService b2bMerchantCheckService;
-	private B2BWorkflowIntegrationService b2bWorkflowIntegrationService;
-	private UserService userService;
-	private B2BApproverService<B2BCustomerModel> b2bApproverService;
-	private B2BUnitService<B2BUnitModel, B2BCustomerModel> b2bUnitService;
-	private WorkflowProcessingService workflowProcessingService;
-	private WorkflowService workflowService;
-	private B2BCostCenterService b2bCostCenterService;
-	private BusinessProcessService businessProcessService;
-	private ModelService modelService;
+public class PerformMerchantCheck extends AbstractB2BApproveOrderDecisionAction {
+  private static final Logger LOG = Logger.getLogger(PerformMerchantCheck.class);
+  private B2BMerchantCheckService b2bMerchantCheckService;
+  private B2BWorkflowIntegrationService b2bWorkflowIntegrationService;
+  private UserService userService;
+  private B2BApproverService<B2BCustomerModel> b2bApproverService;
+  private B2BUnitService<B2BUnitModel, B2BCustomerModel> b2bUnitService;
+  private WorkflowProcessingService workflowProcessingService;
+  private WorkflowService workflowService;
+  private B2BCostCenterService b2bCostCenterService;
+  private BusinessProcessService businessProcessService;
+  private ModelService modelService;
 
 
-	@Override
-	public Transition executeAction(final B2BApprovalProcessModel process) throws RetryLaterException, Exception
-	{
-		LOG.info("##### [custom b2borderapproval.xml] PerformMerchantCheck executeAction Start ##### orderProcessCode:"
-				+ process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
+  @Override
+  public Transition executeAction(final B2BApprovalProcessModel process)
+      throws RetryLaterException, Exception {
 
-		if (LOG.isDebugEnabled())
-		{
-			LOG.debug("Check Credit Action execution for process" + process);
-		}
-		OrderModel order = null;
-		Transition transition = null;
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(
+          "##### [custom b2borderapproval.xml] PerformMerchantCheck executeAction Start ##### orderProcessCode:"
+              + process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
+    }
+    OrderModel order = null;
+    Transition transition = null;
 
-		try
-		{
-			order = process.getOrder();
-			final List<UserModel> accountManagers = new LinkedList<UserModel>();
+    try {
+      order = process.getOrder();
+      final List<UserModel> accountManagers = new LinkedList<UserModel>();
 
-			// Order entries might belong to different Cost Centers, which possibly has more then one Account Manager,
-			// so notification to be delivered to the respective Account Managers.
-			final Set<B2BCostCenterModel> b2bCostCenters = getB2bCostCenterService().getB2BCostCenters(order.getEntries());
-			for (final B2BCostCenterModel b2bCostCenterModel : b2bCostCenters)
-			{
-				final UserModel userModel = getB2bUnitService().getAccountManagerForUnit(b2bCostCenterModel.getUnit());
-				//Null check to prevent adding null object getting added to list and this prevents adding admin user if account manager is not there.
-				if (userModel != null)
-				{
-					accountManagers.add(userModel);
-				}
-			}
+      // Order entries might belong to different Cost Centers, which possibly has more then one
+      // Account Manager,
+      // so notification to be delivered to the respective Account Managers.
+      final Set<B2BCostCenterModel> b2bCostCenters =
+          getB2bCostCenterService().getB2BCostCenters(order.getEntries());
+      for (final B2BCostCenterModel b2bCostCenterModel : b2bCostCenters) {
+        final UserModel userModel =
+            getB2bUnitService().getAccountManagerForUnit(b2bCostCenterModel.getUnit());
+        // Null check to prevent adding null object getting added to list and this prevents adding
+        // admin user if account manager is not there.
+        if (userModel != null) {
+          accountManagers.add(userModel);
+        }
+      }
 
-			final Collection<UserModel> accountManagerApprovers = getB2bApproverService()
-					.getAccountManagerApprovers(order.getUnit());
-			//Since the process can be triggered without sales rep assigned to the unit default to an administrator
-			// user if no sales rep
-			if (CollectionUtils.isEmpty(accountManagers))
-			{
-				accountManagers.add(getUserService().getAdminUser());
-			}
+      final Collection<UserModel> accountManagerApprovers =
+          getB2bApproverService().getAccountManagerApprovers(order.getUnit());
+      // Since the process can be triggered without sales rep assigned to the unit default to an
+      // administrator
+      // user if no sales rep
+      if (CollectionUtils.isEmpty(accountManagers)) {
+        accountManagers.add(getUserService().getAdminUser());
+      }
 
-			final List<UserModel> userModelList = (List<UserModel>) CollectionUtils.union(accountManagerApprovers, accountManagers);
+      final List<UserModel> userModelList =
+          (List<UserModel>) CollectionUtils.union(accountManagerApprovers, accountManagers);
 
-			if (LOG.isDebugEnabled())
-			{
-				LOG.debug(String.format("Creating a sales quote worflow for order %s and approvers %s", order.getCode(),
-						CollectionUtils.collect(userModelList, new BeanToPropertyValueTransformer(UserModel.UID, true))));
-			}
+      if (LOG.isDebugEnabled()) {
+        LOG.debug(String.format("Creating a sales quote worflow for order %s and approvers %s",
+            order.getCode(), CollectionUtils.collect(userModelList,
+                new BeanToPropertyValueTransformer(UserModel.UID, true))));
+      }
 
-			final B2BCustomerModel orderUser = (B2BCustomerModel) order.getUser();
-			final Set<B2BMerchantCheckResultModel> merchantCheckResults = getB2bMerchantCheckService().evaluateMerchantChecks(order,
-					orderUser);
+      final B2BCustomerModel orderUser = (B2BCustomerModel) order.getUser();
+      final Set<B2BMerchantCheckResultModel> merchantCheckResults =
+          getB2bMerchantCheckService().evaluateMerchantChecks(order, orderUser);
 
-			final boolean isRejected = hasRejectedMerchantResult(merchantCheckResults);
+      final boolean isRejected = hasRejectedMerchantResult(merchantCheckResults);
 
-			if (isRejected)
-			{
-				// create a workflow for merchant to approve order has reached credit limit.
-				final String workflowTemplateCode = getB2bWorkflowIntegrationService().generateWorkflowTemplateCode("MERCHANT_CHECK",
-						userModelList);
-				final WorkflowTemplateModel workflowTemplate = getB2bWorkflowIntegrationService().createWorkflowTemplate(
-						userModelList, workflowTemplateCode, "Generated Merchant check workflow", WorkflowTemplateType.MERCHANT_CHECK);
-				final WorkflowModel workflow = workflowService.createWorkflow(workflowTemplate.getName(), workflowTemplate,
-						Arrays.asList(new ItemModel[]
-						{ process, order }), workflowTemplate.getOwner());
-				getWorkflowProcessingService().startWorkflow(workflow);
-				getModelService().saveAll(); // workaround for PLA-10938
-				order.setWorkflow(workflow);
-				order.setStatus(OrderStatus.PENDING_APPROVAL_FROM_MERCHANT);
+      if (isRejected) {
+        // create a workflow for merchant to approve order has reached credit limit.
+        final String workflowTemplateCode = getB2bWorkflowIntegrationService()
+            .generateWorkflowTemplateCode("MERCHANT_CHECK", userModelList);
+        final WorkflowTemplateModel workflowTemplate = getB2bWorkflowIntegrationService()
+            .createWorkflowTemplate(userModelList, workflowTemplateCode,
+                "Generated Merchant check workflow", WorkflowTemplateType.MERCHANT_CHECK);
+        final WorkflowModel workflow =
+            workflowService.createWorkflow(workflowTemplate.getName(), workflowTemplate,
+                Arrays.asList(new ItemModel[] {process, order}), workflowTemplate.getOwner());
 
-				//add send mail
+        getWorkflowProcessingService().startWorkflow(workflow);
+        getModelService().saveAll(); // workaround for PLA-10938
+        order.setWorkflow(workflow);
+        order.setStatus(OrderStatus.PENDING_APPROVAL_FROM_MERCHANT);
 
-				LOG.info("##### [custom b2borderapproval.xml] PerformMerchantCheck send mail start processCode ##### "
-						+ process.getCode());
+        if (LOG.isDebugEnabled()) {
+          // add send mail
+          LOG.debug("##### [custom b2borderapproval.xml] PerformMerchantCheck send mail start processCode ##### "
+                  + process.getCode());
+        }
 
-				//				final OrderModel orderModel = order;//process.getOrder();//orderPendingApprovalEvent.getProcess().getOrder();
-				//				LOG.info("#### B2BAcceleratorInformOfOrderApproval send mail start ####");
-				//				final OrderProcessModel orderProcessModel = (OrderProcessModel) getBusinessProcessService().createProcess(
-				//						"orderPendingApprovalEmailProcess" + "-" + orderModel.getCode() + "-" + System.currentTimeMillis(),
-				//						"orderPendingApprovalEmailProcess");
-				//
-				//				orderProcessModel.setOrder(orderModel);
-				//				getModelService().save(orderProcessModel);
-				//				getBusinessProcessService().startProcess(orderProcessModel);
+        final OrderModel orderModel = order;// process.getOrder();//orderPendingApprovalEvent.getProcess().getOrder();
 
-				LOG.info("##### [custom b2borderapproval.xml] PerformMerchantCheck send mail end  processCode ##### "
-						+ process.getCode());
+        final OrderProcessModel orderProcessModel = (OrderProcessModel) getBusinessProcessService()
+            .createProcess("orderPendingApprovalEmailProcess" + "-" + orderModel.getCode() + "-"
+                + System.currentTimeMillis(), "orderPendingApprovalEmailProcess");
 
-				transition = Transition.NOK;
-			}
-			else
-			{
-				for (final B2BMerchantCheckResultModel b2bMerchantCheckResultModel : merchantCheckResults)
-				{
-					// the order has reached the credit limit threshold, alert the sales rep or admin.
-					if (MerchantCheckStatusEmail.ALERT.equals(b2bMerchantCheckResultModel.getStatusEmail()))
-					{
-						sendAlert(order, accountManagers, "Customer is about to reach credit limit with order: " + order.getCode());
-					}
+        orderProcessModel.setOrder(orderModel);
+        getModelService().save(orderProcessModel);
+        getBusinessProcessService().startProcess(orderProcessModel);
 
-				}
-				//If order was rejected by an approver don't approve here.
-				if (!OrderStatus.REJECTED.equals(order.getStatus()))
-				{
-					order.setStatus(OrderStatus.APPROVED);
-				}
-				transition = Transition.OK;
-			}
-			getModelService().save(order);
-		}
-		catch (final Exception e)
-		{
-			this.handleError(order, e);
-			transition = Transition.ERROR;
-		}
-		return transition;
-	}
+        transition = Transition.NOK;
+      } else {
+        for (final B2BMerchantCheckResultModel b2bMerchantCheckResultModel : merchantCheckResults) {
+          // the order has reached the credit limit threshold, alert the sales rep or admin.
+          if (MerchantCheckStatusEmail.ALERT.equals(b2bMerchantCheckResultModel.getStatusEmail())) {
+            sendAlert(order, accountManagers,
+                "Customer is about to reach credit limit with order: " + order.getCode());
+          }
 
-	public boolean hasRejectedMerchantResult(final Collection<B2BMerchantCheckResultModel> merchantCheckResults)
-	{
-		Assert.notNull(merchantCheckResults, "Should not have gotten an null collection of " + "B2BMerchantCheckResultModel(s)");
-		return null != CollectionUtils.find(merchantCheckResults, new BeanPropertyValueEqualsPredicate(
-				B2BMerchantCheckResultModel.STATUS, MerchantCheckStatus.REJECTED, true));
-	}
+        }
+        // If order was rejected by an approver don't approve here.
+        if (!OrderStatus.REJECTED.equals(order.getStatus())) {
+          order.setStatus(OrderStatus.APPROVED);
+        }
+        transition = Transition.OK;
+      }
+      getModelService().save(order);
+    } catch (final Exception e) {
+      this.handleError(order, e);
+      transition = Transition.ERROR;
+    }
+    return transition;
+  }
 
-	protected void sendAlert(final OrderModel order, final List<UserModel> salesReps, final String description)
-	{
-		for (final UserModel salesRep : salesReps)
-		{
-			final WorkflowTemplateModel workflowTemplate = getB2bWorkflowIntegrationService().createWorkflowTemplate(
-					Collections.singletonList(salesRep), "B2B-Alert-" + salesRep.getUid(), description,
-					WorkflowTemplateType.CREDIT_LIMIT_ALERT);
+  public boolean hasRejectedMerchantResult(
+      final Collection<B2BMerchantCheckResultModel> merchantCheckResults) {
+    Assert.notNull(merchantCheckResults,
+        "Should not have gotten an null collection of " + "B2BMerchantCheckResultModel(s)");
+    return null != CollectionUtils.find(merchantCheckResults, new BeanPropertyValueEqualsPredicate(
+        B2BMerchantCheckResultModel.STATUS, MerchantCheckStatus.REJECTED, true));
+  }
 
-			final WorkflowModel workflow = getWorkflowService().createWorkflow(workflowTemplate.getName(), workflowTemplate,
-					Collections.<ItemModel>singletonList(order), workflowTemplate.getOwner());
-			getWorkflowProcessingService().startWorkflow(workflow);
-		}
-	}
+  protected void sendAlert(final OrderModel order, final List<UserModel> salesReps,
+      final String description) {
+    for (final UserModel salesRep : salesReps) {
+      final WorkflowTemplateModel workflowTemplate =
+          getB2bWorkflowIntegrationService().createWorkflowTemplate(
+              Collections.singletonList(salesRep), "B2B-Alert-" + salesRep.getUid(), description,
+              WorkflowTemplateType.CREDIT_LIMIT_ALERT);
 
-	protected void handleError(final OrderModel order, final Exception e)
-	{
-		if (order != null)
-		{
-			this.setOrderStatus(order, OrderStatus.B2B_PROCESSING_ERROR);
-			this.modelService.save(order);
-		}
-		LOG.error(e.getMessage(), e);
-	}
+      final WorkflowModel workflow =
+          getWorkflowService().createWorkflow(workflowTemplate.getName(), workflowTemplate,
+              Collections.<ItemModel>singletonList(order), workflowTemplate.getOwner());
+      getWorkflowProcessingService().startWorkflow(workflow);
+    }
+  }
+
+  protected void handleError(final OrderModel order, final Exception e) {
+    if (order != null) {
+      this.setOrderStatus(order, OrderStatus.B2B_PROCESSING_ERROR);
+      this.modelService.save(order);
+    }
+    LOG.error(e.getMessage(), e);
+  }
 
 
-	@Required
-	public void setB2bMerchantCheckService(final B2BMerchantCheckService b2bMerchantCheckService)
-	{
-		this.b2bMerchantCheckService = b2bMerchantCheckService;
-	}
+  @Required
+  public void setB2bMerchantCheckService(final B2BMerchantCheckService b2bMerchantCheckService) {
+    this.b2bMerchantCheckService = b2bMerchantCheckService;
+  }
 
-	@Required
-	public void setB2bWorkflowIntegrationService(final B2BWorkflowIntegrationService b2bWorkflowIntegrationService)
-	{
-		this.b2bWorkflowIntegrationService = b2bWorkflowIntegrationService;
-	}
+  @Required
+  public void setB2bWorkflowIntegrationService(
+      final B2BWorkflowIntegrationService b2bWorkflowIntegrationService) {
+    this.b2bWorkflowIntegrationService = b2bWorkflowIntegrationService;
+  }
 
-	@Required
-	public void setUserService(final UserService userService)
-	{
-		this.userService = userService;
-	}
+  @Required
+  public void setUserService(final UserService userService) {
+    this.userService = userService;
+  }
 
-	@Required
-	public void setB2bUnitService(final B2BUnitService<B2BUnitModel, B2BCustomerModel> b2bUnitService)
-	{
-		this.b2bUnitService = b2bUnitService;
-	}
+  @Required
+  public void setB2bUnitService(
+      final B2BUnitService<B2BUnitModel, B2BCustomerModel> b2bUnitService) {
+    this.b2bUnitService = b2bUnitService;
+  }
 
-	@Required
-	public void setB2bApproverService(final B2BApproverService<B2BCustomerModel> b2bApproverService)
-	{
-		this.b2bApproverService = b2bApproverService;
-	}
+  @Required
+  public void setB2bApproverService(final B2BApproverService<B2BCustomerModel> b2bApproverService) {
+    this.b2bApproverService = b2bApproverService;
+  }
 
-	@Required
-	public void setWorkflowProcessingService(final WorkflowProcessingService workflowProcessingService)
-	{
-		this.workflowProcessingService = workflowProcessingService;
-	}
+  @Required
+  public void setWorkflowProcessingService(
+      final WorkflowProcessingService workflowProcessingService) {
+    this.workflowProcessingService = workflowProcessingService;
+  }
 
-	@Required
-	public void setWorkflowService(final WorkflowService workflowService)
-	{
-		this.workflowService = workflowService;
-	}
+  @Required
+  public void setWorkflowService(final WorkflowService workflowService) {
+    this.workflowService = workflowService;
+  }
 
-	@Required
-	public void setB2bCostCenterService(final B2BCostCenterService b2bCostCenterService)
-	{
-		this.b2bCostCenterService = b2bCostCenterService;
-	}
+  @Required
+  public void setB2bCostCenterService(final B2BCostCenterService b2bCostCenterService) {
+    this.b2bCostCenterService = b2bCostCenterService;
+  }
 
-	public B2BCostCenterService getB2bCostCenterService()
-	{
-		return b2bCostCenterService;
-	}
+  public B2BCostCenterService getB2bCostCenterService() {
+    return b2bCostCenterService;
+  }
 
-	public B2BApproverService<B2BCustomerModel> getB2bApproverService()
-	{
-		return b2bApproverService;
-	}
+  public B2BApproverService<B2BCustomerModel> getB2bApproverService() {
+    return b2bApproverService;
+  }
 
-	public B2BWorkflowIntegrationService getB2bWorkflowIntegrationService()
-	{
-		return b2bWorkflowIntegrationService;
-	}
+  public B2BWorkflowIntegrationService getB2bWorkflowIntegrationService() {
+    return b2bWorkflowIntegrationService;
+  }
 
-	public B2BUnitService<B2BUnitModel, B2BCustomerModel> getB2bUnitService()
-	{
-		return b2bUnitService;
-	}
+  public B2BUnitService<B2BUnitModel, B2BCustomerModel> getB2bUnitService() {
+    return b2bUnitService;
+  }
 
-	public B2BMerchantCheckService getB2bMerchantCheckService()
-	{
-		return b2bMerchantCheckService;
-	}
+  public B2BMerchantCheckService getB2bMerchantCheckService() {
+    return b2bMerchantCheckService;
+  }
 
-	public UserService getUserService()
-	{
-		return userService;
-	}
+  public UserService getUserService() {
+    return userService;
+  }
 
-	public WorkflowProcessingService getWorkflowProcessingService()
-	{
-		return workflowProcessingService;
-	}
+  public WorkflowProcessingService getWorkflowProcessingService() {
+    return workflowProcessingService;
+  }
 
-	public WorkflowService getWorkflowService()
-	{
-		return workflowService;
-	}
+  public WorkflowService getWorkflowService() {
+    return workflowService;
+  }
 
-	/**
-	 * @return the businessProcessService
-	 */
-	public BusinessProcessService getBusinessProcessService()
-	{
-		return businessProcessService;
-	}
+  /**
+   * @return the businessProcessService
+   */
+  public BusinessProcessService getBusinessProcessService() {
+    return businessProcessService;
+  }
 
-	/**
-	 * @param businessProcessService
-	 *           the businessProcessService to set
-	 */
-	@Required
-	public void setBusinessProcessService(final BusinessProcessService businessProcessService)
-	{
-		this.businessProcessService = businessProcessService;
-	}
+  /**
+   * @param businessProcessService the businessProcessService to set
+   */
+  @Required
+  public void setBusinessProcessService(final BusinessProcessService businessProcessService) {
+    this.businessProcessService = businessProcessService;
+  }
 
-	/**
-	 * @return the modelService
-	 */
-	@Override
-	public ModelService getModelService()
-	{
-		return modelService;
-	}
+  /**
+   * @return the modelService
+   */
+  @Override
+  public ModelService getModelService() {
+    return modelService;
+  }
 
-	/**
-	 * @param modelService
-	 *           the modelService to set
-	 */
-	@Override
-	@Required
-	public void setModelService(final ModelService modelService)
-	{
-		this.modelService = modelService;
-	}
+  /**
+   * @param modelService the modelService to set
+   */
+  @Override
+  @Required
+  public void setModelService(final ModelService modelService) {
+    this.modelService = modelService;
+  }
 }

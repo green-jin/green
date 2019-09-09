@@ -1,0 +1,111 @@
+## messageSource=classpath:/ncipcore/messages/email-orderPendingApproval_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#macro(displayNegationForDiscount $priceData)
+	#if (${priceData.value} > 0)
+    -
+	#end
+	${priceData.formattedValue}
+#end
+
+## messageSource=classpath:/ncipcore/messages/email-orderPendingApproval_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#macro(displayNegationForDiscount $priceData)
+	#if (${priceData.value} > 0)
+    -
+	#end
+	${priceData.formattedValue}
+#end
+
+<html>
+	<head>
+	</head>
+	<body bgcolor="#e4e7e8">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">
+            <table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+                <tr>
+                    <td align="center" valign="top" bgcolor="#FFFFFF">
+                        <table width="570" cellpadding="0" cellspacing="0" border="0" align="center">
+                            <tr>
+                                <td valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td valign="middle">
+                                    <img src="${ctx.themeResourceUrl}/images/ncip_email_logo.png" alt="" width="610" height="72" border="0" align="right" title="ncip_email_logo.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right" valign="middle" bgcolor="#000000">
+                                    <font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"><font color="#FFFFFF"></font> &nbsp;&nbsp;</font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="middle"></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top"> 
+									
+##                                <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('emailSubject', ${ctx.displayName},${ctx.order.code})}</font></p> s
+								  <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.salutation}</b>,</font></p>
+                                  <p>
+                                  <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.paragraphAccountLocation}</font></p>
+								  <p> <p>
+								  <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.paragraphContactUs}</font></p>
+								  <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.complimentaryClosing}</font></p>
+								  <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.signature}</font></p>
+								   <p> <p>
+								  <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.termsAndCondition}</font></p> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td height="30" align="right" valign="middle" bgcolor="#000000">
+                                    <font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"> &nbsp;&nbsp;</font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

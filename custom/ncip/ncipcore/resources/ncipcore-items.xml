@@ -14,7 +14,11 @@
     <collectiontypes>
         <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
         <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
-                        type="set"/>
+                        type="set"/>  
+                        
+		<collectiontype code="HomeSimpleBannerComponentList" elementtype="HomeSimpleBannerComponent"
+			autocreate="true" generate="true" type="list" />
+			          
     </collectiontypes>
 
     <enumtypes>
@@ -35,11 +39,61 @@
     </enumtypes>
 
     <itemtypes>
-
         <!-- Add your item definitions here -->
+           
+		  <itemtype generate="true" code="Product" autocreate="false">
+			<attributes>
+				<attribute qualifier="vkorg" type="java.lang.String">
+					<description>銷售組織</description>
+
+					<modifiers read="true" write="true" search="true"
+						optional="true" />
+					<persistence type="property" />
+				</attribute>
+		        
+				<attribute qualifier="listpr" type="java.math.BigDecimal">
+					<description>牌價</description>
+					<modifiers read="true" write="true" search="true"
+						optional="true" />
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute qualifier="plifz" type="java.math.BigDecimal">
+					<description>標準交期</description>
+					<modifiers read="true" write="true" search="true"
+						optional="true" />
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute qualifier="my_type" type="java.lang.String">
+					<description>物料類型</description>
+					<modifiers read="true" write="true" search="true"
+						optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		  </itemtype>
 
 
-        <!-- TypeGroups are for structure of this file only -->
+			<itemtype generate="true" code="Media" autocreate="false">
+				<attributes>
+					<attribute qualifier="fileItem" type="java.lang.String">
+						<description>相關下載_項目</description>
+						<modifiers read="true" write="true" search="true"
+							optional="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="NcipNavigationComponent" autocreate="true"
+				generate="true" extends="NavigationComponent"
+				jaloclass="com.ncip.core.jalo.components.NcipNavigationComponent">
+				<description>Ncip Navigation Component</description>
+			</itemtype>
+
+
+			<!-- TypeGroups are for structure of this file only -->
 
         <typegroup name="Apparel">
             <itemtype code="ApparelProduct" extends="Product"
@@ -81,7 +135,7 @@
             <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
                       autocreate="true" generate="true"
                       jaloclass="com.ncip.core.jalo.ApparelSizeVariantProduct">
-                <description>Apparel size variant type that contains additional attribute describing variant size.
+                <description>Apparel size variant type that cHUNTINGTOontains additional attribute describing variant size.
                 </description>
                 <attributes>
                     <attribute qualifier="size" type="localized:java.lang.String"
@@ -109,6 +163,65 @@
                     </attribute>
                 </attributes>
             </itemtype>
+        </typegroup>
+        
+        <typegroup name="Component Items">  
+			<itemtype code="HomeSimpleBannerComponent" generate="true"
+				jaloclass="com.ncip.core.jalo.components.HomeSimpleBannerComponent"
+				extends="SimpleResponsiveBannerComponent" autocreate="true">
+				<description>Concrete implementation of abstract responsive banner component (經銷商專區 ,我們的保證 Component)</description>
+				<attributes>
+					<attribute qualifier="subTitleTextHidden" type="java.lang.Boolean">
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+						<persistence type="property" />
+						<modifiers optional="false" /> 
+					</attribute>
+					<attribute qualifier="subTitleText" type="localized:java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>subTitleText.</description>
+					</attribute>
+				</attributes> 
+			</itemtype>
+			<!-- 經銷商專區  Container-->  
+        	<itemtype code="BrandContainerComponent" generate="true"
+				jaloclass="com.ncip.core.jalo.components.BrandContainerComponent"
+				extends="SimpleCMSComponent" autocreate="true">
+				<description>It represents Selected Brand Container component. (經銷商專區 ,我們的保證 Container)</description>
+				<attributes>
+					<attribute qualifier="mainTitleTextHidden" type="java.lang.Boolean">
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+						<persistence type="property" />
+						<modifiers optional="false" /> 
+					</attribute>
+					<attribute qualifier="maintTitleText" type="localized:java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>maintTitleText.</description>
+					</attribute>
+					<attribute qualifier="simpleBannerComponent" type="HomeSimpleBannerComponentList">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>It represents BrandCarousel collection component.</description>
+					</attribute>
+					<attribute qualifier="height" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>It represents BrandCarousel collection component.</description>
+					</attribute>
+					<attribute qualifier="width" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>It represents BrandCarousel collection component.</description>
+					</attribute>
+					<attribute qualifier="size" type="java.lang.Integer">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="false" />
+						<description>Have size component Each Row.</description>
+						<defaultvalue>4</defaultvalue>
+					</attribute>
+				</attributes>
+			</itemtype>   
         </typegroup>
         
         <typegroup name="newBaseStore"> 
@@ -166,5 +279,17 @@
 			</itemtype>
 		</typegroup> 
 		
-    </itemtypes>
+		<typegroup name="newEmailMessage">
+			<itemtype code="EmailMessage" autocreate="false" generate="false" >
+				<attributes>
+					<attribute qualifier="emailPageTemplateProcess" type="java.lang.String">
+						<description>emailPageTemplateProcess</description>
+						<modifiers read="true" write="true" optional="true" unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>  
+	</itemtypes>  
+	
 </items>

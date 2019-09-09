@@ -1,1 +1,2 @@
-﻿${ctx.messages.getMessage('emailSubject', ${ctx.orderCode})}
+## messageSource=classpath:/ncipcore/messages/email-orderConfirmation_$lang.properties
+${ctx.messages.getMessage('emailSubject', ${ctx.displayName},${ctx.orderCode})}

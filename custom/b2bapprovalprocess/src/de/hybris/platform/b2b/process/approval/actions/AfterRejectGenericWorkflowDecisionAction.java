@@ -46,6 +46,12 @@ public class AfterRejectGenericWorkflowDecisionAction extends AbstractWorkflowAu
 					PredicateUtils.instanceofPredicate(B2BApprovalProcess.class));
 			Assert.notNull(process, String.format("Process attachment missing for action %s", action.getCode()));
 			order = ((B2BApprovalProcessModel) this.getModelService().toModelLayer(process)).getOrder();
+
+			LOG.debug(
+					"##### [custom b2borderapproval.xml] AfterRejectGenericWorkflowDecisionAction executeAction Start ##### orderProcessCode:"
+					+ process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
+
+
 			if (LOG.isDebugEnabled())
 			{
 				LOG.debug(String.format("Executing action %s for process %s on order %s assigned to %s", action.getCode(),

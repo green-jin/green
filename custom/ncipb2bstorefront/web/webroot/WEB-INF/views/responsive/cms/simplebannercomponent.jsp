@@ -4,7 +4,8 @@
 
 <c:url value="${urlLink}" var="simpleBannerUrl" />
 
-<div class="banner__component simple-banner">
+<%--<div class="banner__component simple-banner">--%>
+<div  style="margin-left: 16px">
 	<c:choose>
 		<c:when test="${empty simpleBannerUrl || simpleBannerUrl eq '#'}">
 			<img title="${fn:escapeXml(media.altText)}" alt="${fn:escapeXml(media.altText)}"
@@ -16,3 +17,4 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+

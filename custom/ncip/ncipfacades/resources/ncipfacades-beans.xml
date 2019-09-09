@@ -11,12 +11,56 @@
 -->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
+    <!-- <bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+        <property name="productData" type="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="vkorg" type="java.lang.String"/>
+		<property name="listpr" type="java.math.BigDecimal"/>
+		<property name="plifz" type="java.math.BigDecimal"/>
+		<property name="my_type" type="java.lang.String"/>
+	</bean> -->
+	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="genders" type="java.util.List&lt;com.ncip.facades.product.data.GenderData>"/>
+		<property name="genders" type="java.util.List&lt;com.ncip.facades.product.data.GenderData>" />
+		<property name="vkorg" type="java.lang.String"/>
+		<property name="listpr" type="java.math.BigDecimal"/>
+		<property name="plifz" type="java.math.BigDecimal"/>
+		<property name="my_type" type="java.lang.String"/>
 	</bean>
+	
 
 	<bean class="com.ncip.facades.product.data.GenderData">
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<!--ProductData add video-->
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="videos"
+			type="java.util.Collection&lt;com.ncip.facades.product.data.VideoData>"/>
+		<property name="files"
+			type="java.util.Collection&lt;com.ncip.facades.product.data.FileData>"/>
+	</bean>
+
+	<bean class="com.ncip.facades.product.data.VideoData">
+		<property name="imageType" type="de.hybris.platform.commercefacades.product.data.ImageDataType"/>
+		<property name="format" type="String"/>
+		<property name="url" type="String"/>
+		<property name="altText" type="String"/>
+		<property name="galleryIndex" type="Integer"/>
+	</bean>
+
+	<bean class="com.ncip.facades.product.data.FileData">
+		<property name="imageType" type="de.hybris.platform.commercefacades.product.data.ImageDataType"/>
+		<property name="format" type="String"/>
+		<property name="url" type="String"/>
+		<property name="altText" type="String">
+		<description>file name</description>
+		</property>
+		<property name="fileItems" type="String">
+			<description>I:Installation, S:Specifications, D:DWG</description>
+		</property>
+		<property name="galleryIndex" type="Integer"/>
+	</bean>
+
+
 </beans>

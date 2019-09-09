@@ -15,6 +15,7 @@ import de.hybris.platform.core.enums.OrderStatus;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.workflow.model.WorkflowActionModel;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.PredicateUtils;
 import org.apache.log4j.Logger;
@@ -39,6 +40,11 @@ public class AfterRejectOrderWorkflowDecisionAction extends B2BAbstractWorkflowA
 		{
 			final B2BApprovalProcessModel process = (B2BApprovalProcessModel) CollectionUtils.find(action.getAttachmentItems(),
 					PredicateUtils.instanceofPredicate(B2BApprovalProcessModel.class));
+
+			LOG.debug(
+					"##### [custom b2borderapproval.xml] AfterRejectOrderWorkflowDecisionAction performAction Start ##### orderProcessCode:"
+							+ process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
+
 			Assert.notNull(process, String.format("Process attachment missing for action %s", action.getCode()));
 			order = process.getOrder();
 			order.setStatus(OrderStatus.REJECTED);

@@ -30,8 +30,10 @@ public class CheckCreditLimitResults extends AbstractSimpleB2BApproveOrderDecisi
 		OrderModel order = null;
 		try
 		{
-			order = process.getOrder();
+			LOG.debug("##### [custom b2borderapproval.xml] CheckCreditLimitResults executeAction Start ##### orderProcessCode:"
+					+ process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
 
+			order = process.getOrder();
 
 			if (OrderStatus.REJECTED.equals(order.getStatus()))
 			{

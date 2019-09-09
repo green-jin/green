@@ -1,0 +1,2 @@
+## messageSource=classpath:/ncipcore/messages/email-orderApprovalRejectionSubject_$lang.properties
+${ctx.messages.getMessage('emailSubject', ${ctx.displayName},${ctx.order.code})}
