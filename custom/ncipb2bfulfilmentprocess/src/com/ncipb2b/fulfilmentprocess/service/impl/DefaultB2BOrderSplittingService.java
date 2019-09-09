@@ -102,8 +102,7 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
         strategy = (SplittingStrategy) var6.next();
         for (OrderEntryGroup orderEntryGroup : orderEntryGroup1
         ) {
-          LOG.info(orderEntryGroup.getParameter(Ncipb2bFulfilmentProcessConstants.WAREHOUSE_LIST)
-              .toString());
+          LOG.info(orderEntryGroup.getParameter(Ncipb2bFulfilmentProcessConstants.WAREHOUSE_LIST));
         }
         if (LOG.isDebugEnabled()) {
           LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
