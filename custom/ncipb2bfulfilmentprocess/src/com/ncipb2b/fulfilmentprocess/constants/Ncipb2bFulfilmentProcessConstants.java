@@ -18,6 +18,8 @@ public final class Ncipb2bFulfilmentProcessConstants extends GeneratedNcipb2bFul
 	public static final String CONSIGNMENT_SUBPROCESS_NAME = "consignment-b2bprocess";
 	public static final String WAIT_FOR_WAREHOUSE = "WaitForWarehouse";
 	public static final String CONSIGNMENT_PICKUP = "ConsignmentPickup";
+	public static final String WAIT_FOR_SHIPPING = "WaitForShipping";
+	public static final String WAREHOUSE_LIST = "WAREHOUSE_LIST";
 	public static final String CONSIGNMENT_COUNTER = "CONSIGNMENT_COUNTER";
 	public static final String PARENT_PROCESS = "PARENT_PROCESS";
 	public static final String CUSTOMER = "CUSTOMER";

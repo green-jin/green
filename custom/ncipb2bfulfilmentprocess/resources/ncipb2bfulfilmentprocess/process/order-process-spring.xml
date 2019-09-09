@@ -74,7 +74,7 @@
 	<bean id="b2bOrderManualCheckedAction" class="com.ncipb2b.fulfilmentprocess.actions.order.OrderManualCheckedAction"  parent="abstractB2BOrderAction"/>
 
 	<bean id="splitB2BOrderAction" class="com.ncipb2b.fulfilmentprocess.actions.order.SplitOrderAction"  parent="abstractAction">
-		<property name="orderSplittingService" ref="b2bOrderSplittingService"/>
+		<property name="b2BOrderSplittingService" ref="b2BOrderSplittingService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 

@@ -10,14 +10,13 @@
  */
 package com.ncipb2b.fulfilmentprocess.actions.order;
 
-import com.ncipb2b.fulfilmentprocess.CheckB2BOrderService;
+import com.ncipb2b.fulfilmentprocess.service.CheckB2BOrderService;
 import de.hybris.platform.core.enums.OrderStatus;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.orderprocessing.model.OrderProcessModel;
 import de.hybris.platform.processengine.action.AbstractSimpleDecisionAction;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 
 
 /**
