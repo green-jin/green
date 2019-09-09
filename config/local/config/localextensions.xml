@@ -78,5 +78,6 @@
 		<extension name='assistedservicefacades' />
 		<extension name='assistedservicepromotionaddon' />
 
+
 	</extensions>
 </hybrisconfig>

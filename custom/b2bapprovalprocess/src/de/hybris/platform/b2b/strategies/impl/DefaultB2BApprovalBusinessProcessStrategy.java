@@ -22,10 +22,8 @@ import de.hybris.platform.processengine.BusinessProcessService;
 import de.hybris.platform.processengine.constants.ProcessengineConstants;
 import de.hybris.platform.servicelayer.keygenerator.KeyGenerator;
 import de.hybris.platform.servicelayer.model.ModelService;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
@@ -49,13 +47,13 @@ public class DefaultB2BApprovalBusinessProcessStrategy implements BusinessProces
 		final B2BCustomerModel orderUser = (B2BCustomerModel) order.getUser();
 		final B2BUnitModel parentUnit = getB2bUnitService().getParent(orderUser);
 
-		//jones  modify approvalProcessCode
+		//modify approvalProcessCode
 		final String approvalProcessCode = "approval";
 
 		//final String approvalProcessCode = (StringUtils.isNotBlank(parentUnit.getApprovalProcessCode())
 		//		? parentUnit.getApprovalProcessCode() : getProcessCode());
 
-		LOG.info(
+    LOG.debug(
 				"##### [custom b2borderapproval.xml] DefaultB2BApprovalBusinessProcessStrategy ############# BusinessProcess is going to be created using the following "
 						+ "keyGenerator "
 					+ ReflectionToStringBuilder.toString(getProcessCodeGenerator()));

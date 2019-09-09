@@ -10,22 +10,17 @@
 
 	<!-- https://help.sap.com/viewer/4c33bf189ab9409e84e589295c36d96e/1811/en-US/8b63439d86691014bf55fecafc88845b.html -->
 
-	<action id="approvalProcessStartAction"
-		bean="approvalProcessStartAction">
+	<action id="approvalProcessStartAction" bean="approvalProcessStartAction">
 		<transition name="OK" to="checkCreditCardOrderAction" />
 		<transition name="NOK" to="error" />
 	</action>
 
-	<action id="checkCreditCardOrderAction"
-		bean="checkCreditCardOrderAction">
-		<transition name="NOK"
-			to="checkOrderEntryCostCentersActive" />
-		<transition name="OK"
-			to="creditCardStartFulfilmentProcessAction" />
+	<action id="checkCreditCardOrderAction" bean="checkCreditCardOrderAction">
+		<transition name="NOK" to="checkOrderEntryCostCentersActive" />
+		<transition name="OK"  to="creditCardStartFulfilmentProcessAction" />
 	</action>
 
-	<action id="checkOrderEntryCostCentersActive"
-		bean="checkOrderEntryCostCentersActive">
+	<action id="checkOrderEntryCostCentersActive" bean="checkOrderEntryCostCentersActive">
 		<transition name="NOK" to="error" />
 		<transition name="OK" to="checkForApproval" />
 	</action>
@@ -49,24 +44,20 @@
 		<transition name="OK" to="startWorkflow" />
 	</action>
 
-	<action id="auditStartOfAdminApproval"
-		bean="auditStartOfApproval">
+	<action id="auditStartOfAdminApproval" bean="auditStartOfApproval">
 		<transition name="OK" to="startWorkflowForAdmin" />
 	</action>
 
 	<action id="startWorkflowForAdmin" bean="startWorkflowForAdmin">
-		<transition name="OK"
-			to="sendOrderPendingApprovalNotification" />
+		<transition name="OK" to="sendOrderPendingApprovalNotification" />
 		<transition name="NOK" to="error" />
 	</action>
 
 	<action id="startWorkflow" bean="startWorkflow">
-		<transition name="OK"
-			to="sendOrderPendingApprovalNotification" />
+		<transition name="OK" to="sendOrderPendingApprovalNotification" />
 	</action>
 
-	<action id="sendOrderPendingApprovalNotification"
-		bean="sendOrderPendingApprovalNotification">
+	<action id="sendOrderPendingApprovalNotification" bean="sendOrderPendingApprovalNotification">
 		<transition name="OK" to="waitProcess" />
 	</action>
 
@@ -85,13 +76,11 @@
 	<!--add send mail order.setStatus(OrderStatus.PENDING_APPROVAL_FROM_MERCHANT) -->
 	<action id="performMerchantCheck" bean="performMerchantCheck">
 		<transition name="OK" to="informOfOrderApproval" />
-		<transition name="NOK"
-			to="auditSubmittedToMerchantForApproval" />
+		<transition name="NOK" to="auditSubmittedToMerchantForApproval" />
 		<transition name="ERROR" to="error" />
 	</action>
 
-	<action id="auditSubmittedToMerchantForApproval"
-		bean="auditSubmittedToMerchantForApproval">
+	<action id="auditSubmittedToMerchantForApproval" bean="auditSubmittedToMerchantForApproval">
 		<transition name="OK" to="waitProcessCreditLimit" />
 	</action>
 
@@ -100,30 +89,27 @@
 	<wait id="waitProcessCreditLimit" then="checkCreditLimitResults">
 		<event>APPROVAL_WORKFLOW_COMPLETE_EVENT</event>
 	</wait>
-	
+
 	<!--add send mail order.setStatus(OrderStatus.REJECTED_BY_MERCHANT) -->
-	<action id="checkCreditLimitResults"
-		bean="checkCreditLimitResults">
+	<action id="checkCreditLimitResults" bean="checkCreditLimitResults">
 		<transition name="OK" to="informOfOrderApproval" />
 		<transition name="NOK" to="informOfOrderRejection" />
 	</action>
 
-	<action id="informOfOrderRejection"
-		bean="sendOrderApprovalRejectionNotification">
+	<action id="informOfOrderRejection" bean="sendOrderApprovalRejectionNotification">
 		<transition name="OK" to="approvalProcessCompleteAction" />
 	</action>
 
 	<!-- de.hybris.platform.b2bacceleratoraddon.actions.B2BAcceleratorInformOfOrderApproval 
 		(bean eq informOfOrderApproval) -->
-	<action id="informOfOrderApproval" bean="sendOrderPendingApprovalNotification">
-	<!-- 	bean="informOfOrderApproval" -->
-		<transition name="OK"
-			to="accountStartFulfilmentProcessAction" />
+	<action id="informOfOrderApproval"  bean="informOfOrderApproval">
+		<!-- bean="sendOrderPendingApprovalNotification" 
+		     bean="informOfOrderApproval" -->
+		<transition name="OK" to="accountStartFulfilmentProcessAction" />
 	</action>
 
 	<!-- create process order-process.xml -->
-	<action id="accountStartFulfilmentProcessAction"
-		bean="startFulfilmentProcessAction">
+	<action id="accountStartFulfilmentProcessAction" bean="startFulfilmentProcessAction">
 		<transition name="OK" to="setBookingLineEntries" />
 	</action>
 
@@ -136,8 +122,7 @@
 		<transition name="OK" to="approvalProcessCompleteAction" />
 		<transition name="NOK" to="error" />
 	</action>
-	<action id="approvalProcessCompleteAction"
-		bean="approvalProcessCompleteAction">
+	<action id="approvalProcessCompleteAction" bean="approvalProcessCompleteAction">
 		<transition name="OK" to="success" />
 		<transition name="NOK" to="error" />
 	</action>

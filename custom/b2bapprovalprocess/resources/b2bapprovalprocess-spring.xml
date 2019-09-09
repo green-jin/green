@@ -303,7 +303,7 @@
 	<bean id="informOfOrderApproval"
 	      class="de.hybris.platform.b2b.process.approval.actions.InformOfOrderApproval"
 	      parent="abstractProceduralB2BOrderApproveAction">
-		<property name="fromAddress" value="joneslian691007@gmail.com"/>
+		<property name="fromAddress" value="joneslian@systex.com"/>
 		<property name="b2bEmailService" ref="b2bEmailService"/>
 	</bean>
 
@@ -318,7 +318,7 @@
 	<bean id="informOfOrderRejection"
 	      class="de.hybris.platform.b2b.process.approval.actions.InformOfOrderRejection"
 	      parent="abstractProceduralB2BOrderApproveAction">
-		<property name="fromAddress" value="joneslian691007@gmail.com"/>
+		<property name="fromAddress" value="joneslian@systex.com"/>
 		<property name="b2bEmailService" ref="b2bEmailService"/>
 
 	</bean>

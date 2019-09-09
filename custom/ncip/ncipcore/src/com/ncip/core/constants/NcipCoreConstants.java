@@ -31,5 +31,10 @@ public final class NcipCoreConstants extends GeneratedNcipCoreConstants
 	public static final String QUOTE_TO_EXPIRE_SOON_EMAIL_PROCESS = "quote-to-expire-soon-email-process";
 	public static final String QUOTE_EXPIRED_EMAIL_PROCESS = "quote-expired-email-process";
 	public static final String QUOTE_POST_CANCELLATION_PROCESS = "quote-post-cancellation-process";
-
+	
+	//send emails for cc email address
+	public static final String ORDER_APPROVAL_REJECTION_EMAIL_PROCESS = "orderApprovalRejectionEmailProcess";
+	public static final String ORDER_PENDING_APPROVAL_EMAIL_PROCESS = "orderPendingApprovalEmailProcess";
+	public static final String SEND_DELIVERY_EMAIL_PROCESS = "sendDeliveryEmailProcess";
+	
 }

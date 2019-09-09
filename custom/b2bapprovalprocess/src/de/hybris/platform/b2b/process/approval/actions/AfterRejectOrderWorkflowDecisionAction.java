@@ -41,7 +41,7 @@ public class AfterRejectOrderWorkflowDecisionAction extends B2BAbstractWorkflowA
 			final B2BApprovalProcessModel process = (B2BApprovalProcessModel) CollectionUtils.find(action.getAttachmentItems(),
 					PredicateUtils.instanceofPredicate(B2BApprovalProcessModel.class));
 
-			LOG.info(
+			LOG.debug(
 					"##### [custom b2borderapproval.xml] AfterRejectOrderWorkflowDecisionAction performAction Start ##### orderProcessCode:"
 							+ process.getOrder() + ",orderStatus:" + process.getOrder().getStatus());
 
