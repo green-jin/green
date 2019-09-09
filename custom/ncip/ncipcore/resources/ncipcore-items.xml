@@ -39,9 +39,9 @@
            
 		  <itemtype generate="true" code="Product" autocreate="false">
 			<attributes>
-
 				<attribute qualifier="vkorg" type="java.lang.String">
 					<description>銷售組織</description>
+
 					<modifiers read="true" write="true" search="true"
 						optional="true" />
 					<persistence type="property" />
@@ -67,23 +67,9 @@
 						optional="true" />
 					<persistence type="property" />
 				</attribute>
-				
-				
 			</attributes>
 		  </itemtype>
-		
-	      <itemtype generate="true" code="PriceRow" autocreate="false">
-		      <attributes>
 
-		        <attribute qualifier="vkorg" type="java.lang.String">
-		            <description>銷售組織</description>
-					<modifiers read="true" write="true" search="true"
-						optional="true" />
-					<persistence type="property" />
-				</attribute>
-		       
-			</attributes>
-		  </itemtype>
 
 			<itemtype generate="true" code="Media" autocreate="false">
 				<attributes>
@@ -94,6 +80,12 @@
 						<persistence type="property" />
 					</attribute>
 				</attributes>
+			</itemtype>
+
+			<itemtype code="NcipNavigationComponent" autocreate="true"
+				generate="true" extends="NavigationComponent"
+				jaloclass="com.ncip.core.jalo.components.NcipNavigationComponent">
+				<description>Ncip Navigation Component</description>
 			</itemtype>
 
 
@@ -224,5 +216,8 @@
 			</itemtype>
 		</typegroup>
 
-    </itemtypes>
+
+
+
+		</itemtypes>
 </items>

@@ -42,28 +42,28 @@ UPDATE Category; code[unique = true]; $catalogVersion; name[lang = $lang]       
                ; 830                ;                ; Cables For Computers And Peripherals ;              ;
 
 ############# NCIP Category Start ##################
-               ; 1000               ;                ; Bathroom                             ;              ;
-               ; 1100               ;                ; Kitchen                              ;              ;
-               ; 1200               ;                ; Style                                ;              ;
+#               ; 1000               ;                ; Bathroom                             ;              ;
+#               ; 1100               ;                ; Kitchen                              ;              ;
+#               ; 1200               ;                ; Style                                ;              ;
 
 #Bathroom
-               ; 1001               ;                ; Washbasin Faucet                     ;              ;
-               ; 1002               ;                ; Roman bathtub Faucet                 ;              ;
-               ; 1003               ;                ; Wall Hanging Faucet                  ;              ;
-               ; 1004               ;                ; Insert Faucet                        ;              ;
-               ; 1005               ;                ; Bathroom Accessories                 ;              ;
-               ; 1006               ;                ; Bathtub                              ;              ;
-               ; 1007               ;                ; Smart Bathroom                       ;              ;
-               ; 1008               ;                ; Ceramic Products                     ;              ;
-               ; 1009               ;                ; Mirror                               ;              ;
-#Kitchen
-               ; 1101               ;                ; Single Faucet                        ;              ;
-               ; 1102               ;                ; Pull-up Faucet                       ;              ;
-               ; 1103               ;                ; Pull-down Faucet                     ;              ;
-#Style
-               ; 1201               ;                ; Chic                                 ;              ;
-               ; 1202               ;                ; Mimimal                              ;              ;
-               ; 1203               ;                ; Contempo                             ;              ;
-               ; 1204               ;                ; Neo-Classic                          ;              ;
-               ; 1205               ;                ; Classic                              ;              ;
+#               ; 1001               ;                ; Washbasin Faucet                     ;              ;
+#               ; 1002               ;                ; Roman bathtub Faucet                 ;              ;
+#               ; 1003               ;                ; Wall Hanging Faucet                  ;              ;
+#               ; 1004               ;                ; Insert Faucet                        ;              ;
+#               ; 1005               ;                ; Bathroom Accessories                 ;              ;
+#               ; 1006               ;                ; Bathtub                              ;              ;
+#               ; 1007               ;                ; Smart Bathroom                       ;              ;
+#               ; 1008               ;                ; Ceramic Products                     ;              ;
+#               ; 1009               ;                ; Mirror                               ;              ;
+##Kitchen
+#               ; 1101               ;                ; Single Faucet                        ;              ;
+#               ; 1102               ;                ; Pull-up Faucet                       ;              ;
+#               ; 1103               ;                ; Pull-down Faucet                     ;              ;
+##Style
+#               ; 1201               ;                ; Chic                                 ;              ;
+#               ; 1202               ;                ; Mimimal                              ;              ;
+#               ; 1203               ;                ; Contempo                             ;              ;
+#               ; 1204               ;                ; Neo-Classic                          ;              ;
+#               ; 1205               ;                ; Classic                              ;              ;
 ############# NCIP Category End ##################

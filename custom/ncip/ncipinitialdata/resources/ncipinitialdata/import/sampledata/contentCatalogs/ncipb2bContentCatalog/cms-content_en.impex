@@ -28,7 +28,8 @@ $lang = en
 
 # Site Logo Component
 UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]
-                            ;                          ; SiteLogoComponent ; /images/theme/logo_hybris_b2b_responsive.svg
+#                            ;                          ; SiteLogoComponent ; /images/theme/logo_hybris_b2b_responsive.svg
+                            ;                          ; SiteLogoComponent ; /images/theme/logo.png
 
 # CMS Link Components
 UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; linkName[lang = $lang]
@@ -285,58 +286,168 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
 
 
 ############ NCIP Start
-
-
-
-UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]          ; linkName[lang = en]
-                       ;                          ; BathroomCategoryLink        ; "Bathroom"
-                       ;                          ; KitchenCategoryLink         ; "Kitchen"
-                       ;                          ; StyleCategoryLink           ; "Style"
+UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName[lang = en]
+                       ;                          ; D0CategoryLink    ; "浴室"
+                       ;                          ; E0CategoryLink    ; "廚房"
+                       ;                          ; G0CategoryLink    ; "風格"
+                       ;                          ; C0CategoryLink    ; "套間"
+                       ;                          ; F0CategoryLink    ; "訂製品"
+                       ;                          ; H0CategoryLink    ; "零件"
 #Bathroom
-                       ;                          ; WashbasinFaucetCategoryLink ; "WashbasinFaucet"
-                       ;                          ; RomanFaucetCategoryLink     ; "RomanFaucet"
-                       ;                          ; HangingFaucetCategoryLink   ; "HangingFaucet"
-                       ;                          ; InsertFaucetCategoryLink    ; "InsertFaucet"
-                       ;                          ; BathAccessoriesCategoryLink ; "BathAccessories"
-                       ;                          ; BathtubCategoryLink         ; "Bathtub"
-                       ;                          ; SmartBathCategoryLink       ; "SmartBath"
-                       ;                          ; CeramicCategoryLink         ; "Ceramic"
-                       ;                          ; MirrorCategoryLink          ; "Mirror"
+                       ;                          ; D001CategoryLink  ; "臉盆龍頭類"
+                       ;                          ; D002CategoryLink  ; "羅馬浴缸龍頭類"
+                       ;                          ; D003CategoryLink  ; "掛牆淋浴/浴缸類龍頭"
+                       ;                          ; D004CategoryLink  ; "入牆淋浴/浴缸類龍頭"
+                       ;                          ; D005CategoryLink  ; "浴室配件"
+                       ;                          ; D006CategoryLink  ; "成品浴櫃"
+                       ;                          ; D007CategoryLink  ; "浴缸"
+                       ;                          ; D008CategoryLink  ; "智能浴室產品"
+                       ;                          ; D009CategoryLink  ; "陶瓷製品"
+                       ;                          ; D010CategoryLink  ; "鏡子/鏡櫃"
+
 #Kitchen
-                       ;                          ; SingleFaucetCategoryLink    ; "SingleFaucet"
-                       ;                          ; PullUpFaucetCategoryLink    ; "PullUpFaucet"
-                       ;                          ; PullDownFaucetCategoryLink  ; "PullDownFaucet"
+                       ;                          ; E001CategoryLink  ; "單把式廚房龍頭"
+                       ;                          ; E002CategoryLink  ; "上拉式廚房龍頭"
+                       ;                          ; E003CategoryLink  ; "下拉式廚房龍頭"
 #Style
-                       ;                          ; ChicCategoryLink            ; "Chic"
-                       ;                          ; MimimalCategoryLink         ; "Mimimal"
-                       ;                          ; ContempoCategoryLink        ; "Contempo"
-                       ;                          ; NeoClassicCategoryLink      ; "Neo Classic"
-                       ;                          ; ClassicCategoryLink         ; "Classic"
+                       ;                          ; G001CategoryLink  ; "Chic 時尚"
+                       ;                          ; G002CategoryLink  ; "Mimimal 簡約"
+                       ;                          ; G003CategoryLink  ; "Contempo 當代"
+                       ;                          ; G004CategoryLink  ; "Neo-Classic 新古典"
+                       ;                          ; G005CategoryLink  ; "Classic 古典"
+#Suite
+                       ;                          ; C001CategoryLink  ; "S"
+                       ;                          ; C002CategoryLink  ; "M"
+                       ;                          ; C003CategoryLink  ; "L"
+#Order
+                       ;                          ; F001CategoryLink  ; "訂製浴櫃"
+                       ;                          ; F002CategoryLink  ; "淋浴拉門"
+#Parts
+                       ;                          ; H001CategoryLink  ; "排水組"
+                       ;                          ; H002CategoryLink  ; "手握花灑"
+                       ;                          ; H003CategoryLink  ; "頂噴"
+                       ;                          ; H004CategoryLink  ; "花灑插座"
+                       ;                          ; H005CategoryLink  ; "出水接頭/入牆"
+                       ;                          ; H006CategoryLink  ; "花灑壁管/入牆"
+                       ;                          ; H007CategoryLink  ; "浴缸出水口"
+                       ;                          ; H008CategoryLink  ; "入牆龍頭面板閥體組"
+                       ;                          ; H009CategoryLink  ; "軟管"
+                       ;                          ; H010CategoryLink  ; "升降杆"
+                       ;                          ; H011CategoryLink  ; "噴頭"
+                       ;                          ; H012CategoryLink  ; "手握花灑組"
+                       ;                          ; H013CategoryLink  ; "雙花灑組"
+                       ;                          ; H014CategoryLink  ; "水龍頭配件"
 
-
-UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]             ; title[lang = en]
-                        ;                          ; BathroomNavNode                ; "Bathroom"
-                        ;                          ; KitchenNavNode                 ; "Kitchen"
-                        ;                          ; StyleNavNode                   ; "Style"
-
+UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title[lang = en]
+                        ;                          ; D0NavNode           ; "浴室"
+                        ;                          ; E0NavNode           ; "廚房"
+                        ;                          ; G0NavNode           ; "風格"
 #Bathroom
-                        ;                          ; WashbasinFaucetCategoryNavNode ; "WashbasinFaucet"
-                        ;                          ; RomanFaucetCategoryNavNode     ; "RomanFaucet"
-                        ;                          ; HangingFaucetCategoryNavNode   ; "HangingFaucet"
-                        ;                          ; InsertFaucetCategoryNavNode    ; "InsertFaucet"
-                        ;                          ; BathAccessoriesCategoryNavNode ; "BathAccessories"
-                        ;                          ; BathtubCategoryNavNode         ; "Bathtub"
-                        ;                          ; SmartBathCategoryNavNode       ; "SmartBath"
-                        ;                          ; CeramicCategoryNavNode         ; "Ceramic"
-                        ;                          ; MirrorCategoryNavNode          ; "Mirror"
+                        ;                          ; D001CategoryNavNode ; "臉盆龍頭類"
+                        ;                          ; D002CategoryNavNode ; "羅馬浴缸龍頭類"
+                        ;                          ; D003CategoryNavNode ; "掛牆淋浴/浴缸類龍頭"
+                        ;                          ; D004CategoryNavNode ; "入牆淋浴/浴缸類龍頭"
+                        ;                          ; D005CategoryNavNode ; "浴室配件"
+                        ;                          ; D006CategoryNavNode ; "成品浴櫃"
+                        ;                          ; D007CategoryNavNode ; "浴缸"
+                        ;                          ; D008CategoryNavNode ; "智能浴室產品"
+                        ;                          ; D009CategoryNavNode ; "陶瓷製品"
+                        ;                          ; D010CategoryNavNode ; "鏡子/鏡櫃"
 #Kitchen
-                        ;                          ; SingleFaucetCategoryNavNode    ; "SingleFaucet"
-                        ;                          ; PullUpFaucetCategoryNavNode    ; "PullUpFaucet"
-                        ;                          ; PullDownFaucetCategoryNavNode  ; "PullDownFaucet"
+                        ;                          ; E001CategoryNavNode ; "單把式廚房龍頭"
+                        ;                          ; E002CategoryNavNode ; "上拉式廚房龍頭"
+                        ;                          ; E003CategoryNavNode ; "下拉式廚房龍頭"
 #Style
-                        ;                          ; ChicCategoryNavNode            ; "Chic"
-                        ;                          ; MimimalCategoryNavNode         ; "Mimimal"
-                        ;                          ; ContempoCategoryNavNode        ; "Contempo"
-                        ;                          ; NeoClassicCategoryNavNode      ; "Neo Classic"
-                        ;                          ; ClassicCategoryNavNode         ; "Classic"
+                        ;                          ; G001CategoryNavNode ; "Chic 時尚"
+                        ;                          ; G002CategoryNavNode ; "Mimimal 簡約"
+                        ;                          ; G003CategoryNavNode ; "Contempo 當代"
+                        ;                          ; G004CategoryNavNode ; "Neo-Classic 新古典"
+                        ;                          ; G005CategoryNavNode ; "Classic 古典"
+#Suite
+                        ;                          ; C001CategoryNavNode ; "S"
+                        ;                          ; C002CategoryNavNode ; "M"
+                        ;                          ; C003CategoryNavNode ; "L"
+#Order
+                        ;                          ; F001CategoryNavNode ; "訂製浴櫃"
+                        ;                          ; F002CategoryNavNode ; "淋浴拉門"
+#Parts
+                        ;                          ; H001CategoryNavNode ; "排水組"
+                        ;                          ; H002CategoryNavNode ; "手握花灑"
+                        ;                          ; H003CategoryNavNode ; "頂噴"
+                        ;                          ; H004CategoryNavNode ; "花灑插座"
+                        ;                          ; H005CategoryNavNode ; "出水接頭/入牆"
+                        ;                          ; H006CategoryNavNode ; "花灑壁管/入牆"
+                        ;                          ; H007CategoryNavNode ; "浴缸出水口"
+                        ;                          ; H008CategoryNavNode ; "入牆龍頭面板閥體組"
+                        ;                          ; H009CategoryNavNode ; "軟管"
+                        ;                          ; H010CategoryNavNode ; "升降杆"
+                        ;                          ; H011CategoryNavNode ; "噴頭"
+                        ;                          ; H012CategoryNavNode ; "手握花灑組"
+                        ;                          ; H013CategoryNavNode ; "雙花灑組"
+                        ;                          ; H014CategoryNavNode ; "水龍頭配件"
+
+#UPDATE NcipLogoComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]
+#                            ;                          ; NcipLogoComponentA ; /images/theme/logo.png
+############ NCIP End ######################
+
+
+
+
+
+
+############ NCIP Start
+
+
+#
+#UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]          ; linkName[lang = en]
+#                       ;                          ; BathroomCategoryLink        ; "Bathroom"
+#                       ;                          ; KitchenCategoryLink         ; "Kitchen"
+#                       ;                          ; StyleCategoryLink           ; "Style"
+##Bathroom
+#                       ;                          ; WashbasinFaucetCategoryLink ; "WashbasinFaucet"
+#                       ;                          ; RomanFaucetCategoryLink     ; "RomanFaucet"
+#                       ;                          ; HangingFaucetCategoryLink   ; "HangingFaucet"
+#                       ;                          ; InsertFaucetCategoryLink    ; "InsertFaucet"
+#                       ;                          ; BathAccessoriesCategoryLink ; "BathAccessories"
+#                       ;                          ; BathtubCategoryLink         ; "Bathtub"
+#                       ;                          ; SmartBathCategoryLink       ; "SmartBath"
+#                       ;                          ; CeramicCategoryLink         ; "Ceramic"
+#                       ;                          ; MirrorCategoryLink          ; "Mirror"
+##Kitchen
+#                       ;                          ; SingleFaucetCategoryLink    ; "SingleFaucet"
+#                       ;                          ; PullUpFaucetCategoryLink    ; "PullUpFaucet"
+#                       ;                          ; PullDownFaucetCategoryLink  ; "PullDownFaucet"
+##Style
+#                       ;                          ; ChicCategoryLink            ; "Chic"
+#                       ;                          ; MimimalCategoryLink         ; "Mimimal"
+#                       ;                          ; ContempoCategoryLink        ; "Contempo"
+#                       ;                          ; NeoClassicCategoryLink      ; "Neo Classic"
+#                       ;                          ; ClassicCategoryLink         ; "Classic"
+#
+#
+#UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]             ; title[lang = en]
+#                        ;                          ; BathroomNavNode                ; "Bathroom"
+#                        ;                          ; KitchenNavNode                 ; "Kitchen"
+#                        ;                          ; StyleNavNode                   ; "Style"
+#
+##Bathroom
+#                        ;                          ; WashbasinFaucetCategoryNavNode ; "WashbasinFaucet"
+#                        ;                          ; RomanFaucetCategoryNavNode     ; "RomanFaucet"
+#                        ;                          ; HangingFaucetCategoryNavNode   ; "HangingFaucet"
+#                        ;                          ; InsertFaucetCategoryNavNode    ; "InsertFaucet"
+#                        ;                          ; BathAccessoriesCategoryNavNode ; "BathAccessories"
+#                        ;                          ; BathtubCategoryNavNode         ; "Bathtub"
+#                        ;                          ; SmartBathCategoryNavNode       ; "SmartBath"
+#                        ;                          ; CeramicCategoryNavNode         ; "Ceramic"
+#                        ;                          ; MirrorCategoryNavNode          ; "Mirror"
+##Kitchen
+#                        ;                          ; SingleFaucetCategoryNavNode    ; "SingleFaucet"
+#                        ;                          ; PullUpFaucetCategoryNavNode    ; "PullUpFaucet"
+#                        ;                          ; PullDownFaucetCategoryNavNode  ; "PullDownFaucet"
+##Style
+#                        ;                          ; ChicCategoryNavNode            ; "Chic"
+#                        ;                          ; MimimalCategoryNavNode         ; "Mimimal"
+#                        ;                          ; ContempoCategoryNavNode        ; "Contempo"
+#                        ;                          ; NeoClassicCategoryNavNode      ; "Neo Classic"
+#                        ;                          ; ClassicCategoryNavNode         ; "Classic"
 ############ NCIP End ######################
