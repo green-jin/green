@@ -603,4 +603,20 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+	
+	<!-- add ncipCommerceStockService -->
+    <alias alias="ncipCommerceStockService" name="defaultNcipCommerceStockService"/>
+	<bean id="defaultNcipCommerceStockService"
+			class="com.ncip.core.service.impl.DefaultNcipCommerceStockService">
+		<property name="ncipCommerceStockLevelCalculationStrategy" ref="ncipCommerceStockLevelCalculationStrategy"/>
+		<property name="stockService" ref="stockService"/>
+		<property name="warehouseSelectionStrategy" ref="warehouseSelectionStrategy"/>
+	</bean>
+	
+	<!-- add ncipCommerceStockLevelCalculationStrategy -->
+    <alias alias="ncipCommerceStockLevelCalculationStrategy" name="defaultNcipCommerceStockLevelCalculationStrategy"/>
+	<bean id="defaultNcipCommerceStockLevelCalculationStrategy"
+			class="com.ncip.core.service.impl.DefaultNcipCommerceAvailabilityCalculationStrategy"
+			/>
+	
 </beans>

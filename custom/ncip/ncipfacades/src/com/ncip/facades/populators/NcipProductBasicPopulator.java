@@ -30,7 +30,7 @@ public class NcipProductBasicPopulator<SOURCE extends ProductModel, TARGET exten
 		productData.setListpr(productModel.getListpr());
 		productData.setVkorg(productModel.getVkorg());
 		productData.setPlifz(productModel.getPlifz());
-		productData.setMy_type(productModel.getMy_type());
+		productData.setMa_type(productModel.getMa_type());
 		productData.setName((String) getProductAttribute(productModel, ProductModel.NAME));
 		productData.setManufacturer((String) getProductAttribute(productModel, ProductModel.MANUFACTURERNAME));
 
