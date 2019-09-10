@@ -46,6 +46,10 @@
       <value code="PREORDER"/>
 
     </enumtype>
+    <enumtype generate="true" autocreate="true" dynamic="false" code="ProductSize">
+      <value code="SMALL"/>
+      <value code="BIG"/>
+    </enumtype>
 
   </enumtypes>
 
@@ -318,6 +322,11 @@
             <description>物料類型</description>
             <modifiers read="true" write="true" search="true"
               optional="true"/>
+            <persistence type="property"/>
+          </attribute>
+          <attribute qualifier="dely_size" type="ProductSize">
+            <description>1.大型商品 2.小型商品</description>
+            <modifiers read="true" write="true" optional="true" unique="false"/>
             <persistence type="property"/>
           </attribute>
         </attributes>
