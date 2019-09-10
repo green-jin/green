@@ -314,7 +314,7 @@
               optional="true"/>
             <persistence type="property"/>
           </attribute>
-          <attribute qualifier="my_type" type="java.lang.String">
+          <attribute qualifier="ma_type" type="java.lang.String">
             <description>物料類型</description>
             <modifiers read="true" write="true" search="true"
               optional="true"/>
@@ -322,6 +322,18 @@
           </attribute>
         </attributes>
       </itemtype>
+      
+	  <itemtype generate="true" code="PriceRow" autocreate="false">
+		<attributes>
+			<attribute qualifier="vkorg" type="java.lang.String">
+				<description>銷售組織</description>
+				<modifiers read="true" write="true" search="true"
+					optional="true" />
+				<persistence type="property" />
+			</attribute>
+		</attributes>
+	  </itemtype>
+      
     </typegroup>
 
   </itemtypes>
