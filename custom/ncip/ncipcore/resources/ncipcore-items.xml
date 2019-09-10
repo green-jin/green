@@ -1,413 +1,346 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
- [y] hybris Platform
-
- Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
-
- This software is the confidential and proprietary information of SAP
- ("Confidential Information"). You shall not disclose such Confidential
- Information and shall use it only in accordance with the terms of the
- license agreement you entered into with SAP.
-<<<<<<< Updated upstream
---> <!-- Add your item definitions here -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. 
+	All rights reserved. This software is the confidential and proprietary information 
+	of SAP ("Confidential Information"). You shall not disclose such Confidential 
+	Information and shall use it only in accordance with the terms of the license 
+	agreement you entered into with SAP. <<<<<<< Updated upstream --> <!-- Add your item definitions here -->
 <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="items.xsd">
+	xsi:noNamespaceSchemaLocation="items.xsd">
 
-  <collectiontypes>
-    <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true"
-      type="list"/>
-    <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true"
-      generate="true"
-      type="set"/>
+	<collectiontypes>
+		<collectiontype code="GenderList" elementtype="Gender"
+			autocreate="true" generate="true" type="list" />
+		<collectiontype code="SwatchColorSet"
+			elementtype="SwatchColorEnum" autocreate="true" generate="true"
+			type="set" />
 
-    <collectiontype code="HomeSimpleBannerComponentList" elementtype="HomeSimpleBannerComponent"
-      autocreate="true" generate="true" type="list"/>
+		<collectiontype code="HomeSimpleBannerComponentList"
+			elementtype="HomeSimpleBannerComponent" autocreate="true"
+			generate="true" type="list" />
 
-  </collectiontypes>
+	</collectiontypes>
 
-  <enumtypes>
-    <enumtype generate="true" code="SwatchColorEnum" autocreate="true" dynamic="true">
-      <value code="BLACK"/>
-      <value code="BLUE"/>
-      <value code="BROWN"/>
-      <value code="GREEN"/>
-      <value code="GREY"/>
-      <value code="ORANGE"/>
-      <value code="PINK"/>
-      <value code="PURPLE"/>
-      <value code="RED"/>
-      <value code="SILVER"/>
-      <value code="WHITE"/>
-      <value code="YELLOW"/>
-    </enumtype>
+	<enumtypes>
+		<enumtype generate="true" code="SwatchColorEnum"
+			autocreate="true" dynamic="true">
+			<value code="BLACK" />
+			<value code="BLUE" />
+			<value code="BROWN" />
+			<value code="GREEN" />
+			<value code="GREY" />
+			<value code="ORANGE" />
+			<value code="PINK" />
+			<value code="PURPLE" />
+			<value code="RED" />
+			<value code="SILVER" />
+			<value code="WHITE" />
+			<value code="YELLOW" />
+		</enumtype>
 
-    <enumtype generate="true" autocreate="true" dynamic="false" code="ProductType">
-      <value code="CUSTOM"/>
-      <value code="GENERAL"/>
-      <value code="PREORDER"/>
+		<enumtype generate="true" autocreate="true" dynamic="false"
+			code="ProductType">
+			<value code="CUSTOM" />
+			<value code="GENERAL" />
+			<value code="PREORDER" />
 
-    </enumtype>
+		</enumtype>
 
-  </enumtypes>
+	</enumtypes>
 
-  <itemtypes>
-    <!-- Add your item definitions here -->
+	<itemtypes>
+		<!-- Add your item definitions here -->
 
-    <typegroup>
-      <itemtype code="Media" autocreate="false" generate="true" extends="AbstractMedia">
-        <attributes>
-          <attribute qualifier="fileItem" type="java.lang.String">
-            <description>相關下載_項目</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-    <typegroup>
-      <itemtype code="NcipNavigationComponent" autocreate="true"
-        generate="true" extends="NavigationComponent"
-        jaloclass="com.ncip.core.jalo.components.NcipNavigationComponent">
-        <description>Ncip Navigation Component</description>
-      </itemtype>
-    </typegroup>
-
-    <!-- TypeGroups are for structure of this file only -->
-    <typegroup name="Apparel">
-      <itemtype code="ApparelProduct" extends="Product"
-        autocreate="true" generate="true"
-        jaloclass="com.ncip.core.jalo.ApparelProduct">
-        <description>Base apparel product extension that contains additional attributes.</description>
-        <attributes>
-          <attribute qualifier="genders" type="GenderList">
-            <description>List of genders that the ApparelProduct is designed for</description>
-            <modifiers/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-
-      <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
-        autocreate="true" generate="true"
-        jaloclass="com.ncip.core.jalo.ApparelStyleVariantProduct">
-        <description>Apparel style variant type that contains additional attribute describing variant style.
-        </description>
-        <attributes>
-          <attribute qualifier="style" type="localized:java.lang.String"
-            metatype="VariantAttributeDescriptor">
-            <description>Color/Pattern of the product.</description>
-            <modifiers/>
-            <persistence type="property"/>
-          </attribute>
-
-          <attribute qualifier="swatchColors" type="SwatchColorSet">
-            <description>A normalized color mapping to a standardized front-end navigable name.
-            </description>
-            <modifiers/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-
-      </itemtype>
-
-      <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
-        autocreate="true" generate="true"
-        jaloclass="com.ncip.core.jalo.ApparelSizeVariantProduct">
-        <description>Apparel size variant type that cHUNTINGTOontains additional attribute describing variant size.
-        </description>
-        <attributes>
-          <attribute qualifier="size" type="localized:java.lang.String"
-            metatype="VariantAttributeDescriptor">
-            <description>Size of the product.</description>
-            <modifiers/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-    <typegroup name="Electronics">
-      <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
-        autocreate="true" generate="true"
-        jaloclass="com.ncip.core.jalo.ElectronicsColorVariantProduct">
-        <description>Electronics color variant type that contains additional attribute describing variant color.
-        </description>
-        <attributes>
-          <attribute qualifier="color" type="localized:java.lang.String"
-            metatype="VariantAttributeDescriptor">
-            <description>Color of the product.</description>
-            <modifiers/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-
-
-
-    <typegroup name="Component Items">
-      <itemtype code="HomeSimpleBannerComponent" generate="true"
-        jaloclass="com.ncip.core.jalo.components.HomeSimpleBannerComponent"
-        extends="SimpleResponsiveBannerComponent" autocreate="true">
-        <description>Concrete implementation of abstract responsive banner component (經銷商專區 ,我們的保證
-          Component)
-        </description>
-        <attributes>
-          <attribute qualifier="subTitleTextHidden" type="java.lang.Boolean">
-            <defaultvalue>Boolean.FALSE</defaultvalue>
-            <persistence type="property"/>
-            <modifiers optional="false"/>
-          </attribute>
-          <attribute qualifier="subTitleText" type="localized:java.lang.String">
-            <persistence type="property"/>
-            <modifiers read="true" write="true" optional="true"/>
-            <description>subTitleText.</description>
-          </attribute>
-        </attributes>
-      </itemtype>
-      <!-- 經銷商專區  Container-->
-      <itemtype code="BrandContainerComponent" generate="true"
-        jaloclass="com.ncip.core.jalo.components.BrandContainerComponent"
-        extends="SimpleCMSComponent" autocreate="true">
-        <description>It represents Selected Brand Container component. (經銷商專區 ,我們的保證 Container)
-        </description>
-        <attributes>
-          <attribute qualifier="mainTitleTextHidden" type="java.lang.Boolean">
-            <defaultvalue>Boolean.FALSE</defaultvalue>
-            <persistence type="property"/>
-            <modifiers optional="false"/>
-          </attribute>
-          <attribute qualifier="maintTitleText" type="localized:java.lang.String">
-            <persistence type="property"/>
-            <modifiers read="true" write="true" optional="true"/>
-            <description>maintTitleText.</description>
-          </attribute>
-          <attribute qualifier="simpleBannerComponent" type="HomeSimpleBannerComponentList">
-            <persistence type="property"/>
-            <modifiers read="true" write="true" optional="true"/>
-            <description>It represents BrandCarousel collection component.</description>
-          </attribute>
-          <attribute qualifier="height" type="java.lang.String">
-            <persistence type="property"/>
-            <modifiers read="true" write="true" optional="true"/>
-            <description>It represents BrandCarousel collection component.</description>
-          </attribute>
-          <attribute qualifier="width" type="java.lang.String">
-            <persistence type="property"/>
-            <modifiers read="true" write="true" optional="true"/>
-            <description>It represents BrandCarousel collection component.</description>
-          </attribute>
-          <attribute qualifier="size" type="java.lang.Integer">
-            <persistence type="property"/>
-            <modifiers read="true" write="true" optional="false"/>
-            <description>Have size component Each Row.</description>
-            <defaultvalue>4</defaultvalue>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-    <typegroup name="newBaseStore">
-      <itemtype code="BaseStore" autocreate="false" generate="false">
-        <attributes>
-          <attribute qualifier="vkorg" type="java.lang.String">
-            <description>銷售組織</description>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-    <typegroup name="newOrders">
-      <itemtype code="Order" autocreate="false" generate="false">
-        <attributes>
-          <attribute qualifier="vkorg" type="java.lang.String">
-            <description>銷售組織 (1000：和之合股份有限公司,2000：江門市德邑大衛浴有限公司,3000：AFEEL CORP DBA HUNTINGTON
-              BRASS)
-            </description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="pernr" type="java.lang.String">
-            <description>負責業務</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="lifnr" type="java.lang.String">
-            <description>負責經銷商</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-    <typegroup name="newConsignment">
-      <itemtype code="Consignment" autocreate="false" generate="false">
-        <attributes>
-          <attribute qualifier="dely_type" type="java.lang.String">
-            <description>1.訂製品,2.一般品有庫存,3.一般品無庫存,4.預購品</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="lfdat" type="java.util.Date">
-            <description>預計出貨日期</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="arrivalDate" type="java.lang.String">
-            <description>配達日期(格式: YYYYMMDD)</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="remark" type="java.lang.String">
-            <description>送貨時間備註</description>
-            <modifiers read="true" write="true" optional="true" unique="false" />
-            <persistence type="property" />
-          </attribute>
-          <attribute qualifier="shipping_number" type="java.lang.String">
-            <description>HCT 派送單號</description>
-            <modifiers read="true" write="true" optional="true" unique="false" />
-            <persistence type="property" />
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-    <typegroup name="newEmailMessage">
-      <itemtype code="EmailMessage" autocreate="false" generate="false">
-        <attributes>
-          <attribute qualifier="emailPageTemplateProcess" type="java.lang.String">
-            <description>emailPageTemplateProcess</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-
-    <typegroup name="newProduct">
-      <itemtype code="Product" autocreate="false" generate="false">
-        <attributes>
-          <attribute qualifier="dely_type" type="ProductType">
-            <description>1.訂製品,2.一般品(有庫存/無庫存),3.預購品</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="vkorg" type="java.lang.String">
-            <description>銷售組織</description>
-            <modifiers read="true" write="true" search="true"
-              optional="true"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="listpr" type="java.math.BigDecimal">
-            <description>牌價</description>
-            <modifiers read="true" write="true" search="true"
-              optional="true"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="plifz" type="java.math.BigDecimal">
-            <description>標準交期</description>
-            <modifiers read="true" write="true" search="true"
-              optional="true"/>
-            <persistence type="property"/>
-          </attribute>
-          <attribute qualifier="my_type" type="java.lang.String">
-            <description>物料類型</description>
-            <modifiers read="true" write="true" search="true"
-              optional="true"/>
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-    </typegroup>
-
-  </itemtypes>
-=======
--->
-<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
-
-    <collectiontypes>
-        <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
-        <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
-                        type="set"/>
-    </collectiontypes>
-
-    <enumtypes>
-        <enumtype generate="true" code="SwatchColorEnum" autocreate="true" dynamic="true">
-            <value code="BLACK"/>
-            <value code="BLUE"/>
-            <value code="BROWN"/>
-            <value code="GREEN"/>
-            <value code="GREY"/>
-            <value code="ORANGE"/>
-            <value code="PINK"/>
-            <value code="PURPLE"/>
-            <value code="RED"/>
-            <value code="SILVER"/>
-            <value code="WHITE"/>
-            <value code="YELLOW"/>
-        </enumtype>
-    </enumtypes>
-
-    <itemtypes>
-        <!-- Add your item definitions here -->
-           
-		  <itemtype generate="true" code="Product" autocreate="false">
-			<attributes>
-
-				<attribute qualifier="vkorg" type="java.lang.String">
-					<description>銷售組織</description>
-					<modifiers read="true" write="true" search="true"
-						optional="true" />
-					<persistence type="property" />
-				</attribute>
-		        
-				<attribute qualifier="listpr" type="java.math.BigDecimal">
-					<description>牌價</description>
-					<modifiers read="true" write="true" search="true"
-						optional="true" />
-					<persistence type="property" />
-				</attribute>
-				
-				<attribute qualifier="plifz" type="java.math.BigDecimal">
-					<description>標準交期</description>
-					<modifiers read="true" write="true" search="true"
-						optional="true" />
-					<persistence type="property" />
-				</attribute>
-				
-				<attribute qualifier="ma_type" type="java.lang.String">
-					<description>物料類型</description>
-					<modifiers read="true" write="true" search="true"
-						optional="true" />
-					<persistence type="property" />
-				</attribute>
-				
-				
-			</attributes>
-		  </itemtype>
-		
-	      <itemtype generate="true" code="PriceRow" autocreate="false">
-		      <attributes>
-
-		        <attribute qualifier="vkorg" type="java.lang.String">
-		            <description>é·å®çµç¹</description>
-					<modifiers read="true" write="true" search="true"
-						optional="true" />
-					<persistence type="property" />
-				</attribute>
-		       
-			</attributes>
-		  </itemtype>
-
-			<itemtype generate="true" code="Media" autocreate="false">
+		<typegroup>
+			<itemtype code="Media" autocreate="false" generate="true"
+				extends="AbstractMedia">
 				<attributes>
 					<attribute qualifier="fileItem" type="java.lang.String">
-						<description>ç¸éä¸è¼_é ç®</description>
+						<description>相關下載_項目</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup>
+			<itemtype code="NcipNavigationComponent" autocreate="true"
+				generate="true" extends="NavigationComponent"
+				jaloclass="com.ncip.core.jalo.components.NcipNavigationComponent">
+				<description>Ncip Navigation Component</description>
+			</itemtype>
+		</typegroup>
+
+		<!-- TypeGroups are for structure of this file only -->
+		<typegroup name="Apparel">
+			<itemtype code="ApparelProduct" extends="Product"
+				autocreate="true" generate="true"
+				jaloclass="com.ncip.core.jalo.ApparelProduct">
+				<description>Base apparel product extension that contains additional attributes.</description>
+				<attributes>
+					<attribute qualifier="genders" type="GenderList">
+						<description>List of genders that the ApparelProduct is designed for</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ApparelStyleVariantProduct"
+				extends="VariantProduct" autocreate="true" generate="true"
+				jaloclass="com.ncip.core.jalo.ApparelStyleVariantProduct">
+				<description>Apparel style variant type that contains additional attribute describing variant style.
+        </description>
+				<attributes>
+					<attribute qualifier="style"
+						type="localized:java.lang.String"
+						metatype="VariantAttributeDescriptor">
+						<description>Color/Pattern of the product.</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+
+					<attribute qualifier="swatchColors" type="SwatchColorSet">
+						<description>A normalized color mapping to a standardized front-end navigable name.
+            </description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+
+			</itemtype>
+
+			<itemtype code="ApparelSizeVariantProduct"
+				extends="ApparelStyleVariantProduct" autocreate="true"
+				generate="true"
+				jaloclass="com.ncip.core.jalo.ApparelSizeVariantProduct">
+				<description>Apparel size variant type that cHUNTINGTOontains additional attribute describing variant size.
+        </description>
+				<attributes>
+					<attribute qualifier="size"
+						type="localized:java.lang.String"
+						metatype="VariantAttributeDescriptor">
+						<description>Size of the product.</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="Electronics">
+			<itemtype code="ElectronicsColorVariantProduct"
+				extends="VariantProduct" autocreate="true" generate="true"
+				jaloclass="com.ncip.core.jalo.ElectronicsColorVariantProduct">
+				<description>Electronics color variant type that contains additional attribute describing variant color.
+        </description>
+				<attributes>
+					<attribute qualifier="color"
+						type="localized:java.lang.String"
+						metatype="VariantAttributeDescriptor">
+						<description>Color of the product.</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+
+
+
+		<typegroup name="Component Items">
+			<itemtype code="HomeSimpleBannerComponent" generate="true"
+				jaloclass="com.ncip.core.jalo.components.HomeSimpleBannerComponent"
+				extends="SimpleResponsiveBannerComponent" autocreate="true">
+				<description>Concrete implementation of abstract responsive banner component (經銷商專區 ,我們的保證
+          Component)
+        </description>
+				<attributes>
+					<attribute qualifier="subTitleTextHidden"
+						type="java.lang.Boolean">
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+						<persistence type="property" />
+						<modifiers optional="false" />
+					</attribute>
+					<attribute qualifier="subTitleText"
+						type="localized:java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>subTitleText.</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			<!-- 經銷商專區 Container -->
+			<itemtype code="BrandContainerComponent" generate="true"
+				jaloclass="com.ncip.core.jalo.components.BrandContainerComponent"
+				extends="SimpleCMSComponent" autocreate="true">
+				<description>It represents Selected Brand Container component. (經銷商專區 ,我們的保證 Container)
+        </description>
+				<attributes>
+					<attribute qualifier="mainTitleTextHidden"
+						type="java.lang.Boolean">
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+						<persistence type="property" />
+						<modifiers optional="false" />
+					</attribute>
+					<attribute qualifier="maintTitleText"
+						type="localized:java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>maintTitleText.</description>
+					</attribute>
+					<attribute qualifier="simpleBannerComponent"
+						type="HomeSimpleBannerComponentList">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>It represents BrandCarousel collection component.</description>
+					</attribute>
+					<attribute qualifier="height" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>It represents BrandCarousel collection component.</description>
+					</attribute>
+					<attribute qualifier="width" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" />
+						<description>It represents BrandCarousel collection component.</description>
+					</attribute>
+					<attribute qualifier="size" type="java.lang.Integer">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="false" />
+						<description>Have size component Each Row.</description>
+						<defaultvalue>4</defaultvalue>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="newBaseStore">
+			<itemtype code="BaseStore" autocreate="false"
+				generate="false">
+				<attributes>
+					<attribute qualifier="vkorg" type="java.lang.String">
+						<description>銷售組織</description>
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="newOrders">
+			<itemtype code="Order" autocreate="false" generate="false">
+				<attributes>
+					<attribute qualifier="vkorg" type="java.lang.String">
+						<description>銷售組織 (1000：和之合股份有限公司,2000：江門市德邑大衛浴有限公司,3000：AFEEL CORP DBA HUNTINGTON
+              BRASS)
+            </description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="pernr" type="java.lang.String">
+						<description>負責業務</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="lifnr" type="java.lang.String">
+						<description>負責經銷商</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="newConsignment">
+			<itemtype code="Consignment" autocreate="false"
+				generate="false">
+				<attributes>
+					<attribute qualifier="dely_type" type="java.lang.String">
+						<description>1.訂製品,2.一般品有庫存,3.一般品無庫存,4.預購品</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="lfdat" type="java.util.Date">
+						<description>預計出貨日期</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="arrivalDate"
+						type="java.lang.String">
+						<description>配達日期(格式: YYYYMMDD)</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="remark" type="java.lang.String">
+						<description>送貨時間備註</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="shipping_number"
+						type="java.lang.String">
+						<description>HCT 派送單號</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="newEmailMessage">
+			<itemtype code="EmailMessage" autocreate="false"
+				generate="false">
+				<attributes>
+					<attribute qualifier="emailPageTemplateProcess"
+						type="java.lang.String">
+						<description>emailPageTemplateProcess</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+
+		<typegroup name="newProduct">
+			<itemtype code="Product" autocreate="false" generate="false">
+				<attributes>
+					<attribute qualifier="dely_type" type="ProductType">
+						<description>1.訂製品,2.一般品(有庫存/無庫存),3.預購品</description>
+						<modifiers read="true" write="true" optional="true"
+							unique="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="vkorg" type="java.lang.String">
+						<description>銷售組織</description>
+						<modifiers read="true" write="true" search="true"
+							optional="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="listpr" type="java.math.BigDecimal">
+						<description>牌價</description>
+						<modifiers read="true" write="true" search="true"
+							optional="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="plifz" type="java.math.BigDecimal">
+						<description>標準交期</description>
+						<modifiers read="true" write="true" search="true"
+							optional="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="ma_type" type="java.lang.String">
+						<description>物料類型</description>
 						<modifiers read="true" write="true" search="true"
 							optional="true" />
 						<persistence type="property" />
@@ -415,134 +348,22 @@
 				</attributes>
 			</itemtype>
 
-
-			<!-- TypeGroups are for structure of this file only -->
-
-        <typegroup name="Apparel">
-            <itemtype code="ApparelProduct" extends="Product"
-                      autocreate="true" generate="true"
-                      jaloclass="com.ncip.core.jalo.ApparelProduct">
-                <description>Base apparel product extension that contains additional attributes.</description>
-                <attributes>
-                    <attribute qualifier="genders" type="GenderList">
-                        <description>List of genders that the ApparelProduct is designed for</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-
-            <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
-                      autocreate="true" generate="true"
-                      jaloclass="com.ncip.core.jalo.ApparelStyleVariantProduct">
-                <description>Apparel style variant type that contains additional attribute describing variant style.
-                </description>
-                <attributes>
-                    <attribute qualifier="style" type="localized:java.lang.String"
-                               metatype="VariantAttributeDescriptor">
-                        <description>Color/Pattern of the product.</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-
-                    <attribute qualifier="swatchColors" type="SwatchColorSet">
-                        <description>A normalized color mapping to a standardized front-end navigable name.
-                        </description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-
-            </itemtype>
-
-            <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
-                      autocreate="true" generate="true"
-                      jaloclass="com.ncip.core.jalo.ApparelSizeVariantProduct">
-                <description>Apparel size variant type that contains additional attribute describing variant size.
-                </description>
-                <attributes>
-                    <attribute qualifier="size" type="localized:java.lang.String"
-                               metatype="VariantAttributeDescriptor">
-                        <description>Size of the product.</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
-
-        <typegroup name="Electronics">
-            <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
-                      autocreate="true" generate="true"
-                      jaloclass="com.ncip.core.jalo.ElectronicsColorVariantProduct">
-                <description>Electronics color variant type that contains additional attribute describing variant color.
-                </description>
-                <attributes>
-                    <attribute qualifier="color" type="localized:java.lang.String"
-                               metatype="VariantAttributeDescriptor">
-                        <description>Color of the product.</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
-        
-        <typegroup name="newBaseStore"> 
-	        <itemtype code="BaseStore" autocreate="false" generate="false" >
+			<itemtype generate="true" code="PriceRow" autocreate="false">
 				<attributes>
+
 					<attribute qualifier="vkorg" type="java.lang.String">
-						<description>é·å®çµç¹</description>
+						<description>銷售組織</description>
+						<modifiers read="true" write="true" search="true"
+							optional="true" />
 						<persistence type="property" />
 					</attribute>
+
 				</attributes>
 			</itemtype>
-		</typegroup>
-        
-        <typegroup name="newOrders">
-			<itemtype code="Order" autocreate="false" generate="false" >
-				<attributes>
-					<attribute qualifier="vkorg" type="java.lang.String">
-						<description>é·å®çµç¹ (1000ï¼åä¹åè¡ä»½æéå¬å¸,2000ï¼æ±éå¸å¾·éå¤§è¡æµ´æéå¬å¸,3000ï¼AFEEL CORP DBA HUNTINGTON BRASS)</description>
-						<modifiers read="true" write="true" optional="true" unique="false" />
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="pernr" type="java.lang.String">
-						<description>è² è²¬æ¥­å</description>
-						<modifiers read="true" write="true" optional="true" unique="false" />
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="lifnr" type="java.lang.String">
-						<description>è² è²¬ç¶é·å</description>
-						<modifiers read="true" write="true" optional="true" unique="false" />
-						<persistence type="property" />
-					</attribute>  
-				</attributes>
-			</itemtype>
-		</typegroup>
-		
-		<typegroup name="newConsignment">
-			<itemtype code="Consignment" autocreate="false" generate="false" >
-				<attributes>
-					<attribute qualifier="dely_type" type="java.lang.String">
-						<description>1.è¨è£½å,2.ä¸è¬åæåº«å­,3.ä¸è¬åç¡åº«å­,4.é è³¼å </description>
-						<modifiers read="true" write="true" optional="true" unique="false" />
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="lfdat" type="java.util.Date">
-						<description>é è¨åºè²¨æ¥æ</description>
-						<modifiers read="true" write="true" optional="true" unique="false" />
-						<persistence type="property" />
-					</attribute>
-					<attribute qualifier="arrivalDate" type="java.lang.String">
-						<description>ééæ¥æ(æ ¼å¼: YYYYMMDD)</description>
-						<modifiers read="true" write="true" optional="true" unique="false" />
-						<persistence type="property" />
-					</attribute>
-				</attributes>
-			</itemtype>
+
+
 		</typegroup>
 
-    </itemtypes>
->>>>>>> Stashed changes
-</items>
+	</itemtypes>
+
+	</items>
