@@ -30,12 +30,13 @@ $mediaContainer = media(qualifier, $contentCV)[lang=$lang];
 #                            ;                          ; SiteLogoComponent ; /images/theme/logo_hybris_b2b_responsive.svg
 #                            ;                          ; SiteLogoComponent ; /images/theme/logo.png
 
+
 # CMS Link Components
 UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; linkName[lang = $lang]
                        ;                          ; AboutSAPCommerceLink       ; "About SAP Commerce Cloud"
                        ;                          ; AddressBookLink            ; "Address Book"
                        ;                          ; AgileCommerceBlogLink      ; "Agile Commerce Blog"
-                       ;                          ; ApprovalDashboardLink      ; "Approval Dashboard"
+#                       ;                          ; ApprovalDashboardLink      ; "Approval Dashboard"
                        ;                          ; ContactUsLink              ; "Contact Us"
                        ;                          ; DocumentationLink          ; "Documentation"
                        ;                          ; FAQLink                    ; "FAQ"
@@ -45,11 +46,11 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
                        ;                          ; HomepageNavLink            ; "Home"
                        ;                          ; ImportSavedCartLink        ; "Import Saved Cart"
                        ;                          ; LinkedInLink               ; "Linked In"
-                       ;                          ; MyQuotesLink               ; "Quotes"
-                       ;                          ; MyReplenishmentOrdersLink  ; "Replenishment Orders"
+#                       ;                          ; MyQuotesLink               ; "Quotes"
+#                       ;                          ; MyReplenishmentOrdersLink  ; "Replenishment Orders"
                        ;                          ; OrderFormsLink             ; "Order Forms"
                        ;                          ; OrderHistoryLink           ; "Order History"
-                       ;                          ; PaymentDetailsLink         ; "Payment Details"
+#                       ;                          ; PaymentDetailsLink         ; "Payment Details"
                        ;                          ; PersonalDetailsLink        ; "Personal Details"
                        ;                          ; QuickOrderLink             ; "Quick Order"
                        ;                          ; SafetyCategoryLink         ; "Safety"
@@ -62,6 +63,7 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
                        ;                          ; VisitSAPLink               ; "&nbsp;&nbsp;service.tw@hbfaucet.com"
                        ;                          ; AddressLink     		   ; "&nbsp;&nbsp;"
                        ;                          ; ServiceLink                ; "&nbsp;&nbsp;"
+                       ;                          ; AccountingDetailLink       ; "Accounting Detail"
 
 # CMS Link Components
 UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]               ; linkName[lang = $lang]
@@ -307,7 +309,9 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
 
 
 ############ NCIP Start
-UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName[lang = $lang ]
+UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName[lang = en]
+                       ;                          ; A0CategoryLink    ; "最新產品"
+                       ;                          ; B0CategoryLink    ; "活動促銷"
                        ;                          ; D0CategoryLink    ; "浴室"
                        ;                          ; E0CategoryLink    ; "廚房"
                        ;                          ; G0CategoryLink    ; "風格"
@@ -410,14 +414,6 @@ UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title
 #UPDATE NcipLogoComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]
 #                            ;                          ; NcipLogoComponentA ; /images/theme/logo.png
 ############ NCIP End ######################
-
-
-
-
-
-
-############ NCIP Start
-
 
 #
 #UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]          ; linkName[lang = $lang ]
