@@ -18,7 +18,7 @@ $delvieryMode=std-gross
 $regulargroup=regulargroup
 
 $productCatalog=ncipb2bProductCatalog
-$catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Online])[default=$productCatalog:Online]
+$catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Staged])[default=$productCatalog:Staged]
 
 INSERT_UPDATE PromotionPriceRow;&tresholdId;Currency(isocode);price
 
