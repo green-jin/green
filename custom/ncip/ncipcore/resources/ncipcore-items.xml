@@ -206,8 +206,6 @@
     </typegroup>
 
 
-
-
     <typegroup name="Component Items">
 	  <itemtype code="FooterNavigationComponent" autocreate="false" generate="false" >
 	  <description>CMS component for footer navigation in the accelerator.</description>
@@ -283,7 +281,78 @@
           </attribute>
         </attributes>
       </itemtype>
+
+      <!--			Add Header Components-->
+      <itemtype code="NcipOrderToolsComponent" autocreate="true"
+        generate="true" extends="SimpleCMSComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipOrderToolsComponent">
+        <description>Ncip Navigation Component</description>
+        <attributes>
+          <attribute type="CMSNavigationNode" qualifier="navigationNode">
+            <persistence type="property" />
+            <modifiers />
+            <description>The cms navigation node of this navigation component.</description>
+          </attribute>
+          <attribute type="java.lang.String" qualifier="styleClass">
+            <persistence type="property" />
+            <modifiers />
+            <description>CSS style class of this navigation component.</description>
+          </attribute>
+          <attribute type="java.lang.Integer" qualifier="wrapAfter">
+            <persistence type="property" />
+            <modifiers />
+            <description>Determines the number of navigation nodes when the following elements will be wrapped.</description>
+          </attribute>
+        </attributes>
+      </itemtype>
+
+      <itemtype code="NcipMiniCartComponent" generate="true"
+        extends="SimpleCMSComponent" autocreate="true"
+        jaloclass="com.ncip.core.jalo.components.NcipMiniCartComponent">
+        <description>It represents mini cart component that can be configured to show some information about cart content.</description>
+        <attributes>
+          <attribute qualifier="title" type="localized:java.lang.String"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <description>It is localized title of the component.</description>
+          </attribute>
+          <attribute qualifier="totalDisplay" type="CartTotalDisplayType"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <modifiers optional="false" />
+            <defaultvalue>em().getEnumerationValue("CartTotalDisplayType", "TOTAL")</defaultvalue>
+            <description>This attribute determines the type of displayed total cart value.</description>
+          </attribute>
+          <attribute qualifier="shownProductCount" type="int"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <modifiers optional="false" />
+            <defaultvalue>Integer.valueOf(3)</defaultvalue>
+            <description>It controls the maximum number of products to display in the component.</description>
+          </attribute>
+          <attribute qualifier="lightboxBannerComponent" type="SimpleBannerComponent"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <modifiers />
+            <description>It is a banner component that can be displayed in the mini cart.</description>
+          </attribute>
+        </attributes>
+      </itemtype>
+
+      <itemtype code="NcipCategoryNavigationComponent" autocreate="true"
+        generate="true" extends="NavigationComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipCategoryNavigationComponent">
+        <description>CMS component for category navigation in the accelerator.</description>
+      </itemtype>
+
+      <itemtype code="NcipBreadcrumbComponent" autocreate="true"
+        generate="true" extends="SimpleCMSComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipBreadcrumbComponent">
+        <description>A component wrapping the breadcrumb tag</description>
+      </itemtype>
+      <!--			Add Header Components End-->
     </typegroup>
+
 
     <typegroup name="newBaseStore">
       <itemtype code="BaseStore" autocreate="false" generate="false">
@@ -414,4 +483,5 @@
     </typegroup>
 
   </itemtypes>
+
 </items>

@@ -1,0 +1,157 @@
+* {
+  font-family: Arial, Helvetica, sans-serif, "微軟正黑體", sans-serif;
+}
+body {
+  padding-top: 0px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, Helvetica, sans-serif, "微軟正黑體", sans-serif;
+  font-weight: 700;
+}
+p {
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif, "微軟正黑體", sans-serif !important;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 24px;
+  color: #333333;
+  margin-top: 10px;
+}
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.prod_s{
+height : auto;
+width : 10%;	
+}
+
+.carousel-item {
+  min-height: 100%;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 20px;
+}
+
+/* 小圖動畫效果  */
+.pic{
+	overflow:hidden;
+}
+.pic img{
+	transform:scale(1,1);transition: all 1s ease-out;
+}
+.pic img:hover{
+	transform:scale(1.2,1.2);
+}
+/*背景藍色*/
+.bule {
+background: rgba(0,65,121,1);	
+	
+}
+
+
+/* 藍色 ICON 置入 */
+.dm-icon-medium, .dm-icon {
+  display: inline-block;
+  cursor: pointer;
+  margin: 15px;
+  width: 120px;   /*色塊大小*/
+  height: 120px;   /*色塊大小*/
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background: #004179;
+  color: #ffffff;
+}
+.dm-icon-medium:before, .dm-icon:before {
+  speak: none;
+  line-height: 120px;/*圖標高度*/
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  display: block;
+  -webkit-font-smoothing: antialiased;
+}
+
+.l-gray{
+	background: rgba(233,236,239,1);
+}
+
+/*menu*/
+
+.navbar{
+  background: rgba(0,65,121,0.95);
+}
+.dropdown-menu{
+    top: 46px;
+}
+.dw{
+	top: 85px;	
+}
+.dropdown .dropdown-menu {
+  border-radius:0;
+ }
+.megamenu {
+    position:static;
+}
+.megamenu > .dropdown-menu {
+	top: 94px;
+    width:100%;
+}
+
+@media screen and (min-width: 992px) {
+
+  .megamenu ul {
+     padding-bottom:15px;
+  }
+  
+  .megamenu > .dropdown-menu {
+     min-width: 800px;
+  } 
+  
+}
+
+@media (max-width: 992px) {
+ .navbar-collapse {
+        position: absolute;
+        top: 85px;
+        right: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        width: 60%;
+	    background: rgba(0,65,121,0.95);
+        transition: all 0.3s ease;
+        display: block;
+    }
+ .navbar-collapse.collapsing {
+        height: auto !important;
+        margin-right: 50%;
+        transition: all 0.3s ease;
+        display: block;
+    }
+ .navbar-collapse.show {
+        left: 0;    }
+}
+/**********overwrite hybris style.css class for header start *******/
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 1px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+.open > .dropdown-menu {
+  padding-top: 10px;
+  padding-bottom:10px;
+}
+/**********overwrite hybris style.css class for header end *******/
+
+

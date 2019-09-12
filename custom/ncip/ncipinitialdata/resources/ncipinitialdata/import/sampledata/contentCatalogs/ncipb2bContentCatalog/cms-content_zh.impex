@@ -34,7 +34,7 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
                        ;                          ; AboutSAPCommerceLink       ; "人才招募"
                        ;                          ; AddressBookLink            ; "地址簿"
                        ;                          ; AgileCommerceBlogLink      ; "安裝說明"
-                       ;                          ; ApprovalDashboardLink      ; "批准显示板"                       
+#                       ;                          ; ApprovalDashboardLink      ; "批准显示板"
                        ;                          ; DocumentationLink          ; "關於HB"
                        ;                          ; FAQLink                    ; "常见问题解答"
                        ;                          ; FacebookLink               ; "客服與保固"
@@ -45,11 +45,11 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
                        ;                          ; HomepageNavLink            ; "主页"
                        ;                          ; ImportSavedCartLink        ; "导入已保存购物车"
                        ;                          ; LinkedInLink               ; "疑難排除FAQ"
-                       ;                          ; MyQuotesLink               ; "我的报价"
-                       ;                          ; MyReplenishmentOrdersLink  ; "我的补货订单"
+#                       ;                          ; MyQuotesLink               ; "我的报价"
+#                       ;                          ; MyReplenishmentOrdersLink  ; "我的补货订单"
                        ;                          ; OrderFormsLink             ; "订货单"
                        ;                          ; OrderHistoryLink           ; "订单历史记录"
-                       ;                          ; PaymentDetailsLink         ; "付款详细信息"
+#                       ;                          ; PaymentDetailsLink         ; "付款详细信息"
                        ;                          ; PersonalDetailsLink        ; "个人详细信息"
                        ;                          ; QuickOrderLink             ; "快速订单"
                        ;                          ; SafetyCategoryLink         ; "安全"
@@ -61,6 +61,9 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
                        ;                          ; VisitSAPLink               ; "&nbsp;&nbsp;service.tw@hbfaucet.com"
                        ;                          ; AddressLink     		   ; "&nbsp;&nbsp;台北市敦化南路一段277號"
                        ;                          ; ServiceLink                ; "&nbsp;&nbsp;服務據點"
+#我的帳戶
+                       ;                          ; AccountingDetailLink       ; "對帳明細"
+
 
 # CMS Link Components
 UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]               ; linkName[lang = $lang]
@@ -359,6 +362,7 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName
                        ;                          ; H013CategoryLink  ; "雙花灑組"
                        ;                          ; H014CategoryLink  ; "水龍頭配件"
                        ;                          ; H015CategoryLink  ; "其他"
+
 
 UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title[lang = $lang]
                         ;                          ; A0NavNode           ; "最新產品"

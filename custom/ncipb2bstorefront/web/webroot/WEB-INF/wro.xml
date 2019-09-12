@@ -90,17 +90,18 @@
 		<js>/_ui/responsive/common/js/_autoload.js</js>
 
 		<!--ncip-->
-		<js>/_ui/responsive/common/js/contact_me_ncip.js</js>
-		<js>/_ui/responsive/common/js/jqBootstrapValidation_ncip.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/contact_me_ncip.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/jqBootstrapValidation_ncip.js</js>
 
-		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.js</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.min.js</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.js</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.min.js</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.js.map</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.bundle.min.js.map</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.js.map</js>
-		<js>/_ui/responsive/common/js/ncip/bootstrap.min.js.map</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/bootstrap.bundle.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/bootstrap.bundle.min.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/bootstrap.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/bootstrap.min.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/jquery.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/jquery.min.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/jquery.slim.js</js>
+		<js>/ncipb2bstorefront/_ui/responsive/common/js/ncip/jquery.slim.min.js</js>
+
 <!--		ncip-->
 
 		<!-- Cms Action JavaScript files -->
