@@ -209,6 +209,21 @@
 
 
     <typegroup name="Component Items">
+	  <itemtype code="FooterNavigationComponent" autocreate="false" generate="false" >
+	  <description>CMS component for footer navigation in the accelerator.</description>
+		  <attributes>
+			<attribute qualifier="serviceStatement" type="localized:java.lang.String">
+				<description>Intended to store a copyright notice or other text to be displayed in the footer</description>
+				<persistence type="property" />
+				<modifiers read="true" write="true" optional="true" />
+			</attribute>
+			<attribute qualifier="serviceStatementUrlLike" type="java.lang.String">
+				<description>Intended to store a copyright notice or other text to be displayed in the footer</description>
+				<persistence type="property" />
+				<modifiers read="true" write="true" optional="true" />
+			</attribute> 
+		  </attributes>
+	  </itemtype> 
       <itemtype code="HomeSimpleBannerComponent" generate="true"
         jaloclass="com.ncip.core.jalo.components.HomeSimpleBannerComponent"
         extends="SimpleResponsiveBannerComponent" autocreate="true">

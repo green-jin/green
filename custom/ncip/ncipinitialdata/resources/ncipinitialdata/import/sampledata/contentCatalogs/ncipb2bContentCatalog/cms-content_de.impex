@@ -10,6 +10,9 @@
 # -----------------------------------------------------------------------
 ##******************************This file is generated - please do not edit it. It will be regenerated after every build.********************************#
 
+# Language
+$lang=de
+
 $contentCatalog=ncipb2bContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $picture=media(code, $contentCV);
@@ -22,12 +25,9 @@ $jarResourceCms=jar:com.ncip.initialdata.constants.NcipInitialDataConstants&/nci
 $medias=medias(code, $contentCV);
 $mediaContainer=media(qualifier, $contentCV)[lang=$lang];
 
-# Language
-$lang=de
-
 # Site Logo Component
-UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;SiteLogoComponent;/images/theme/logo_hybris_b2b_responsive.svg
+#UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+#;;SiteLogoComponent;/images/theme/logo_hybris_b2b_responsive.svg
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
@@ -53,7 +53,7 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;QuickOrderLink;"Schnellbestellung"
 ;;SafetyCategoryLink;"Sicherheit"
 ;;SavedCartsLink;"Gespeicherte Warenkörbe"
-;;TwitterLink;"Twitter"
+#;;TwitterLink;"Twitter"
 ;;UpdateEmailLink;"E-Mail"
 ;;UpdatePasswordLink;"Kennwort"
 ;;VisitSAPLink;"Visit SAP"

@@ -15,7 +15,7 @@
 		<c:if test="${component.mainTitleTextHidden == false}">
 			<h1 class="my-5">${component.maintTitleText}</h1>
 		</c:if> 
-		
+	  
 		<div class="row">
 			<c:forEach items="${component.simpleBannerComponent}" var="objects">
 				<div class="${component.name eq 'HomeDealerAreaBrandContainer'? 'col-lg-3 mb-2' : 'col-lg-3 col-sm-6 mb-5'}">
