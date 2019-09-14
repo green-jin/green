@@ -45,8 +45,10 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
   private static final String IMPORT_SAMPLE_DATA = "importSampleData";
   private static final String ACTIVATE_SOLR_CRON_JOBS = "activateSolrCronJobs";
 
-  // 客戶主檔
+  /* 客戶主檔 */
   private static final String CUSTOMER_MASTER_DATA = "customerMasterData";
+  private static final String CUSTOMER_MASTER_DATA_URL =
+      "/ncipinitialdata/import/ncip/customer_master_data.impex";
 
   private CoreDataImportService coreDataImportService;
   private SampleDataImportService sampleDataImportService;
@@ -67,7 +69,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
 
     // Add more Parameters here as you require
 
-    // 匯入客戶主檔選項
+    /* 匯入客戶主檔選項 */
     params.add(createBooleanSystemSetupParameter(CUSTOMER_MASTER_DATA,
         "Import Customer Master Data", true));
 
@@ -155,12 +157,12 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     getNcipb2bSampleDataImportService().importCommerceOrgData(context);
     getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    // 匯入客戶主檔
+    /* 匯入客戶主檔 */
     LOG.info("Import Customer Master Data? "
         + getBooleanSystemSetupParameter(context, CUSTOMER_MASTER_DATA));
     if (getBooleanSystemSetupParameter(context, CUSTOMER_MASTER_DATA)) {
       logInfo(context, "Importing Customer Master Data.");
-      importImpexFile(context, "/ncipinitialdata/import/ncip/customer_master_data.impex");
+      importImpexFile(context, CUSTOMER_MASTER_DATA_URL);
       logInfo(context, "Finished Importing Customer Master Data.");
     } else {
       logInfo(context, "Skipping Customer Master Data.");
