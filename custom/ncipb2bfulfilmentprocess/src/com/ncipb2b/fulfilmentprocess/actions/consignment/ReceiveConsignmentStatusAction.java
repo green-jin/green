@@ -51,7 +51,7 @@ public class ReceiveConsignmentStatusAction extends AbstractAction<ConsignmentPr
         case COMPLETE:
 //        	09/15 ADD By Ciny
           String str = process.getConsignment().getConsignmentEntries().iterator().next()
-              .getOrderEntry().getProduct().getMy_type();
+              .getOrderEntry().getProduct().getMa_type();
           if (str != null) {
             result = str.equals(CUSTOM_ITEM) ? Transition.CUSTOM_ITEM : Transition.OK;
           } else {

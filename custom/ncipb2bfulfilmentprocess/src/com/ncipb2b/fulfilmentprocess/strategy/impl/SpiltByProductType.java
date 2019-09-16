@@ -44,12 +44,12 @@ public class SpiltByProductType extends AbstractSplittingStrategy {
     ) {
       for (AbstractOrderEntryModel orderEntryModel : orderEntryGroup
       ) {
-        if (orderEntryModel.getProduct().getMy_type() == null) {
+        if (orderEntryModel.getProduct().getMa_type() == null) {
           normalOrderEntryGroup.add(orderEntryModel);
           normalOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
               DeliveryType.LOGISTICS);
         } else {
-          switch (orderEntryModel.getProduct().getMy_type()) {
+          switch (orderEntryModel.getProduct().getMa_type()) {
             case NORMAL_FREIGHT:
               normalOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
                   DeliveryType.FREIGHT);
