@@ -18,9 +18,6 @@ public class DefaultNcipConsignmentService extends DefaultConsignmentService imp
   NcipConsignmentDao ncipConsignmentDao;
 
 
-  private ModelService modelService;
-
-
 
   @Override
   public List<ConsignmentModel> GetConsignments() throws ConsignmentException {

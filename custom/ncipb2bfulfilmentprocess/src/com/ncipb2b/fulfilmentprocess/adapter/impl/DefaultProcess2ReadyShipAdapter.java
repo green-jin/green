@@ -1,26 +1,26 @@
 package com.ncipb2b.fulfilmentprocess.adapter.impl;
 
-import com.ncipb2b.fulfilmentprocess.adapter.Ship2ProcessAdapter;
-import com.ncipb2b.fulfilmentprocess.service.ProcessTriggerService;
+import com.ncipb2b.fulfilmentprocess.adapter.Process2ReadyShipAdapter;
+import com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants;
 import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
 import de.hybris.platform.core.PK;
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentProcessModel;
+import de.hybris.platform.processengine.BusinessProcessService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.time.TimeService;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 
-public class DefaultShip2ProcessAdapter implements Ship2ProcessAdapter {
+public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter {
 
   @Resource
   ModelService modelService;
   @Resource
   TimeService timeService;
   @Resource
-  ProcessTriggerService processTriggerService;
-
+  BusinessProcessService businessProcessService;
 
   @Override
   public void waitForConsignment(ConsignmentModel consignment) {
@@ -30,15 +30,9 @@ public class DefaultShip2ProcessAdapter implements Ship2ProcessAdapter {
     final Runnable runnable = new Shipping(
         Registry.getCurrentTenant().getTenantID(), consignment.getPk().getLongValue());
     new Thread(runnable).start();
-
-//    try {
-//      Thread.sleep(3000);
-//    } catch (final InterruptedException e) {
-//      //nothing to do
-//    }
   }
 
-
+  // TODO: 2019/9/12 考慮是否要用Thread 
   public class Shipping implements Runnable {
 
     private Logger LOG = Logger.getLogger(Shipping.class.getName());
@@ -53,6 +47,7 @@ public class DefaultShip2ProcessAdapter implements Ship2ProcessAdapter {
 
       this.consignment = consignment;
       this.tenant = tenant;
+//      this.consignmentProcess = consignmentProcess;
     }
 
     @Override
@@ -60,30 +55,45 @@ public class DefaultShip2ProcessAdapter implements Ship2ProcessAdapter {
       Registry.setCurrentTenant(Registry.getTenantByID(tenant));
       try {
 
-        LOG.info("Consignment wait shipping Start");
-        ConsignmentModel model = getModelService().get(PK.fromLong(consignment));
+        if (LOG.isDebugEnabled()) {
+          LOG.info("Consignment wait shipping Start");
+          LOG.info("WAIT_FOR_SHIPPING Start.");
+        }
 
         // TODO: 2019/8/29 Check Consignment Status
-        for (ConsignmentProcessModel processModel : model.getConsignmentProcesses()
+        for (; ;
         ) {
-          LOG.info("WAIT_FOR_SHIPPING Start : " + processModel.getCode());
-//            model = modelService.get(getModelService().get(PK.fromLong(model.getPk().getLongValue())));
-//            if (model.getStatus().equals(ConsignmentStatus.READY_FOR_SHIPPING)) {
-//              getBusinessProcessService().triggerEvent(
-//                  processModel.getCode() + "_"
-//                      + Ncipb2bFulfilmentProcessConstants.WAIT_FOR_SHIPPING);
-//            }
-//            else {
-//              Thread.sleep(10000);
-//              break;
-//            }
-        }
+          ConsignmentModel consignmentModel = getModelService()
+              .get(PK.fromLong(consignment));
+
+          if (LOG.isDebugEnabled()) {
+            LOG.info(
+                consignmentModel.getCode() + " IS WAITING_FOR_SHIPPING Start : " + consignmentModel
+                    .getStatus().getCode());
+          }
+//          model = getModelService().get(PK.fromLong(processModel.getPk().getLongValue()));
+
 //       todo 0902 測試觸發事件
-        processTriggerService.triggerConsignment(model);
+          if (consignmentModel.getStatus()
+              .equals(ConsignmentStatus.READY_FOR_SHIPPING)) {
+            for (ConsignmentProcessModel processModel : consignmentModel.getConsignmentProcesses()
+            ) {
+              getBusinessProcessService().triggerEvent(
+                  processModel.getCode() + "_"
+                      + Ncipb2bFulfilmentProcessConstants.WAIT_FOR_SHIPPING);
+//              LOG.info(consignmentModel.getCode() + " Consignment Status : "
+//                  + consignmentModel.getStatus().getCode());
+            }
 
-        LOG.info("WAIT_FOR_SHIPPING END : " + model.getCode());
+            break;
+          } else {
+            Thread.sleep(10000);
+          }
+        }
+        if (LOG.isDebugEnabled()) {
 
-
+          LOG.info("WAIT_FOR_SHIPPING END");
+        }
       } catch (Exception e) {
         e.printStackTrace();
       } finally {
@@ -108,13 +118,13 @@ public class DefaultShip2ProcessAdapter implements Ship2ProcessAdapter {
     this.timeService = timeService;
   }
 
-  public ProcessTriggerService getProcessTriggerService() {
-    return processTriggerService;
+  public BusinessProcessService getBusinessProcessService() {
+    return businessProcessService;
   }
 
-  public void setProcessTriggerService(
-      ProcessTriggerService processTriggerService) {
-    this.processTriggerService = processTriggerService;
+  public void setBusinessProcessService(
+      BusinessProcessService businessProcessService) {
+    this.businessProcessService = businessProcessService;
   }
 }
 

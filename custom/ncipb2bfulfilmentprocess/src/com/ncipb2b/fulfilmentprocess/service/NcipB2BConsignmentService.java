@@ -7,8 +7,6 @@ import de.hybris.platform.ordersplitting.model.ConsignmentModel;
 import java.util.List;
 
 public interface NcipB2BConsignmentService {
-
-  ConsignmentModel createConsignment(AbstractOrderModel var1, String var2,
-      List<AbstractOrderEntryModel> var3) throws ConsignmentCreationException;
+  ConsignmentModel createConsignment(AbstractOrderModel var1, String var2, List<AbstractOrderEntryModel> var3) throws ConsignmentCreationException;
 
 }

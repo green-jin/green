@@ -6,9 +6,7 @@ import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.ordersplitting.ConsignmentCreationException;
-import de.hybris.platform.ordersplitting.ConsignmentService;
 import de.hybris.platform.ordersplitting.WarehouseService;
-import de.hybris.platform.ordersplitting.impl.DefaultConsignmentService;
 import de.hybris.platform.ordersplitting.model.ConsignmentEntryModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
 import de.hybris.platform.ordersplitting.model.WarehouseModel;
@@ -21,7 +19,8 @@ import org.apache.log4j.Logger;
 
 public class DefaultNcipB2BConsignmentService implements NcipB2BConsignmentService {
 
-  private static final Logger LOG = Logger.getLogger(DefaultConsignmentService.class.getName());
+  private static final Logger LOG = Logger
+      .getLogger(DefaultNcipB2BConsignmentService.class.getName());
   @Resource
   private ModelService modelService;
   @Resource

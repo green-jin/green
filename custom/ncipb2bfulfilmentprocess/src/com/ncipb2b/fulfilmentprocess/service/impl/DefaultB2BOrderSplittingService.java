@@ -3,6 +3,9 @@ package com.ncipb2b.fulfilmentprocess.service.impl;
 import com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants;
 import com.ncipb2b.fulfilmentprocess.service.B2BOrderSplittingService;
 import com.ncipb2b.fulfilmentprocess.service.NcipB2BConsignmentService;
+import com.ncipb2b.fulfilmentprocess.strategy.impl.SpiltByProductType;
+import com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByAvailableCount;
+import com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByWarehouse;
 import de.hybris.platform.commerceservices.stock.CommerceStockService;
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
@@ -52,11 +55,112 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
   public List<ConsignmentModel> splitOrderForConsignmentNotPersist(AbstractOrderModel order,
       List<AbstractOrderEntryModel> orderEntryList) throws ConsignmentCreationException {
 
-    List<ConsignmentModel> consignmentList = new ArrayList<>();
-    OrderEntryGroup orderEntryNormalGroup = new OrderEntryGroup();
-//    OrderEntryGroup orderEntryNormalNonStockGroup = new OrderEntryGroup();
-    OrderEntryGroup orderEntryCustomGroup = new OrderEntryGroup();
-    OrderEntryGroup orderEntryPreOrderGroup = new OrderEntryGroup();
+    List<OrderEntryGroup> splitedList = new ArrayList<>();
+    OrderEntryGroup tmpOrderEntryList = new OrderEntryGroup();
+    tmpOrderEntryList.addAll(orderEntryList);
+    splitedList.add(tmpOrderEntryList);
+    if (this.strategiesList == null || this.strategiesList.isEmpty()) {
+      LOG.warn("No splitting strategies were configured!");
+    }
+
+
+
+
+
+//    List<OrderEntryGroup> orderEntryGroups = new LinkedList<>();
+//    for (AbstractOrderEntryModel orderEntryModel : orderEntryList) {
+//
+//      OrderEntryGroup orderEntryGroup = new OrderEntryGroup();
+//      orderEntryGroup.add(orderEntryModel);
+//
+//      orderEntryGroups.add(orderEntryGroup);
+//    }
+
+
+    // TODO: 2019/9/12 執行對應order的Strategy
+    SplittingStrategy strategy;
+    for(Iterator var6 = this.strategiesList.iterator(); var6.hasNext(); ) {
+      strategy = (SplittingStrategy)var6.next();
+      splitedList = strategy.perform(splitedList);
+      if (LOG.isDebugEnabled()) {
+        LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
+      }
+    }
+//
+//
+////    var6.hasNext()
+//    strategy = (SplittingStrategy) var6.next();
+//    if (strategy.getClass().getName().equals(SpiltByProductType.class.getName())) {
+//      orderEntryGroupList = strategy.perform(orderEntryGroups);
+//
+//      for (int i = 0; i < orderEntryGroups.size(); i++) {
+//        orderEntryGroups.get(0).setParameter(Ncipb2bFulfilmentProcessConstants.PRODUCT_TYPE,
+//            orderEntryGroupList.get(0)
+//                .getParameter(Ncipb2bFulfilmentProcessConstants.PRODUCT_TYPE));
+//        orderEntryGroups.get(0).setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
+//            orderEntryGroupList.get(0)
+//                .getParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE));
+//      }
+//    }
+//
+//    // TODO: 2019/9/12 新增出數與未出數
+//    strategy = (SplittingStrategy) var6.next();
+//    if (strategy.getClass().getName().equals(SplitByAvailableCount.class.getName())) {
+//      orderEntryGroupList = strategy.perform(orderEntryGroups);
+//
+//    }
+//
+//    // TODO: 2019/9/12 物料By倉庫分拆
+//    strategy = (SplittingStrategy) var6.next();
+//    if (strategy.getClass().getName().equals(SplitByWarehouse.class.getName())) {
+//      orderEntryGroupList = strategy.perform(orderEntryGroups);
+//      // TODO: 2019/9/12 回壓保留數
+//    }
+
+
+
+    //--------------------------------------------------------------
+    // TODO: 2019/9/11 寫入 Order Entry Group 欄normal位資料
+    //--------------------------------------------------------------
+//    List<OrderEntryGroup> list = new ArrayList<>();
+//
+//    OrderEntryGroup normalStockOEGroup = new OrderEntryGroup();
+//    for (OrderEntryGroup orderEntryGroup : orderEntryGroups) {
+//      // TODO: 2019/9/12 判斷條件 該物件屬於 一般有庫存商品
+//      normalStockOEGroup.add(orderEntryGroup.get(0));
+//    }
+//    if (normalStockOEGroup.size() > 0) {
+//      list.add(normalStockOEGroup);
+//    }
+//
+//    OrderEntryGroup normalNoNStockOEGroup = new OrderEntryGroup();
+//    for (OrderEntryGroup orderEntryGroup : orderEntryGroups) {
+//      // TODO: 2019/9/12 判斷條件 該物件屬於 一般無庫存商品
+//      normalNoNStockOEGroup.add(orderEntryGroup.get(0));
+//    }
+//    if (normalNoNStockOEGroup.size() > 0) {
+//      list.add(normalNoNStockOEGroup);
+//    }
+//
+//    OrderEntryGroup customOEGroup = new OrderEntryGroup();
+//    for (OrderEntryGroup orderEntryGroup : orderEntryGroups) {
+//      // TODO: 2019/9/12 判斷條件 該物件屬於 客製化商品
+//      customOEGroup.add(orderEntryGroup.get(0));
+//    }
+//    if (customOEGroup.size() > 0) {
+//      list.add(customOEGroup);
+//    }
+//
+//    OrderEntryGroup preOrderOEGroup = new OrderEntryGroup();
+//    for (OrderEntryGroup orderEntryGroup : orderEntryGroups) {
+//      // TODO: 2019/9/12 判斷條件 該物件屬於 預購庫存商品
+//      preOrderOEGroup.add(orderEntryGroup.get(0));
+//    }
+//    if (preOrderOEGroup.size() > 0) {
+//      list.add(preOrderOEGroup);
+//    }
+
+    //建立 Consignments
 
     String orderCode;
     if (order == null) {
@@ -64,93 +168,12 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
     } else {
       orderCode = order.getCode();
     }
-
-    for (AbstractOrderEntryModel orderEntryModel : orderEntryList
-    ) {
-//      Set Producttype
-      if (orderEntryModel.getProduct().getDely_type() == null) {
-        orderEntryNormalGroup.add(orderEntryModel);
-      } else {
-        switch (orderEntryModel.getProduct().getDely_type().getCode()) {
-          case "GENERAL":
-            orderEntryNormalGroup.add(orderEntryModel);
-            break;
-          case "CUSTOM":
-            orderEntryCustomGroup.add(orderEntryModel);
-            break;
-          case "PREORDER":
-            orderEntryPreOrderGroup.add(orderEntryModel);
-            break;
-          default:
-            LOG.info("Product Dely_type Code Error");
-            break;
-        }
-      }
-
-      List<OrderEntryGroup> orderEntryGroup1 = new ArrayList<>();
-      orderEntryGroup1.add(orderEntryNormalGroup);
-
-      List<OrderEntryGroup> orderEntryGroup2 = new ArrayList<>();
-      orderEntryGroup2.add(orderEntryCustomGroup);
-
-      List<OrderEntryGroup> orderEntryGroup3 = new ArrayList();
-      orderEntryGroup3.add(orderEntryPreOrderGroup);
-
-      SplittingStrategy strategy;
-      for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
-          orderEntryGroup1 = strategy.perform(orderEntryGroup1)) {
-        strategy = (SplittingStrategy) var6.next();
-        for (OrderEntryGroup orderEntryGroup : orderEntryGroup1
-        ) {
-          LOG.info(orderEntryGroup.getParameter(Ncipb2bFulfilmentProcessConstants.WAREHOUSE_LIST));
-        }
-        if (LOG.isDebugEnabled()) {
-          LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
-        }
-      }
-      try {
-        List<Object> warehouseModels = (List<Object>) orderEntryGroup1.get(0)
-            .getParameter(Ncipb2bFulfilmentProcessConstants.WAREHOUSE_LIST);
-
-      } catch (Exception e) {
-      }
-
-      for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
-          orderEntryGroup2 = strategy.perform(orderEntryGroup2)) {
-        strategy = (SplittingStrategy) var6.next();
-        if (LOG.isDebugEnabled()) {
-          LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
-        }
-      }
-      for (Iterator var6 = this.strategiesList.iterator(); var6.hasNext();
-          orderEntryGroup3 = strategy.perform(orderEntryGroup3)) {
-        strategy = (SplittingStrategy) var6.next();
-        if (LOG.isDebugEnabled()) {
-          LOG.debug("Applying order splitting strategy : [" + strategy.getClass().getName() + "]");
-        }
-      }
-    }
-
     ConsignmentModel consignmentModel;
+    List<ConsignmentModel> consignmentList = new ArrayList<>();
     char prefixCode = 'a';
-    if (orderEntryNormalGroup.size() > 0) {
-      consignmentModel = createNormalConsignmentList(orderEntryNormalGroup, order, prefixCode,
-          orderCode);
-      ++prefixCode;
-      if (consignmentModel != null) {
-        consignmentList.add(consignmentModel);
-      }
-    }
-    if (orderEntryNormalGroup.size() > 0) {
-      consignmentModel = createNonStockConsignmentList(orderEntryCustomGroup, order, prefixCode,
-          orderCode);
-      ++prefixCode;
-      if (consignmentModel != null) {
-        consignmentList.add(consignmentModel);
-      }
-    }
-    if (orderEntryNormalGroup.size() > 0) {
-      consignmentModel = createNonStockConsignmentList(orderEntryPreOrderGroup, order, prefixCode,
+    for (OrderEntryGroup orderEntryGroup : splitedList
+    ) {
+      consignmentModel = createStockConsignment(orderEntryGroup, order, prefixCode,
           orderCode);
       ++prefixCode;
       if (consignmentModel != null) {
@@ -176,13 +199,13 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
     return NumberSeriesManager.getInstance().getUniqueNumber(code, digits);
   }
 
-  private ConsignmentModel createNormalConsignmentList(OrderEntryGroup orderEntryGroup,
+  private ConsignmentModel createStockConsignment(OrderEntryGroup orderEntryGroup,
       AbstractOrderModel order, char prefixCode, String orderCode)
       throws ConsignmentCreationException {
     if (orderEntryGroup.size() == 0) {
       return null;
     } else {
-      ConsignmentModel consignment = this.ncipB2BConsignmentService
+      ConsignmentModel consignment = getNcipB2BConsignmentService()
           .createConsignment(order, prefixCode + orderCode, orderEntryGroup);
 //    Iterator var12 = this.strategiesList.iterator();
 //    while (var12.hasNext()) {
@@ -193,24 +216,24 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
     }
 
   }
-
-  private ConsignmentModel createNonStockConsignmentList(OrderEntryGroup orderEntryGroup,
-      AbstractOrderModel order, char prefixCode, String orderCode)
-      throws ConsignmentCreationException {
-
-    if (orderEntryGroup.size() == 0) {
-      return null;
-    } else {
-      ConsignmentModel consignment = this.ncipB2BConsignmentService
-          .createConsignment(order, prefixCode + orderCode, orderEntryGroup);
-//    Iterator var12 = this.strategiesList.iterator();
-//    while (var12.hasNext()) {
-//      SplittingStrategy strategy = (SplittingStrategy) var12.next();
-//      strategy.afterSplitting(orderEntryGroup, consignment);
+  // TODO: 2019/9/12 日後有需要再增加的無庫存建立出貨單
+//  private ConsignmentModel createNoNStockConsignment(OrderEntryGroup orderEntryGroup,
+//      AbstractOrderModel order, char prefixCode, String orderCode)
+//      throws ConsignmentCreationException {
+//
+//    if (orderEntryGroup.size() == 0) {
+//      return null;
+//    } else {
+//      ConsignmentModel consignment = getNcipB2BConsignmentService()
+//          .createConsignment(order, prefixCode + orderCode, orderEntryGroup);
+////    Iterator var12 = this.strategiesList.iterator();
+////    while (var12.hasNext()) {
+////      SplittingStrategy strategy = (SplittingStrategy) var12.next();
+////      strategy.afterSplitting(orderEntryGroup, consignment);
+////    }
+//      return consignment;
 //    }
-      return consignment;
-    }
-  }
+//  }
 
   public ModelService getModelService() {
     return modelService;
@@ -220,14 +243,6 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
     this.modelService = modelService;
   }
 
-  public NcipB2BConsignmentService getConsignmentService() {
-    return ncipB2BConsignmentService;
-  }
-
-  public void setConsignmentService(
-      NcipB2BConsignmentService ncipB2BConsignmentService) {
-    this.ncipB2BConsignmentService = ncipB2BConsignmentService;
-  }
 
   public CommerceStockService getCommerceStockService() {
     return commerceStockService;
@@ -238,9 +253,17 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
     this.commerceStockService = commerceStockService;
   }
 
+  public List<SplittingStrategy> getStrategiesList() {
+    return strategiesList;
+  }
+
   public void setStrategiesList(
       List<SplittingStrategy> strategiesList) {
     this.strategiesList = strategiesList;
+  }
+
+  public NcipB2BConsignmentService getNcipB2BConsignmentService() {
+    return ncipB2BConsignmentService;
   }
 
   public void setNcipB2BConsignmentService(

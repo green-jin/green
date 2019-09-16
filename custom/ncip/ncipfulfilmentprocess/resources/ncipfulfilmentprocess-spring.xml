@@ -16,15 +16,15 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-           
-    <context:annotation-config/> 
+
+    <context:annotation-config/>
 
 	<!-- Listeners -->
-	
+
 	<bean id="pickupConfirmationEventListener" class="com.ncip.fulfilmentprocess.listeners.PickupConfirmationEventListener" parent="abstractEventListener">
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	
+
 	<!-- Process Adapters -->
 
 	<alias name="mockProcess2WarehouseAdapter" alias="process2WarehouseAdapter"/>
@@ -46,7 +46,7 @@
 		</property>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	
+
 	<!-- Process Definitions -->
 
 	<bean id="orderProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
@@ -72,7 +72,7 @@
 
 	<alias name="defaultCheckOrderService" alias="checkOrderService"/>
 	<bean id="defaultCheckOrderService" class="com.ncip.fulfilmentprocess.impl.DefaultCheckOrderService" />
-	
+
 	<!-- Order Splitting -->
 	<alias name="ncipfulfilmentprocessOrderSplittingService" alias="orderSplittingService"/>
 	<bean id="ncipfulfilmentprocessOrderSplittingService" parent="defaultOrderSplittingService" >
@@ -87,33 +87,33 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- Split Strategies -->
-	
+
 	<alias name="defaultSplitByPoS" alias="splitByPoS"/>
 	<bean id="defaultSplitByPoS" class="com.ncip.fulfilmentprocess.strategy.impl.SplitByPoS" />
-	
+
 	<alias name="defaultSplitByEntryDeliveryAddress" alias="splitByEntryDeliveryAddress"/>
 	<bean id="defaultSplitByEntryDeliveryAddress" class="com.ncip.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />
-	
+
 	<alias name="defaultSplitByDeliveryMode" alias="splitByDeliveryMode"/>
 	<bean id="defaultSplitByDeliveryMode" class="com.ncip.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >
 		<property name="pickupDeliveryModeDao" ref="pickupDeliveryModeDao"/>
 	</bean>
-	
+
 	<alias name="defaultSplitByAvailableCount" alias="splitByAvailableCount"/>
 	<bean id="defaultSplitByAvailableCount" class="com.ncip.fulfilmentprocess.strategy.impl.SplitByAvailableCount" >
 		<property name="commerceStockService" ref="commerceStockService"/>
 	</bean>
-	
+
 	<alias name="defaultSplitByWarehouse" alias="splitByWarehouse"/>
 	<bean id="defaultSplitByWarehouse" class="com.ncip.fulfilmentprocess.strategy.impl.SplitByWarehouse">
 		<property name="stockService" ref="stockService"/>
 		<property name="commerceAvailabilityCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>
 	</bean>
-	
+
 	<!--  Jobs -->
-	
+
 	<bean id="cleanUpFraudOrderJob" class="com.ncip.fulfilmentprocess.jobs.CleanUpFraudOrderJob"  >
 		<property name="modelService" ref="modelService"/>
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>

@@ -19,7 +19,27 @@ public final class Ncipb2bFulfilmentProcessConstants extends GeneratedNcipb2bFul
 	public static final String WAIT_FOR_WAREHOUSE = "WaitForWarehouse";
 	public static final String CONSIGNMENT_PICKUP = "ConsignmentPickup";
 	public static final String WAIT_FOR_SHIPPING = "WaitForShipping";
+	public static final String ALLREADY_SHIPPED = "Allready_Shipped";
+	//for consignmentProcess
 	public static final String WAREHOUSE_LIST = "WAREHOUSE_LIST";
+	public static final String PRODUCT_TYPE = "PRODUCT_TYPE";
+	public static final String DELIVERY_MODE = "DELIVERY_MODE";
+
+
+	public static final String NORMAL_LOGISTICS = "A";
+	public static final String NORMAL_FREIGHT = "C";
+
+	public static final String CUSTOM_ITEM = "B";
+
+	public static final String PREORDER_LOGISTICS = "D";
+	public static final String PREORDER_FREIGHT = "E";
+
+	public static final String STOCK_STATUS = "DELIVERY_MODE";
+	public static final String UNSTOCK = "UNSTOCK";
+	public static final String STOCK = "STOCK";
+
+
+
 	public static final String CONSIGNMENT_COUNTER = "CONSIGNMENT_COUNTER";
 	public static final String PARENT_PROCESS = "PARENT_PROCESS";
 	public static final String CUSTOMER = "CUSTOMER";

@@ -9,79 +9,96 @@
  Information and shall use it only in accordance with the terms of the
  license agreement you entered into with SAP.
 -->
-<process xmlns="http://www.hybris.de/xsd/processdefinition" start="waitBeforeTransmission" name="consignment-b2bprocess" processClass="de.hybris.platform.ordersplitting.model.ConsignmentProcessModel">
+<process xmlns="http://www.hybris.de/xsd/processdefinition" start="waitBeforeTransmission"
+  name="consignment-b2bprocess"
+  processClass="de.hybris.platform.ordersplitting.model.ConsignmentProcessModel">
 
-	<action id="waitBeforeTransmission" bean="waitBeforeB2BTransmissionAction">
-		<transition name="NOK" to="waitBeforeTransmission"/>
-		<transition name="OK" to="sendConsignmentToWarehouse"/>
-	</action>
+  <!--	暫且無用的功能-->
+  <action id="waitBeforeTransmission" bean="waitBeforeB2BTransmissionAction">
+    <transition name="NOK" to="waitBeforeTransmission"/>
+    <transition name="OK" to="sendConsignmentToWarehouse"/>
+  </action>
 
-	<action id="sendConsignmentToWarehouse" bean="sendB2BConsignmentToWarehouseAction">
-		<transition name="OK" to="waitForWarehouse"/>
-	</action>
+  <action id="sendConsignmentToWarehouse" bean="sendB2BConsignmentToWarehouseAction">
+    <transition name="OK" to="waitForWarehouse"/>
+  </action>
 
-	<wait id="waitForWarehouse" then="receiveConsignmentStatus" prependProcessCode="false">
-		<event>${process.code}_WaitForWarehouse</event>
-	</wait>
+  <wait id="waitForWarehouse" then="receiveConsignmentStatus" prependProcessCode="false">
+    <event>${process.code}_WaitForWarehouse</event>
+  </wait>
+  <!--	暫且無用的功能-->
 
-	<action id="receiveConsignmentStatus" bean="receiveB2BConsignmentStatusAction">
-		<transition name="OK" to="waitForLogistics"/>
-		<transition name="CANCEL" to="cancelConsignment"/>
-		<transition name="ERROR" to="error"/>
-	</action>
+  <action id="receiveConsignmentStatus" bean="receiveB2BConsignmentStatusAction">
+    <!--  新設立的功能 等待轉換成 Ready For Shipping-->
+    <transition name="OK" to="waitForLogistics"/>
+    <transition name="CUSTOM_ITEM" to="waitForDeliveryReCall"/>
+
+    <transition name="CANCEL" to="cancelConsignment"/>
+    <transition name="ERROR" to="error"/>
+  </action>
+
+<!--  新增動作-->
+  <action id="waitForLogistics" bean="waitForB2BLogisticsAction">
+    <transition name="OK" to="waitingLogistics"/>
+  </action>
+
+  <wait id="waitingLogistics" then="allowShipment" prependProcessCode="false">
+    <event>${process.code}_WaitForShipping</event>
+  </wait>
 
 
-		<action id="waitForLogistics" bean="waitForB2BLogisticsAction">
-			<transition name="OK" to="waitingLogistics"/>
-		</action>
 
-	<wait id="waitingLogistics" then="allowShipment" prependProcessCode="false">
-		<event>${process.code}_WaitForShipping</event>
-	</wait>
+  <action id="allowShipment" bean="allowB2BShipmentAction">
+    <transition name="DELIVERY" to="waitForDeliveryReCall"/>
+<!--    <transition name="PICKUP" to="sendReadyForPickupMessage"/>-->
+    <transition name="ERROR" to="error"/>
+    <transition name="CANCEL" to="cancelConsignment"/>
+  </action>
 
 
-	<action id="allowShipment" bean="allowB2BShipmentAction">
-		<transition name="DELIVERY" to="sendDeliveryMessage"/>
-		<transition name="PICKUP" to="sendReadyForPickupMessage"/>
-		<transition name="ERROR" to="error"/>
-		<transition name="CANCEL" to="cancelConsignment"/>
-	</action>
+<!--  09/15 ADD By Ciny-->
+  <action id="waitForDeliveryReCall" bean="waitB2BDeliveryReCallAction">
+    <transition name="OK" to="waitingForDeliveryReCall"/>
+  </action>
 
-	<action id="sendDeliveryMessage" bean="sendB2BDeliveryMessageAction">
-		<transition name="OK" to="subprocessEnd"/>
-	</action>
-	
-	<action id="sendReadyForPickupMessage" bean="sendReadyForB2BPickupMessageAction">
-		<transition name="OK" to="waitForPickup"/>
-	</action>
+  <wait id="waitingForDeliveryReCall" then="sendDeliveryMessage" prependProcessCode="false">
+    <event>${process.code}_Allready_Shipped</event>
+  </wait>
+  <action id="sendDeliveryMessage" bean="sendB2BDeliveryMessageAction">
+    <transition name="OK" to="subprocessEnd"/>
+  </action>
 
-	<action id="cancelConsignment" bean="cancelB2BConsignmentAction">
-		<transition name="OK" to="sendCancelMessage"/>
-	</action>
+<!--  <action id="sendReadyForPickupMessage" bean="sendReadyForB2BPickupMessageAction">-->
+<!--    <transition name="OK" to="waitForPickup"/>-->
+<!--  </action>-->
 
-	<action id="sendCancelMessage" bean="sendB2BCancelMessageAction">
-		<transition name="OK" to="subprocessEnd"/>
-	</action>
+  <action id="cancelConsignment" bean="cancelB2BConsignmentAction">
+    <transition name="OK" to="sendCancelMessage"/>
+  </action>
 
-	<wait id="waitForPickup" then="confirmConsignmentPickup" prependProcessCode="false">
-		<event>${process.code}_ConsignmentPickup</event>
-	</wait>
-	
-	<action id="confirmConsignmentPickup" bean="confirmB2BConsignmentPickupAction">
-		<transition name="OK" to="sendPickedUpMessage"/>
-		<transition name="CANCEL" to="cancelConsignment"/>
-		<transition name="ERROR" to="error"/>
-	</action>
-	
-	<action id="sendPickedUpMessage" bean="sendB2BPickedUpMessageAction">
-		<transition name="OK" to="subprocessEnd"/>
-	</action>
+  <action id="sendCancelMessage" bean="sendB2BCancelMessageAction">
+    <transition name="OK" to="subprocessEnd"/>
+  </action>
 
-	<action id="subprocessEnd" bean="b2bSubProcessEndAction">
-		<transition name="OK" to="success"/>
-	</action>
+<!--  <wait id="waitForPickup" then="confirmConsignmentPickup" prependProcessCode="false">-->
+<!--    <event>${process.code}_ConsignmentPickup</event>-->
+<!--  </wait>-->
 
-	<end id="error" state="ERROR">All went wrong.</end>
-	<end id="failed" state="FAILED">Order not placed.</end>
-	<end id="success" state="SUCCEEDED">Order placed.</end>
+<!--  <action id="confirmConsignmentPickup" bean="confirmB2BConsignmentPickupAction">-->
+<!--    <transition name="OK" to="sendPickedUpMessage"/>-->
+<!--    <transition name="CANCEL" to="cancelConsignment"/>-->
+<!--    <transition name="ERROR" to="error"/>-->
+<!--  </action>-->
+
+<!--  <action id="sendPickedUpMessage" bean="sendB2BPickedUpMessageAction">-->
+<!--    <transition name="OK" to="subprocessEnd"/>-->
+<!--  </action>-->
+
+  <action id="subprocessEnd" bean="b2bSubProcessEndAction">
+    <transition name="OK" to="success"/>
+  </action>
+
+  <end id="error" state="ERROR">All went wrong.</end>
+  <end id="failed" state="FAILED">Order not placed.</end>
+  <end id="success" state="SUCCEEDED">Order placed.</end>
 </process>

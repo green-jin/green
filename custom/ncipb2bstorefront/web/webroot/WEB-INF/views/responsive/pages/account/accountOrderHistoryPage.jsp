@@ -22,6 +22,7 @@
 	</div>
 </c:if>
 <c:if test="${not empty searchPageData.results}">
+	111111111111111111111111111111111111111111111111111111111111111111111111
 	<div class="account-section-content	">
 		<div class="account-orderhistory">
 			<div class="account-orderhistory-pagination">
@@ -47,7 +48,7 @@
 										${fn:escapeXml(order.code)}
 									</a>
 								</td>
-								<td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.account.orderHistory.orderStatus"/></td>																
+								<td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.account.orderHistory.orderStatus"/></td>
 								<td class="status">
 									<spring:theme code="text.account.order.status.display.${order.statusDisplay}"/>
 								</td>
