@@ -38,10 +38,6 @@
 			<value code="BUDGETEXCEEDED"/>
 			<value code="AMOUNTTIMESPAN"/>
 		</enumtype>
-		
-		<!-- Line of Business 行業別(動態加入) -->
-        <enumtype code="LineOfBusiness" autocreate="false" generate="true" dynamic="true"/>
-		
 	</enumtypes>
 	<relations>
 		<relation code="B2BUnit2ApproverGroup" localized="false"
@@ -358,84 +354,6 @@
 				</attribute>
 			</attributes>
 		</itemtype>
-		
-		<!-- New B2BUnit -->
-		<typegroup name="newB2BUnit">
-			<itemtype code="B2BUnit" autocreate="false" generate="true">
-				<description>B2B單位</description>
-				<attributes>
-					<attribute type="java.lang.String" qualifier="phone1">
-						<description>電話號碼</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="conno">
-						<description>合約編號</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.util.Date" qualifier="sDate">
-						<description>合約生效日期</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.util.Date" qualifier="eDate">
-						<description>合約到期日期</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="pernr">
-						<description>負責業務</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="inco1">
-						<description>國貿條件</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="inco2">
-						<description>國貿條件地點</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="fax">
-						<description>公司傳真</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.util.Date" qualifier="sutDat">
-						<description>停止交易日</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="zTerm">
-						<description>收款條件</description>
-						<persistence type="property"/>
-					</attribute>
-				</attributes>
-			</itemtype>
-		</typegroup>
-		
-		<!-- New B2BCustomer -->
-		<typegroup name="newB2BCustomer">
-			<itemtype code="B2BCustomer" autocreate="false" generate="true">
-				<description>B2B客戶</description>
-				<attributes>
-					<attribute type="java.lang.String" qualifier="post">
-						<description>您的職位</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="lifnr">
-						<description>負責經銷商</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="cell_number">
-						<description>聯絡人手機</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="poc_line">
-						<description>聯絡人Line</description>
-						<persistence type="property"/>
-					</attribute>
-					<attribute type="java.lang.String" qualifier="poc_wechat">
-						<description>聯絡人WeChat</description>
-						<persistence type="property"/>
-					</attribute>
-				</attributes>
-			</itemtype>
-		</typegroup>
 		
 	</itemtypes>
 </items>
