@@ -42,20 +42,100 @@
 
     <enumtype generate="true" autocreate="true" dynamic="false" code="ProductType">
       <value code="CUSTOM"/>
-      <value code="GENERAL"/>
+      <value code="NORMAL"/>
       <value code="PREORDER"/>
-
     </enumtype>
+
+    <enumtype generate="true" autocreate="true" dynamic="false" code="DeliveryType">
+      <value code="LOGISTICS"/>
+      <value code="FREIGHT"/>
+    </enumtype>
+
+
+
     <enumtype generate="true" autocreate="true" dynamic="false" code="ProductSize">
       <value code="SMALL"/>
       <value code="BIG"/>
     </enumtype>
 
+    <!-- Line of Business 行業別(動態加入) -->
+    <enumtype code="LineOfBusiness" autocreate="false" generate="true" dynamic="true"/>
+
   </enumtypes>
 
   <itemtypes>
     <!-- Add your item definitions here -->
-
+<!-- HybrisStockLevelStart ncipcore-items.xml_stocklevel  -->
+		    <itemtype generate="true" code="StockLevel" autocreate="false">
+		      <attributes>
+		        <attribute type="java.lang.String" qualifier="vkORG">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+		        <attribute type="java.lang.String" qualifier="createDate">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="fromSYS">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="toSYS">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="icType">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="dataExchangStatus">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		  </itemtype>		 
+		    <!-- Hybris StockLevel End -->
+		    
+ <!-- Hybris B2BCreditLimit Start ncipcore-items.xml_B2BCreditLimit  -->
+		    <itemtype generate="true" code="B2BCreditLimit"  autocreate="false" 
+		    jaloclass="de.hybris.platform.b2b.jalo.B2BCreditLimit" extends="B2BMerchantCheck">
+		      <attributes>
+		        <attribute type="java.lang.String" qualifier="vkORG">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+		        <attribute type="java.lang.String" qualifier="createDate">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="fromSYS">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="toSYS">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="icType">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="dataExchangStatus">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="customerId">
+					<description>SAP 客戶編號</description>
+					<persistence type="property"/>
+				</attribute>
+				<attribute type="java.lang.String" qualifier="description">
+					<description>說明</description>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		  </itemtype>		   
+		    <!-- Hybris B2BCreditLimit End -->
+		    
     <typegroup>
       <itemtype code="Media" autocreate="false" generate="true" extends="AbstractMedia">
         <attributes>
@@ -148,9 +228,22 @@
     </typegroup>
 
 
-
-
     <typegroup name="Component Items">
+	  <itemtype code="FooterNavigationComponent" autocreate="false" generate="false" >
+	  <description>CMS component for footer navigation in the accelerator.</description>
+		  <attributes>
+			<attribute qualifier="serviceStatement" type="localized:java.lang.String">
+				<description>Intended to store a copyright notice or other text to be displayed in the footer</description>
+				<persistence type="property" />
+				<modifiers read="true" write="true" optional="true" />
+			</attribute>
+			<attribute qualifier="serviceStatementUrlLike" type="java.lang.String">
+				<description>Intended to store a copyright notice or other text to be displayed in the footer</description>
+				<persistence type="property" />
+				<modifiers read="true" write="true" optional="true" />
+			</attribute> 
+		  </attributes>
+	  </itemtype> 
       <itemtype code="HomeSimpleBannerComponent" generate="true"
         jaloclass="com.ncip.core.jalo.components.HomeSimpleBannerComponent"
         extends="SimpleResponsiveBannerComponent" autocreate="true">
@@ -210,7 +303,78 @@
           </attribute>
         </attributes>
       </itemtype>
+
+      <!--			Add Header Components-->
+      <itemtype code="NcipOrderToolsComponent" autocreate="true"
+        generate="true" extends="SimpleCMSComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipOrderToolsComponent">
+        <description>Ncip Navigation Component</description>
+        <attributes>
+          <attribute type="CMSNavigationNode" qualifier="navigationNode">
+            <persistence type="property" />
+            <modifiers />
+            <description>The cms navigation node of this navigation component.</description>
+          </attribute>
+          <attribute type="java.lang.String" qualifier="styleClass">
+            <persistence type="property" />
+            <modifiers />
+            <description>CSS style class of this navigation component.</description>
+          </attribute>
+          <attribute type="java.lang.Integer" qualifier="wrapAfter">
+            <persistence type="property" />
+            <modifiers />
+            <description>Determines the number of navigation nodes when the following elements will be wrapped.</description>
+          </attribute>
+        </attributes>
+      </itemtype>
+
+      <itemtype code="NcipMiniCartComponent" generate="true"
+        extends="SimpleCMSComponent" autocreate="true"
+        jaloclass="com.ncip.core.jalo.components.NcipMiniCartComponent">
+        <description>It represents mini cart component that can be configured to show some information about cart content.</description>
+        <attributes>
+          <attribute qualifier="title" type="localized:java.lang.String"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <description>It is localized title of the component.</description>
+          </attribute>
+          <attribute qualifier="totalDisplay" type="CartTotalDisplayType"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <modifiers optional="false" />
+            <defaultvalue>em().getEnumerationValue("CartTotalDisplayType", "TOTAL")</defaultvalue>
+            <description>This attribute determines the type of displayed total cart value.</description>
+          </attribute>
+          <attribute qualifier="shownProductCount" type="int"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <modifiers optional="false" />
+            <defaultvalue>Integer.valueOf(3)</defaultvalue>
+            <description>It controls the maximum number of products to display in the component.</description>
+          </attribute>
+          <attribute qualifier="lightboxBannerComponent" type="SimpleBannerComponent"
+            generate="true" autocreate="true">
+            <persistence type="property" />
+            <modifiers />
+            <description>It is a banner component that can be displayed in the mini cart.</description>
+          </attribute>
+        </attributes>
+      </itemtype>
+
+      <itemtype code="NcipCategoryNavigationComponent" autocreate="true"
+        generate="true" extends="NavigationComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipCategoryNavigationComponent">
+        <description>CMS component for category navigation in the accelerator.</description>
+      </itemtype>
+
+      <itemtype code="NcipBreadcrumbComponent" autocreate="true"
+        generate="true" extends="SimpleCMSComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipBreadcrumbComponent">
+        <description>A component wrapping the breadcrumb tag</description>
+      </itemtype>
+      <!--			Add Header Components End-->
     </typegroup>
+
 
     <typegroup name="newBaseStore">
       <itemtype code="BaseStore" autocreate="false" generate="false">
@@ -318,7 +482,7 @@
               optional="true"/>
             <persistence type="property"/>
           </attribute>
-          <attribute qualifier="my_type" type="java.lang.String">
+          <attribute qualifier="ma_type" type="java.lang.String">
             <description>物料類型</description>
             <modifiers read="true" write="true" search="true"
               optional="true"/>
@@ -331,7 +495,98 @@
           </attribute>
         </attributes>
       </itemtype>
+      
+	  <itemtype generate="true" code="PriceRow" autocreate="false">
+		<attributes>
+			<attribute qualifier="vkorg" type="java.lang.String">
+				<description>銷售組織</description>
+				<modifiers read="true" write="true" search="true"
+					optional="true" />
+				<persistence type="property" />
+			</attribute>
+		</attributes>
+	  </itemtype>
+      
     </typegroup>
+    
+    <!-- New B2BUnit -->
+		<typegroup name="newB2BUnit">
+			<itemtype code="B2BUnit" autocreate="false" generate="true">
+				<description>B2B單位</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="phone1">
+						<description>電話號碼</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="conno">
+						<description>合約編號</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.util.Date" qualifier="sDate">
+						<description>合約生效日期</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.util.Date" qualifier="eDate">
+						<description>合約到期日期</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="pernr">
+						<description>負責業務</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="inco1">
+						<description>國貿條件</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="inco2">
+						<description>國貿條件地點</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="fax">
+						<description>公司傳真</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.util.Date" qualifier="sutDat">
+						<description>停止交易日</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="zTerm">
+						<description>收款條件</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+    
+    <!-- New B2BCustomer -->
+		<typegroup name="newB2BCustomer">
+			<itemtype code="B2BCustomer" autocreate="false" generate="true">
+				<description>B2B客戶</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="post">
+						<description>您的職位</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="lifnr">
+						<description>負責經銷商</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="cell_number">
+						<description>聯絡人手機</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="poc_line">
+						<description>聯絡人Line</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="poc_wechat">
+						<description>聯絡人WeChat</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
 
   </itemtypes>
+
 </items>

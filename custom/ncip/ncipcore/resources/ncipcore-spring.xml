@@ -604,6 +604,7 @@
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
 	
+
 	<bean id="homeDeliverySendJob" class="com.ncip.core.job.HomeDeliverySendJob"  parent="abstractJobPerformable">
 		<property name="hctFtpService" ref="hctFtpService"/>
 	</bean>
@@ -630,4 +631,64 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
+
+	<!-- add ncipCommerceStockService -->
+    <alias alias="ncipCommerceStockService" name="defaultNcipCommerceStockService"/>
+	<bean id="defaultNcipCommerceStockService"
+			class="com.ncip.core.service.impl.DefaultNcipCommerceStockService">
+		<property name="ncipCommerceStockLevelCalculationStrategy" ref="ncipCommerceStockLevelCalculationStrategy"/>
+		<property name="stockService" ref="stockService"/>
+		<property name="warehouseSelectionStrategy" ref="warehouseSelectionStrategy"/>
+	</bean>
+	
+	<!-- add ncipCommerceStockLevelCalculationStrategy -->
+    <alias alias="ncipCommerceStockLevelCalculationStrategy" name="defaultNcipCommerceStockLevelCalculationStrategy"/>
+	<bean id="defaultNcipCommerceStockLevelCalculationStrategy"
+			class="com.ncip.core.service.impl.DefaultNcipCommerceAvailabilityCalculationStrategy"
+			/>
+	<!-- green CronJob  -->	
+	<alias alias="stockLevelSyncDao" name="defaultStockLevelSyncDao"/>
+	<bean id="defaultStockLevelSyncDao" class="com.ncip.core.dao.impl.DefaultStockLevelSyncDao" parent="abstractItemDao">
+		<property name="typeService" ref="typeService"/>
+		<property name="jdbcTemplate">
+			<bean class="org.springframework.jdbc.core.JdbcTemplate">
+				<property name="dataSource" ref="dataSource"/>
+			</bean>
+		</property>
+	</bean> 
+	<alias name="defaultSaveStockLevelService" alias="saveStockLevelService" />
+	<bean id="defaultSaveStockLevelService" 
+	class="com.ncip.core.service.impl.DefaultSaveStockLevelService" 
+	parent="abstractBusinessService">
+	    <property name="productDao" ref="productDao" />
+	    <property name="stockLevelSyncDao" ref="stockLevelSyncDao" />
+		<property name="stockService" ref="stockService" />
+		<property name="warehouseService" ref="warehouseService" />
+		<property name="configurationService" ref="configurationService" />
+	</bean>
+	 
+	<bean id="stockLevelCronJob" class="com.ncip.core.job.StockLevelCronJob" parent="abstractJobPerformable">
+	    <property name="saveStockLevelService" ref="saveStockLevelService" />
+	    <property name="configurationService" ref="configurationService" />
+	</bean>
+	
+	<alias alias="b2bCreditLimitDao" name="defaultB2BCreditLimitDao"/>
+	<bean id="defaultB2BCreditLimitDao" class="com.ncip.core.dao.impl.DefaultB2BCreditLimitDao" parent="abstractItemDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean> 
+	<alias name="defaultSaveB2BCreditLimitService" alias="saveB2BCreditLimitService" />
+	<bean id="defaultSaveB2BCreditLimitService" 
+	class="com.ncip.core.service.impl.DefaultSaveB2BCreditLimitService" 
+	parent="abstractBusinessService">
+	    <property name="b2bCreditLimitDao" ref="b2bCreditLimitDao" />
+	    <property name="configurationService" ref="configurationService" />
+	</bean>
+	 
+	<bean id="b2bCreditLimitCronJob" class="com.ncip.core.job.B2BCreditLimitCronJob" parent="abstractJobPerformable">
+	    <property name="saveB2BCreditLimitService" ref="saveB2BCreditLimitService" />
+	    <property name="configurationService" ref="configurationService" />
+	</bean>
+	<!-- green CronJob  -->
+
 </beans>

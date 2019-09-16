@@ -84,9 +84,17 @@
 			<property name="productConfigurableChecker" ref="productConfigurableChecker" />                     
     </bean>
     
-
+    <!-- add StockPopulator -->
+    <alias name="ncipStockPopulator" alias="stockPopulator"/>
+	<bean id="ncipStockPopulator" parent="defaultStockPopulator"
+			class="com.ncip.facades.populators.NcipStockPopulator">
+       	<property name="commerceStockService" ref="commerceStockService"/>
+       	<property name="ncipCommerceStockService" ref="ncipCommerceStockService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+					                   
+    </bean>
 	
-
+	
 	<bean id="apparelProductPopulator" class="com.ncip.facades.populators.ApparelProductPopulator" >
 		<property name="genderConverter" ref="genderConverter"/>
 	</bean>

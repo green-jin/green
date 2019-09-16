@@ -45,8 +45,8 @@ UPDATE Category; code[unique = true]; $catalogVersion; name[lang = $lang]       
 #               ; 1000               ;                ; Bathroom                             ;              ;
 #               ; 1100               ;                ; Kitchen                              ;              ;
 #               ; 1200               ;                ; Style                                ;              ;
-
-#Bathroom
+#
+##Bathroom
 #               ; 1001               ;                ; Washbasin Faucet                     ;              ;
 #               ; 1002               ;                ; Roman bathtub Faucet                 ;              ;
 #               ; 1003               ;                ; Wall Hanging Faucet                  ;              ;

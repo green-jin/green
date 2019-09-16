@@ -6,6 +6,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <c:set var="isForceInStock" value="${product.stock.stockLevelStatus.code eq 'inStock' and empty product.stock.stockLevel}"/>
+
 <c:choose> 
   <c:when test="${isForceInStock}">
     <c:set var="maxQty" value="FORCE_IN_STOCK"/>
@@ -14,19 +15,36 @@
     <c:set var="maxQty" value="${product.stock.stockLevel}"/>
   </c:otherwise>
 </c:choose>
-
 <c:set var="qtyMinus" value="1" />
+
+<!-- 訂製品預購品 -->
+<c:if test="${product.ma_type eq 'B' || product.ma_type eq 'D'}">
+	
+	<spring:theme code="product.product.produceMsg"/>
+
+</c:if>
+
+<input type="hidden" id="stockAmount" value="${product.stock.stockAmount}" ></input>
+
+<spring:theme code="product.product.produceMsg1" arguments="${product.plifz}" var="stockMsg"/>
+
+<input type="hidden" id="stockMessage" value="${stockMsg}" ></input>
+
+
 
 <div class="addtocart-component">
 		<c:if test="${empty showAddToCart ? true : showAddToCart}">
 		<div class="qty-selector input-group js-qty-selector">
 			<span class="input-group-btn">
-				<button class="btn btn-default js-qty-selector-minus" type="button" <c:if test="${qtyMinus <= 1}"><c:out value="disabled='disabled'"/></c:if> ><span class="glyphicon glyphicon-minus" aria-hidden="true" ></span></button>
+				<button class="btn btn-default js-qty-selector-minus" onclick="ShowValue()" type="button" <c:if test="${qtyMinus <= 1}"><c:out value="disabled='disabled'"/></c:if> ><span class="glyphicon glyphicon-minus" aria-hidden="true" ></span></button>
 			</span>
 				<input type="text" maxlength="3" class="form-control js-qty-selector-input" size="1" value="${fn:escapeXml(qtyMinus)}"
-					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput" />
+					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput"  onchange="ShowValue()" />
+					   
+			    <input type="hidden" id="stocklevel" value="${product.stock.stockLevel}" ></input>
+			    
 			<span class="input-group-btn">
-				<button class="btn btn-default js-qty-selector-plus" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+				<button class="btn btn-default js-qty-selector-plus" onclick="ShowValue()" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 			</span>
 		</div>
 		</c:if>
@@ -58,3 +76,23 @@
         <action:actions element="div"  parentComponent="${component}"/>
     </div>
 </div>
+
+
+<script type="text/javascript">
+function ShowValue(){
+	 var purchase =document.getElementById("pdpAddtoCartInput").value;
+	 var stockAmount=document.getElementById("stockAmount").value;
+	 var stockMsg=document.getElementById("stockMessage").value;
+	 
+	 
+	 var purchaseAmt = parseInt(purchase, 10); 
+	 
+	 
+	 
+ 	 if( purchaseAmt > stockAmount ) {
+ 		 alert(stockMsg);
+ 	 }
+}
+
+</script>
+
