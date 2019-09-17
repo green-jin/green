@@ -9,6 +9,13 @@
  */
 package com.ncip.initialdata.setup;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
+import com.ncip.initialdata.constants.NcipInitialDataConstants;
+import com.ncip.initialdata.impl.Ncipb2bSampleDataImportService;
 import de.hybris.platform.commerceservices.dataimport.impl.CoreDataImportService;
 import de.hybris.platform.commerceservices.dataimport.impl.SampleDataImportService;
 import de.hybris.platform.commerceservices.setup.AbstractSystemSetup;
@@ -21,13 +28,6 @@ import de.hybris.platform.core.initialization.SystemSetup.Type;
 import de.hybris.platform.core.initialization.SystemSetupContext;
 import de.hybris.platform.core.initialization.SystemSetupParameter;
 import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
-import com.ncip.initialdata.constants.NcipInitialDataConstants;
-import com.ncip.initialdata.impl.Ncipb2bSampleDataImportService;
 
 
 /**
@@ -44,6 +44,11 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
   private static final String IMPORT_CORE_DATA = "importCoreData";
   private static final String IMPORT_SAMPLE_DATA = "importSampleData";
   private static final String ACTIVATE_SOLR_CRON_JOBS = "activateSolrCronJobs";
+
+  /* 客戶主檔 */
+  private static final String CUSTOMER_MASTER_DATA = "customerMasterData";
+  private static final String CUSTOMER_MASTER_DATA_URL =
+      "/ncipinitialdata/import/ncip/customer_master_data.impex";
 
   private CoreDataImportService coreDataImportService;
   private SampleDataImportService sampleDataImportService;
@@ -63,6 +68,10 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
         true));
 
     // Add more Parameters here as you require
+
+    /* 匯入客戶主檔選項 */
+    params.add(createBooleanSystemSetupParameter(CUSTOMER_MASTER_DATA,
+        "Import Customer Master Data", true));
 
     return params;
   }
@@ -106,7 +115,8 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     /*
      * Add import data for each site you have configured
      */
-    LOG.info("######################################### NCIP B2B Initialize SystemSetup Type.PROJECT Process.ALL Start #########################################");
+    LOG.info(
+        "######################################### NCIP B2B Initialize SystemSetup Type.PROJECT Process.ALL Start #########################################");
 
     final List<ImportData> importData = new ArrayList<ImportData>();
 
@@ -124,13 +134,15 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     // getNcipSampleDataImportService().importCommerceOrgData(context);
     // getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    LOG.info("######################################### NCIP B2B Initialize SystemSetup Type.PROJECT Process.ALL End #########################################");
+    LOG.info(
+        "######################################### NCIP B2B Initialize SystemSetup Type.PROJECT Process.ALL End #########################################");
   }
 
   @SystemSetup(type = Type.PROJECT, process = Process.UPDATE)
   public void createUpdateProjectData(final SystemSetupContext context) {
 
-    LOG.info("######################################### NCIP B2B Update SystemSetup Type.PROJECT Process.UPDATE Start #########################################");
+    LOG.info(
+        "######################################### NCIP B2B Update SystemSetup Type.PROJECT Process.UPDATE Start #########################################");
 
     final List<ImportData> importData = new ArrayList<ImportData>();
 
@@ -145,7 +157,19 @@ public class InitialDataSystemSetup extends AbstractSystemSetup {
     getNcipb2bSampleDataImportService().importCommerceOrgData(context);
     getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 
-    LOG.info("################################# NCIP B2B Update SystemSetup Type.PROJECT Process.UPDATE End #########################################");
+    /* 匯入客戶主檔 */
+    LOG.info("Import Customer Master Data? "
+        + getBooleanSystemSetupParameter(context, CUSTOMER_MASTER_DATA));
+    if (getBooleanSystemSetupParameter(context, CUSTOMER_MASTER_DATA)) {
+      logInfo(context, "Importing Customer Master Data.");
+      importImpexFile(context, CUSTOMER_MASTER_DATA_URL);
+      logInfo(context, "Finished Importing Customer Master Data.");
+    } else {
+      logInfo(context, "Skipping Customer Master Data.");
+    }
+
+    LOG.info(
+        "################################# NCIP B2B Update SystemSetup Type.PROJECT Process.UPDATE End #########################################");
   }
 
   public CoreDataImportService getCoreDataImportService() {
