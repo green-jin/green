@@ -6,25 +6,46 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<c:set var="noBorder" value=""/>
+<c:set var="dataSize" value=""/>
 <c:if test="${not empty addressData}">
-    <c:set var="noBorder" value="no-border"/>
+    <c:set var="dataSize" value="${fn:length(addressData)}"/>
 </c:if>
 
-<div class="account-section-header ${noBorder}">
-    <spring:theme code="text.account.addressBook"/>
+<div class="col-lg-10 container-fluid">
 
-        <ycommerce:testId code="addressBook_addNewAddress_button">
-            <div class="account-section-header-add pull-right">
-                <a href="add-address">
-                    <spring:theme code="text.account.addressBook.addAddress"/>
-                </a>
-            </div>
-        </ycommerce:testId>
-    </div>
+  <!-- Page Content -->
+	<div class="row justify-content-between p-3">
+		<h3 class="p-0">111</h3>
+		<a href="add-address">111</a>
+	</div>
+	<hr>
+	<div class="row p-3">
+		<c:forEach items="${addressData}" var="address">
+		  <div class="col-md-4 border border-l-gary p-3">
+			  <div class="row">
+				<div class="col-9 text-left">
+			    <h6>${fn:escapeXml(address.title)}&nbsp;${fn:escapeXml(address.firstName)}&nbsp;${fn:escapeXml(address.lastName)}<c:if test="${address.defaultAddress}">(<spring:theme code="text.default"/>)</c:if></h6>
+				${fn:escapeXml(address.line1)}<br>
+				<c:if test="${not empty fn:escapeXml(address.line2)}">
+					${fn:escapeXml(address.line2)}<br>
+				</c:if>
+				${fn:escapeXml(address.town)}&nbsp;${fn:escapeXml(address.region.name)}<br>
+			    ${fn:escapeXml(address.postalCode)}<br>
+			    ${fn:escapeXml(address.phone)}
+			    </div>
+			    
+				<div class="col-3 text-right text-secondary">
+					<a href="#" class="text-secondary"><i class="fa fa-pencil"></i></a><br>
+			    	<a href="#" class="text-secondary"><i class="fa fa-times"></i></a>
+			    </div>
+			  </div>
+		  </div>
+		</c:forEach>
+	</div>
 </div>
 
-<div class="account-addressbook account-list">
+
+<%-- <div class="account-addressbook account-list">
     <c:if test="${empty addressData}">
 		<div class="account-section-content content-empty">
 			<spring:theme code="text.account.addressBook.noSavedAddresses" />
@@ -127,4 +148,4 @@
 		    </c:forEach>
 	    </div>
     </c:if>
-</div>
+</div> --%>
