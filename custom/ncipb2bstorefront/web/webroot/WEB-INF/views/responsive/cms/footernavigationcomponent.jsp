@@ -4,8 +4,8 @@
 <%@ taglib prefix="footer"
 	tagdir="/WEB-INF/tags/responsive/common/footer"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<!-- Footer start -->
+ 
+<!-- homePage Footer start -->
 <footer class="py-5 bg-dark">
 	<div class="col-lg-10 container-fluid">
 		<div class="row">
@@ -27,7 +27,8 @@
 									   </c:when>
 									<c:otherwise>
 										<small> <cms:component component="${childlink.item}"
-												evaluateRestriction="true" class="text-white" /><br>
+												evaluateRestriction="true" class="text-white" />
+												<br>
 										</small>
 									</c:otherwise>
 								</c:choose>
