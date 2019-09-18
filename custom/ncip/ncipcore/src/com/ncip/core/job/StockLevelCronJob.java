@@ -128,7 +128,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 						UPDATESQL = UPDATESQL + " and LGORT = '" + zhystkData.getLgORT() + "'";
 						UPDATESQL = UPDATESQL + " and FRM_SYS = '" + zhystkData.getFrm_SYS() + "'";
 						UPDATESQL = UPDATESQL + " and TO_SYS = '" + zhystkData.getTo_SYS() + "'";
-//						LOG.info(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
+						LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
 						try
 						{
 							final PreparedStatement ps = conn.prepareStatement(UPDATESQL);

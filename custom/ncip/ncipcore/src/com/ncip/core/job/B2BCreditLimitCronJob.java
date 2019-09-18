@@ -77,11 +77,13 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 				}
 				else
 				{
+				  LOG.warn(" do PerformResult getSAPERPZHYToZHYCLData zhyclData.isEmpty() ");
 					return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
 				}
 			}
 			else
 			{
+			  LOG.error(" do PerformResult getSAPERPZHYToZHYCLData zhyclData is null ");
 				return new PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED);
 			}
 
@@ -91,6 +93,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 		{
 
 			// In case of exception return result: ERROR and status: ABORTED
+		  LOG.error(" do PerformResult getSAPERPZHYToZHYCLData In case of exception return result: ERROR and status: ABORTED ");
 			return new PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED);
 
 		}
@@ -121,7 +124,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 					UPDATESQL = UPDATESQL + " and KUNNR = '" + zhyclData.getKunNR() + "'";
 					UPDATESQL = UPDATESQL + " and FRM_SYS = '" + zhyclData.getFrm_SYS() + "'";
 					UPDATESQL = UPDATESQL + " and TO_SYS = '" + zhyclData.getTo_SYS() + "'";
-					//LOG.info(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
+					LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
 					try
 					{
 						final PreparedStatement ps = conn.prepareStatement(UPDATESQL);
@@ -194,7 +197,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 			SELECTSQL = SELECTSQL + "and FRM_SYS = '" + FRSYS + "'";
 			SELECTSQL = SELECTSQL + "and TO_SYS = '" + TOSYS + "'";
 			//SELECTSQL = SELECTSQL + "and {CRT_DAT} like '" + formatDateTime + "%'";
-			LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
+			LOG.debug(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
 			//final ResultSet rs = stmt.executeQuery(SELECTSQL);
 			try (Connection conn = DriverManager.getConnection(url, username, password);
 					PreparedStatement ps = conn.prepareStatement(SELECTSQL);
