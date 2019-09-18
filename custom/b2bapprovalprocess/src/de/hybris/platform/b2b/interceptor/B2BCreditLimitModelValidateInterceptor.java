@@ -41,7 +41,8 @@ public class B2BCreditLimitModelValidateInterceptor implements ValidateIntercept
 				throw new InterceptorException(getL10NService().getLocalizedString("error.dateperiodorrange.missing"));
 			}
 
-			if (creditLimit.getAmount() != null && creditLimit.getAmount().compareTo(BigDecimal.ZERO) <= 0)
+			// 信用餘額應大於等於0
+			if (creditLimit.getAmount() != null && creditLimit.getAmount().compareTo(BigDecimal.ZERO) < 0)
 			{
 				throw new InterceptorException(getL10NService().getLocalizedString("error.amount.lessoreqaulszero"));
 			}

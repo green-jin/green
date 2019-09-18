@@ -14,6 +14,17 @@
 	  	<script src="${fn:escapeXml(contextPath)}/wro/addons_responsive.js"></script>
 	</c:when>
 	<c:otherwise>
+	    
+	    <%-- NCIP JS  --%>
+	    <script src="${commonResourcePathHtml}/js/ncip/jquery.js"></script>
+		<script src="${commonResourcePathHtml}/js/ncip/jquery.min.js"></script>
+		<script src="${commonResourcePathHtml}/js/ncip/jquery.slim.js"></script>
+		<script src="${commonResourcePathHtml}/js/ncip/jquery.slim.min.js"></script>
+	    <script src="${commonResourcePathHtml}/js/ncip/bootstrap.js"></script>
+		<script src="${commonResourcePathHtml}/js/ncip/bootstrap.min.js"></script>
+		<script src="${commonResourcePathHtml}/js/ncip/bootstrap.bundle.js"></script>
+		<script src="${commonResourcePathHtml}/js/ncip/bootstrap.bundle.min.js"></script>
+
 		<%-- jquery --%>
 		<script src="${commonResourcePathHtml}/js/jquery-3.2.1.min.js"></script>
 		
@@ -94,6 +105,7 @@
 		<c:forEach items="${addOnJavaScriptPaths}" var="addOnJavaScript">
 		    <script src="${fn:escapeXml(addOnJavaScript)}"></script>
 		</c:forEach>
+		
 		
 	</c:otherwise>
 </c:choose>
