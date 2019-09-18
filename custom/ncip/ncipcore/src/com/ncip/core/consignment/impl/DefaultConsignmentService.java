@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 public class DefaultConsignmentService implements ConsignmentService {
 
   @Resource
-  ConsignmentDao consignmentDao;
+  private ConsignmentDao ncipDefaultConsignmentDao;
 
   @Override
   public ConsignmentModel GetConsignment(ConsignmentProcessModel consignmentProcessModel)
@@ -26,7 +26,8 @@ public class DefaultConsignmentService implements ConsignmentService {
 
   @Override
   public List<ConsignmentModel> GetConsignmentsByTime(String time) throws ConsignmentException {
-    return null;
+    
+    return ncipDefaultConsignmentDao.GetConsignmentsByTime(time);
   }
 
   @Override
@@ -34,11 +35,11 @@ public class DefaultConsignmentService implements ConsignmentService {
     return null;
   }
 
-  public ConsignmentDao getConsignmentDao() {
-    return consignmentDao;
+  public ConsignmentDao getNcipDefaultConsignmentDao() {
+    return ncipDefaultConsignmentDao;
   }
 
-  public void setConsignmentDao(ConsignmentDao consignmentDao) {
-    this.consignmentDao = consignmentDao;
+  public void setNcipDefaultConsignmentDao(ConsignmentDao ncipDefaultConsignmentDao) {
+    this.ncipDefaultConsignmentDao = ncipDefaultConsignmentDao;
   }
 }

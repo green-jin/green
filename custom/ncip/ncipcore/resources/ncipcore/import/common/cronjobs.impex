@@ -29,6 +29,18 @@ INSERT_UPDATE RetentionJob;code[unique=true];retentionRule(code);batchSize[defau
 ;ticketsRetentionJob;ticketsFSRetentionRule;
 ;ticketsFSStagnationJob;ticketsFSStagnationRule;
 
+INSERT_UPDATE ServicelayerJob	;code[unique=true]	;springId
+								;homeDeliveryJob    ;homeDeliveryJob
+								;frightJob          ;frightJob
+								;logisticsInfoFromHCTJob ;logisticsInfoFromHCTJob
+
+INSERT_UPDATE HomeDeliveryCronJob	;code[unique=true]	;job(code)
+									;homeDeliveryCronJob;homeDeliveryJob
+INSERT_UPDATE FrightCronJob	;code[unique=true]	;job(code)
+;frightCronJob;frightJob
+INSERT_UPDATE LogisticsInfoFromHCTCronJob	;code[unique=true]	;job(code)
+;logisticsInfoFromHCTCronJob;logisticsInfoFromHCTJob
+
 # FS CRON JOB
 INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isoCode)[default=en]
 ;customersWithOrdersRetentionCronJob;customersWithOrdersRetentionJob;
@@ -36,6 +48,9 @@ INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isoCode)[defau
 ;ordersRetentionCronJob;ordersRetentionJob;
 ;ticketsRetentionCronJob;ticketsRetentionJob;
 ;ticketsStagnationJob;ticketsFSStagnationJob;
+;homeDeliveryCronJob;homeDeliveryJob;
+;frightCronJob;frightJob;
+;logisticsInfoFromHCTCronJob;logisticsInfoFromHCTJob;
 
 # Run CronJobs at 3:05 AM every day
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second[default=0];minute[default=5];hour[default=3];day[default=-1];month[default=-1];year[default=-1];relative[default=false];active[default=false];maxAcceptableDelay[default=-1]
