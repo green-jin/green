@@ -38,5 +38,30 @@
        <property name = "status" type="String" />
    </bean>
    
+   <bean class = "com.ncip.core.data.ZData" >
+       <description>Data object SAP ERP ZData</description>
+       <property name = "vkORG" type = "String" />
+	   <property name = "vkGRP" type = "String" />
+	   <property name = "customerID" type = "String" />
+	   <property name = "zTERM" type = "String" />
+	   <property name = "inCO1" type = "String" />
+	   <property name = "inCO2" type = "String" />
+	   <property name = "code" type = "String" />
+	   <property name = "entryNUMBER" type = "Integer" />
+	   <property name = "product" type = "Double" />
+	   <property name = "quantity" type = "Long" />
+	   <property name = "unit" type = "String" />
+	   <property name = "basePrice" type = "double" />
+	   <property name = "currency" type = "String" />
+	   <property name = "perNR" type = "String" />
+	   <property name = "lifNR" type = "String" />
+	   <property name = "status" type = "String" />
+       <property name = "ma_TYPE" type = "String" />
+       <property name = "crt_DATE" type="String" />
+       <property name = "frm_SYS" type="String" />
+       <property name = "to_SYS" type="String" />
+       <property name = "icType" type="String" />
+       <property name = "dataEXCHANGESTATUS" type="String" />
+   </bean>
   
 </beans>
