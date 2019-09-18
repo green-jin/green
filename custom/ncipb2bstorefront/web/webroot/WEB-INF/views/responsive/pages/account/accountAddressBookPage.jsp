@@ -15,8 +15,8 @@
 
   <!-- Page Content -->
 	<div class="row justify-content-between p-3">
-		<h3 class="p-0">111</h3>
-		<a href="add-address">111</a>
+		<h3 class="p-0"><spring:theme code="text.account.addressBook" /></h3>
+		<a href="add-address"><spring:theme code="text.account.addressBook.addAddress" /></a>
 	</div>
 	<hr>
 	<div class="row p-3">
