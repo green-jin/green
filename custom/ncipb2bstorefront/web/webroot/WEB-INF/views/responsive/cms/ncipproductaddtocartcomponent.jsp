@@ -35,67 +35,67 @@
 
 <div class="row align-item-center my-3 addtocart-component">
     <%--控制加到購物車的數量--%>
-<%--    <div >--%>
+    <%--    <div >--%>
 
-        <c:if test="${empty showAddToCart ? true : showAddToCart}">
+    <c:if test="${empty showAddToCart ? true : showAddToCart}">
 
-            <div class="col-4">
-                <div class="btn-group js-qty-selector " role="group" aria-label="First group">
-                    <button class="btn btn-secondary js-qty-selector-minus" onclick="ShowValue()"
-                            type="button" <c:if test="${qtyMinus <= 1}"><c:out
-                            value="disabled='disabled'"/></c:if> >-
-                        </button>
+        <div class="col-4">
+            <div class="btn-group js-qty-selector " role="group" aria-label="First group">
+                <button class="btn btn-secondary js-qty-selector-minus" onclick="ShowValue()"
+                        type="button" <c:if test="${qtyMinus <= 1}"><c:out
+                        value="disabled='disabled'"/></c:if> >-
+                </button>
 
-<%--                 <button type="button" class="btn btn-outline-dark disabled">10</button>--%>
+                    <%--                 <button type="button" class="btn btn-outline-dark disabled">10</button>--%>
 
-                    <input type="text" maxlength="3"
-                           class="js-qty-selector-input" size="1"
-                           value="${fn:escapeXml(qtyMinus)}"
-                           data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"
-                           id="pdpAddtoCartInput" onchange="ShowValue()"/>
+                <input type="text" maxlength="3"
+                       class="js-qty-selector-input" size="1"
+                       value="${fn:escapeXml(qtyMinus)}"
+                       data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"
+                       id="pdpAddtoCartInput" onchange="ShowValue()"/>
 
-                    <input type="hidden" id="stocklevel"
-                           value="${product.stock.stockLevel}"></input>
+                <input type="hidden" id="stocklevel"
+                       value="${product.stock.stockLevel}"></input>
 
-                    <button class="btn btn-secondary js-qty-selector-plus" onclick="ShowValue()"
-                            type="button">+
-                    </button>
-                </div>
+                <button class="btn btn-secondary js-qty-selector-plus" onclick="ShowValue()"
+                        type="button">+
+                </button>
             </div>
-        </c:if>
-        <c:if test="${product.stock.stockLevel gt 0}">
-            <c:set var="productStockLevelHtml">${fn:escapeXml(product.stock.stockLevel)}&nbsp;
-                <spring:theme code="product.variants.in.stock"/>
-            </c:set>
-        </c:if>
-        <c:if test="${product.stock.stockLevelStatus.code eq 'lowStock'}">
-            <c:set var="productStockLevelHtml">
-                <spring:theme code="product.variants.only.left"
-                              arguments="${product.stock.stockLevel}"/>
-            </c:set>
-        </c:if>
-        <c:if test="${isForceInStock}">
-            <c:set var="productStockLevelHtml">
-                <spring:theme code="product.variants.available"/>
-            </c:set>
-        </c:if>
-
-        <%--	線上有貨--%>
-<%--            <div class="stock-wrapper clearfix">--%>
-<%--                ${productStockLevelHtml}--%>
-<%--            </div>--%>
-
-        <%--	  加到購物車--%><br/>
-        <div class="col-8">
-            			<c:if test="${multiDimensionalProduct}">
-            				<c:url value="${product.url}/orderForm" var="productOrderFormUrl"/>
-            				<a href="${productOrderFormUrl}"
-            				   class=js-add-to-cart">
-            					<spring:theme code="order.form"/>
-            				</a>
-            			</c:if>
-			<action:actions element="div" parentComponent="${component}"/>
         </div>
+    </c:if>
+    <c:if test="${product.stock.stockLevel gt 0}">
+        <c:set var="productStockLevelHtml">${fn:escapeXml(product.stock.stockLevel)}&nbsp;
+            <spring:theme code="product.variants.in.stock"/>
+        </c:set>
+    </c:if>
+    <c:if test="${product.stock.stockLevelStatus.code eq 'lowStock'}">
+        <c:set var="productStockLevelHtml">
+            <spring:theme code="product.variants.only.left"
+                          arguments="${product.stock.stockLevel}"/>
+        </c:set>
+    </c:if>
+    <c:if test="${isForceInStock}">
+        <c:set var="productStockLevelHtml">
+            <spring:theme code="product.variants.available"/>
+        </c:set>
+    </c:if>
+
+    <%--	線上有貨--%>
+    <%--    <div class="stock-wrapper clearfix">--%>
+    <%--        ${productStockLevelHtml}--%>
+    <%--    </div>--%>
+
+    <%--	  加到購物車--%><br/>
+    <div class="col-8">
+        <c:if test="${multiDimensionalProduct}">
+            <c:url value="${product.url}/orderForm" var="productOrderFormUrl"/>
+            <a href="${productOrderFormUrl}"
+               class=js-add-to-cart">
+                <spring:theme code="order.form"/>
+            </a>
+        </c:if>
+        <action:actions element="div" parentComponent="${component}"/>
+    </div>
 </div>
 
 <%--Lancy test--%>
