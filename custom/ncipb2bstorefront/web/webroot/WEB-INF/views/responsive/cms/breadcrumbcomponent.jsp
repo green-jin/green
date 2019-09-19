@@ -4,6 +4,7 @@
 <%@ taglib prefix="breadcrumb"
 	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 
+
 <c:if test="${fn:length(breadcrumbs) > 0}">
 	<div class="container-fluid l-gray">
 		<div class="container">

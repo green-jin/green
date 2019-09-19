@@ -361,6 +361,13 @@
         jaloclass="com.ncip.core.jalo.components.NcipBreadcrumbComponent">
         <description>A component wrapping the breadcrumb tag</description>
       </itemtype>
+
+
+      <itemtype code="NcipProductAddToCartComponent" autocreate="true"
+        generate="true" extends="SimpleCMSComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipProductAddToCartComponent">
+        <description>A component wrapping the addToCart button.</description>
+      </itemtype>
       <!--			Add Header Components End-->
     </typegroup>
 

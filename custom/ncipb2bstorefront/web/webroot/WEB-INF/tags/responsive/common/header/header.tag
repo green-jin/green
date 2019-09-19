@@ -8,6 +8,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav" %>
+<%@ taglib prefix="breadcrumb" tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 <!-- nav -->
@@ -118,8 +119,21 @@
     </div>
 </nav>
 
+<c:if test="${fn:length(breadcrumbs) > 0}">
+    <header>
+        <!-- 麵包屑 -->
+        <div class="container-fluid l-gray">
+            <div class="container">
+                <breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />
+            </div>
+        </div>
+    </header>
 
-
+</c:if>
 <!------------end nav -->
 <%--<script src="/ncipb2bstorefront/_ui/responsive/common/js/ncip/jquery.min.js"></script>--%>
 <%--<script src="/ncipb2bstorefront/_ui/responsive/common/js/ncip/bootstrap.min.js"></script>--%>
+
+<%--<cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">--%>
+<%--    <cms:component component="${component}" />--%>
+<%--</cms:pageSlot>--%>

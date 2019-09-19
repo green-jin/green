@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:url value="${urlLink}" var="simpleBannerUrl" />
-
 <%--<div class="banner__component simple-banner">--%>
 <div  style="margin-left: 16px">
 	<c:choose>
