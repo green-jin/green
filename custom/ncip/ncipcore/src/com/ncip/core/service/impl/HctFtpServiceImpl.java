@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.SocketException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,8 +60,6 @@ public class HctFtpServiceImpl implements HctFtpService {
   private FileInputStream in;
   private Logger log = Logger.getLogger(HctFtpServiceImpl.class);
   private boolean isDebug;
-  private Calendar cal = Calendar.getInstance();
-  private String productSize;
   private String time;
   private String homeDeliveryBackPath;
   private String homeDeliveryBackupPath;
@@ -141,10 +140,15 @@ public class HctFtpServiceImpl implements HctFtpService {
     final String todayYear = sdf.format(date);
     if(consignmentModels != null){
       for (int i = 0, len = consignmentModels.size(); i < len; i++) {
+        
+        
         final ConsignmentModel consignmentModel = consignmentModels.get(i);
         final List<ConsignmentEntryModel> consignmentEntryModels = new ArrayList<>();
         consignmentEntryModels.addAll(consignmentModel.getConsignmentEntries());
-  
+        for(ConsignmentEntryModel cem : consignmentEntryModels){
+          String productType = cem.getOrderEntry().getProduct().getMa_type();
+          
+        }
         final List<String> excelData = new ArrayList<>();
         if (isDebug)
           log.debug("################################Start############################\n");
@@ -153,8 +157,9 @@ public class HctFtpServiceImpl implements HctFtpService {
           log.debug("consignmentEntryModels.size()      = " + consignmentEntryModels.size() + "\n");
   
         final AbstractOrderModel order = consignmentModel.getOrder();
-  
-        final String orderCode = order.getCode();
+        
+        // final String orderCode = order.getCode();
+        final String orderCode = consignmentModel.getCode();
         // OrderNo
         excelData.add(todayYear + stringChange(orderCode));
         if (isDebug)
@@ -284,9 +289,9 @@ public class HctFtpServiceImpl implements HctFtpService {
     String csvData = "";
     for(int i = 0, len = excelTitle.size(); i < len; i++){
       if(i < len - 1){
-        csvData += excelDatas.get(i) + ",";
+        csvData += excelTitle.get(i) + ",";
       } else {
-        csvData += excelDatas.get(i) + "\r\n";
+        csvData += excelTitle.get(i) + "\r\n";
       }
     }
     
@@ -555,17 +560,16 @@ public class HctFtpServiceImpl implements HctFtpService {
     }
   }
 
-  @SuppressWarnings("unused")
   private void analysisString(List<String> datas) {
     if (datas != null && datas.size() > 0) {
       for (int i = 1, len = datas.size(); i < len; i++) {
         String[] dataStrings = datas.get(i).replaceAll(" ", "").split(",");
         if (dataStrings != null && dataStrings.length > 0) {
           // OrderNo
-          String orderNo = dataStrings[0].substring(4);
-          ConsignmentModel consignmentModel = null;
-              // consignmentService.getConsignmentDataByOrderCode(orderNo) != null
-                 //  ? consignmentService.getConsignmentDataByOrderCode(orderNo).get(0) : null;
+          String code = dataStrings[0].substring(4);
+          ConsignmentModel consignmentModel = 
+               ncipDefaultConsignmentService.GetConsignmentsByCode(code) != null
+                   ? ncipDefaultConsignmentService.GetConsignmentsByCode(code).get(0) : null;
           if (consignmentModel != null) {
             // ShipStatus
             String shipSataus = dataStrings[1];
@@ -573,21 +577,29 @@ public class HctFtpServiceImpl implements HctFtpService {
               // Shipping Number
               String shipping_number = dataStrings[2];
               // Arrival Data
+              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
               String arrival_Data = dataStrings[3];
-              switch (shipSataus) {
-                case "1":
-                  consignmentModel.setStatus(ConsignmentStatus.SHIPPED);
-                  consignmentModel.setShipping_number(shipping_number);
-                  break;
-                case "2":
-                  consignmentModel.setStatus(ConsignmentStatus.DELIVERY_COMPLETED);
-                  consignmentModel.setShipping_number(shipping_number);
-                  consignmentModel.setArrivalDate(arrival_Data);
-                  break;
-                case "3":
-                  break;
-                default:
-                  modelService.save(consignmentModel);
+              Date date;
+              try {
+                date = sdf.parse(arrival_Data);
+                switch (shipSataus) {
+                  case "1":
+                    consignmentModel.setStatus(ConsignmentStatus.SHIPPED);
+                    consignmentModel.setShipping_number(shipping_number);
+                    break;
+                  case "2":
+                    consignmentModel.setStatus(ConsignmentStatus.DELIVERY_COMPLETED);
+                    consignmentModel.setShipping_number(shipping_number);
+                    consignmentModel.setShippingDate(date);
+                    break;
+                  case "3":
+                    break;
+                  default:
+                    modelService.save(consignmentModel);
+                }
+              } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
               }
 
             }

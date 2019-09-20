@@ -2,6 +2,8 @@ package com.ncip.core.consignment.dao.impl;
 
 import com.ncip.core.consignment.dao.ConsignmentDao;
 import com.ncip.core.exception.ConsignmentException;
+import com.sun.org.apache.bcel.internal.classfile.Code;
+import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentProcessModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
@@ -25,6 +27,8 @@ public class DefaultConsignmentDao implements ConsignmentDao {
   
   final String TIME = "time";
   final String YESTERDAY = "yesterday";
+  final String CODE = "code";
+  final String TYPE = "type";
   
 
   @Override
@@ -54,7 +58,7 @@ public class DefaultConsignmentDao implements ConsignmentDao {
     }
     cal.add(Calendar.DATE, -1);
     String yesterday = sdf.format(cal.getTime());
-    final String selectString = "select {pk} from {consignment as c} where {c.shippingDate} between TO_DATE(?yesterday,'YYYY-MM-DD HH24:MI:SS') and TO_DATE(?time,'YYYY-MM-DD HH24:MI:SS')";
+    final String selectString = "select {pk} from {consignment as c} where {c.shippingDate} between TO_DATE(?yesterday,'YYYY-MM-DD HH24:MI:SS') and TO_DATE(?time,'YYYY-MM-DD HH24:MI:SS') and {c.status}='" + ConsignmentStatus.READY + "'";
     final FlexibleSearchQuery query = new FlexibleSearchQuery(selectString);
     query.addQueryParameter(YESTERDAY, yesterday + sendTime);
     query.addQueryParameter(TIME, time);
@@ -64,7 +68,11 @@ public class DefaultConsignmentDao implements ConsignmentDao {
 
   @Override
   public List<ConsignmentModel> GetConsignmentsByType(String type) throws ConsignmentException {
-    return null;
+    final String selectString = "select {pk} from {consignment as c} where {c.dely_type} = ?type";
+    final FlexibleSearchQuery query = new FlexibleSearchQuery(selectString);
+    query.addQueryParameter(TYPE, type);
+    final SearchResult<ConsignmentModel> result = getFlexibleSearchService().search(query);
+    return result.getResult();
   }
 
   public ModelService getModelService() {
@@ -82,6 +90,15 @@ public class DefaultConsignmentDao implements ConsignmentDao {
   public void setFlexibleSearchService(
       FlexibleSearchService flexibleSearchService) {
     this.flexibleSearchService = flexibleSearchService;
+  }
+
+  @Override
+  public List<ConsignmentModel> GetConsignmentsByCode(String code) throws ConsignmentException {
+    final String selectString = "select {pk} from {consignment as c} where {c.code} = ?code";
+    final FlexibleSearchQuery query = new FlexibleSearchQuery(selectString);
+    query.addQueryParameter(CODE, code);
+    final SearchResult<ConsignmentModel> result = getFlexibleSearchService().search(query);
+    return result.getResult();
   }
 
 }

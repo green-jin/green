@@ -42,4 +42,9 @@ public class DefaultConsignmentService implements ConsignmentService {
   public void setNcipDefaultConsignmentDao(ConsignmentDao ncipDefaultConsignmentDao) {
     this.ncipDefaultConsignmentDao = ncipDefaultConsignmentDao;
   }
+
+  @Override
+  public List<ConsignmentModel> GetConsignmentsByCode(String code) throws ConsignmentException {
+    return ncipDefaultConsignmentDao.GetConsignmentsByCode(code);
+  }
 }
