@@ -9,12 +9,28 @@
 
 <product:addToCartTitle/>
 
-<li>
-	<product:productFormAddToCartButton addToCartBtnId="${addToCartBtnId}" />
-</li>
-
-<li class="hidden-xs">
+<div class="col-md-5 text-right d-none d-md-block">
     <spring:theme code="order.form.subtotal"/>&nbsp;
     <span class="left js-total-price" id="total-price"><spring:theme code="order.form.currency"/>0.00</span>
     <input type="hidden" id="total-price-value" class="js-total-price-value" value="0">
-</li>
+</div>
+
+<div class="col-6 col-md-2 d-flex justify-content-end">
+    <product:productFormAddToCartButton addToCartBtnId="${addToCartBtnId}" />
+</div>
+
+
+
+
+<%--Hybris 原生--%>
+<%--<product:addToCartTitle/>--%>
+
+<%--<li>--%>
+<%--	<product:productFormAddToCartButton addToCartBtnId="${addToCartBtnId}" />--%>
+<%--</li>--%>
+
+<%--<li class="hidden-xs">--%>
+<%--    <spring:theme code="order.form.subtotal"/>&nbsp;--%>
+<%--    <span class="left js-total-price" id="total-price"><spring:theme code="order.form.currency"/>0.00</span>--%>
+<%--    <input type="hidden" id="total-price-value" class="js-total-price-value" value="0">--%>
+<%--</li>--%>
