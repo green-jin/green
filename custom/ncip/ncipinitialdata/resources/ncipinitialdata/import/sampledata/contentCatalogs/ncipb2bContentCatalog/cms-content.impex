@@ -387,7 +387,7 @@ INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsCom
                          ;                          ; UpSellingSlot     ; Similar
 
 INSERT_UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; name    ; productReferenceTypes(code); maximumNumberProducts; &componentRef
-                                        ;                          ; Similar           ; Similar ; SIMILAR                    ; 5                    ; Similar
+                                        ;                          ; Similar           ; Similar ; SIMILAR                    ; 6                     ; Similar
 
 ## cross selling slot ##
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
@@ -1088,7 +1088,7 @@ INSERT_UPDATE CMSUserGroupRestriction; $contentCV[unique = true]; uid[unique = t
 
 ###### Media Start ######
 ## site logo ##
-INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]    ; realfilename; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/png']; altText            ; folder(qualifier)[default = 'images']
+INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]; realfilename; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/png']; altText; folder(qualifier)[default = 'images']
 #                   ;                          ; /images/theme/logo_hybris_b2b_responsive.svg ; logo_hybris_b2b_responsive.svg ; $siteResource/images/theme/logo_hybris_b2b_responsive.svg                   ; image/svg+xml              ; hybris Accelerator ;
 
 INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]                  ; mime     ; realfilename                      ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite = true]; folder(qualifier)[default = 'images']
@@ -1203,8 +1203,8 @@ INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true] 
 
 ############# NCIP Category Start ##################
 #Add Site Logo
-INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink
-                                   ;                          ; SiteLogoComponent ; Site Logo Component ; SiteLogoComponent ; "/"
+INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink; $picture[lang = $lang]
+                                   ;                          ; SiteLogoComponent ; Site Logo Component ; SiteLogoComponent ; "/"    ; /images/theme/logo.png
 
 INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]    ; realfilename; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/png']; altText            ; folder(qualifier)[default = 'images']
                    ;                          ; /images/theme/logo.png ; logo.png    ; $siteResource/images/theme/logo.png                                         ; image/png                  ; hybris Accelerator ;
@@ -1430,8 +1430,8 @@ INSERT_UPDATE NcipProductAddToCartComponent; $contentCV[unique = true]; uid[uniq
                                            ;                          ; AddToCart         ; Ncip Product Add To Cart ; AddToCartAction,PickUpInStoreAction ; AddToCart
 
 
-INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]       ; name                       ; styleClass      ; &componentRef            ; navigationNode(&nodeRef)
-                                     ;                          ; NcipOrderToolsComponentA ; Ncip Order Tools Component ; nav-order-tools ; NcipOrderToolsComponentA ; OrderToolsNavNode
+INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]       ; name                       ; styleClass; &componentRef            ; navigationNode(&nodeRef)
+                                     ;                          ; NcipOrderToolsComponentA ; Ncip Order Tools Component ;           ; NcipOrderToolsComponentA ; OrderToolsNavNode
 
 
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)

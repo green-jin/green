@@ -26,9 +26,9 @@ $mediaContainer = media(qualifier, $contentCV)[lang=$lang];
 
 
 # Site Logo Component
-#UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]
+UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]
 #                            ;                          ; SiteLogoComponent ; /images/theme/logo_hybris_b2b_responsive.svg
-#                            ;                          ; SiteLogoComponent ; /images/theme/logo.png
+                            ;                          ; SiteLogoComponent ; /images/theme/logo.png
 
 
 # CMS Link Components
@@ -113,7 +113,8 @@ UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]     
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]
-                                 ;                          ; Similar           ; "You may also like..."
+#                                 ;                          ; Similar           ; "You may also like..."
+                                 ;                          ; Similar           ; "推薦/相關連產品"
                                  ;                          ; accessories       ; "Accessories"
 
 # CMS PurchasedCategorySuggestion Components
@@ -413,6 +414,4 @@ UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title
                         ;                          ; H013CategoryNavNode ; "雙花灑組"
                         ;                          ; H014CategoryNavNode ; "水龍頭配件"
 
-#UPDATE NcipLogoComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]
-#                            ;                          ; NcipLogoComponentA ; /images/theme/logo.png
 ############ NCIP End ######################

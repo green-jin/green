@@ -113,7 +113,8 @@ UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]     
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]
-                                 ;                          ; Similar           ; "您可能还会喜欢..."
+#                                 ;                          ; Similar           ; "您可能还会喜欢..."
+                                 ;                          ; Similar           ; "推薦/相關連產品"
                                  ;                          ; accessories       ; "配件"
 
 # CMS PurchasedCategorySuggestion Components
@@ -367,7 +368,10 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName
                        ;                          ; H013CategoryLink  ; "雙花灑組"
                        ;                          ; H014CategoryLink  ; "水龍頭配件"
                        ;                          ; H015CategoryLink  ; "其他"
-
+#快速訂購
+                       ;                          ; OrderFormsLink      ; "訂貨單"
+                       ;                          ; QuickOrderLink      ; "快速訂單"
+                       ;                          ; ImportSavedCartLink ; "導入已保存購物車"
 
 UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title[lang = $lang]
                         ;                          ; A0NavNode           ; "最新產品"
@@ -419,4 +423,8 @@ UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title
                         ;                          ; H013CategoryNavNode ; "雙花灑組"
                         ;                          ; H014CategoryNavNode ; "水龍頭配件"
                         ;                          ; H015CategoryNavNode ; "其他"
+#快速訂單
+                        ;                          ; OrderFormsNavNode      ; "訂貨單"
+                        ;                          ; QuickOrderNavNode      ; "快速訂單"
+                        ;                          ; ImportSavedCartNavNode ; "導入已保存購物車"
 ############ NCIP End ######################

@@ -8,18 +8,35 @@
 	<cms:pageSlot position="Section1" var="feature" element="div" class="product-grid-section1-slot">
 		<cms:component component="${feature}" element="div" class="yComponentWrapper map product-grid-section1-component"/>
 	</cms:pageSlot>
-	
+<div class="col-lg-10 container-fluid">
+
 	<div class="row">
-		<div class="col-xs-3">
-			<cms:pageSlot position="ProductLeftRefinements" var="feature" element="div" class="product-grid-left-refinements-slot">
-				<cms:component component="${feature}" element="div" class="yComponentWrapper product-grid-left-refinements-component"/>
-			</cms:pageSlot>
+
+		<!--左側篩選列  篩選列在行動裝置收合成按鈕請套用Hybris原本的JS-->
+		<div class="col-lg-3 mb-4">
+				<cms:pageSlot position="ProductLeftRefinements" var="feature" element="div" class="product-grid-left-refinements-slot">
+					<cms:component component="${feature}" element="div" class="yComponentWrapper product-grid-left-refinements-component"/>
+				</cms:pageSlot>
 		</div>
-		<div class="col-sm-12 col-md-9">
-			<cms:pageSlot position="ProductGridSlot" var="feature" element="div" class="product-grid-right-result-slot">
-				<cms:component component="${feature}" element="div" class="product__list--wrapper yComponentWrapper product-grid-right-result-component"/>
+
+<%--		搜尋bar--%>
+		<div class="col-lg-9 mb-4">
+			<div class="row mb-4 justify-content-end">
+				<div class="col-lg-4 input-group mb-4 col-sm-12 col-md-6">
+					<cms:pageSlot position="SearchBox" var="component">
+						<cms:component component="${component}" element="div"/>
+					</cms:pageSlot>
+				</div>
+			</div>
+
+<%--			產品--%>
+			<cms:pageSlot position="ProductGridSlot" var="feature">
+				<cms:component component="${feature}" />
 			</cms:pageSlot>
+
 		</div>
 	</div>
+</div>
+<!-- /.container -->
 	<storepickup:pickupStorePopup />
 </template:page>

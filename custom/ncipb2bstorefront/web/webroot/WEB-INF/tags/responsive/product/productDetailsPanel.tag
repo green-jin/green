@@ -14,21 +14,13 @@
     <div class="row mt-3">
 
         <div class="col-md-7 mb-3">
-            <!--大圖-->
+            <!--產品圖-->
             <product:productImagePanel galleryImages="${galleryImages}"/>
-            <%--			<img class="img-fluid mb-3" src="img/800x800.jpg" alt="">--%>
-            <br>
-
-            <!--小圖-->
-            <img class="img-fluid prod_s mr-2" src="img/800x800.jpg" alt="">
-            <img class="img-fluid prod_s mr-2" src="img/800x800.jpg" alt="">
-            <img class="img-fluid prod_s mr-2" src="img/800x800.jpg" alt="">
-            <img class="img-fluid prod_s mr-2" src="img/800x800.jpg" alt="">
-            <img class="img-fluid prod_s mr-2" src="img/800x800.jpg" alt="">
         </div>
 
 
         <div class="col-md-5 justify-content-start">
+
             <%--價格--%>
             <ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
                 <product:productPricePanel product="${product}"/>
@@ -50,48 +42,23 @@
                 <cms:component component="${component}"/>
             </cms:pageSlot>
 
+<%--             promotion   --%>
+                <product:productPromotionSection product="${product}"/>
 
-            <%--Lanct Test--%>
-
-            <%--<div class="product-details page-title">--%>
-            <%--	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">--%>
-            <%--		<div class="name">${fn:escapeXml(product.name)}<span class="sku">ID</span><span class="code">${fn:escapeXml(product.code)}</span></div>--%>
-            <%--	</ycommerce:testId>--%>
-            <%--	<product:productReviewSummary product="${product}" showLinks="true"/>--%>
-            <%--</div>--%>
-            <%--<div class="row">--%>
-            <%--	<div class="col-xs-10 col-xs-push-1 col-sm-6 col-sm-push-0 col-lg-4">--%>
-            <%--&lt;%&ndash;		<product:productImagePanel galleryImages="${galleryImages}" />&ndash;%&gt;--%>
-            <%--	</div>--%>
-            <%--	<div class="clearfix hidden-sm hidden-md hidden-lg"></div>--%>
-            <%--	<div class="col-sm-6 col-lg-8">--%>
-            <%--		<div class="product-main-info">--%>
-            <%--			<div class="row">--%>
-            <%--				<div class="col-lg-6">--%>
-            <%--					<div class="product-details">--%>
-            <%--						<product:productPromotionSection product="${product}"/>--%>
-            <%--						<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">--%>
-            <%--							<product:productPricePanel product="${product}" />--%>
-            <%--							${product.listpr}--%>
-            <%--						</ycommerce:testId>--%>
-            <%--						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>--%>
-            <%--					</div>--%>
-            <%--				</div>--%>
-
-            <%--				<div class="col-sm-12 col-md-9 col-lg-6">--%>
-            <%--					<cms:pageSlot position="VariantSelector" var="component" element="div" class="page-details-variants-select">--%>
-            <%--						<cms:component component="${component}" element="div" class="yComponentWrapper page-details-variants-select-component"/>--%>
-            <%--					</cms:pageSlot>--%>
-            <%--					<cms:pageSlot position="AddToCart" var="component" element="div" class="page-details-variants-select">--%>
-            <%--						<cms:component component="${component}" element="div" class="yComponentWrapper page-details-add-to-cart-component"/>--%>
-            <%--					</cms:pageSlot>--%>
-            <%--				</div>--%>
-            <%--			</div>--%>
         </div> <%--col-md-5 justify-content-start--%>
+
 
 
     </div> <%--        row mt-3--%>
 
+
+
     <%--	四個頁籤--%>
     <product:productPageTabs />
+
+    <!--推薦/相關連產品-->
+    <cms:pageSlot position="UpSelling" var="comp" element="div" class="productDetailsPageSectionUpSelling">
+        <cms:component component="${comp}" element="div" class="productDetailsPageSectionUpSelling-component"/>
+    </cms:pageSlot>
+
 </div><%--        container--%>
