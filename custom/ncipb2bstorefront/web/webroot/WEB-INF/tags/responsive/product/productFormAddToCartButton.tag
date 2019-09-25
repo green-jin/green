@@ -6,7 +6,15 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:theme code="text.addToCart" var="addToCartText"/>
-<button  id="${(empty addToCartBtnId) ? 'addToCartBtn' : fn:escapeXml(addToCartBtnId)}" type="button" class="btn btn-primary" disabled="disabled">
+
+<button  id="${(empty addToCartBtnId) ? 'addToCartBtn' : fn:escapeXml(addToCartBtnId)}" type="button" class="btn btn-primary btn-block" disabled="disabled">
     <spring:theme code="text.addToCart" var="addToCartText"/>
     <spring:theme code="basket.add.to.basket" />
 </button>
+
+<%--Hybris原生--%>
+<%--<spring:theme code="text.addToCart" var="addToCartText"/>--%>
+<%--<button  id="${(empty addToCartBtnId) ? 'addToCartBtn' : fn:escapeXml(addToCartBtnId)}" type="button" class="btn btn-primary" disabled="disabled">--%>
+<%--    <spring:theme code="text.addToCart" var="addToCartText"/>--%>
+<%--    <spring:theme code="basket.add.to.basket" />--%>
+<%--</button>--%>

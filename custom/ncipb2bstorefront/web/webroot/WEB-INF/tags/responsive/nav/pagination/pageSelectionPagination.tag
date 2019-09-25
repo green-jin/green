@@ -13,20 +13,23 @@
 <c:set var="hasNextPage" value="${(searchPageData.pagination.currentPage + 1) < searchPageData.pagination.numberOfPages}"/>
 
 <c:if test="${(searchPageData.pagination.numberOfPages > 1)}">
-    <ul class="pagination">
+    <ul class="pagination pagination-sm justify-content-end">
+<%--        前一頁--%>
         <c:if test="${hasPreviousPage}">
-            <li class="pagination-prev">
+            <li class="page-item">
                 <spring:url value="${searchUrl}" var="previousPageUrl" htmlEscape="true">
                     <spring:param name="page" value="${searchPageData.pagination.currentPage - 1}"/>
                 </spring:url>
                 <ycommerce:testId code="searchResults_previousPage_link">
-                    <a href="${previousPageUrl}" rel="prev" class="glyphicon glyphicon-chevron-left"></a>
+                    <a class="page-link" href="${previousPageUrl}" rel="prev"><i class="fa fa-backward"></i></a>
                 </ycommerce:testId>
             </li>
         </c:if>
 
         <c:if test="${!hasPreviousPage}">
-            <li class="pagination-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#!" tabindex="-1"><i class="fa fa-backward"></i></a>
+                </li>
         </c:if>
 
         <c:set var="limit" value="${numberPagesShown}"/>
@@ -100,28 +103,30 @@
                     </c:choose>
 
                     <ycommerce:testId code="pageNumber_link">
-                        <li><a class="${linkClass}" href="${pageNumberUrl}">${pageNumber}</a></li>
+                        <li class="page-item"><a class="${linkClass} page-link" href="${pageNumberUrl}">${pageNumber}</a></li>
                     </ycommerce:testId>
                 </c:when>
                 <c:otherwise>
-                    <li class="active"><span>${pageNumber} <span class="sr-only">(current)</span></span></li>
+                    <li class="page-item disabled"><span class="page-link">${pageNumber}</span></li>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
 
         <c:if test="${hasNextPage}">
-            <li class="pagination-next">
+            <li class="page-item">
                 <spring:url value="${searchUrl}" var="nextPageUrl" htmlEscape="true">
                     <spring:param name="page" value="${searchPageData.pagination.currentPage + 1}"/>
                 </spring:url>
                 <ycommerce:testId code="searchResults_nextPage_link">
-                    <a href="${nextPageUrl}" rel="next" class="glyphicon glyphicon-chevron-right"></a>
+                    <a href="${nextPageUrl}" rel="next" class="page-link"><i class="fa fa-forward"></i></a>
                 </ycommerce:testId>
             </li>
         </c:if>
 
         <c:if test="${!hasNextPage}">
-            <li class="pagination-next disabled"><span class="glyphicon glyphicon-chevron-right"></span></li>
+            <li class="page-item disabled">
+                <a class="page-link"><i class="fa fa-forward"></i></a>
+            </li>
         </c:if>
     </ul>
 </c:if>

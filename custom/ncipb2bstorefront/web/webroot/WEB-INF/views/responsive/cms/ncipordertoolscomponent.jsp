@@ -13,13 +13,14 @@
 
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown3"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
             <i class="fa fa-file-text-o  px-2"></i><spring:theme code="header.link.quickOrder"/></a>
 
         <div class="dropdown-menu dropdown-menu-left text-white dw"
              aria-labelledby="navbarDropdownPortfolio">
             <c:forEach items="${component.navigationNode.children}" var="topLevelChild">
                 <c:forEach items="${topLevelChild.entries}" var="entry">
-                    <cms:component component="${entry.item}" evaluateRestriction="true"/><br/>
+                    <cms:component component="${entry.item}" evaluateRestriction="true"/>
                 </c:forEach>
             </c:forEach>
         </div>

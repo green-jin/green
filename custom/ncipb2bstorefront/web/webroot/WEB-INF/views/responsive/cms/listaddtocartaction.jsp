@@ -22,14 +22,22 @@
 
             <c:choose>
                 <c:when test="${product.stock.stockLevelStatus.code eq 'outOfStock' }">
-                    <button type="submit" class="btn btn-primary btn-block glyphicon glyphicon-shopping-cart"
-                            aria-disabled="true" disabled="disabled">
+                    <button type="submit" class="btn btn-outline-primary btn-sm"
+                            aria-disabled="true" disabled="disabled"><i class="fa fa-shopping-cart pr-2"></i>
+                        <spring:theme code="productlist.outofstock"/>
                     </button>
+<%--                    <button type="submit" class="btn btn-primary btn-block glyphicon glyphicon-shopping-cart"--%>
+<%--                            aria-disabled="true" disabled="disabled">--%>
+<%--                    </button>--%>
                 </c:when>
                 <c:otherwise>
-                    <button type="submit" class="btn btn-primary btn-block glyphicon glyphicon-shopping-cart js-enable-btn"
-                            disabled="disabled">
+                    <button type="submit" class="btn btn-outline-primary btn-sm js-enable-btn"
+                            disabled="disabled"><i class="fa fa-shopping-cart pr-2"></i>
+                        <spring:theme code="productlist.addtocart"/>
                     </button>
+<%--                    <button type="submit" class="btn btn-primary btn-block glyphicon glyphicon-shopping-cart js-enable-btn"--%>
+<%--                            disabled="disabled">--%>
+<%--                    </button>--%>
                 </c:otherwise>
             </c:choose>
         </ycommerce:testId>

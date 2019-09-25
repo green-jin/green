@@ -8,14 +8,18 @@
 
 
 <c:forEach items="${pageData.facets}" var="facet">
-	<c:choose>
-		<c:when test="${facet.code eq 'availableInStores'}">
-			<nav:facetNavRefinementStoresFacet facetData="${facet}" userLocation="${userLocation}"/>
-		</c:when>
-		<c:otherwise>
+<%--	<c:choose>--%>
+
+	<%--			尋找店鋪--%>
+<%--		<c:when test="${facet.code eq 'availableInStores'}">--%>
+<%--			<nav:facetNavRefinementStoresFacet facetData="${facet}" userLocation="${userLocation}"/>--%>
+<%--		</c:when>--%>
+
+<%--	一般搜尋--%>
+<%--		<c:otherwise>--%>
 			<nav:facetNavRefinementFacet facetData="${facet}"/>
-		</c:otherwise>
-	</c:choose>
+<%--		</c:otherwise>--%>
+<%--	</c:choose>--%>
 </c:forEach>
 
 
