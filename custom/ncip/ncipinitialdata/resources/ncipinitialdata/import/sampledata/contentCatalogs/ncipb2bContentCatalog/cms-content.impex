@@ -790,7 +790,7 @@ INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true] ; name 
                          ;                          ; BodyContent-orders ; Body Content Slot for My Account Order History ; true  ; AccountOrderHistoryComponent ; ; ;
 
 INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]           ; name                            ; page                                                                                           ; actions(uid, $contentCV); &componentRef
-                                 ;                          ; AccountOrderHistoryComponent ; Account Order History Component ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderHistoryPage.jsp ; ViewOrderAction         ; AccountOrderHistoryComponent
+                                 ;                          ; AccountOrderHistoryComponent ; Account Order History Component ; /WEB-INF/views/responsive/pages/account/accountOrderHistoryPage.jsp ; ViewOrderAction         ; AccountOrderHistoryComponent
 
 INSERT_UPDATE ViewOrderAction; $contentCV[unique = true]; uid[unique = true]; url                           ; name              ; &actionRef
                              ;                          ; ViewOrderAction   ; /my-account/order/{orderCode} ; View Order Action ; ViewOrderAction

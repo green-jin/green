@@ -68,6 +68,8 @@ public interface ControllerConstants
 			
 			String BrandContainerComponent = _Prefix + BrandContainerComponentModel._TYPECODE + _Suffix; //經銷商專區,我們的保證 Container
 			String HomeSimpleBannerComponent = _Prefix + HomeSimpleBannerComponentModel._TYPECODE + _Suffix; //經銷商專區,我們的保證 Component
+
+//			String NcipProductAddToCartComponent = _Prefix + NcipProductAddToCartComponentModel._TYPECODE + _Suffix; //ProductAddToCart, Container
 			 
 		}
 	}

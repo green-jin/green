@@ -39,14 +39,22 @@
       <value code="WHITE"/>
       <value code="YELLOW"/>
     </enumtype>
+    <enumtype generate="true" autocreate="true" dynamic="false" code="DeliveryType">
+      <value code="LOGISTICS"/>
+      <value code="FREIGHT"/>
+    </enumtype>
 
     <enumtype generate="true" autocreate="true" dynamic="false" code="ProductType">
+      <value code="NORMAL"/>
       <value code="CUSTOM"/>
-      <value code="GENERAL"/>
       <value code="PREORDER"/>
-
     </enumtype>
-    
+
+    <enumtype generate="true" autocreate="true" dynamic="false" code="ProductSize">
+      <value code="SMALL"/>
+      <value code="BIG"/>
+    </enumtype>
+
     <!-- Line of Business 行業別(動態加入) -->
     <enumtype code="LineOfBusiness" autocreate="false" generate="true" dynamic="true"/>
 
@@ -124,6 +132,50 @@
 			</attributes>
 		  </itemtype>		   
 		    <!-- Hybris B2BCreditLimit End -->
+          <!--Aaron Items start-->
+	      <!-- HybrisCronJob ncip-items.xml_OrderItem -->
+	      <itemtype generate="true" code="Order" autocreate="false">
+		      <attributes>
+		        <attribute type="java.lang.String" qualifier="createDate">
+					<modifiers read="true" write="true" search="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="fromSYS">
+					<modifiers read="true" write="true" search="true"  />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="toSYS">
+					<modifiers read="true" write="true" search="true"  />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="icType">
+					<modifiers read="true" write="true" search="true"  />
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.String" qualifier="dataExchangStatus">
+					<modifiers read="true" write="true" search="true"  />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		  </itemtype>
+		    <!-- HybrisOrderLevelEnd -->
+			
+			<!-- HybrisCronJobTestStart ncip-items.xml_CronJobTestlevel -->
+		  <itemtype code="TransferOrderCronJob" autocreate="true" generate="true" extends="CronJob">
+              <description>Transfer Order Cron Job</description>
+          </itemtype>
+		<!-- HybrisCronJobTestEnd -->
+
+        <!-- HybrisCronJob ncip-items.xml_ProductItem-->
+         <itemtype generate="true" code="Product" autocreate="false">
+		    <attributes>
+		        <attribute type="java.lang.String" qualifier="maType">
+					<modifiers read="true" write="true" search="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		 </itemtype>
+		  <!--Aaron Items End-->
 		    
     <typegroup>
       <itemtype code="Media" autocreate="false" generate="true" extends="AbstractMedia">
@@ -361,6 +413,13 @@
         jaloclass="com.ncip.core.jalo.components.NcipBreadcrumbComponent">
         <description>A component wrapping the breadcrumb tag</description>
       </itemtype>
+
+
+      <itemtype code="NcipProductAddToCartComponent" autocreate="true"
+        generate="true" extends="SimpleCMSComponent"
+        jaloclass="com.ncip.core.jalo.components.NcipProductAddToCartComponent">
+        <description>A component wrapping the addToCart button.</description>
+      </itemtype>
       <!--			Add Header Components End-->
     </typegroup>
 
@@ -428,6 +487,14 @@
             <modifiers read="true" write="true" optional="true" unique="false" />
             <persistence type="property" />
           </attribute>
+
+          <attribute qualifier="ncipdelivery" type="DeliveryType">
+            <description>貨運或者是物流</description>
+            <modifiers read="true" write="true" optional="true" unique="false" />
+            <persistence type="property" />
+          </attribute>
+
+
         </attributes>
       </itemtype>
     </typegroup>
@@ -448,11 +515,6 @@
     <typegroup name="newProduct">
       <itemtype code="Product" autocreate="false" generate="false">
         <attributes>
-          <attribute qualifier="dely_type" type="ProductType">
-            <description>1.訂製品,2.一般品(有庫存/無庫存),3.預購品</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
           <attribute qualifier="vkorg" type="java.lang.String">
             <description>銷售組織</description>
             <modifiers read="true" write="true" search="true"
@@ -472,6 +534,9 @@
             <persistence type="property"/>
           </attribute>
           <attribute qualifier="ma_type" type="java.lang.String">
+<!--            A:一般商品 C:一般品-大型商品-->
+<!--            B:訂製品 -->
+<!--            D:預購品 E:預購品-大型商品-->
             <description>物料類型</description>
             <modifiers read="true" write="true" search="true"
               optional="true"/>
@@ -538,6 +603,10 @@
 						<description>收款條件</description>
 						<persistence type="property"/>
 					</attribute>
+					<attribute type="java.lang.String" qualifier="lifnr">
+					    <modifiers read="true" write="true" search="true"  />
+					    <persistence type="property" />
+				    </attribute>
 				</attributes>
 			</itemtype>
 		</typegroup>

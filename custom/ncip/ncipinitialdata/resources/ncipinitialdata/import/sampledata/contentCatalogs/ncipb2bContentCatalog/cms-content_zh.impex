@@ -14,7 +14,7 @@
 $lang =zh
 
 $contentCatalog = ncipb2bContentCatalog
-$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $picture = media(code, $contentCV);
 #$siteResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/contentCatalogs/$contentCatalog
 #$productResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/sampledata/productCatalogs/$productCatalog
@@ -92,11 +92,16 @@ UPDATE MiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name  ;
                         ;                          ; MiniCart          ; 迷你购物车 ; "您的购物车"
 
 # CMS tabs components
-UPDATE CMSTabParagraphComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]; content[lang = $lang]
-                               ;                          ; deliveryTab       ; 送货                 ; "<div class=""tab-delivery"">Lorem ipsum dolor sit amet, dolor sed, ut nam ut. Senectus mauris egestas a massa, enim placeat wisi congue purus fermentum. Ut aptent mauris dapibus congue in sit. Sed dolor varius amet feugiat volutpat dignissim, pede a rhoncus sodales aliquam adipiscing, dapibus massa fusce. Dui egestas ornare urna nibh facilisi, cras posuere. Lorem aliquam accumsan eleifend sem libero lorem, aliquam sequi sed urna nec. Eget dolor quisque dolor, amet suspendisse ullamcorper minus elit lectus nunc, est mattis dui id eu et facilisis, conubia sit tristique. Ac fusce gravida condimentum iaculis neque, a platea curabitur accumsan porttitor vel justo. Amet potenti ac, eget amet ducimus sit nulla, ac porttitor rhoncus, justo proin tortor integer turpis nulla vitae. Egestas mollis litora nunc platea dui, eu semper mauris diam, erat quam, porta maecenas fusce libero non aliquet. Amet tellus taciti ligula sed sollicitudin, nonummy cursus enim, hendrerit nec, sed lacus sed at sit quis, semper a arcu mollis sapien nec pretium. Ante mauris eros nec, nonummy mauris, nulla lacinia vel. Volutpat luctus velit eu.</div>"
+#UPDATE CMSTabParagraphComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]; content[lang = $lang]
+#                               ;                          ; deliveryTab       ; 送货                 ; "<div class=""tab-delivery"">Lorem ipsum dolor sit amet, dolor sed, ut nam ut. Senectus mauris egestas a massa, enim placeat wisi congue purus fermentum. Ut aptent mauris dapibus congue in sit. Sed dolor varius amet feugiat volutpat dignissim, pede a rhoncus sodales aliquam adipiscing, dapibus massa fusce. Dui egestas ornare urna nibh facilisi, cras posuere. Lorem aliquam accumsan eleifend sem libero lorem, aliquam sequi sed urna nec. Eget dolor quisque dolor, amet suspendisse ullamcorper minus elit lectus nunc, est mattis dui id eu et facilisis, conubia sit tristique. Ac fusce gravida condimentum iaculis neque, a platea curabitur accumsan porttitor vel justo. Amet potenti ac, eget amet ducimus sit nulla, ac porttitor rhoncus, justo proin tortor integer turpis nulla vitae. Egestas mollis litora nunc platea dui, eu semper mauris diam, erat quam, porta maecenas fusce libero non aliquet. Amet tellus taciti ligula sed sollicitudin, nonummy cursus enim, hendrerit nec, sed lacus sed at sit quis, semper a arcu mollis sapien nec pretium. Ante mauris eros nec, nonummy mauris, nulla lacinia vel. Volutpat luctus velit eu.</div>"
 
 # JSP include components
 UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]
+                          ;                          ; ProductDetailsTabComponent ; "產品介紹"
+#                          ;                          ; ProductReviewsTabComponent ; Reviews
+#                          ;                          ; ProductSpecsTabComponent   ; Specs
+                          ;                          ; ProductDownloadComponent   ; "相關下載"
+                          ;                          ; ProductVideoComponent      ; "產品3D影片"
 
 # CMS Footer Component
 UPDATE FooterNavigationComponent; $contentCV[unique = true]; uid[unique = true]        ; serviceStatement ; serviceStatementUrlLike    ; notice[lang = $lang][translator = de.hybris.platform.acceleratorservices.dataimport.batch.converter.CopyrightTranslator, dateFormat = yyyy]
@@ -108,7 +113,8 @@ UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]     
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]
-                                 ;                          ; Similar           ; "您可能还会喜欢..."
+#                                 ;                          ; Similar           ; "您可能还会喜欢..."
+                                 ;                          ; Similar           ; "推薦/相關連產品"
                                  ;                          ; accessories       ; "配件"
 
 # CMS PurchasedCategorySuggestion Components
@@ -362,7 +368,10 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName
                        ;                          ; H013CategoryLink  ; "雙花灑組"
                        ;                          ; H014CategoryLink  ; "水龍頭配件"
                        ;                          ; H015CategoryLink  ; "其他"
-
+#快速訂購
+                       ;                          ; OrderFormsLink      ; "訂貨單"
+                       ;                          ; QuickOrderLink      ; "快速訂單"
+                       ;                          ; ImportSavedCartLink ; "導入已保存購物車"
 
 UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title[lang = $lang]
                         ;                          ; A0NavNode           ; "最新產品"
@@ -414,4 +423,8 @@ UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title
                         ;                          ; H013CategoryNavNode ; "雙花灑組"
                         ;                          ; H014CategoryNavNode ; "水龍頭配件"
                         ;                          ; H015CategoryNavNode ; "其他"
+#快速訂單
+                        ;                          ; OrderFormsNavNode      ; "訂貨單"
+                        ;                          ; QuickOrderNavNode      ; "快速訂單"
+                        ;                          ; ImportSavedCartNavNode ; "導入已保存購物車"
 ############ NCIP End ######################

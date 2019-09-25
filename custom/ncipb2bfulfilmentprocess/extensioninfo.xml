@@ -15,6 +15,7 @@
 
 		<requires-extension name="acceleratorservices"/>
 		<requires-extension name="ticketsystem"/>
+		<requires-extension name="ncipcore"/>
 
 		<coremodule generated="true" manager="com.ncipb2b.fulfilmentprocess.jalo.Ncipb2bFulfilmentProcessManager" packageroot="com.ncipb2b.fulfilmentprocess"/>
 

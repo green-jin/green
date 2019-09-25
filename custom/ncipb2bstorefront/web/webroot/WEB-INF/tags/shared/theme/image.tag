@@ -25,4 +25,4 @@
 	</c:otherwise>
 </c:choose>
 
-<img src="${fn:escapeXml(imageUrl)}" alt="${fn:escapeXml(alt)}" title="${fn:escapeXml(title)}" />
+<img class="p-1" src="${fn:escapeXml(imageUrl)}" alt="${fn:escapeXml(alt)}" title="${fn:escapeXml(title)}" />
