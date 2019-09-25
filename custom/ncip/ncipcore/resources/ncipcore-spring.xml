@@ -663,6 +663,38 @@
 	    <property name="configurationService" ref="configurationService" />
 	</bean>
 	<!-- green CronJob  -->
+
+	<!-- Arom CronJob  -->
+	<!-- defaultTransferOrderDao action -->
+	<alias alias="transferOrderDao" name="defaultTransferOrderDao"/>
+    <bean id="defaultTransferOrderDao" class="com.ncip.core.dao.impl.DefaultTransferOrderDao" parent="abstractItemDao">
+     <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+	
+    <!-- defaultZdataDaon action -->
+ 	<alias alias="zdataDao" name="defaultZdataDao"/>
+    <bean id="defaultZdataDao" class="com.ncip.core.dao.impl.DefaultZdataDao" parent="abstractItemDao">
+	<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+    <!-- defaulttransferOrderService action -->
+	<alias name="defaultTransferOrderService" alias="transferOrderService" />
+    <bean id="defaultTransferOrderService" class="com.ncip.core.service.impl.DefaultTransferOrderService">
+	<property name="transferOrderDao" ref="transferOrderDao"/>
+	</bean>
+	
+	<!-- defaultZdataService action -->
+    <alias name="defaultZdataService" alias="zdataService" />
+    <bean id="defaultZdataService" class="com.ncip.core.service.impl.DefaultZdataService">
+		<property name="zdataDao" ref="zdataDao"/> 
+    </bean>
+	<!-- transferOrderJob action -->
+    <bean id="transferOrderJob" class="com.ncip.core.job.TransferOrderJob" parent="abstractJobPerformable">
+	<property name="transferOrderService" ref="transferOrderService"/>
+	<property name="configurationService" ref="configurationService"/>
+	<property name="zdataService" ref="zdataService"/>
+	</bean>
+	<!-- Arom CronJob  -->
 	
 	<!-- Test Consignments 2 ZTable Sync Job -->
 <!-- 	<bean id="consignmentSyncJobPerformable" class="com.ncip.core.job.ConsignmentSyncJobPerformable" parent="abstractJobPerformable"/> -->
