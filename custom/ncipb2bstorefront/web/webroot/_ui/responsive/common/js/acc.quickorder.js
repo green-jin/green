@@ -26,7 +26,6 @@ if ($("#quickOrder").length > 0) {
         $qtyValidationContainer: '.js-qty-validation-container',
         $productItemTotal: '.js-quick-order-item-total',
         $classHasError: 'has-error',
-        $removeItem: 'item__remove',
 
         bindResetFormBtn: function () {
             ACC.quickorder.$resetFormBtn.on("click", ACC.quickorder.clearForm);
@@ -170,21 +169,35 @@ if ($("#quickOrder").length > 0) {
         clearQuickOrderRow: function () {
             var quickOrderMinRows = ACC.quickorder.$quickOrderMinRows;
             var parentLi = ACC.quickorder.getCurrentParentLi(this);
+            alert("ha");
+            alert($('.js-ul-container li.js-li-container').length);
+            alert(quickOrderMinRows);
             if ($('.js-ul-container li.js-li-container').length > quickOrderMinRows) {
+            	alert("hi");
                 parentLi.remove();
-                ACC.quickorder.bindClearQuickOrderRow();
-                ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text(result.errorMsg);
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("row");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("d-flex");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("item__remove");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("display-none");
                 ACC.quickorder.findElement(parentLi, "text-center").removeClass("d-md-block");
                 ACC.quickorder.findElement(parentLi, "text-center").addClass("display-none");
                 ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.text-center'), ".btn").removeClass("js-remove-quick-order-row");
                 ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").addClass("js-remove-quick-order-row");
+                ACC.quickorder.bindClearQuickOrderRow();
+                ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text(result.errorMsg);
             }
             else {
+            	alert("hihi");
+            	ACC.quickorder.findElement(parentLi, ".col-md-3").addClass("testtest");
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$productInfoContainer).remove();
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text('');
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuInputField).val('');
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$hiddenSkuInput).val('');
-                ACC.quickorder.findElement(parentLi, "text-center").removeClass("d-md-block");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("row");
+            	ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("d-flex");
+            	ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("item__remove");
+            	ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("display-none");
+            	ACC.quickorder.findElement(parentLi, "text-center").removeClass("d-md-block");
                 ACC.quickorder.findElement(parentLi, "text-center").addClass("display-none");
                 ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.text-center'), ".btn").removeClass("js-remove-quick-order-row");
                 ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").addClass("js-remove-quick-order-row");
@@ -259,7 +272,10 @@ if ($("#quickOrder").length > 0) {
                     $(event.target).removeClass(ACC.quickorder.$classHasError);
                     ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text('');
                     $('#quickOrderRowTemplate').tmpl(result.productData).insertAfter(ACC.quickorder.findElement(parentLi, '.col-md-3'));
-                    ACC.quickorder.findElement(parentLi, '.item__remove').addClass("display-none");
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("row");
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("item__remove");
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("display-none");
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("d-flex");
                     ACC.quickorder.findElement(parentLi, '.mr-4').addClass("display-none");
                     ACC.quickorder.findElement(parentLi, '.mr-4').removeClass("d-md-block");
                     ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").removeClass("js-remove-quick-order-row");

@@ -210,8 +210,8 @@ var ncipProductCode = 0;
 		{{/if}}
 	</div>
 	</div>
-	<div class="col-md-1 d-none d-md-block align-self-center no-gutters text-center"><%-- <i class="fa fa-times text-primary"></i> --%>
-	<button class="btn js-remove-quick-order-row" tabindex="-1">
+	<div class="item__remove col-md-1 d-none d-md-block align-self-center no-gutters text-center"><%-- <i class="fa fa-times text-primary"></i> --%>
+	<button class="btn js-remove-quick-order-row" tabindex="-1" onclick="ACC.quickorder.clearQuickOrderRow();">
 		<span class="glyphicon glyphicon-remove fa fa-times text-primary"></span>
 	</button>
 	</div>
