@@ -19,7 +19,7 @@ $baseProduct = baseProduct(code, $catalogVersion)
 $approved = approvalstatus(code)[default=' approved']
 
 # Language
-$lang = en, zh_TW
+$lang = en, zh_TW, zh
 
 # Insert Products
 #INSERT_UPDATE Product; code[unique = true]; $supercategories ; manufacturerName ; manufacturerAID; ean    ; variantType(code); unit(code)[default = pieces]; $catalogVersion

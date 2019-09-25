@@ -19,4 +19,4 @@ $lang=zh
 $storeUid=ncipb2b
 
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
-;$storeUid;"电动工具店铺";
+;$storeUid;"和之合B2B网站";

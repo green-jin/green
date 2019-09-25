@@ -15,7 +15,7 @@
 $productCatalog=ncipb2bProductCatalog
 $classificationCatalog=ncipb2bClassification
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=ja,en,de,zh,zh_TW
+$languages=en,zh,zh_TW
 
 # Product catalog
 INSERT_UPDATE Catalog;id[unique=true]

@@ -15,12 +15,13 @@ $lang=zh_TW
 
 #3% off orders over $500
 UPDATE OrderThresholdDiscountPercentagePromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];
-;;3PercentDiscountOver500;满 500 美元立减 3%;;
+                                                ;;3PercentDiscountOver500;滿 500 美元立減 3%;;
 
 
 #Buy 2 Power Drills, Get 1 Free
 UPDATE AcceleratorProductBOGOFPromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];
-;;B2GOFPowerDrills;电钻买二赠一;电钻买二赠一;;
+                                       ;;B2GOFPowerDrills;電鑽買二贈一;電鑽買二贈一;;
+
 
 
 #Buy this great power tool package by Black & Decker for $255! Save $39!
