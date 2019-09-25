@@ -33,7 +33,7 @@ $mediaContainer = media(qualifier, $contentCV);
 $siteUid = ncipb2b
 
 # Language
-$lang = en, zh, zh_TW
+$lang=en,zh,zh_TW
 
 # CMS Site Settings
 UPDATE CMSSite; uid[unique = true]; defaultPreviewCategory(code, $productCV); defaultPreviewProduct(code, $productCV); theme(code)
@@ -76,28 +76,28 @@ INSERT_UPDATE CMSNavigationNode; uid[unique = true]      ; $contentCV[unique = t
 #                               ; MyReplenishmentOrdersNavNode ;                          ; My Replenishment Orders ; MyAccountNavNode       ;                ; MyReplenishmentOrdersNavNode
 
 ## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry; uid[unique = true]           ; $contentCV[unique = true]; name                         ; navigationNode(&nodeRef); item(&linkRef)       ;
-                                ; PersonalDetailsNavNodeEntry  ;                          ; PersonalDetailsNavNodeEntry  ; PersonalDetailsNavNode  ; PersonalDetailsLink  ;
-                                ; UpdateEmailNavNodeEntry      ;                          ; UpdateEmailNavNodeEntry      ; UpdateEmailNavNode      ; UpdateEmailLink      ;
-                                ; UpdatePasswordNavNodeEntry   ;                          ; UpdatePasswordNavNodeEntry   ; UpdatePasswordNavNode   ; UpdatePasswordLink   ;
-                                ; AddressBookNavNodeEntry      ;                          ; AddressBookNavNodeEntry      ; AddressBookNavNode      ; AddressBookLink      ;
+INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                ; $contentCV[unique = true]; name                              ; navigationNode(&nodeRef)     ; item(&linkRef)            ;
+                                ; PersonalDetailsNavNodeEntry       ;                          ; PersonalDetailsNavNodeEntry       ; PersonalDetailsNavNode       ; PersonalDetailsLink       ;
+                                ; UpdateEmailNavNodeEntry           ;                          ; UpdateEmailNavNodeEntry           ; UpdateEmailNavNode           ; UpdateEmailLink           ;
+                                ; UpdatePasswordNavNodeEntry        ;                          ; UpdatePasswordNavNodeEntry        ; UpdatePasswordNavNode        ; UpdatePasswordLink        ;
+                                ; AddressBookNavNodeEntry           ;                          ; AddressBookNavNodeEntry           ; AddressBookNavNode           ; AddressBookLink           ;
 #                                ; PaymentDetailsNavNodeEntry        ;                          ; PaymentDetailsNavNodeEntry        ; PaymentDetailsNavNode        ; PaymentDetailsLink        ;
-                                ; OrderHistoryNavNodeEntry     ;                          ; OrderHistoryNavNodeEntry     ; OrderHistoryNavNode     ; OrderHistoryLink     ;
-                                ; SavedCartsNavNodeEntry       ;                          ; SavedCartsNavNodeEntry       ; SavedCartsNavNode       ; SavedCartsLink       ;
+                                ; OrderHistoryNavNodeEntry          ;                          ; OrderHistoryNavNodeEntry          ; OrderHistoryNavNode          ; OrderHistoryLink          ;
+                                ; SavedCartsNavNodeEntry            ;                          ; SavedCartsNavNodeEntry            ; SavedCartsNavNode            ; SavedCartsLink            ;
 #                                ; MyQuotesNavNodeEntry              ;                          ; MyQuotesNavNodeEntry              ; MyQuotesNavNode              ; MyQuotesLink              ;
 #                                ; MyReplenishmentOrdersNavNodeEntry ;                          ; MyReplenishmentOrdersNavNodeEntry ; MyReplenishmentOrdersNavNode ; MyReplenishmentOrdersLink ;
 #                                ; ApprovalDashboardNavNodeEntry     ;                          ; ApprovalDashboardNavNodeEntry     ; ApprovalDashboardNavNode     ; ApprovalDashboardLink     ;
-                                ; AccountingDetailNavNodeEntry ;                          ; AccountingDetailNavNodeEntry ; AccountingDetailNavNode ; AccountingDetailLink ;
+                                ; AccountingDetailNavNodeEntry      ;                          ; AccountingDetailNavNodeEntry      ; AccountingDetailNavNode      ; AccountingDetailLink      ;
 
 ## links of the above navigattion entries ##
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]   ; name                 ; url                           ; &linkRef             ; target(code)[default = 'sameWindow']; visible[default = 'true']; styleAttributes[default = 'class="dropdown-item"']
-                              ;                          ; PersonalDetailsLink  ; PersonalDetailsLink  ; /my-account/update-profile    ; PersonalDetailsLink  ;                                     ; true                     ;
-                              ;                          ; OrderHistoryLink     ; OrderHistoryLink     ; /my-account/orders            ; OrderHistoryLink     ;                                     ; true                     ;
-                              ;                          ; AccountingDetailLink ; AccountingDetailLink ; /my-account/accounting-detail ; AccountingDetailLink ;                                     ; true                     ;
-                              ;                          ; UpdateEmailLink      ; UpdateEmailLink      ; /my-account/update-email      ; UpdateEmailLink      ;                                     ; true                     ;
-                              ;                          ; SavedCartsLink       ; SavedCartsLink       ; /my-account/saved-carts       ; SavedCartsLink       ;                                     ; true                     ;
-                              ;                          ; AddressBookLink      ; AddressBookLink      ; /my-account/address-book      ; AddressBookLink      ;                                     ; true                     ;
-                              ;                          ; UpdatePasswordLink   ; UpdatePasswordLink   ; /my-account/update-password   ; UpdatePasswordLink   ;                                     ; true                     ;
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]        ; name                      ; url                            ; &linkRef                  ; target(code)[default = 'sameWindow']; visible[default = 'true']; styleAttributes[default = 'class="dropdown-item"']
+                              ;                          ; PersonalDetailsLink       ; PersonalDetailsLink       ; /my-account/update-profile     ; PersonalDetailsLink       ;                                     ; true                     ;
+                              ;                          ; OrderHistoryLink          ; OrderHistoryLink          ; /my-account/orders             ; OrderHistoryLink          ;                                     ; true                     ;
+                              ;                          ; AccountingDetailLink      ; AccountingDetailLink      ; /my-account/accounting-detail  ; AccountingDetailLink      ;                                     ; true                     ;
+                              ;                          ; UpdateEmailLink           ; UpdateEmailLink           ; /my-account/update-email       ; UpdateEmailLink           ;                                     ; true                     ;
+                              ;                          ; SavedCartsLink            ; SavedCartsLink            ; /my-account/saved-carts        ; SavedCartsLink            ;                                     ; true                     ;
+                              ;                          ; AddressBookLink           ; AddressBookLink           ; /my-account/address-book       ; AddressBookLink           ;                                     ; true                     ;
+                              ;                          ; UpdatePasswordLink        ; UpdatePasswordLink        ; /my-account/update-password    ; UpdatePasswordLink        ;                                     ; true                     ;
 #                              ;                          ; PaymentDetailsLink        ; PaymentDetailsLink        ; /my-account/payment-details    ; PaymentDetailsLink        ;                                     ; false                    ;
 #                              ;                          ; MyQuotesLink              ; MyQuotesLink              ; /my-account/my-quotes          ; MyQuotesLink              ;                                     ; false                    ;
 #                              ;                          ; MyReplenishmentOrdersLink ; MyReplenishmentOrdersLink ; /my-account/my-replenishment   ; MyReplenishmentOrdersLink ;                                     ; false                    ;
@@ -150,136 +150,133 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]  ;
 #                              ;                          ; SafetyCategoryLink               ; Safety Category Link                   ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/c/1800                     ; SafetyCategoryLink               ; SafetyCategoryLink
 
 ##----- leve 5. children of HandToolsNavNode -----##
-#INSERT_UPDATE CMSNavigationNode; uid[unique = true]    ; $contentCV[unique = true]; name                      ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-#                               ; HandToolsLinksNavNode ;                          ; Hand Tools Category Links ; HandToolsNavNode       ;                ; HandToolsLinksNavNode
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]    ; $contentCV[unique = true]; name                      ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+                               ; HandToolsLinksNavNode ;                          ; Hand Tools Category Links ; HandToolsNavNode       ;                ; HandToolsLinksNavNode
 
 ##------ level 6. children of HandToolsLinksNavNode ------##
-#INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-#                               ; HandSawsCategoryNavNode       ;                          ; Hand Saws Category       ; HandToolsLinksNavNode  ;                ; HandSawsCategoryNavNode
-#                               ; JigsawsCategoryNavNode        ;                          ; Jigsaws Category         ; HandToolsLinksNavNode  ;                ; JigsawsCategoryNavNode
-#                               ; NutDriversCategoryNavNode     ;                          ; Nut Drivers Category     ; HandToolsLinksNavNode  ;                ; NutDriversCategoryNavNode
-#                               ; RotaryHammersCategoryNavNode  ;                          ; Rotary Hammers Category  ; HandToolsLinksNavNode  ;                ; RotaryHammersCategoryNavNode
-#                               ; StrippingToolsCategoryNavNode ;                          ; Stripping Tools Category ; HandToolsLinksNavNode  ;                ; StrippingToolsCategoryNavNode
-#                               ; PunchesCategoryNavNode        ;                          ; Punches Category         ; HandToolsLinksNavNode  ;                ; PunchesCategoryNavNode
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+                               ; HandSawsCategoryNavNode       ;                          ; Hand Saws Category       ; HandToolsLinksNavNode  ;                ; HandSawsCategoryNavNode
+                               ; JigsawsCategoryNavNode        ;                          ; Jigsaws Category         ; HandToolsLinksNavNode  ;                ; JigsawsCategoryNavNode
+                               ; NutDriversCategoryNavNode     ;                          ; Nut Drivers Category     ; HandToolsLinksNavNode  ;                ; NutDriversCategoryNavNode
+                               ; RotaryHammersCategoryNavNode  ;                          ; Rotary Hammers Category  ; HandToolsLinksNavNode  ;                ; RotaryHammersCategoryNavNode
+                               ; StrippingToolsCategoryNavNode ;                          ; Stripping Tools Category ; HandToolsLinksNavNode  ;                ; StrippingToolsCategoryNavNode
+                               ; PunchesCategoryNavNode        ;                          ; Punches Category         ; HandToolsLinksNavNode  ;                ; PunchesCategoryNavNode
 ## entries of the above navigation nodes ##
-#INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
-#                                ; HandSawsCategoryNavNodeEntry       ;                          ; Hand Saws Category Navigation Node Entry       ; HandSawsCategoryNavNode       ; HandSawsCategoryLink                                   ;
-#                                ; JigsawsCategoryNavNodeEntry        ;                          ; Jigsaws Category Navigation Node Entry         ; JigsawsCategoryNavNode        ; JigsawsCategoryLink                                    ;
-#                                ; NutDriversCategoryNavNodeEntry     ;                          ; Nut Drivers Category Navigation Node Entry     ; NutDriversCategoryNavNode     ; NutDriversCategoryLink                                 ;
-#                                ; RotaryHammersCategoryNavNodeEntry  ;                          ; Rotary Hammers Category Navigation Node Entry  ; RotaryHammersCategoryNavNode  ; RotaryHammersCategoryLink                              ;
-#                                ; StrippingToolsCategoryNavNodeEntry ;                          ; Stripping Tools Category Navigation Node Entry ; StrippingToolsCategoryNavNode ; StrippingToolsCategoryLink                             ;
-#                                ; PunchesCategoryNavNodeEntry        ;                          ; Punches Category Navigation Node Entry         ; PunchesCategoryNavNode        ; PunchesCategoryLink                                    ;
+INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
+                                ; HandSawsCategoryNavNodeEntry       ;                          ; Hand Saws Category Navigation Node Entry       ; HandSawsCategoryNavNode       ; HandSawsCategoryLink                                   ;
+                                ; JigsawsCategoryNavNodeEntry        ;                          ; Jigsaws Category Navigation Node Entry         ; JigsawsCategoryNavNode        ; JigsawsCategoryLink                                    ;
+                                ; NutDriversCategoryNavNodeEntry     ;                          ; Nut Drivers Category Navigation Node Entry     ; NutDriversCategoryNavNode     ; NutDriversCategoryLink                                 ;
+                                ; RotaryHammersCategoryNavNodeEntry  ;                          ; Rotary Hammers Category Navigation Node Entry  ; RotaryHammersCategoryNavNode  ; RotaryHammersCategoryLink                              ;
+                                ; StrippingToolsCategoryNavNodeEntry ;                          ; Stripping Tools Category Navigation Node Entry ; StrippingToolsCategoryNavNode ; StrippingToolsCategoryLink                             ;
+                                ; PunchesCategoryNavNodeEntry        ;                          ; Punches Category Navigation Node Entry         ; PunchesCategoryNavNode        ; PunchesCategoryLink                                    ;
 ## links of the above navigation nodes ##
-#INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                          ; url                                                                                                 ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
-#                              ;                          ; HandSawsCategoryLink       ; Hand Saws Category Link       ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354            ; HandSawsCategoryLink       ; HandSawsCategoryLink
-#                              ;                          ; JigsawsCategoryLink        ; Jigsaws Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710              ; JigsawsCategoryLink        ; JigsawsCategoryLink
-#                              ;                          ; NutDriversCategoryLink     ; Nut Drivers Category Link     ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641          ; NutDriversCategoryLink     ; NutDriversCategoryLink
-#                              ;                          ; RotaryHammersCategoryLink  ; Rotary Hammers Category Link  ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711       ; RotaryHammersCategoryLink  ; RotaryHammersCategoryLink
-#                              ;                          ; StrippingToolsCategoryLink ; Stripping Tools Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598      ; StrippingToolsCategoryLink ; StrippingToolsCategoryLink
-#                              ;                          ; PunchesCategoryLink        ; Punches Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597 ; PunchesCategoryLink        ; PunchesCategoryLink
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                          ; url                                                                                                 ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
+                              ;                          ; HandSawsCategoryLink       ; Hand Saws Category Link       ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354            ; HandSawsCategoryLink       ; HandSawsCategoryLink
+                              ;                          ; JigsawsCategoryLink        ; Jigsaws Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710              ; JigsawsCategoryLink        ; JigsawsCategoryLink
+                              ;                          ; NutDriversCategoryLink     ; Nut Drivers Category Link     ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641          ; NutDriversCategoryLink     ; NutDriversCategoryLink
+                              ;                          ; RotaryHammersCategoryLink  ; Rotary Hammers Category Link  ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711       ; RotaryHammersCategoryLink  ; RotaryHammersCategoryLink
+                              ;                          ; StrippingToolsCategoryLink ; Stripping Tools Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598      ; StrippingToolsCategoryLink ; StrippingToolsCategoryLink
+                              ;                          ; PunchesCategoryLink        ; Punches Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597 ; PunchesCategoryLink        ; PunchesCategoryLink
 
 ##----- level 5. children of SafetyNavNode -----##
-#INSERT_UPDATE CMSNavigationNode; uid[unique = true]   ; $contentCV[unique = true]; name                    ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-#                               ; FootwearLinksNavNode ;                          ; Footwear Category Links ; SafetyNavNode          ;                ; FootwearLinksNavNode
-#
-###------ level 6. children of FootwearLinksNavNode ------##
-#INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-#                               ; FootwearMensCategoryNavNode   ;                          ; Footwear Mens Category   ; FootwearLinksNavNode   ;                ; FootwearMensCategoryNavNode
-#                               ; FootwearWomensCategoryNavNode ;                          ; Footwear Womens Category ; FootwearLinksNavNode   ;                ; FootwearWomensCategoryNavNode
-### entries of the above navigation nodes ##
-#INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
-#                                ; FootwearMensCategoryNavNodeEntry   ;                          ; Footwear Mens Category Navigation Node Entry   ; FootwearMensCategoryNavNode   ; FootwearMensCategoryLink                               ;
-#                                ; FootwearWomensCategoryNavNodeEntry ;                          ; Footwear Womens Category Navigation Node Entry ; FootwearWomensCategoryNavNode ; FootwearWomensCategoryLink                             ;
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]   ; $contentCV[unique = true]; name                    ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+                               ; FootwearLinksNavNode ;                          ; Footwear Category Links ; SafetyNavNode          ;                ; FootwearLinksNavNode
+
+##------ level 6. children of FootwearLinksNavNode ------##
+INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+                               ; FootwearMensCategoryNavNode   ;                          ; Footwear Mens Category   ; FootwearLinksNavNode   ;                ; FootwearMensCategoryNavNode
+                               ; FootwearWomensCategoryNavNode ;                          ; Footwear Womens Category ; FootwearLinksNavNode   ;                ; FootwearWomensCategoryNavNode
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
+                                ; FootwearMensCategoryNavNodeEntry   ;                          ; Footwear Mens Category Navigation Node Entry   ; FootwearMensCategoryNavNode   ; FootwearMensCategoryLink                               ;
+                                ; FootwearWomensCategoryNavNodeEntry ;                          ; Footwear Womens Category Navigation Node Entry ; FootwearWomensCategoryNavNode ; FootwearWomensCategoryLink                             ;
 ## links of the above navigation nodes ##
-#INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                           ; url                                                                                                   ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
-#                              ;                          ; FootwearMensCategoryLink   ; Footwear Men's Category Link   ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805   ; FootwearMensCategoryLink   ; FootwearMensCategoryLink
-#                              ;                          ; FootwearWomensCategoryLink ; Footwear Women's Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806 ; FootwearWomensCategoryLink ; FootwearWomensCategoryLink
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                           ; url                                                                                                   ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
+                              ;                          ; FootwearMensCategoryLink   ; Footwear Men's Category Link   ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805   ; FootwearMensCategoryLink   ; FootwearMensCategoryLink
+                              ;                          ; FootwearWomensCategoryLink ; Footwear Women's Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806 ; FootwearWomensCategoryLink ; FootwearWomensCategoryLink
 
 
 ##---- level 4. children of FooterNavNode start ----##
 INSERT_UPDATE CMSNavigationNode; uid[unique = true]           ; $contentCV[unique = true]; name                          ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-                               ; FollowUsNavNode              ;                          ; Follow Us Pages               ; FooterNavNode          ;                ; FollowUsNavNode
+							   ; FollowUsNavNode              ;                          ; Follow Us Pages               ; FooterNavNode          ;                ; FollowUsNavNode
                                ; SAPCommerceNavNode           ;                          ; SAP Commerce Cloud Pages      ; FooterNavNode          ;                ; SAPCommerceNavNode
                                ; SAPCustomerExperienceNavNode ;                          ; SAP Customer Experience Pages ; FooterNavNode          ;                ; SAPCustomerExperienceNavNode
-                               ; FootSocialMediaNavNode       ;                          ; Foot Social Media Pages       ; FooterNavNode          ;                ; FootSocialMediaNavNode
+                               ; FootSocialMediaNavNode       ;     				     ; Foot Social Media Pages       ; FooterNavNode          ;                ; FootSocialMediaNavNode             
 
 ##----- level 5. children of FollowUsNavNode -----##
 INSERT_UPDATE CMSNavigationNode; uid[unique = true]       ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
                                ; AgileCommerceBlogNavNode ;                          ; Agile Commerce Blog Page ; FollowUsNavNode        ;                ; AgileCommerceBlogNavNode
                                ; LinkedInNavNode          ;                          ; LinkedIn Page            ; FollowUsNavNode        ;                ; LinkedInNavNode
                                ; FacebookNavNode          ;                          ; Facebook Page            ; FollowUsNavNode        ;                ; FacebookNavNode
-                               ; AnnualCatalogueNavNode   ;                          ; AnnualCatalogue Page     ; FollowUsNavNode        ;                ; AnnualCatalogueNavNode
+                               ; AnnualCatalogueNavNode   ;                          ; AnnualCatalogue Page     ; FollowUsNavNode        ;                ; AnnualCatalogueNavNode   
 #                               ; TwitterNavNode           ;                          ; Twitter Page             ; FollowUsNavNode        ;                ; TwitterNavNode
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry; uid[unique = true]            ; $contentCV[unique = true]; name                                      ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
                                 ; AgileCommerceBlogNavNodeEntry ;                          ; Agile Commerce Blog Navigation Node Entry ; AgileCommerceBlogNavNode ; AgileCommerceBlogLink                                  ;
                                 ; LinkedInNavNodeEntry          ;                          ; LinkedIn Navigation Node Entry            ; LinkedInNavNode          ; LinkedInLink                                           ;
                                 ; FacebookNavNodeEntry          ;                          ; Facebook Navigation Node Entry            ; FacebookNavNode          ; FacebookLink                                           ;
-                                ; AnnualCatalogueNavNodeEntry   ;                          ; Annual Catalogue Nav Node Entry           ; AnnualCatalogueNavNode   ; AnnualCatalogueLink                                    ;
+                                ; AnnualCatalogueNavNodeEntry   ;                          ; Annual Catalogue Nav Node Entry           ; AnnualCatalogueNavNode   ; AnnualCatalogueLink                                     ;  
 #                                ; TwitterNavNodeEntry           ;                          ; Twitter Navigation Node Entry             ; TwitterNavNode           ; TwitterLink                                            ;
 ## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]    ; name                     ; url                       ; &linkRef              ; &componentRef         ; target(code)[default = 'sameWindow']; styleAttributes
-                              ;                          ; AgileCommerceBlogLink ; Agile Commerce Blog Link ; "http://www.hbfaucet.com" ; AgileCommerceBlogLink ; AgileCommerceBlogLink ; newWindow                           ; class="text-white"
-                              ;                          ; LinkedInLink          ; Linked In Link           ; "http://www.hbfaucet.com" ; LinkedInLink          ; LinkedInLink          ; newWindow                           ; class="text-white"
-                              ;                          ; FacebookLink          ; Facebook Link            ; "http://www.hbfaucet.com" ; FacebookLink          ; FacebookLink          ; newWindow                           ; class="text-white"
-                              ;                          ; AnnualCatalogueLink   ; AnnualCatalogueLink      ; "http://www.hbfaucet.com" ; AnnualCatalogueLink   ; AnnualCatalogueLink   ; newWindow                           ; class="text-white"
-#                              ;                          ; TwitterLink           ; Twitter Link             ; "http://www.hbfaucet.com"   	 ; TwitterLink           ; TwitterLink           ; newWindow							; class="text-white"
-
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]    ; name                     ; url                            ; &linkRef              ; &componentRef         ; target(code)[default = 'sameWindow']
+                              ;                          ; AgileCommerceBlogLink ; Agile Commerce Blog Link ; "http://www.hbfaucet.com" 	 ; AgileCommerceBlogLink ; AgileCommerceBlogLink ; newWindow
+                              ;                          ; LinkedInLink          ; Linked In Link           ; "http://www.hbfaucet.com"		 ; LinkedInLink          ; LinkedInLink          ; newWindow
+                              ;                          ; FacebookLink          ; Facebook Link            ; "http://www.hbfaucet.com"  	 ; FacebookLink          ; FacebookLink          ; newWindow
+ 							  ;                          ; AnnualCatalogueLink   ; AnnualCatalogueLink      ; "http://www.hbfaucet.com" 	 ; AnnualCatalogueLink   ; AnnualCatalogueLink   ; newWindow                           
+#                              ;                          ; TwitterLink           ; Twitter Link             ; "http://www.hbfaucet.com"   	 ; TwitterLink           ; TwitterLink           ; newWindow
 
 ##----- level 5. children of SAPCustomerExperienceNavNode -----##
 INSERT_UPDATE CMSNavigationNode; uid[unique = true]      ; $contentCV[unique = true]; name                          ; parent(uid, $contentCV); links(&linkRef); &nodeRef
                                ; AboutSAPCommerceNavNode ;                          ; About SAP Commerce Cloud Page ; SAPCommerceNavNode     ;                ; AboutSAPCommerceNavNode
                                ; DocumentationNavNode    ;                          ; Documentation Page            ; SAPCommerceNavNode     ;                ; DocumentationNavNode
-                               ; CaseCooperationNavNode  ;                          ; CaseCooperation Page          ; SAPCommerceNavNode     ;                ; CaseCooperationNavNode
+							   ; CaseCooperationNavNode  ;                          ; CaseCooperation Page          ; SAPCommerceNavNode     ;                ; CaseCooperationNavNode   
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry; uid[unique = true]           ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef); item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
                                 ; AboutSAPCommerceNavNodeEntry ;                          ; About SAP Commerce Cloud Navigation Node Entry ; AboutSAPCommerceNavNode ; AboutSAPCommerceLink                                   ;
                                 ; DocumentationNavNodeEntry    ;                          ; Documentation Navigation Node Entry            ; DocumentationNavNode    ; DocumentationLink                                      ;
-                                ; CaseCooperationNavNodeEntry  ;                          ; Case Cooperation Nav Node Entry                ; CaseCooperationNavNode  ; CaseCooperationLink                                    ;
+								; CaseCooperationNavNodeEntry  ;                           ; Case Cooperation Nav Node Entry               ; CaseCooperationNavNode  ; CaseCooperationLink                                  ;								  
 ## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]   ; name                          ; url                       ; &linkRef             ; &componentRef        ; target(code)[default = 'sameWindow']; styleAttributes
-                              ;                          ; AboutSAPCommerceLink ; About SAP Commerce Cloud Link ; "http://www.hbfaucet.com" ; AboutSAPCommerceLink ; AboutSAPCommerceLink ; newWindow                           ; class="text-white"
-                              ;                          ; DocumentationLink    ; Documentation Link            ; "http://www.hbfaucet.com" ; DocumentationLink    ; DocumentationLink    ; newWindow                           ; class="text-white"
-                              ;                          ; CaseCooperationLink  ; CaseCooperationLink           ; "http://www.hbfaucet.com" ; CaseCooperationLink  ; CaseCooperationLink  ; newWindow                           ; class="text-white"
-
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]   ; name                          ; url                                       ; &linkRef             ; &componentRef        ; target(code)[default = 'sameWindow']
+                              ;                          ; AboutSAPCommerceLink ; About SAP Commerce Cloud Link ; "http://www.hbfaucet.com" 				; AboutSAPCommerceLink ; AboutSAPCommerceLink ; newWindow
+                              ;                          ; DocumentationLink    ; Documentation Link            ; "http://www.hbfaucet.com"                 ; DocumentationLink    ; DocumentationLink    ; newWindow
+						      ;                          ; CaseCooperationLink   ; CaseCooperationLink          ; "http://www.hbfaucet.com" 				; CaseCooperationLink  ; CaseCooperationLink  ; newWindow  
 ##----- level 5. children of SAPCommerceNavNode -----##
 INSERT_UPDATE CMSNavigationNode; uid[unique = true]                ; $contentCV[unique = true]; name                               ; parent(uid, $contentCV)      ; links(&linkRef); &nodeRef
                                ; AboutSAPCustomerExperienceNavNode ;                          ; About SAP Customer Experience Page ; SAPCustomerExperienceNavNode ;                ; AboutSAPCustomerExperienceNavNode
                                ; ContactUsNavNode                  ;                          ; Contact Us Page                    ; SAPCustomerExperienceNavNode ;                ; ContactUsNavNode
-                               ; AddressNavNode                    ;                          ; Address Page                       ; SAPCustomerExperienceNavNode ;                ; AddressNavNode
-                               ; ServiceNavNode                    ;                          ; ServicePage                        ; SAPCustomerExperienceNavNode ;                ; ServiceNavNode
+  							   ; AddressNavNode                    ;                           ; Address Page                       ; SAPCustomerExperienceNavNode ;                 ; AddressNavNode  
+                               ; ServiceNavNode                    ;                           ; ServicePage                        ; SAPCustomerExperienceNavNode ;                 ; ServiceNavNode                                    
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                     ; $contentCV[unique = true]; name                                                ; navigationNode(&nodeRef)          ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
                                 ; AboutSAPCustomerExperienceNavNodeEntry ;                          ; About SAP Customer Experience Navigation Node Entry ; AboutSAPCustomerExperienceNavNode ; VisitSAPLink                                           ;
                                 ; ContactUsNavNodeEntry                  ;                          ; Contact Us Navigation Node Entry                    ; ContactUsNavNode                  ; ContactUsLink                                          ;
-                                ; AddressNavNodeEntry                    ;                          ; Address Navigation Node Entry                       ; AddressNavNode                    ; AddressLink                                            ;
-                                ; ServiceNavNodeEntry                    ;                          ; Service Navigation Node Entry                       ; ServiceNavNode                    ; ServiceLink                                            ;
+                                ; AddressNavNodeEntry                    ;                           ; Address Navigation Node Entry                      ; AddressNavNode                    ; AddressLink                                           ;  
+							    ; ServiceNavNodeEntry                    ;                           ; Service Navigation Node Entry                      ; ServiceNavNode                    ; ServiceLink                                           ;                                  
 ## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; name              ; url                       ; &linkRef      ; &componentRef ; target(code)[default = 'sameWindow']; styleAttributes
-                              ;                          ; VisitSAPLink      ; Visit SAP Link    ; "http://www.hbfaucet.com" ; VisitSAPLink  ; VisitSAPLink  ; newWindow                           ; class="fa fa-envelope-o pr-2 text-white"
-                              ;                          ; ContactUsLink     ; Contact Us Link   ; "http://www.hbfaucet.com" ; ContactUsLink ; ContactUsLink ; newWindow                           ; class="fa fa-phone-square pr-2 text-white"
-                              ;                          ; AddressLink       ; Address Link Link ; "http://www.hbfaucet.com" ; AddressLink   ; AddressLink   ; newWindow                           ; class="fa fa-home pr-2 text-white"
-                              ;                          ; ServiceLink       ; Service Link      ; "http://www.hbfaucet.com" ; ServiceLink   ; ServiceLink   ; newWindow                           ; class="fa fa-map-marker pr-2 text-white"
+INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; name              ; url                             ; &linkRef       ; &componentRef ; target(code)[default = 'sameWindow'] ; styleAttributes
+                              ;                          ; VisitSAPLink      ; Visit SAP Link    ; "http://www.hbfaucet.com"       ; VisitSAPLink   ; VisitSAPLink  ; newWindow							   ; class="fa fa-envelope-o pr-2"
+                              ;                          ; ContactUsLink     ; Contact Us Link   ; "http://www.hbfaucet.com" 	   ; ContactUsLink  ; ContactUsLink ; newWindow							   ; class="fa fa-phone-square pr-2"
+                              ;                          ; AddressLink       ; Address Link Link ; "http://www.hbfaucet.com" 	   ; AddressLink 	; AddressLink 	; newWindow                            ; class="fa fa-home pr-2"
+                              ;                          ; ServiceLink       ; Service Link      ; "http://www.hbfaucet.com" 	   ; ServiceLink 	; ServiceLink 	; newWindow  						   ; class="fa fa-map-marker pr-2"
 
 ##----- level 5. children of FootSocialMediaNavNode -----
-INSERT_UPDATE CMSNavigationNode; uid[unique = true]      ; $contentCV[unique = true]; name                 ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-                               ; FootGlobeLinkNavNode    ;                          ; FootGlobeLink Page   ; FootSocialMediaNavNode ;                ; FootGlobeLinkNavNode
-                               ; FootYoutubeLinkNavNode  ;                          ; FootGlobeLink Page   ; FootSocialMediaNavNode ;                ; FootYoutubeLinkNavNode
-                               ; FootFacebookLinkNavNode ;                          ; FootYoutubeLink Page ; FootSocialMediaNavNode ;                ; FootFacebookLinkNavNode
-                               ; FootEmailLinkNavNode    ;                          ; FootEmailLink Page   ; FootSocialMediaNavNode ;                ; FootEmailLinkNavNode
+INSERT_UPDATE CMSNavigationNode ; uid[unique = true]      ; $contentCV[unique = true] ; name                          ; parent(uid, $contentCV) ; links(&linkRef) ; &nodeRef               
+                                ; FootGlobeLinkNavNode ;                             ; FootGlobeLink Page  	          ; FootSocialMediaNavNode  ;                 ; FootGlobeLinkNavNode
+                                ; FootYoutubeLinkNavNode    ;                        ; FootGlobeLink Page             ; FootSocialMediaNavNode  ;                 ; FootYoutubeLinkNavNode   
+                                ; FootFacebookLinkNavNode  ;                         ; FootYoutubeLink Page           ; FootSocialMediaNavNode  ;                 ; FootFacebookLinkNavNode   
+                                ; FootEmailLinkNavNode  ;                            ; FootEmailLink Page             ; FootSocialMediaNavNode  ;                 ; FootEmailLinkNavNode 
 ## entries of the above navigation nodes 
-INSERT_UPDATE CMSNavigationEntry; uid[unique = true]           ; $contentCV[unique = true]; name                       ; navigationNode(&nodeRef); item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
-                                ; FootGlobeLinkNavNodeEntry    ;                          ; FootGlobeLink Node Entry   ; FootGlobeLinkNavNode    ; FootGlobeLink                                          ;
-                                ; FootYoutubeLinkNavNodeEntry  ;                          ; FootGlobeLink Node Entry   ; FootYoutubeLinkNavNode  ; FootYoutubeLink                                        ;
-                                ; FootFacebookLinkNavNodeEntry ;                          ; FootYoutubeLink Node Entry ; FootFacebookLinkNavNode ; FootFacebookLink                                       ;
-                                ; FootEmailLinkNavNodeEntry    ;                          ; FootEmailLink Node Entry   ; FootEmailLinkNavNode    ; FootEmailLink                                          ;
-## links of the above navigation nodes
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; name             ; url                       ; &linkRef         ; &componentRef    ; target(code)[default = 'sameWindow']; styleAttributes
-                              ;                          ; FootGlobeLink     ; FootGlobeLink    ; "http://www.hbfaucet.com" ; FootGlobeLink    ; FootGlobeLink    ; newWindow                           ; class="fa fa-globe fa-2x text-white"
-                              ;                          ; FootYoutubeLink   ; FootYoutubeLink  ; "http://www.hbfaucet.com" ; FootYoutubeLink  ; FootYoutubeLink  ; newWindow                           ; class="fa fa-youtube fa-2x text-white"
-                              ;                          ; FootFacebookLink  ; FootFacebookLink ; "http://www.hbfaucet.com" ; FootFacebookLink ; FootFacebookLink ; newWindow                           ; class="fa fa-facebook fa-2x text-white"
-                              ;                          ; FootEmailLink     ; FootEmailLink    ; "http://www.hbfaucet.com" ; FootEmailLink    ; FootEmailLink    ; newWindow                           ; class="fa fa-envelope-o fa-2x text-white"
-
+INSERT_UPDATE CMSNavigationEntry ; uid[unique = true]           ; $contentCV[unique = true] ; name                             ; navigationNode(&nodeRef)  ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV) ;  
+                                 ; FootGlobeLinkNavNodeEntry    ;                           ; FootGlobeLink Node Entry 		   ; FootGlobeLinkNavNode  	   ; FootGlobeLink                                ;  
+                                 ; FootYoutubeLinkNavNodeEntry  ;                           ; FootGlobeLink Node Entry         ; FootYoutubeLinkNavNode    ; FootYoutubeLink     						  ; 
+                                 ; FootFacebookLinkNavNodeEntry ;                           ; FootYoutubeLink Node Entry       ; FootFacebookLinkNavNode   ; FootFacebookLink    						  ; 
+                                 ; FootEmailLinkNavNodeEntry    ;                           ; FootEmailLink Node Entry         ; FootEmailLinkNavNode      ; FootEmailLink      						  ; 
+## links of the above navigation nodes 
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique = true] ; uid[unique = true] ; name            	; url                       	; &linkRef      	; &componentRef 	 ; target(code)[default = 'sameWindow'] ; styleAttributes
+                               ;                           ; FootGlobeLink       ; FootGlobeLink  	; "http://www.hbfaucet.com"     ; FootGlobeLink  	; FootGlobeLink 	 ; newWindow                            ; class="fa fa-globe fa-2x"
+                               ;                           ; FootYoutubeLink     ; FootYoutubeLink	; "http://www.hbfaucet.com" 	; FootYoutubeLink	; FootYoutubeLink 	 ; newWindow  						    ; class="fa fa-youtube fa-2x"
+                               ;                           ; FootFacebookLink    ; FootFacebookLink	; "http://www.hbfaucet.com" 	; FootFacebookLink 	; FootFacebookLink   ; newWindow                            ; class="fa fa-facebook fa-2x"
+                               ;                           ; FootEmailLink       ; FootEmailLink	; "http://www.hbfaucet.com" 	; FootEmailLink 	; FootEmailLink 	 ; newWindow                            ; class="fa fa-envelope-o fa-2x"                                    
 ## FooterNavNode end ----##
 ###### Navigation End ######
 
@@ -289,8 +286,8 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; n
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
                          ;                          ; SiteLogoSlot      ; SiteLogoComponent
 
-#INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink
-#                                   ;                          ; SiteLogoComponent ; Site Logo Component ; SiteLogoComponent ; "/"
+INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink
+                                   ;                          ; SiteLogoComponent ; Site Logo Component ; SiteLogoComponent ; "/"
 
 ## homepage navigation link slot ##
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]  ; cmsComponents(&componentRef)
@@ -317,8 +314,8 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; n
 #                                 ;                          ; OrderToolsComponent     ; Order Tools Component ; nav-order-tools ; OrderToolsComponent     ; OrderToolsNavNode
 #                                 ;                          ; NcipOrderToolsComponent ; Ncip Order Tools Component ; nav-order-tools ; NcipOrderToolsComponent ; OrderToolsNavNode
 
-INSERT_UPDATE MiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name      ; &componentRef; totalDisplay(code); shownProductCount; lightboxBannerComponent(&componentRef)
-                               ;                          ; MiniCart          ; Mini Cart ; MiniCart     ; SUBTOTAL          ; 3                ; LightboxHomeDeliveryBannerComponent
+#INSERT_UPDATE MiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name      ; &componentRef; totalDisplay(code); shownProductCount; lightboxBannerComponent(&componentRef)
+#                               ;                          ; MiniCart          ; Mini Cart ; MiniCart     ; SUBTOTAL          ; 3                ; LightboxHomeDeliveryBannerComponent
 
 INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]                  ; name                                    ; &componentRef                       ; urlLink
                                    ;                          ; LightboxHomeDeliveryBannerComponent ; Lightbox Home Delivery Banner Component ; LightboxHomeDeliveryBannerComponent ;
@@ -333,8 +330,8 @@ INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]
                                  ;                          ; ProductSpecsTabComponent   ; Product Specification Tab ; /WEB-INF/views/responsive/pages/product/productSpecsTab.jsp   ;                         ; ProductSpecsTabComponent
                                  ;                          ; ProductReviewsTabComponent ; Product Reviews Tab       ; /WEB-INF/views/responsive/pages/product/productReviewsTab.jsp ;                         ; ProductReviewsTabComponent
 
-#INSERT_UPDATE CMSTabParagraphComponent; $contentCV[unique = true]; uid[unique = true]; name         ; visible; &componentRef
-#                                      ;                          ; deliveryTab       ; Delivery tab ; true   ; deliveryTab
+INSERT_UPDATE CMSTabParagraphComponent; $contentCV[unique = true]; uid[unique = true]; name         ; visible; &componentRef
+                                      ;                          ; deliveryTab       ; Delivery tab ; true   ; deliveryTab
 
 #INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = true]; name          ; visible; simpleCMSComponents(uid, $contentCV)                                                       ; &componentRef
 #                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductSpecsTabComponent,ProductReviewsTabComponent,deliveryTab ; TabPanelContainer
@@ -372,9 +369,8 @@ INSERT_UPDATE ProductVariantSelectorComponent; $contentCV[unique = true]; uid[un
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
                          ;                          ; AddToCartSlot     ; AddToCart
 
-#INSERT_UPDATE ProductAddToCartComponent; $contentCV[unique = true]; uid[unique = true]; name; actions(&actionRef); &componentRef
-#                                       ;                          ; AddToCart         ; Product Add To Cart ;AddToCartAction,PickUpInStoreAction ;AddToCart
-
+INSERT_UPDATE ProductAddToCartComponent; $contentCV[unique = true]; uid[unique = true]; name                ; actions(&actionRef)                 ; &componentRef
+                                       ;                          ; AddToCart         ; Product Add To Cart ; AddToCartAction,PickUpInStoreAction ; AddToCart
 
 INSERT_UPDATE AddToCartAction; $contentCV[unique = true]; uid[unique = true]; url       ; name                       ; &actionRef
                              ;                          ; AddToCartAction   ; /cart/add ; Product Add To Cart Action ; AddToCartAction
@@ -387,7 +383,7 @@ INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsCom
                          ;                          ; UpSellingSlot     ; Similar
 
 INSERT_UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; name    ; productReferenceTypes(code); maximumNumberProducts; &componentRef
-                                        ;                          ; Similar           ; Similar ; SIMILAR                    ; 6                     ; Similar
+                                        ;                          ; Similar           ; Similar ; SIMILAR                    ; 5                    ; Similar
 
 ## cross selling slot ##
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
@@ -478,32 +474,8 @@ INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]
                                  ;                          ; ReturningCustomerLoginComponent ; Returning Customer Login Component ; accountReturningCustomerLogin.jsp ;                         ; ReturningCustomerLoginComponent
 ###### Login page end ######
 
+
 ###### Homepage Start ######
-
-####### HomePage 輪播  Start #######
-INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]         ; mime       ; realfilename                    ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite = true]; &imageRef                       ; altText                         ; folder(qualifier)[default = 'images']
-                   ;                          ; HomePageSection1SlotIndex-1 ; image/jpeg ; HomePageSection1SlotIndex-1.jpg ; $siteResource/images/banners/homepage/responsive/HomePageSection1SlotIndex-1.jpg               ; HomePageSection1SlotIndex-1.jpg ; HomePageSection1SlotIndex-1.jpg ;
-                   ;                          ; HomePageSection1SlotIndex-2 ; image/jpeg ; HomePageSection1SlotIndex-2.jpg ; $siteResource/images/banners/homepage/responsive/HomePageSection1SlotIndex-2.jpg               ; HomePageSection1SlotIndex-2.jpg ; HomePageSection1SlotIndex-1.jpg ;
-                   ;                          ; HomePageSection1SlotIndex-3 ; image/jpeg ; HomePageSection1SlotIndex-3.jpg ; $siteResource/images/banners/homepage/responsive/HomePageSection1SlotIndex-3.jpg               ; HomePageSection1SlotIndex-3.jpg ; HomePageSection1SlotIndex-1.jpg ;
-                   ;                          ; HomePageSection1SlotIndex-4 ; image/jpeg ; HomePageSection1SlotIndex-4.jpg ; $siteResource/images/banners/homepage/responsive/HomePageSection1SlotIndex-4.jpg               ; HomePageSection1SlotIndex-4.jpg ; HomePageSection1SlotIndex-1.jpg ;
-                   ;                          ; HomePageSection1SlotIndex-5 ; image/jpeg ; HomePageSection1SlotIndex-5.jpg ; $siteResource/images/banners/homepage/responsive/HomePageSection1SlotIndex-5.jpg               ; HomePageSection1SlotIndex-5.jpg ; HomePageSection1SlotIndex-1.jpg ;
-
-INSERT_UPDATE BannerComponent; $contentCV[unique = true]; uid[unique = true]; $picture[lang = $lang]      ; name ; &componentRef; urlLink
-                             ;                          ; BN_1              ; HomePageSection1SlotIndex-1 ; BN_1 ; BN_1         ; "http://www.hbfaucet.com"
-                             ;                          ; BN_2              ; HomePageSection1SlotIndex-2 ; BN_2 ; BN_2         ; "http://www.hbfaucet.com"
-                             ;                          ; BN_3              ; HomePageSection1SlotIndex-3 ; BN_3 ; BN_3         ; "http://www.hbfaucet.com"
-                             ;                          ; BN_4              ; HomePageSection1SlotIndex-4 ; BN_4 ; BN_4         ; "http://www.hbfaucet.com"
-                             ;                          ; BN_5              ; HomePageSection1SlotIndex-5 ; BN_5 ; BN_5         ; "http://www.hbfaucet.com"
-
-## homePage Rotation
-INSERT_UPDATE RotatingImagesComponent; $contentCV[unique = true]; uid[unique = true]          ; name                        ; banners(&componentRef)   ; &componentRef
-                                     ;                          ; HomeRotatingImagesComponent ; HomeRotatingImagesComponent ; BN_1,BN_2,BN_3,BN_4,BN_5 ; HomeRotatingImagesComponent
-
-
-INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]    ; name                       ; active; cmsComponents(&componentRef)
-                         ;                          ; Section1Slot-Homepage ; Section1 Slot for Homepage ; true  ; HomeRotatingImagesComponent
-####### HomePage 輪播  End #######	
-
 ## Based on landingLayout2Page.jsp ##
 INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true] ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'homepage']; contentSlot(uid, $contentCV)[unique = true]
                                 ;                          ; Section1-Homepage  ; Section1               ;                                                           ; Section1Slot-Homepage
@@ -512,10 +484,9 @@ INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true] 
                                 ;                          ; Section3-Homepage  ; Section3               ;                                                           ; Section3Slot-Homepage
                                 ;                          ; Section4-Homepage  ; Section4               ;                                                           ; Section4Slot-Homepage
                                 ;                          ; Section5-Homepage  ; Section5               ;                                                           ; Section5Slot-Homepage
-#homePage Rotation
+
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]     ; name                        ; active; cmsComponents(&componentRef)
-                         ;                          ; Section1Slot-Homepage  ; Section1 Slot for Homepage  ; true  ; HomeRotatingImagesComponent
-#                        ;                          ; Section1Slot-Homepage  ; Section1 Slot for Homepage  ; true  ; ncipb2bHompageSplashBannerComponent,ncipb2bHompageBrandsBannerComponent
+                         ;                          ; Section1Slot-Homepage  ; Section1 Slot for Homepage  ; true  ; ncipb2bHompageSplashBannerComponent,ncipb2bHompageBrandsBannerComponent
                          ;                          ; Section2ASlot-Homepage ; Section2A Slot for Homepage ; true  ; HomeDealerAreaBrandContainer
                          ;                          ; Section2BSlot-Homepage ; Section2B Slot for Homepage ; true  ; HomeDealerAreaBrandContainer
 #                        ;                          ; Section3Slot-Homepage  ; Section3 Slot for Homepage  ; true  ; ncipb2bHomepageNewProductCarouselComponent,ncipb2bHomepageProductCarouselComponent
@@ -538,20 +509,20 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
                                              ;                          ; ncipb2bHompageAngleGrindersBannerComponent ; ncipb2b Homepage Angle Grinders Banner Component ; /Open-Catalogue/Tools/Angle-Grinders/c/1595 ; ncipb2bHompageAngleGrindersBannerComponent
 
 ## components in slot 2A ##
-INSERT_UPDATE HomeSimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]                     ; name                                                ; subTitleText [lang = $lang]; subTitleTextHidden; urlLink                                                    ; &componentRef
-                                       ;                          ; homeSimpleDealerAreaBannerComponentA   ; ncipb2b Home Simple Dealer Area Banner ComponentA   ; 最新產品                       ; FALSE             ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaA   ; homeSimpleDealerAreaBannerComponentA
-                                       ;                          ; homeSimpleDealerAreaBannerComponentB   ; ncipb2b Home Simple Dealer Area Banner ComponentB   ; 本月活動                       ; FALSE             ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaB   ; homeSimpleDealerAreaBannerComponentB
-                                       ;                          ; homeSimpleDealerAreaBannerComponentC   ; ncipb2b Home Simple Dealer Area Banner ComponentC   ; 智能浴室系列                     ; FALSE             ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaC   ; homeSimpleDealerAreaBannerComponentC
-                                       ;                          ; homeSimpleDealerAreaBannerComponentD   ; ncipb2b Home Simple Dealer Area Banner ComponentD   ; 對帳明細                       ; FALSE             ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaD   ; homeSimpleDealerAreaBannerComponentD
-                                       ;                          ; homeSimpleOurGuaranteeBannerComponentA ; ncipb2b Home Simple Our Guarantee Banner ComponentA ;                            ; TRUE              ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeA ; homeSimpleOurGuaranteeBannerComponentA
-                                       ;                          ; homeSimpleOurGuaranteeBannerComponentB ; ncipb2b Home Simple Our Guarantee Banner ComponentB ;                            ; TRUE              ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeB ; homeSimpleOurGuaranteeBannerComponentB
-                                       ;                          ; homeSimpleOurGuaranteeBannerComponentC ; ncipb2b Home Simple Our Guarantee Banner ComponentC ;                            ; TRUE              ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeC ; homeSimpleOurGuaranteeBannerComponentC
-                                       ;                          ; homeSimpleOurGuaranteeBannerComponentD ; ncipb2b Home Simple Our Guarantee Banner ComponentD ;                            ; TRUE              ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeD ; homeSimpleOurGuaranteeBannerComponentD
+INSERT_UPDATE HomeSimpleBannerComponent    ;$contentCV[unique=true]	; uid[unique=true]							; name									   		      ; subTitleText [lang=$lang]    ; subTitleTextHidden ;urlLink											   	     	; &componentRef
+										   ;						; homeSimpleDealerAreaBannerComponentA		; ncipb2b Home Simple Dealer Area Banner ComponentA   ; 最新產品 	    			 ; FALSE			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaA    ; homeSimpleDealerAreaBannerComponentA
+										   ;						; homeSimpleDealerAreaBannerComponentB		; ncipb2b Home Simple Dealer Area Banner ComponentB   ; 本月活動 	   				 ; FALSE 			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaB 	; homeSimpleDealerAreaBannerComponentB
+										   ;						; homeSimpleDealerAreaBannerComponentC		; ncipb2b Home Simple Dealer Area Banner ComponentC   ; 智能浴室系列          			 ; FALSE 			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaC 	; homeSimpleDealerAreaBannerComponentC
+										   ;						; homeSimpleDealerAreaBannerComponentD		; ncipb2b Home Simple Dealer Area Banner ComponentD   ; 對帳明細          			     ; FALSE  			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/DealerAreaD 	; homeSimpleDealerAreaBannerComponentD
+										   ;						; homeSimpleOurGuaranteeBannerComponentA	; ncipb2b Home Simple Our Guarantee Banner ComponentA ;                  			 ; TRUE 			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeA 	; homeSimpleOurGuaranteeBannerComponentA
+										   ;						; homeSimpleOurGuaranteeBannerComponentB	; ncipb2b Home Simple Our Guarantee Banner ComponentB ; 				 			 ; TRUE 			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeB 	; homeSimpleOurGuaranteeBannerComponentB
+										   ;						; homeSimpleOurGuaranteeBannerComponentC	; ncipb2b Home Simple Our Guarantee Banner ComponentC ; 				 			 ; TRUE  			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeC 	; homeSimpleOurGuaranteeBannerComponentC
+										   ;						; homeSimpleOurGuaranteeBannerComponentD	; ncipb2b Home Simple Our Guarantee Banner ComponentD ; 				             ; TRUE  			  ; /Open-Catalogue/Tools/Power-Drills/PSR-960/p/OurGuaranteeD 	; homeSimpleOurGuaranteeBannerComponentD
 
 # BrandContainerContainer
-INSERT_UPDATE BrandContainerComponent; $contentCV[unique = true]; uid[unique = true]             ; name                           ; maintTitleText [lang = $lang]; simpleBannerComponent(&componentRef)                                                                                                                        ; &componentRef                  ; size; width ; height
-                                     ;                          ; HomeDealerAreaBrandContainer   ; HomeDealerAreaBrandContainer   ; 經銷商專區                        ; homeSimpleDealerAreaBannerComponentA,homeSimpleDealerAreaBannerComponentB,homeSimpleDealerAreaBannerComponentC,homeSimpleDealerAreaBannerComponentD         ; HomeDealerAreaBrandContainer   ; 4   ; 320px ; 260px
-                                     ;                          ; HomeOurGuaranteeBrandContainer ; HomeOurGuaranteeBrandContainer ; 我們的保證                        ; homeSimpleOurGuaranteeBannerComponentA,homeSimpleOurGuaranteeBannerComponentB,homeSimpleOurGuaranteeBannerComponentC,homeSimpleOurGuaranteeBannerComponentD ; HomeOurGuaranteeBrandContainer ; 4   ; 320px ; 260px
+INSERT_UPDATE BrandContainerComponent	;$contentCV[unique=true]	;uid[unique=true]				;name							; maintTitleText [lang=$lang]  ; simpleBannerComponent(&componentRef)																								    						;&componentRef						;size ; width ; height
+									    ;							;HomeDealerAreaBrandContainer	;HomeDealerAreaBrandContainer	; 經銷商專區    	   			   ; homeSimpleDealerAreaBannerComponentA,homeSimpleDealerAreaBannerComponentB,homeSimpleDealerAreaBannerComponentC,homeSimpleDealerAreaBannerComponentD 			;HomeDealerAreaBrandContainer   	;4    ; 320px ; 260px
+										;							;HomeOurGuaranteeBrandContainer	;HomeOurGuaranteeBrandContainer	; 我們的保證  	  			   ; homeSimpleOurGuaranteeBannerComponentA,homeSimpleOurGuaranteeBannerComponentB,homeSimpleOurGuaranteeBannerComponentC,homeSimpleOurGuaranteeBannerComponentD 	;HomeOurGuaranteeBrandContainer   	;4	  ; 320px ; 260px	 								
 
 ## components in slot 2B ##
 INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[unique = true]                        ; name                                           ; urlLink                                   ; &componentRef
@@ -559,10 +530,9 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
                                              ;                          ; ncipb2bHompageSandersBannerComponent      ; ncipb2b Homepage Sanders Banner Component      ; /Open-Catalogue/Tools/Sanders/c/1596      ; ncipb2bHompageSandersBannerComponent
 
 ## components in slot 3 ##
-INSERT_UPDATE ProductCarouselComponent; $contentCV[unique = true]; uid[unique = true]                         ; name                              ; products(code, $productCV)                              ; scroll(code); popup ; &componentRef
-                                      ;                          ; ncipb2bHomepageNewProductCarouselComponent ; 熱銷產品                              ; 3881018,3592865,2116279,3755204,1128762,3092788         ; allVisible  ; false ; ncipb2bHomepageNewProductCarouselComponent
-                                      ;                          ; ncipb2bHomepageProductCarouselComponent    ; ncipb2b Homepage Product Carousel ; 3755205,3755211,3756505,3793682,2221933,2116275,2116282 ; allVisible  ; false ; ncipb2bHomepageProductCarouselComponent
-
+INSERT_UPDATE ProductCarouselComponent; $contentCV[unique = true]; uid[unique = true]                         ; name [lang=$lang]                            ; products(code, $productCV)                              ; scroll(code); popup ; &componentRef
+                                      ;                          ; ncipb2bHomepageNewProductCarouselComponent ; 熱銷產品   									 ; 3755219,3881018,3592865,2116279,3755204,1128762 	       ; allVisible  ; false ; ncipb2bHomepageNewProductCarouselComponent
+                                      ;                          ; ncipb2bHomepageProductCarouselComponent    ; ncipb2b Homepage Product Carousel            ; 3755205,3755211,3756505,3793682,2221933,2116275,2116282 ; allVisible  ; false ; ncipb2bHomepageProductCarouselComponent
 
 ## This component is not used currently, but still import for future use ##
 INSERT_UPDATE ProductCarouselComponent; $contentCV[unique = true]; uid[unique = true]                                 ; name                                    ; products(code, $productCV); scroll(code); popup ; searchQuery                                     ; categoryCode; &componentRef
@@ -575,12 +545,11 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
                                              ;                          ; ncipb2bHompage6pmBannerComponent   ; ncipb2b Homepage 6pm Banner Component            ;        ; ncipb2bHompage6pmBannerComponent
                                              ;                          ; ncipb2bHompage24/7BannerComponent  ; ncipb2b Homepage 24/7 Banner Component           ;        ; ncipb2bHompage24/7BannerComponent
 
-INSERT_UPDATE ComponentTypeGroups2ComponentType; source(code)[unique = true]; target(code)[unique = true]
-                                               ; narrow                     ; HomeSimpleBannerComponent
-                                               ; wide                       ; HomeSimpleBannerComponent
-                                               ; narrow                     ; BrandContainerComponent
-                                               ; wide                       ; BrandContainerComponent
-
+INSERT_UPDATE ComponentTypeGroups2ComponentType ; source(code)[unique=true] ; target(code)[unique=true]    
+												; narrow                    ; HomeSimpleBannerComponent
+                                                ; wide                      ; HomeSimpleBannerComponent
+												; narrow                    ; BrandContainerComponent
+												; wide                      ; BrandContainerComponent
 ###### Homepage End ######
 
 
@@ -820,8 +789,7 @@ INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true] ; name 
                          ;                          ; SideContent-orders ; Side Content Slot for My Account Order History ; true  ;                              ; ; ;
                          ;                          ; BodyContent-orders ; Body Content Slot for My Account Order History ; true  ; AccountOrderHistoryComponent ; ; ;
 
-INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]           ; name                            ; page                                                                ; actions(uid, $contentCV); &componentRef
-#                                 ;                          ; AccountOrderHistoryComponent ; Account Order History Component ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderHistoryPage.jsp ; ViewOrderAction         ; AccountOrderHistoryComponent
+INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]           ; name                            ; page                                                                                           ; actions(uid, $contentCV); &componentRef
                                  ;                          ; AccountOrderHistoryComponent ; Account Order History Component ; /WEB-INF/views/responsive/pages/account/accountOrderHistoryPage.jsp ; ViewOrderAction         ; AccountOrderHistoryComponent
 
 INSERT_UPDATE ViewOrderAction; $contentCV[unique = true]; uid[unique = true]; url                           ; name              ; &actionRef
@@ -1076,20 +1044,20 @@ INSERT_UPDATE CMSActionRestriction; $contentCV[unique = true]; uid[unique = true
 INSERT_UPDATE CMSUserRestriction; $contentCV[unique = true]; &userRestriction         ; name                       ; uid[unique = true]       ; users(uid); components(&componentRef)
                                 ;                          ; anonymousUserRestriction ; Anonymous User Restriction ; anonymousUserRestriction ; anonymous ; LoginLink
 
-#設定權限登入後才可看見
 INSERT_UPDATE CMSInverseRestriction; $contentCV[unique = true]; name           ; originalRestriction(&userRestriction)[allownull = true]; uid[unique = true]; components(&componentRef)
-                                   ;                          ; Logged in User ; anonymousUserRestriction                               ; loggedInUser      ; MyAccountComponent,NcipOrderToolsComponentA,H0CategoryLink
+                                   ;                          ; Logged in User ; anonymousUserRestriction                               ; loggedInUser      ; MyAccountComponent
 
-INSERT_UPDATE CMSUserGroupRestriction; $contentCV[unique = true]; uid[unique = true]; name; userGroups(uid); includeSubgroups; components(&linkRef)
-#                                     ;                          ; MyAccountLinkCustomerGroupRestriction ; My Account Link Customer Group Restriction ; b2bcustomergroup ; true            ; AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,MyReplenishmentOrdersLink
-#                                     ;                          ; MyAccountLinkApproverGroupRestriction ; My Account Link Approver Group Restriction ; b2bapprovergroup ; true            ; ApprovalDashboardLink
+INSERT_UPDATE CMSUserGroupRestriction; $contentCV[unique = true]; uid[unique = true]                    ; name                                       ; userGroups(uid)  ; includeSubgroups; components(&linkRef)
+                                     ;                          ; MyAccountLinkCustomerGroupRestriction ; My Account Link Customer Group Restriction ; b2bcustomergroup ; true            ; AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,MyReplenishmentOrdersLink
+                                     ;                          ; MyAccountLinkApproverGroupRestriction ; My Account Link Approver Group Restriction ; b2bapprovergroup ; true            ; ApprovalDashboardLink
 ###### Restriction End ######
 
 
 ###### Media Start ######
 ## site logo ##
-INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]; realfilename; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/png']; altText; folder(qualifier)[default = 'images']
+INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]    ; realfilename; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/png']; altText            ; folder(qualifier)[default = 'images']
 #                   ;                          ; /images/theme/logo_hybris_b2b_responsive.svg ; logo_hybris_b2b_responsive.svg ; $siteResource/images/theme/logo_hybris_b2b_responsive.svg                   ; image/svg+xml              ; hybris Accelerator ;
+                   ;                          ; /images/theme/logo.png ; logo.png    ; $siteResource/images/theme/logo.png                                         ; image/png                  ; hybris Accelerator ;
 
 INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]                  ; mime     ; realfilename                      ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite = true]; folder(qualifier)[default = 'images']
                    ;                          ; addEditAddressPagePreview            ; text/png ; AddEditAddressPage.png            ; $jarResourceCms/preview-images/ncipb2b/AddEditAddressPage.png
@@ -1202,14 +1170,6 @@ INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true] 
 
 
 ############# NCIP Category Start ##################
-#Add Site Logo
-INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink; $picture[lang = $lang]
-                                   ;                          ; SiteLogoComponent ; Site Logo Component ; SiteLogoComponent ; "/"    ; /images/theme/logo.png
-
-INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]    ; realfilename; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/png']; altText            ; folder(qualifier)[default = 'images']
-                   ;                          ; /images/theme/logo.png ; logo.png    ; $siteResource/images/theme/logo.png                                         ; image/png                  ; hybris Accelerator ;
-
-
 ##---- level 4. children of Category Nav ----##
 INSERT_UPDATE CMSNavigationNode; uid[unique = true]; $contentCV[unique = true]; name        ; parent(uid, $contentCV); links(&linkRef); &nodeRef
                                ; A0NavNode         ;                          ; Newest      ; ncipb2bCategoryNavNode ;                ; A0NavNode
@@ -1402,17 +1362,14 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; n
 UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]       ; title[lang = en]
                           ;                          ; ProductDownloadComponent ; 相關下載
                           ;                          ; ProductVideoComponent    ; 產品3D影片
-                          ;                          ; ProductDeliveryComponent ; 運送(再議)
 
 # CMS tabs components
 INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]       ; name                          ; page                                                            ; actions(uid, $contentCV); &componentRef
                                  ;                          ; ProductDownloadComponent ; Product Related Downloads Tab ; /WEB-INF/views/responsive/pages/product/productDownloadsTab.jsp ;                         ; ProductDownloadComponent
                                  ;                          ; ProductVideoComponent    ; Product 3D Videos Tab         ; /WEB-INF/views/responsive/pages/product/productVideosTab.jsp    ;                         ; ProductVideoComponent
-                                 ;                          ; ProductDeliveryComponent ; Product Delivery Tab          ; /WEB-INF/views/responsive/pages/product/productDeliveryTab.jsp  ;                         ; ProductDeliveryComponent
 
-
-INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = true]; name          ; visible; simpleCMSComponents(uid, $contentCV)                                                               ; &componentRef
-                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductDownloadComponent,ProductVideoComponent,ProductDeliveryComponent ; TabPanelContainer
+INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = true]; name          ; visible; simpleCMSComponents(uid, $contentCV)                                                                                                      ; &componentRef
+                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductSpecsTabComponent,ProductReviewsTabComponent,ProductDownloadComponent,ProductVideoComponent,deliveryTab ; TabPanelContainer
 
 ######################################
 
@@ -1422,25 +1379,34 @@ INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = 
 INSERT_UPDATE ComponentTypeGroups2ComponentType; source(code)[unique = true]; target(code)[unique = true]
                                                ; minicart                   ; NcipOrderToolsComponent
                                                ; headerlinks                ; NcipOrderToolsComponent
+                                               ; minicart                   ; NcipMiniCartComponent
                                                ; navigation                 ; NcipCategoryNavigationComponent
-                                               ; narrow                     ; NcipProductAddToCartComponent
-                                               ; wide                       ; NcipProductAddToCartComponent
-
-INSERT_UPDATE NcipProductAddToCartComponent; $contentCV[unique = true]; uid[unique = true]; name                     ; actions(&actionRef)                 ; &componentRef
-                                           ;                          ; AddToCart         ; Ncip Product Add To Cart ; AddToCartAction,PickUpInStoreAction ; AddToCart
-
-
-INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]       ; name                       ; styleClass; &componentRef            ; navigationNode(&nodeRef)
-                                     ;                          ; NcipOrderToolsComponentA ; Ncip Order Tools Component ;           ; NcipOrderToolsComponentA ; OrderToolsNavNode
-
 
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
-                         ;                          ; MiniCartSlot      ; NcipOrderToolsComponentA,MiniCart
+                         ;                          ; MiniCartSlot      ; NcipOrderToolsComponentA,NcipMiniCart
+#                         ;                          ; NavigationBarSlot ; Ncipb2bCategoryNavComponent,NcipbreadcrumbComponent
                          ;                          ; NavigationBarSlot ; Ncipb2bCategoryNavComponent
 
+INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]       ; name                       ; styleClass      ; &componentRef            ; navigationNode(&nodeRef)
+                                     ;                          ; NcipOrderToolsComponentA ; Ncip Order Tools Component ; nav-order-tools ; NcipOrderToolsComponentA ; OrderToolsNavNode
+
+INSERT_UPDATE NcipMiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name           ; &componentRef; totalDisplay(code); shownProductCount; lightboxBannerComponent(&componentRef)
+                                   ;                          ; NcipMiniCart      ; Ncip Mini Cart ; NcipMiniCart ; SUBTOTAL          ; 3                ; LightboxHomeDeliveryBannerComponent
 
 INSERT_UPDATE NcipCategoryNavigationComponent; $contentCV[unique = true]; uid[unique = true]          ; name                               ; styleClass; &componentRef               ; navigationNode(&nodeRef); wrapAfter
                                              ;                          ; Ncipb2bCategoryNavComponent ; Ncip Category Navigation Component ;           ; Ncipb2bCategoryNavComponent ; ncipb2bCategoryNavNode  ; 10
+
+#INSERT_UPDATE NcipBreadcrumbComponent; $contentCV[unique = true]; uid[unique = true]      ; name                          ; &componentRef
+#                                     ;                          ; NcipbreadcrumbComponent ; Ncip Breadcrumb CMS Component ; NcipbreadcrumbComponent
+
+
+
+### components in slot 2A ##
+#INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink
+#    ;                          ; NcipOrderToolsComponent ;Logo Component ; NcipLogoComponentA ; "/"
+#
+#INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
+#                         ;                          ; SiteLogoSlot      ; NcipLogoComponentA
 
 
 ############ Add Component End###################

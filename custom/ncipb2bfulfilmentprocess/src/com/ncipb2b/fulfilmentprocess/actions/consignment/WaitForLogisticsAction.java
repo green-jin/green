@@ -10,8 +10,7 @@
  */
 package com.ncipb2b.fulfilmentprocess.actions.consignment;
 
-import com.ncipb2b.fulfilmentprocess.adapter.Process2ShippingAdapter;
-import com.ncipb2b.fulfilmentprocess.adapter.Ship2ProcessAdapter;
+import com.ncipb2b.fulfilmentprocess.adapter.Process2ReadyShipAdapter;
 import de.hybris.platform.ordersplitting.model.ConsignmentProcessModel;
 import de.hybris.platform.processengine.action.AbstractProceduralAction;
 import de.hybris.platform.task.RetryLaterException;
@@ -19,28 +18,30 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 
 
-public class WaitForLogisticsAction extends AbstractProceduralAction<ConsignmentProcessModel>
-{
-	private static final Logger LOG = Logger.getLogger(WaitForLogisticsAction.class);
+public class WaitForLogisticsAction extends AbstractProceduralAction<ConsignmentProcessModel> {
 
-	@Resource
-	Ship2ProcessAdapter ship2ProcessAdapter;
+  private static final Logger LOG = Logger.getLogger(WaitForLogisticsAction.class);
 
-	@Override
-	public void executeAction(ConsignmentProcessModel consignmentProcessModel)
-			throws RetryLaterException, Exception {
-		ship2ProcessAdapter.waitForConsignment(consignmentProcessModel.getConsignment());
-//		consignmentProcessModel.setWaitingForConsignment(true);
-		getModelService().save(consignmentProcessModel);
-		LOG.info("Setting waitForConsignment to true");
-	}
+  @Resource
+  Process2ReadyShipAdapter process2ReadyShipAdapter;
 
-	public Ship2ProcessAdapter getShip2ProcessAdapter() {
-		return ship2ProcessAdapter;
-	}
+  @Override
+  public void executeAction(ConsignmentProcessModel consignmentProcessModel)
+      throws RetryLaterException, Exception {
+    // TODO: 2019/9/15 修改特製品的跳過狀態
 
-	public void setShip2ProcessAdapter(
-			Ship2ProcessAdapter ship2ProcessAdapter) {
-		this.ship2ProcessAdapter = ship2ProcessAdapter;
-	}
+    process2ReadyShipAdapter.waitForConsignment(consignmentProcessModel.getConsignment());
+    consignmentProcessModel.setWaitingForConsignment(true);
+    getModelService().save(consignmentProcessModel);
+    LOG.info("Setting waitForConsignment to true");
+  }
+
+  public Process2ReadyShipAdapter getProcess2ReadyShipAdapter() {
+    return process2ReadyShipAdapter;
+  }
+
+  public void setProcess2ReadyShipAdapter(
+      Process2ReadyShipAdapter process2ReadyShipAdapter) {
+    this.process2ReadyShipAdapter = process2ReadyShipAdapter;
+  }
 }

@@ -10,10 +10,9 @@
  license agreement you entered into with SAP.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:util="http://www.springframework.org/schema/util"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
@@ -604,6 +603,34 @@
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
 	
+
+	<bean id="homeDeliverySendJob" class="com.ncip.core.job.HomeDeliverySendJob"  parent="abstractJobPerformable">
+		<property name="hctFtpService" ref="hctFtpService"/>
+	</bean>
+	
+	<bean id="frightSendJob" class="com.ncip.core.job.FrightSendJob"  parent="abstractJobPerformable">
+		<property name="hctFtpService" ref="hctFtpService"/>
+	</bean>
+	
+	<bean id="getHCTFilesJob" class="com.ncip.core.job.GetHCTFilesJob"  parent="abstractJobPerformable">
+		<property name="hctFtpService" ref="hctFtpService"/>
+	</bean>
+	
+	<bean id="hctFtpService" class="com.ncip.core.service.impl.HctFtpServiceImpl">
+		<property name="configurationService" ref="configurationService"/>
+		<property name="getConsignmentDataService" ref="getConsignmentDataService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<bean id="getConsignmentDataService" class="com.ncip.core.service.impl.GetConsignmentDataServiceImpl">
+		<property name="testDao" ref="testDao"/>
+	</bean>
+	
+	<bean id="testDao" class="com.ncip.core.suggestion.dao.impl.TestDaoImpl" parent="abstractItemDao">
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
 	<!-- add ncipCommerceStockService -->
     <alias alias="ncipCommerceStockService" name="defaultNcipCommerceStockService"/>
 	<bean id="defaultNcipCommerceStockService"
