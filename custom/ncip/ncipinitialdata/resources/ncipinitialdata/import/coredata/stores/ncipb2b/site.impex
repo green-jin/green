@@ -15,7 +15,7 @@ $productCatalog=ncipb2bProductCatalog
 $contentCatalog=ncipb2bContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 #$defaultLanguage=en,zh_TW
-$defaultLanguage=en
+$defaultLanguage=zh_TW
 $storeUid=ncipb2b
 $siteUid=ncipb2b
 $webServiceSiteUid=$siteUidWS

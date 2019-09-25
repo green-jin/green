@@ -17,4 +17,4 @@ $lang=zh
 
 # Create Content Catalog
 UPDATE ContentCatalog;id[unique=true];name[lang=$lang]
- ;ncipb2bContentCatalog;"电动工具内容目录"
+ ;ncipb2bContentCatalog;"和之合产品目录"

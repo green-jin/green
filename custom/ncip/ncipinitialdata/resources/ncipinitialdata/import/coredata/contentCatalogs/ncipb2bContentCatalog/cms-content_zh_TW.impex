@@ -11,67 +11,67 @@
 #
 # Import CMS content for the site
 #
- 
+
 $contentCatalog=ncipb2bContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
- 
+
 # Language
 $lang=zh_TW
- 
+
 # Content Pages
-    
+
 UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;account;"我的账户"
-;;add-edit-address;"添加/编辑地址"
-;;address-book;"地址簿"
-;;cartPage;"您的购物车"
-;;checkout-login;"继续结账"
-;;faq;"常见问题"
-;;homepage;"主页"
-;;importCSVSavedCartPage;"导入已保存购物车"
-;;login;"登录"
-;;multiStepCheckoutSummaryPage;"结账"
-;;my-quotes;"报价"
-;;my-replenishment-cancel-confirmation;"补货取消确认"
-;;my-replenishment-details;"补货单详细信息"
-;;my-replenishment-orders;"补货单"
-;;notFound;"未找到"
-;;order;"订单详细信息"
-;;order-approval-dashboard;"订单批准显示板页面"
-;;order-approval-details;"订单批准详细信息页面"
-;;orderConfirmationPage;"订单确认"
-;;orderExpired;"订单过期页面"
-;;orders;"订单历史记录"
-;;payment-details;"付款详细信息"
-;;profile;"个人资料"
-;;quickOrderPage;"快速订单"
-;;quote-detail;"我的报价详细信息"
-;;quoteEditPage;"报价编辑"
-;;replenishmentConfirmationPage;"补货确认"
-;;saved-carts;"已保存购物车"
-;;savedCartDetailsPage;"已保存购物车详细信息"
-;;search;"搜索结果列表页面"
-;;searchAdvancedEmpty;"订单表"
-;;searchEmpty;"无结果"
-;;searchGrid;"搜索结果网格页面"
-;;storefinderPage;"店铺搜索器"
-;;termsAndConditions;"条款和条件"
-;;update-email;"更新电子邮件"
-;;update-profile;"更新个人资料"
-;;updatePassword;"更新忘记的密码"
+                  ;;account;"我的帳戶"
+                  ;;add-edit-address;"添加/編輯地址"
+                  ;;address-book;"地址簿"
+                  ;;cartPage;"您的購物車"
+                  ;;checkout-login;"繼續結帳"
+                  ;;faq;"常見問題"
+                  ;;homepage;"主頁"
+                  ;;importCSVSavedCartPage;"導入已保存購物車"
+                  ;;login;"登錄"
+                  ;;multiStepCheckoutSummaryPage;"結帳"
+                  ;;my-quotes;"報價"
+                  ;;my-replenishment-cancel-confirmation;"補貨取消確認"
+                  ;;my-replenishment-details;"補貨單詳細資訊"
+                  ;;my-replenishment-orders;"補貨單"
+                  ;;notFound;"未找到"
+                  ;;order;"訂單詳細資訊"
+                  ;;order-approval-dashboard;"訂單批准顯示板頁面"
+                  ;;order-approval-details;"訂單批准詳細資訊頁面"
+                  ;;orderConfirmationPage;"訂單確認"
+                  ;;orderExpired;"訂單過期頁面"
+                  ;;orders;"訂單歷史記錄"
+                  ;;payment-details;"付款詳細資訊"
+                  ;;profile;"個人資料"
+                  ;;quickOrderPage;"快速訂單"
+                  ;;quote-detail;"我的報價詳細資訊"
+                  ;;quoteEditPage;"報價編輯"
+                  ;;replenishmentConfirmationPage;"補貨確認"
+                  ;;saved-carts;"已保存購物車"
+                  ;;savedCartDetailsPage;"已保存購物車詳細資訊"
+                  ;;search;"搜索結果清單頁面"
+                  ;;searchAdvancedEmpty;"訂單表"
+                  ;;searchEmpty;"無結果"
+                  ;;searchGrid;"搜索結果網格頁面"
+                  ;;storefinderPage;"店鋪搜索器"
+                  ;;termsAndConditions;"條款和條件"
+                  ;;update-email;"更新電子郵件"
+                  ;;update-profile;"更新個人資料"
+                  ;;updatePassword;"更新忘記的密碼"
 
-    
+
 # Category Pages
-    
+
 UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;category;"默认类别页面"
-;;productGrid;"产品网格"
-;;productList;"产品列表"
+                   ;;category;"預設類別頁面"
+                   ;;productGrid;"產品網格"
+                   ;;productList;"產品清單"
 
-    
+
 # Product Pages
-    
-UPDATE ProductPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;productDetails;"产品详细信息"
 
-    
+UPDATE ProductPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+                  ;;productDetails;"產品詳細資訊"
+
+

@@ -12,7 +12,7 @@
 #
 # Localization zh
 #
- 
+
 $storeUid=ncipb2b
 # Language
 $lang=zh_TW
@@ -20,90 +20,90 @@ $lang=zh_TW
 
 # Languages
 UPDATE Language;isocode[unique=true];name[lang=$lang]
- ;de;"德语"
- ;en;"英语"
- ;ja;"日语"
- ;zh;"中文"
-; zh_TW;"繁体中文";  
+               ;de;"德語"
+               ;en;"英語"
+               ;ja;"日語"
+               ;zh;"中文"
+               ; zh_TW;"繁體中文";
 
 # Currencies
 UPDATE Currency;isocode[unique=true];name[lang=$lang]
- ;EUR;"欧元"
- ;GBP;"英镑"
- ;JPY;"日元"
- ;USD;"美元"
- ;TWD;"新台幣"
+               ;EUR;"歐元"
+               ;GBP;"英鎊"
+               ;JPY;"日元"
+               ;USD;"美元"
+               ;TWD;"新台幣"
 
 # Titles
 UPDATE Title;code[unique=true];name[lang=$lang]
- ;dr;"博士"
- ;miss;"小姐"
- ;mr;"先生"
- ;mrs;"夫人"
- ;ms;"女士"
- ;rev;"尊敬的"
+            ;dr;"博士"
+            ;miss;"小姐"
+            ;mr;"先生"
+            ;mrs;"夫人"
+            ;ms;"女士"
+            ;rev;"尊敬的"
 
 # Credit / Debit Cards
 UPDATE CreditCardType;code[unique=true];name[lang=$lang]
- ;amex;"American Express"
- ;diners;"Diner's Club"
- ;maestro;"Maestro"
- ;master;"Mastercard"
- ;mastercard_eurocard;"Mastercard/Eurocard"
- ;switch;"Switch"
- ;visa;"Visa"
+                     ;amex;"American Express"
+                     ;diners;"Diner's Club"
+                     ;maestro;"Maestro"
+                     ;master;"Mastercard"
+                     ;mastercard_eurocard;"Mastercard/Eurocard"
+                     ;switch;"Switch"
+                     ;visa;"Visa"
 
-# DistanceUnits for Storelocator 
+# DistanceUnits for Storelocator
 UPDATE DistanceUnit;code[unique=true];name[lang=$lang]
- ;km;"公里"
- ;miles;"英里"
+                   ;km;"公里"
+                   ;miles;"英里"
 
 # MediaFormats
 UPDATE MediaFormat;qualifier[unique=true];name[lang=$lang];
- ;1200Wx1200H;"1200Wx1200H"
- ;300Wx300H;"300Wx300H"
- ;30Wx30H;"30Wx30H"
- ;365Wx246H;"365Wx246H"
- ;515Wx515H;"515Wx515H"
- ;65Wx65H;"65Wx65H"
- ;96Wx96H;"96Wx96H"
+                  ;1200Wx1200H;"1200Wx1200H"
+                  ;300Wx300H;"300Wx300H"
+                  ;30Wx30H;"30Wx30H"
+                  ;365Wx246H;"365Wx246H"
+                  ;515Wx515H;"515Wx515H"
+                  ;65Wx65H;"65Wx65H"
+                  ;96Wx96H;"96Wx96H"
 
 # Product Tax Groups
 UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
- ;ca-sales-tax-full;"加拿大增值税"
- ;eu-vat-full;"欧盟全税率"
- ;eu-vat-half;"欧盟半税率"
- ;jp-vat-full;"日本消费税"
- ;us-sales-tax-full;"美国增值税"
- ;zh_tw-sales-tax-full;"台灣增值税"
+                      ;ca-sales-tax-full;"加拿大增值稅"
+                      ;eu-vat-full;"歐盟全稅率"
+                      ;eu-vat-half;"歐盟半稅率"
+                      ;jp-vat-full;"日本消費稅"
+                      ;us-sales-tax-full;"美國增值稅"
+                      ;zh_tw-sales-tax-full;"台灣增值稅"
 
 # User Tax Groups
 UPDATE UserTaxGroup;code[unique=true];name[lang=$lang]
- ;ca-taxes;"加拿大税费"
- ;de-taxes;"德国税费"
- ;jp-taxes;"日本税费"
- ;uk-taxes;"英国税费"
- ;us-taxes;"美国税费"
- ;zh_tw-taxes;"台灣税费"
+                   ;ca-taxes;"加拿大稅費"
+                   ;de-taxes;"德國稅費"
+                   ;jp-taxes;"日本稅費"
+                   ;uk-taxes;"英國稅費"
+                   ;us-taxes;"美國稅費"
+                   ;zh_tw-taxes;"台灣稅費"
 
 # Tax
 UPDATE Tax;code[unique=true];name[lang=$lang]
- ;ca-sales-tax-full;"增值税"
- ;de-vat-full;"德国全增值税"
- ;de-vat-half;"德国半增值税"
- ;jp-vat-full;"消费税"
- ;uk-vat-full;"英国全增值税"
- ;uk-vat-half;"英国半增值税"
- ;us-sales-tax-full;"增值税"
- ;zh_tw-sales-tax-full;"台灣增值税"
+          ;ca-sales-tax-full;"增值稅"
+          ;de-vat-full;"德國全增值稅"
+          ;de-vat-half;"德國半增值稅"
+          ;jp-vat-full;"消費稅"
+          ;uk-vat-full;"英國全增值稅"
+          ;uk-vat-half;"英國半增值稅"
+          ;us-sales-tax-full;"增值稅"
+          ;zh_tw-sales-tax-full;"台灣增值稅"
 
 # Consginment statuses
 UPDATE ConsignmentStatus;code[unique=true];name[lang=$lang]
- ;CANCELLED;"已取消"
- ;PICKPACK;"拣配出货"
- ;PICKUP_COMPLETE;"拣货完成"
- ;READY;"准备就绪"
- ;READY_FOR_PICKUP;"准备拣货"
- ;SHIPPED;"已发货"
- ;WAITING;"正在等待"
-   
+                        ;CANCELLED;"已取消"
+                        ;PICKPACK;"揀配出貨"
+                        ;PICKUP_COMPLETE;"揀貨完成"
+                        ;READY;"準備就緒"
+                        ;READY_FOR_PICKUP;"準備揀貨"
+                        ;SHIPPED;"已發貨"
+                        ;WAITING;"正在等待"
+

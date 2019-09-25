@@ -20,6 +20,6 @@ $productCatalog=ncipb2bProductCatalog
 $classificationCatalog=ncipb2bClassification
 
 UPDATE Catalog;id[unique=true];name[lang=$lang]
-;$classificationCatalog;"电动工具产品目录 Classification";
-;$productCatalog;"电动工具产品目录";
+;$classificationCatalog;"和之合产品目录 Classification";
+;$productCatalog;"和之合产品目录";
  
