@@ -25,8 +25,8 @@ public class DefaultShipping2ShippedAdapter implements Shipping2ShippedAdapter {
   @Override
   public void waitforShipped(ConsignmentModel ConsignmentModel) {
 
-    ConsignmentModel.setStatus(ConsignmentStatus.READY);
-    getModelService().save(ConsignmentModel);
+    //ConsignmentModel.setStatus(ConsignmentStatus.READY);
+    //getModelService().save(ConsignmentModel);
     final Runnable runnable = new Shipping(
         Registry.getCurrentTenant().getTenantID(), ConsignmentModel.getPk().getLongValue());
     new Thread(runnable).start();
@@ -71,7 +71,7 @@ public class DefaultShipping2ShippedAdapter implements Shipping2ShippedAdapter {
 
 //       todo 0902 測試觸發事件
           if (consignmentModel.getStatus()
-              .equals(ConsignmentStatus.SHIPPED)) {
+              .equals(ConsignmentStatus.DELIVERY_COMPLETED)) {
             for (ConsignmentProcessModel processModel : consignmentModel.getConsignmentProcesses()
             ) {
               getBusinessProcessService().triggerEvent(

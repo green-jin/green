@@ -118,7 +118,8 @@
     <property name="modelService" ref="modelService"/>
     <property name="ncipB2BConsignmentService" ref="ncipB2BConsignmentService"/>
     <property name="commerceStockService" ref="commerceStockService"/>
-
+    <property name="stockLevelDao" ref="stockLevelDao"/>
+    <property name="ncipCommerceStockService" ref="ncipCommerceStockService"/>
     <property name="strategiesList">
       <list>
         <ref bean="spiltByB2BProductType"/>
@@ -137,6 +138,7 @@
     class="com.ncipb2b.fulfilmentprocess.service.impl.DefaultNcipB2BConsignmentService">
     <property name="modelService" ref="modelService"/>
     <property name="warehouseService" ref="warehouseService"/>
+    <property name="ncipCommerceStockService" ref="ncipCommerceStockService"/>
   </bean>
 
   <alias name="defaultProcessTriggerService" alias="processTriggerService"/>
@@ -168,6 +170,7 @@
   <bean id="defaultSplitByB2BAvailableCount"
     class="com.ncipb2b.fulfilmentprocess.strategy.impl.SplitByAvailableCount">
     <property name="commerceStockService" ref="commerceStockService"/>
+    <property name="ncipCommerceStockService" ref="ncipCommerceStockService"/>
   </bean>
 
   <alias name="defaultSplitByB2BPoS" alias="splitByB2BWarehouseByPoS"/>

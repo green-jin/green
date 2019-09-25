@@ -25,8 +25,8 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
   @Override
   public void waitForConsignment(ConsignmentModel consignment) {
 //    if(consignment.getStatus() == ConsignmentStatus.READY)
-    consignment.setStatus(ConsignmentStatus.READY);
-    getModelService().save(consignment);
+    //consignment.setStatus(ConsignmentStatus.READY);
+    //getModelService().save(consignment);
     final Runnable runnable = new Shipping(
         Registry.getCurrentTenant().getTenantID(), consignment.getPk().getLongValue());
     new Thread(runnable).start();

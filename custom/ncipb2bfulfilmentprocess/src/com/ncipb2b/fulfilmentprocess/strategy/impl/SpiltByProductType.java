@@ -1,13 +1,6 @@
 package com.ncipb2b.fulfilmentprocess.strategy.impl;
 
-import static com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants.CUSTOM_ITEM;
-import static com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants.NORMAL_FREIGHT;
-import static com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants.NORMAL_LOGISTICS;
-import static com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants.PREORDER_FREIGHT;
-import static com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants.PREORDER_LOGISTICS;
-
 import com.ncip.core.enums.DeliveryType;
-import com.ncip.core.enums.ProductType;
 import com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants;
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
@@ -23,82 +16,60 @@ public class SpiltByProductType extends AbstractSplittingStrategy {
 
   @Override
   public List<OrderEntryGroup> perform(List<OrderEntryGroup> orderEntryListList) {
+     
     List<OrderEntryGroup> list = new ArrayList<>();
-
-    OrderEntryGroup normalOrderEntryGroup = new OrderEntryGroup();
-    normalOrderEntryGroup
-        .setParameter(Ncipb2bFulfilmentProcessConstants.PRODUCT_TYPE, ProductType.NORMAL);
-
+    
+    //訂製品:不拋物流 product.ma_type = B
     OrderEntryGroup customOrderEntryGroup = new OrderEntryGroup();
-    customOrderEntryGroup
-        .setParameter(Ncipb2bFulfilmentProcessConstants.PRODUCT_TYPE, ProductType.CUSTOM);
-    customOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
-        DeliveryType.FREIGHT);
-
+    customOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,DeliveryType.FREIGHT);
+     
+    //預購品 :(大型商品[貨運 product.ma_type = E ] or 非大型商品 [宅配 product.ma_type = D])
     OrderEntryGroup preOrderEntryGroup = new OrderEntryGroup();
-    preOrderEntryGroup
-        .setParameter(Ncipb2bFulfilmentProcessConstants.PRODUCT_TYPE, ProductType.PREORDER);
-
-//      Set Product Type and Delivery Mode
-    for (OrderEntryGroup orderEntryGroup : orderEntryListList
-    ) {
-      for (AbstractOrderEntryModel orderEntryModel : orderEntryGroup
-      ) {
-        if (orderEntryModel.getProduct().getMa_type() == null) {
-          normalOrderEntryGroup.add(orderEntryModel);
-          normalOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
-              DeliveryType.LOGISTICS);
-        } else {
-          switch (orderEntryModel.getProduct().getMa_type()) {
-            case NORMAL_FREIGHT:
-              normalOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
-                  DeliveryType.FREIGHT);
-            case NORMAL_LOGISTICS:
-              if (normalOrderEntryGroup
-                  .getParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE)
-                  == null) {
-                normalOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
-                    DeliveryType.LOGISTICS);
-              }
-              normalOrderEntryGroup.add(orderEntryModel);
-              break;
-            case CUSTOM_ITEM:
-
-              customOrderEntryGroup.add(orderEntryModel);
-              break;
-            case PREORDER_FREIGHT:
-              preOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
-                  DeliveryType.FREIGHT);
-            case PREORDER_LOGISTICS:
-              if (preOrderEntryGroup
-                  .getParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE)
-                  == null) {
-                preOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,
-                    DeliveryType.LOGISTICS);
-              }
-              preOrderEntryGroup.add(orderEntryModel);
-              break;
-
-            default:
-              if (LOG.isDebugEnabled()) {
-                LOG.info("Product My_type Code Error");
-              }
-              break;
-          }
-        }
+     
+    //  Set Product Type and Delivery Mode
+    int index = 0;
+    for (OrderEntryGroup orderEntryGroup : orderEntryListList) {
+      for (AbstractOrderEntryModel orderEntryModel : orderEntryGroup) { 
+        //CUSTOM_ITEM(B)  訂製品 ,PREORDER_LOGISTICS(D) 預購品, PREORDER_FREIGHT(E) 預購品-大型商品
+        if ( orderEntryGroup.get(index).getProduct().getMa_type().equals(Ncipb2bFulfilmentProcessConstants.CUSTOM_ITEM) ||  
+             orderEntryGroup.get(index).getProduct().getMa_type().equals(Ncipb2bFulfilmentProcessConstants.PREORDER_LOGISTICS) ||
+             orderEntryGroup.get(index).getProduct().getMa_type().equals(Ncipb2bFulfilmentProcessConstants.PREORDER_FREIGHT)) {
+          
+          LOG.info("orderCode:"+orderEntryModel.getOrder().getCode()+" orderEntry:"+orderEntryModel.getPk()+" orderEntry Quantity:"+orderEntryModel.getQuantity()+ " productCodt:"+orderEntryModel.getProduct().getCode()+" orderEntry.product.ma_type:"+orderEntryModel.getProduct().getMa_type());
+          
+            switch (orderEntryModel.getProduct().getMa_type()) {
+              //CUSTOM_ITEM (B) 訂製品
+             case Ncipb2bFulfilmentProcessConstants.CUSTOM_ITEM: 
+               //出貨單類型 1(訂製品無庫存) : CUSTOM_ITEM: B 訂製品
+               customOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.MT_TYPE,Ncipb2bFulfilmentProcessConstants.CUSTOM_ITEM_VALUE);   
+               break; 
+               
+             // PREORDER_FREIGHT(E) 預購品-大型商品 
+             case Ncipb2bFulfilmentProcessConstants.PREORDER_FREIGHT:
+               preOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,DeliveryType.FREIGHT); //貨運
+               preOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.MT_TYPE,Ncipb2bFulfilmentProcessConstants.PREORDER_VALUE);
+               break;
+               
+             //PREORDER_LOGISTICS(D) 預購品
+             case Ncipb2bFulfilmentProcessConstants.PREORDER_LOGISTICS:
+               preOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.DELIVERY_MODE,DeliveryType.LOGISTICS); //宅配 
+               preOrderEntryGroup.setParameter(Ncipb2bFulfilmentProcessConstants.MT_TYPE,Ncipb2bFulfilmentProcessConstants.PREORDER_VALUE); 
+               break;
+  
+             default:
+               LOG.error("Product My_type Code Error");
+               break;
+           } 
+        } 
       }
     }
-
-    if (normalOrderEntryGroup.size() > 0) {
-      list.add(normalOrderEntryGroup);
-    }
+ 
     if (customOrderEntryGroup.size() > 0) {
       list.add(customOrderEntryGroup);
     }
     if (preOrderEntryGroup.size() > 0) {
       list.add(preOrderEntryGroup);
     }
-
     return list;
 
   }
