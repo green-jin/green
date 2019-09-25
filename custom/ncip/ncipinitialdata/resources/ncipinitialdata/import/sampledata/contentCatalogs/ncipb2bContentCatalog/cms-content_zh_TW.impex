@@ -100,7 +100,7 @@ UPDATE FooterNavigationComponent; $contentCV[unique = true]; uid[unique = true] 
  
 # CMS Paragraph Component (Contact information)
 UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]               ; content[lang = $lang]
-                            ;                          ; QuickOrderInfoParagraphComponent ; "最多可在下方向购物车添加 25 个有效的 SKU。将产品添加到购物车后将保留库存。"
+                            ;                          ; QuickOrderInfoParagraphComponent ; "最多可在下方向購物車添加 25 個產品料號。將產品添加到購物車後將保留庫存。"
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]

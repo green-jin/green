@@ -8,7 +8,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 <spring:theme code="product.grid.confirmQtys.message" var="gridConfirmMessage"/>
 
-<template:page pageTitle="${pageTitle}">
+<%-- <template:page pageTitle="${pageTitle}">
 	<div id="quickOrder" class="account-section" data-grid-confirm-message="${gridConfirmMessage}">
         <div class="account-section-content">
             <div class="quick-order-section-header account-section-header">
@@ -53,4 +53,44 @@
             </div>
         </div>
     </div>
+</template:page> --%>
+
+<template:page pageTitle="${pageTitle}">
+	<div id="quickOrder" class="account-section col-lg-10 container-fluid" data-grid-confirm-message="${gridConfirmMessage}">
+        <div class="account-section-content">
+            <h4 class="mt-5">
+                <spring:theme code="text.quickOrder.header" />
+            </h4>
+			<hr>
+            <div class="row">
+                <div class="quick-order__introduction col-md-8 mb-3">
+                    <cms:pageSlot position="TopContent" var="feature">
+                    	<span class="text-left">
+                        	<cms:component component="${feature}"/>
+                        </span>
+                    </cms:pageSlot>
+                </div>
+
+                <product:addToCartTitle/>
+                <div class="col-md-2 d-flex justify-content-center mb-3">
+                    <quickorder:quickorderResetButton resetBtnId="js-reset-quick-order-form-btn-top" resetBtnClass="quick-order__reset-link"/>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <product:productFormAddToCartButton addToCartBtnId="js-add-to-cart-quick-order-btn-top" />
+                </div>
+            </div>
+			
+			<quickorder:quickorderListRows/>
+
+            <div class="row mb-3">
+                <div class="col-md-8 mb-3"></div>
+                    <div class="col-md-2 d-flex justify-content-center mb-3">
+                        <quickorder:quickorderResetButton resetBtnId="js-reset-quick-order-form-btn-bottom" resetBtnClass="quick-order__reset-link"/>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <product:productFormAddToCartButton addToCartBtnId="js-add-to-cart-quick-order-btn-bottom" />
+                    </div>
+                </div>
+            </div>
+        </div>
 </template:page>

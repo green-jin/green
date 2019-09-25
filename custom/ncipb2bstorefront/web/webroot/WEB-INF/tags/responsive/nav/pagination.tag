@@ -61,12 +61,13 @@
 			<div class="col-lg-3 col-sm-12 mb-2">
 		</c:otherwise>
 		</c:choose>
-				<select class="custom-select">
+			<form id="sortForm${top ? '1' : '2'}" name="sortForm${top ? '1' : '2'}" method="get"
+                                      action="#">
+				<select id="sortOptions${top ? '1' : '2'}" name="sort"  class="custom-select">
 					<option selected><spring:theme
 							code="${themeMsgKey}.sortTitle" /></option>
-					<c:set var="count" value="1"></c:set>
 					<c:forEach items="${searchPageData.sorts}" var="sort">
-						<option value="${count}">
+						<option value="${fn:escapeXml(sort.code)}" ${sort.selected? 'selected="selected"' : ''}>
 							<c:choose>
 								<c:when test="${not empty sort.name}">
 								${fn:escapeXml(sort.name)}
@@ -76,7 +77,6 @@
 								</c:otherwise>
 							</c:choose>
 						</option>
-						<c:set var="count" value="${(count + 1)}"></c:set>
 					</c:forEach>
 				</select>
 				<c:catch var="errorException">
@@ -104,8 +104,10 @@
 							value="${fn:escapeXml(entry.value)}" />
 					</c:forEach>
 				</c:if>
+				</form>
 			</div>
-
+			
+			
 			<div class="col-lg-9 col-sm-12">
 				<pagination:pageSelectionPagination searchUrl="${searchUrl}"
 					searchPageData="${searchPageData}"

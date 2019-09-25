@@ -18,7 +18,7 @@ if ($("#quickOrder").length > 0) {
         $addToCartBtn: $('#js-add-to-cart-quick-order-btn-top, #js-add-to-cart-quick-order-btn-bottom'),
         $resetFormBtn: $('#js-reset-quick-order-form-btn-top, #js-reset-quick-order-form-btn-bottom'),
         $productInfoContainer: '.js-product-info',
-        $skuInputField: '.js-sku-input-field',
+        $skuInputField: '.form-control',
         $qtyInputField: '.js-quick-order-qty',
         $jsLiContainer: 'li.js-li-container',
         $removeQuickOrderRowBtn: '.js-remove-quick-order-row',
@@ -26,6 +26,7 @@ if ($("#quickOrder").length > 0) {
         $qtyValidationContainer: '.js-qty-validation-container',
         $productItemTotal: '.js-quick-order-item-total',
         $classHasError: 'has-error',
+        $removeItem: 'item__remove',
 
         bindResetFormBtn: function () {
             ACC.quickorder.$resetFormBtn.on("click", ACC.quickorder.clearForm);
@@ -172,12 +173,21 @@ if ($("#quickOrder").length > 0) {
             if ($('.js-ul-container li.js-li-container').length > quickOrderMinRows) {
                 parentLi.remove();
                 ACC.quickorder.bindClearQuickOrderRow();
+                ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text(result.errorMsg);
+                ACC.quickorder.findElement(parentLi, "text-center").removeClass("d-md-block");
+                ACC.quickorder.findElement(parentLi, "text-center").addClass("display-none");
+                ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.text-center'), ".btn").removeClass("js-remove-quick-order-row");
+                ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").addClass("js-remove-quick-order-row");
             }
             else {
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$productInfoContainer).remove();
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text('');
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuInputField).val('');
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$hiddenSkuInput).val('');
+                ACC.quickorder.findElement(parentLi, "text-center").removeClass("d-md-block");
+                ACC.quickorder.findElement(parentLi, "text-center").addClass("display-none");
+                ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.text-center'), ".btn").removeClass("js-remove-quick-order-row");
+                ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").addClass("js-remove-quick-order-row");
             }
             ACC.quickorder.enableDisableAddToCartBtn();
             ACC.quickorder.handleBeforeUnloadEvent();
@@ -248,7 +258,11 @@ if ($("#quickOrder").length > 0) {
                 else {
                     $(event.target).removeClass(ACC.quickorder.$classHasError);
                     ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text('');
-                    $('#quickOrderRowTemplate').tmpl(result.productData).insertAfter(ACC.quickorder.findElement(parentLi, '.js-sku-container'));
+                    $('#quickOrderRowTemplate').tmpl(result.productData).insertAfter(ACC.quickorder.findElement(parentLi, '.col-md-3'));
+                    ACC.quickorder.findElement(parentLi, '.item__remove').addClass("display-none");
+                    ACC.quickorder.findElement(parentLi, '.mr-4').addClass("display-none");
+                    ACC.quickorder.findElement(parentLi, '.mr-4').removeClass("d-md-block");
+                    ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").removeClass("js-remove-quick-order-row");
                     var qtyInputField = ACC.quickorder.findElement(parentLi, ACC.quickorder.$qtyInputField);
                     qtyInputField.focusout(ACC.quickorder.handleFocusOutOnQtyInput).keydown(ACC.quickorder.handleFocusOutOnQtyInput);
                     var stockLevelStatus = result.productData.stock.stockLevelStatus.code;
@@ -302,6 +316,7 @@ if ($("#quickOrder").length > 0) {
             var enable = false;
             $(ACC.quickorder.$qtyInputField).each(function () {
                 var str = this.value.trim();  // .trim() may need a shim
+                alert(str);
                 if (str) {   // don't send blank values to `parseInt`
                     sum += parseInt(str, 10);
                 }
