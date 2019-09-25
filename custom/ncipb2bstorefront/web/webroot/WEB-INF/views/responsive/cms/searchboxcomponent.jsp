@@ -33,12 +33,15 @@
 					data-options="${fn:escapeXml(optionsJson)}">
 			</ycommerce:testId>
 
-			<span class="input-group-btn"> <ycommerce:testId code="header_search_button">
-					<button class="btn btn-link js_search_button" type="submit" disabled="true">
-						<span class="glyphicon glyphicon-search"></span>
+
+				<div class="input-group-append">
+				<ycommerce:testId code="header_search_button">
+					<button class="btn btn-outline-secondary js_search_button" type="submit">
+						<i class="fa fa-search"></i>
 					</button>
 				</ycommerce:testId>
-			</span>
+				</div>
+
 		</div>
 	</form>
 

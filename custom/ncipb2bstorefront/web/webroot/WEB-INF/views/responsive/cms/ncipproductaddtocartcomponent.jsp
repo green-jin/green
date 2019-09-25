@@ -18,11 +18,9 @@
 </c:choose>
 <c:set var="qtyMinus" value="1"/>
 
-<!-- 訂製品預購品 -->
+<%--訂製品/預購品：顯示＂下單後生產，交期60天＂--%>
 <c:if test="${product.ma_type eq 'B' || product.ma_type eq 'D'}">
-
     <span class="text-danger"><spring:theme code="product.product.produceMsg"/></span>
-
 </c:if>
 
 <%--庫存不足，下單後30天(1.2階段)--%>
@@ -45,14 +43,12 @@
                         type="button" <c:if test="${qtyMinus <= 1}"><c:out
                         value="disabled='disabled'"/></c:if> >-
                 </button>
-
-                    <%--                 <button type="button" class="btn btn-outline-dark disabled">10</button>--%>
-
                 <input type="text" maxlength="3"
-                       class="js-qty-selector-input" size="1"
+                       class="js-qty-selector-input" size="1" style="text-align: center"
                        value="${fn:escapeXml(qtyMinus)}"
                        data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"
                        id="pdpAddtoCartInput" onchange="ShowValue()"/>
+
 
                 <input type="hidden" id="stocklevel"
                        value="${product.stock.stockLevel}"></input>
@@ -87,19 +83,21 @@
 
     <%--	  加到購物車--%><br/>
     <div class="col-8">
-        <c:if test="${multiDimensionalProduct}">
-            <c:url value="${product.url}/orderForm" var="productOrderFormUrl"/>
-            <a href="${productOrderFormUrl}"
-               class=js-add-to-cart">
-                <spring:theme code="order.form"/>
-            </a>
-        </c:if>
+<%--        辨識商品的訂表單--%>
+<%--        <c:if test="${multiDimensionalProduct}">--%>
+<%--            <c:url value="${product.url}/orderForm" var="productOrderFormUrl"/>--%>
+<%--            <a href="${productOrderFormUrl}"--%>
+<%--               class=js-add-to-cart">--%>
+<%--                <spring:theme code="order.form"/>--%>
+<%--            </a>--%>
+<%--        </c:if>--%>
+<%--        加入購物車--%>
         <action:actions element="div" parentComponent="${component}"/>
     </div>
 </div>
 
-<%--Lancy test--%>
 
+<%--Hybris原生--%>
 <%--<c:set var="isForceInStock" value="${product.stock.stockLevelStatus.code eq 'inStock' and empty product.stock.stockLevel}"/>--%>
 
 <%--<c:choose>--%>
