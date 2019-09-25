@@ -8,50 +8,50 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
+<%--牌價--%>
+<c:if test="${not empty product.listpr}">
+ <h5><spring:theme code="product.detail.listpr"/>${product.listpr}</h5>
+</c:if>
+
+<%--您的價格--%>
 <c:choose>
 	<c:when test="${empty product.volumePrices}">
 		<c:choose>
 			<c:when test="${(not empty product.priceRange) and (product.priceRange.minPrice.value ne product.priceRange.maxPrice.value) and ((empty product.baseProduct) or (not empty isOrderForm and isOrderForm))}">
-				<span>
-					<format:price priceData="${product.priceRange.minPrice}"/>
-				</span>
-				<span>
-					-
-				</span>
-				<span>
-					<format:price priceData="${product.priceRange.maxPrice}"/>
-				</span>
+				<h5 class="my-3"><spring:theme code="product.detail.price"/><format:price priceData="${product.priceRange.minPrice}"/> - <format:price priceData="${product.priceRange.maxPrice}"/></h5>
 			</c:when>
 			<c:otherwise>
-				<p class="price">
+				<h5 class="my-3">
+					<spring:theme code="product.detail.price"/>
 					<format:fromPrice priceData="${product.price}"/>
-				</p>
+				</h5>
 			</c:otherwise>
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<table class="volume__prices" cellpadding="0" cellspacing="0" border="0">
-			<thead>
-			<th class="volume__prices-quantity"><spring:theme code="product.volumePrices.column.qa"/></th>
-			<th class="volume__price-amount"><spring:theme code="product.volumePrices.column.price"/></th>
-			</thead>
-			<tbody>
-			<c:forEach var="volPrice" items="${product.volumePrices}">
-				<tr>
-					<td class="volume__price-quantity">
-						<c:choose>
-							<c:when test="${empty volPrice.maxQuantity}">
-								${volPrice.minQuantity}+
-							</c:when>
-							<c:otherwise>
-								${volPrice.minQuantity}-${volPrice.maxQuantity}
-							</c:otherwise>
-						</c:choose>
-					</td>
-					<td class="volume__price-amount text-right">${fn:escapeXml(volPrice.formattedValue)}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+
+<%--		<table class="volume__prices" cellpadding="0" cellspacing="0" border="0">--%>
+<%--			<thead>--%>
+<%--			<th class="volume__prices-quantity"><spring:theme code="product.volumePrices.column.qa"/></th>--%>
+<%--			<th class="volume__price-amount"><spring:theme code="product.volumePrices.column.price"/></th>--%>
+<%--			</thead>--%>
+<%--			<tbody>--%>
+<%--			<c:forEach var="volPrice" items="${product.volumePrices}">--%>
+<%--				<tr>--%>
+<%--					<td class="volume__price-quantity">--%>
+<%--						<c:choose>--%>
+<%--							<c:when test="${empty volPrice.maxQuantity}">--%>
+<%--								${volPrice.minQuantity}+--%>
+<%--							</c:when>--%>
+<%--							<c:otherwise>--%>
+<%--								${volPrice.minQuantity}-${volPrice.maxQuantity}--%>
+<%--							</c:otherwise>--%>
+<%--						</c:choose>--%>
+<%--					</td>--%>
+<%--					<td class="volume__price-amount text-right">${fn:escapeXml(volPrice.formattedValue)}</td>--%>
+<%--				</tr>--%>
+<%--			</c:forEach>--%>
+<%--			</tbody>--%>
+<%--		</table>--%>
 	</c:otherwise>
 </c:choose>

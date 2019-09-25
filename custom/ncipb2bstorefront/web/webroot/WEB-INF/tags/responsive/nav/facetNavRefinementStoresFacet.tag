@@ -36,9 +36,9 @@
 
 				<div class="line-text"><span><spring:theme code="storeFinder.line.text"/></span></div>
 
-				
+
 				<button type="button" id="findStoresNearMeAjax" class="btn btn-default btn-block"><spring:theme code="storeFinder.findStoresNearMe"/></button>
-			
+
 			</div>
 
 			<div class="facet__results js-facet-container <c:if test="${empty userLocation}">facet__results__hidden</c:if>">
