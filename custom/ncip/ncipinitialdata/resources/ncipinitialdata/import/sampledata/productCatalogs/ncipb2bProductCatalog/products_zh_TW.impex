@@ -449,7 +449,6 @@ $lang=zh_TW
 # ;693923;;电脑维修工具套装/C.S.A. 电烙铁 ;这款 19 件电脑维修工具套装，可提供电脑维修所需的一切。专为办公室或电脑维修人员而设计的便携包采用乙烯基材质和拉链，可将所有工具集中在一起。  ;电脑维修工具套装/C.S.A. 电烙铁
 
 
-
 ########## NCIP START############
 UPDATE VariantCategory; code[unique = true]; name[lang = $lang] ;$catalogVersion
                       ; color              ; 顏色;

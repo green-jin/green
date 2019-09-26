@@ -56,7 +56,11 @@
 	</bean>
 
 	<bean id="waitForB2BLogisticsAction" class="com.ncipb2b.fulfilmentprocess.actions.consignment.WaitForLogisticsAction"  parent="abstractAction">
-		<property name="ship2ProcessAdapter" ref="ship2ProcessAdapter"/>
+		<property name="process2ReadyShipAdapter" ref="process2ReadyShipAdapter"/>
+	</bean>
+
+	<bean id="waitB2BDeliveryReCallAction" class="com.ncipb2b.fulfilmentprocess.actions.consignment.WaitB2BDeliveryReCallAction"  parent="abstractAction">
+		<property name="shipping2ShippedAdapter" ref="shipping2ShippedAdapter"/>
 	</bean>
 
 </beans>

@@ -18,8 +18,8 @@ $facetSearchConfigDescription=ncipb2b Solr Index
 $searchIndexNamePrefix=ncipb2b
 $solrIndexedType=ncipb2bProductType
 $indexBaseSite=ncipb2b
-$indexLanguages=ja,en,de,zh
-$indexCurrencies=USD,CAD
+$indexLanguages=ja,en,de,zh,zh_TW
+$indexCurrencies=USD,TWD
 #$indexLanguages=ja,en,de,zh,zh_TW
 #$indexCurrencies=USD,CAD,TWD
 

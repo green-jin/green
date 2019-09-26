@@ -12,7 +12,7 @@
 # Import the ncip Content Catalog
 #
 $contentCatalog=ncipb2bContentCatalog
-$languages=ja,en,de,zh_TW
+$languages=en,zh_TW,zh
 
 # Content catalog for CMS contents
 INSERT_UPDATE ContentCatalog;id[unique=true]

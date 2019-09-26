@@ -368,7 +368,7 @@ INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lan
 ;CN;CN-37;37;"Shandong"
 ;CN;CN-14;14;"Shanxi"
 ;CN;CN-51;51;"Sichuan"
-;CN;CN-71;71;"Taiwan"
+#;CN;CN-71;71;"Taiwan"
 ;CN;CN-53;53;"Yunnan"
 ;CN;CN-33;33;"Zhejiang"
 ;CN;CN-45;45;"Guangxi"
