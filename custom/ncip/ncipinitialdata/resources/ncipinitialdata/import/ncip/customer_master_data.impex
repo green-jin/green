@@ -4,6 +4,7 @@
 
 $lang=zh_TW
 $dateFormat=yyyy/MM/dd
+$defaultPassword=123456
 
 #行業別
 INSERT_UPDATE lineofbusiness ; code[unique=true]    ; name[lang=$lang] ; name[lang=en]       
@@ -219,7 +220,7 @@ INSERT_UPDATE address ; Streetname[unique=true] ; Postalcode[unique=true] ; Town
                       ; 東區光鎮里食品路419號            ; 300                     ; 新竹市  ; TW               ; 1              ; 1              ; 1                ; 宏昌        ; 劉        ; jigmehome@gmail.com        ; mr          ; 7384704700D1 ; 7384704700                    
 
 #B2BCustomer          
-INSERT_UPDATE b2bcustomer ; DESCRIPTION ; uid[unique=true] ; ORIGINALUID ; email                      ; name ; TITLE(code) ; sessionCurrency(isocode)[default=USD] ; POST ; CUSTOMERID ; LIFNR ; DEFAULTB2BUNIT(uid) ; CELL_NUMBER  ; POC_LINE  ; POC_WECHAT
+INSERT_UPDATE b2bcustomer ; DESCRIPTION ; uid[unique=true] ; ORIGINALUID ; email                      ; name ; TITLE(code) ; sessionCurrency(isocode)[default=USD] ; POST ; CUSTOMERID ; LIFNR ; DEFAULTB2BUNIT(uid) ; CELL_NUMBER  ; POC_LINE  ; POC_WECHAT ;password[default=$defaultPassword]
                           ; NCIP        ; 122065600001     ; 1220656000  ; mingmei.wang@rustic-hw.com ; 王小明  ; mr          ; TWD                                   ; 經理   ; ABTW000100 ;       ; 1220656000          ; 0935662320   ;           ;           
                           ; NCIP-業務     ; 122065600101     ; 1220656001  ; mingmei.wang@rustic-hw.com ; 李小明  ; mr          ; TWD                                   ; 副理   ; ABTW000100 ;       ; 1220656001          ; 0935662320   ;           ;           
                           ; NCIP-採購     ; 122065600201     ; 1220656002  ; mingmei.wang@rustic-hw.com ; 林小明  ; mr          ; TWD                                   ; 主任   ; ABTW000100 ;       ; 1220656002          ; 0935662320   ;           ;           

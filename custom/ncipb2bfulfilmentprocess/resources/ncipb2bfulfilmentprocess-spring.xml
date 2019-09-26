@@ -68,6 +68,7 @@
     <property name="modelService" ref="modelService"/>
     <property name="timeService" ref="timeService"/>
     <property name="businessProcessService" ref="businessProcessService"/>
+    <property name="flexibleSearchService" ref="flexibleSearchService"/> 
   </bean>
 
   <alias name="defaultShipping2ShippedAdapter" alias="shipping2ShippedAdapter"/>

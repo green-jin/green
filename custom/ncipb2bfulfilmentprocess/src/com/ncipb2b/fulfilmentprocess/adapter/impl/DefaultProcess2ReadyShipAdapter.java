@@ -1,5 +1,5 @@
 package com.ncipb2b.fulfilmentprocess.adapter.impl;
-
+ 
 import com.ncipb2b.fulfilmentprocess.adapter.Process2ReadyShipAdapter;
 import com.ncipb2b.fulfilmentprocess.constants.Ncipb2bFulfilmentProcessConstants;
 import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
@@ -8,8 +8,9 @@ import de.hybris.platform.core.Registry;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentProcessModel;
 import de.hybris.platform.processengine.BusinessProcessService;
-import de.hybris.platform.servicelayer.model.ModelService;
-import de.hybris.platform.servicelayer.time.TimeService;
+import de.hybris.platform.servicelayer.model.ModelService; 
+import de.hybris.platform.servicelayer.search.FlexibleSearchService; 
+import de.hybris.platform.servicelayer.time.TimeService; 
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 
@@ -21,14 +22,18 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
   TimeService timeService;
   @Resource
   BusinessProcessService businessProcessService;
-
+  @Resource
+  FlexibleSearchService flexibleSearchService;
+  
+//  NcipConsignmentDao ncipConsignmentDao;
+    
   @Override
   public void waitForConsignment(ConsignmentModel consignment) {
-//    if(consignment.getStatus() == ConsignmentStatus.READY)
-    //consignment.setStatus(ConsignmentStatus.READY);
-    //getModelService().save(consignment);
+//    if(consignment.getStatus() == ConsignmentStatus.READY_FOR_SHIPPING)
+//    consignment.setStatus(ConsignmentStatus.READY_FOR_SHIPPING);
+//    getModelService().save(consignment);
     final Runnable runnable = new Shipping(
-        Registry.getCurrentTenant().getTenantID(), consignment.getPk().getLongValue());
+        Registry.getCurrentTenant().getTenantID(), consignment.getPk().getLongValue(),consignment);
     new Thread(runnable).start();
   }
 
@@ -40,11 +45,14 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
     //    private Logger LOG = (Shipping.class.toString());
     private final long consignment;
     private final String tenant;
-
-    Shipping(final String tenant, final long consignment) {
+    private final ConsignmentModel consignmentObject;
+    
+    Shipping(final String tenant, final long consignment,final ConsignmentModel consignmentObject) {
       super();
-      LOG.info("Consignment wait shipping Start");
-
+      LOG.info("[DefaultProcess2ReadyShipAdapter] Consignment wait shipping Start");
+      
+      this.consignmentObject = consignmentObject;
+          
       this.consignment = consignment;
       this.tenant = tenant;
 //      this.consignmentProcess = consignmentProcess;
@@ -63,13 +71,12 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
         // TODO: 2019/8/29 Check Consignment Status
         for (; ;
         ) {
-          ConsignmentModel consignmentModel = getModelService()
-              .get(PK.fromLong(consignment));
-
+          ConsignmentModel consignmentModel = getModelService().get(PK.fromLong(consignment)); 
+          
+           getModelService().refresh(consignmentModel);
+            
           if (LOG.isDebugEnabled()) {
-            LOG.info(
-                consignmentModel.getCode() + " IS WAITING_FOR_SHIPPING Start : " + consignmentModel
-                    .getStatus().getCode());
+            LOG.debug(consignmentModel.getCode() + " IS WAITING_FOR_SHIPPING Start : " + consignmentModel.getStatus());
           }
 //          model = getModelService().get(PK.fromLong(processModel.getPk().getLongValue()));
 
@@ -78,11 +85,8 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
               .equals(ConsignmentStatus.READY_FOR_SHIPPING)) {
             for (ConsignmentProcessModel processModel : consignmentModel.getConsignmentProcesses()
             ) {
-              getBusinessProcessService().triggerEvent(
-                  processModel.getCode() + "_"
-                      + Ncipb2bFulfilmentProcessConstants.WAIT_FOR_SHIPPING);
-//              LOG.info(consignmentModel.getCode() + " Consignment Status : "
-//                  + consignmentModel.getStatus().getCode());
+              getBusinessProcessService().triggerEvent(processModel.getCode() + "_"  + Ncipb2bFulfilmentProcessConstants.WAIT_FOR_SHIPPING);
+              //LOG.info(consignmentModel.getCode() + " DefaultProcess2ReadyShipAdapter Consignment Status : "  + consignmentModel.getStatus().getCode());
             }
 
             break;
@@ -90,9 +94,8 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
             Thread.sleep(10000);
           }
         }
-        if (LOG.isDebugEnabled()) {
-
-          LOG.info("WAIT_FOR_SHIPPING END");
+        if (LOG.isDebugEnabled()) { 
+          LOG.debug("WAIT_FOR_SHIPPING END");
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -100,7 +103,7 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
         Registry.unsetCurrentTenant();
       }
     }
-  }
+  } 
 
   public ModelService getModelService() {
     return modelService;
@@ -126,5 +129,14 @@ public class DefaultProcess2ReadyShipAdapter implements Process2ReadyShipAdapter
       BusinessProcessService businessProcessService) {
     this.businessProcessService = businessProcessService;
   }
+  
+  public FlexibleSearchService getFlexibleSearchService() {
+    return flexibleSearchService;
+  }
+
+  public void setFlexibleSearchService(
+      FlexibleSearchService flexibleSearchService) {
+    this.flexibleSearchService = flexibleSearchService;
+  } 
 }
 

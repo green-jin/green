@@ -22,8 +22,7 @@ public class WaitB2BDeliveryReCallAction extends AbstractProceduralAction<Consig
 
     shipping2ShippedAdapter.waitforShipped(consignmentProcessModel.getConsignment());
     consignmentProcessModel.setWaitingForConsignment(true);
-    getModelService().save(consignmentProcessModel);
-    LOG.info("Setting waitForConsignment to true");
+    getModelService().save(consignmentProcessModel); 
   }
 
   public Shipping2ShippedAdapter getShipping2ShippedAdapter() {

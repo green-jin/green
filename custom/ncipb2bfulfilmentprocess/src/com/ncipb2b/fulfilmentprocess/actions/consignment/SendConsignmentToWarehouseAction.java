@@ -30,7 +30,6 @@ public class SendConsignmentToWarehouseAction extends AbstractProceduralAction<C
 		getProcess2WarehouseAdapter().prepareConsignment(process.getConsignment());
 		process.setWaitingForConsignment(true);
 		getModelService().save(process);
-		LOG.info("Setting waitForConsignment to true");
 	}
 
 	@Required
