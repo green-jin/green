@@ -39,14 +39,22 @@
       <value code="WHITE"/>
       <value code="YELLOW"/>
     </enumtype>
+    <enumtype generate="true" autocreate="true" dynamic="false" code="DeliveryType">
+      <value code="LOGISTICS"/>
+      <value code="FREIGHT"/>
+    </enumtype>
 
     <enumtype generate="true" autocreate="true" dynamic="false" code="ProductType">
+      <value code="NORMAL"/>
       <value code="CUSTOM"/>
-      <value code="GENERAL"/>
       <value code="PREORDER"/>
-
     </enumtype>
-    
+
+    <enumtype generate="true" autocreate="true" dynamic="false" code="ProductSize">
+      <value code="SMALL"/>
+      <value code="BIG"/>
+    </enumtype>
+
     <!-- Line of Business 行業別(動態加入) -->
     <enumtype code="LineOfBusiness" autocreate="false" generate="true" dynamic="true">
     	<description>行業別</description>
@@ -520,6 +528,14 @@
             <modifiers read="true" write="true" optional="true" unique="false" />
             <persistence type="property" />
           </attribute>
+
+          <attribute qualifier="ncipdelivery" type="DeliveryType">
+            <description>貨運或者是物流</description>
+            <modifiers read="true" write="true" optional="true" unique="false" />
+            <persistence type="property" />
+          </attribute>
+
+
         </attributes>
       </itemtype>
     </typegroup>
@@ -540,11 +556,6 @@
     <typegroup name="newProduct">
       <itemtype code="Product" autocreate="false" generate="false">
         <attributes>
-          <attribute qualifier="dely_type" type="ProductType">
-            <description>1.訂製品,2.一般品(有庫存/無庫存),3.預購品</description>
-            <modifiers read="true" write="true" optional="true" unique="false"/>
-            <persistence type="property"/>
-          </attribute>
           <attribute qualifier="vkorg" type="java.lang.String">
             <description>銷售組織</description>
             <modifiers read="true" write="true" search="true"
@@ -564,6 +575,9 @@
             <persistence type="property"/>
           </attribute>
           <attribute qualifier="ma_type" type="java.lang.String">
+<!--            A:一般商品 C:一般品-大型商品-->
+<!--            B:訂製品 -->
+<!--            D:預購品 E:預購品-大型商品-->
             <description>物料類型</description>
             <modifiers read="true" write="true" search="true"
               optional="true"/>

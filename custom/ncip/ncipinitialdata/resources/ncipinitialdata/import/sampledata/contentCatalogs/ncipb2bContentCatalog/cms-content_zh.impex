@@ -131,7 +131,7 @@ UPDATE CategoryPage; $contentCV[unique = true]; uid[unique = true]; title[lang =
 UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]           ; title[lang = $lang]
 						;                          ; FollowUsNavNode              ; "協助/下載"
                         ;                          ; MyAccountNavNode             ; "我的账户"
-                        ;                          ; ncipb2bNavNode               ; "电动工具站点"
+                        ;                          ; ncipb2bNavNode               ; "和之合B2B网站"
                         ;                          ; SAPCommerceNavNode           ; "企業"
                         ;                          ; SAPCustomerExperienceNavNode ; "聯絡我們"
                         ;                          ; FootSocialMediaNavNode       ; "社群媒體"

@@ -27,61 +27,61 @@ $lang=zh_TW
 
 # CMS components and Email velocity templates
 UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
- ;ncipb2b-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
- ;ncipb2b-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
- ;ncipb2b-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
- ;ncipb2b-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
- ;ncipb2b-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
- ;ncipb2b_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
- ;ncipb2b_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
- ;ncipb2b_Email_Delivery_Sent_Body;"Delivery Sent Email Body";$emailResource/email-deliverySentBody.vm
- ;ncipb2b_Email_Delivery_Sent_Subject;"Delivery Sent Email Subject";$emailResource/email-deliverySentSubject.vm
- ;ncipb2b_Email_Forgotten_Password_Body;"Forgotten Password Email Body";$emailResource/email-forgottenPasswordBody.vm
- ;ncipb2b_Email_Forgotten_Password_Subject;"Forgotten Password Email Subject";$emailResource/email-forgottenPasswordSubject.vm
- ;ncipb2b_Email_NotPickedUpConsignment_Canceled_Body;"Not Picked Up Consignment Canceled Email Body";$emailResource/email-notPickedUpConsignmentCanceledBody.vm
- ;ncipb2b_Email_NotPickedUpConsignment_Canceled_Subject;"Not Picked Up Consignment Canceled Email Subject";$emailResource/email-notPickedUpConsignmentCanceledSubject.vm
- ;ncipb2b_Email_Order_Cancelled_Body;"Order Cancelled Email Body";$emailResource/email-orderCancelledBody.vm
- ;ncipb2b_Email_Order_Cancelled_Subject;"Order Cancelled Email Subject";$emailResource/email-orderCancelledSubject.vm
- ;ncipb2b_Email_Order_Collection_Reminder_Body;"Order Collection Reminder Body";$emailResource/email-orderCollectionReminderBody.vm
- ;ncipb2b_Email_Order_Collection_Reminder_Subject;"Order Collection Reminder Subject";$emailResource/email-orderCollectionReminderSubject.vm
- ;ncipb2b_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
- ;ncipb2b_Email_Order_Confirmation_Subject;"Order Confirmation Email Subject";$emailResource/email-orderConfirmationSubject.vm
- ;ncipb2b_Email_Order_Move_To_CS_Body;"Order Move To CS Body";$emailResource/email-orderMoveToCsBody.vm
- ;ncipb2b_Email_Order_Move_To_CS_Subject;"Order Move To CS Subject";$emailResource/email-orderMoveToCsSubject.vm
- ;ncipb2b_Email_Order_Partially_Canceled_Body;"Order Partially Canceled Email Body";$emailResource/email-orderPartiallyCanceledBody.vm
- ;ncipb2b_Email_Order_Partially_Canceled_Subject;"Order Partially Canceled Email Subject";$emailResource/email-orderPartiallyCanceledSubject.vm
- ;ncipb2b_Email_Order_Partially_Refunded_Body;"Order Partially Refunded Email Body";$emailResource/email-orderPartiallyRefundedBody.vm
- ;ncipb2b_Email_Order_Partially_Refunded_Subject;"Order Partially Refunded Email Subject";$emailResource/email-orderPartiallyRefundedSubject.vm
- ;ncipb2b_Email_Order_Refund_Body;"Order Refund Email Body";$emailResource/email-orderRefundBody.vm
- ;ncipb2b_Email_Order_Refund_Subject;"Order Refund Email Subject";$emailResource/email-orderRefundSubject.vm
- ;ncipb2b_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
- ;ncipb2b_Email_Ready_For_Pickup_Subject;"Ready For Pickup Email Subject";$emailResource/email-readyForPickupSubject.vm
+                       ;ncipb2b-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+                       ;ncipb2b-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
+                       ;ncipb2b-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
+                       ;ncipb2b-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
+                       ;ncipb2b-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+                       ;ncipb2b_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+                       ;ncipb2b_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+                       ;ncipb2b_Email_Delivery_Sent_Body;"Delivery Sent Email Body";$emailResource/email-deliverySentBody.vm
+                       ;ncipb2b_Email_Delivery_Sent_Subject;"Delivery Sent Email Subject";$emailResource/email-deliverySentSubject.vm
+                       ;ncipb2b_Email_Forgotten_Password_Body;"Forgotten Password Email Body";$emailResource/email-forgottenPasswordBody.vm
+                       ;ncipb2b_Email_Forgotten_Password_Subject;"Forgotten Password Email Subject";$emailResource/email-forgottenPasswordSubject.vm
+                       ;ncipb2b_Email_NotPickedUpConsignment_Canceled_Body;"Not Picked Up Consignment Canceled Email Body";$emailResource/email-notPickedUpConsignmentCanceledBody.vm
+                       ;ncipb2b_Email_NotPickedUpConsignment_Canceled_Subject;"Not Picked Up Consignment Canceled Email Subject";$emailResource/email-notPickedUpConsignmentCanceledSubject.vm
+                       ;ncipb2b_Email_Order_Cancelled_Body;"Order Cancelled Email Body";$emailResource/email-orderCancelledBody.vm
+                       ;ncipb2b_Email_Order_Cancelled_Subject;"Order Cancelled Email Subject";$emailResource/email-orderCancelledSubject.vm
+                       ;ncipb2b_Email_Order_Collection_Reminder_Body;"Order Collection Reminder Body";$emailResource/email-orderCollectionReminderBody.vm
+                       ;ncipb2b_Email_Order_Collection_Reminder_Subject;"Order Collection Reminder Subject";$emailResource/email-orderCollectionReminderSubject.vm
+                       ;ncipb2b_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
+                       ;ncipb2b_Email_Order_Confirmation_Subject;"Order Confirmation Email Subject";$emailResource/email-orderConfirmationSubject.vm
+                       ;ncipb2b_Email_Order_Move_To_CS_Body;"Order Move To CS Body";$emailResource/email-orderMoveToCsBody.vm
+                       ;ncipb2b_Email_Order_Move_To_CS_Subject;"Order Move To CS Subject";$emailResource/email-orderMoveToCsSubject.vm
+                       ;ncipb2b_Email_Order_Partially_Canceled_Body;"Order Partially Canceled Email Body";$emailResource/email-orderPartiallyCanceledBody.vm
+                       ;ncipb2b_Email_Order_Partially_Canceled_Subject;"Order Partially Canceled Email Subject";$emailResource/email-orderPartiallyCanceledSubject.vm
+                       ;ncipb2b_Email_Order_Partially_Refunded_Body;"Order Partially Refunded Email Body";$emailResource/email-orderPartiallyRefundedBody.vm
+                       ;ncipb2b_Email_Order_Partially_Refunded_Subject;"Order Partially Refunded Email Subject";$emailResource/email-orderPartiallyRefundedSubject.vm
+                       ;ncipb2b_Email_Order_Refund_Body;"Order Refund Email Body";$emailResource/email-orderRefundBody.vm
+                       ;ncipb2b_Email_Order_Refund_Subject;"Order Refund Email Subject";$emailResource/email-orderRefundSubject.vm
+                       ;ncipb2b_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
+                       ;ncipb2b_Email_Ready_For_Pickup_Subject;"Ready For Pickup Email Subject";$emailResource/email-readyForPickupSubject.vm
 
 # CMS components and Email velocity templates
 UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
- ;ncipb2b_Email_Order_ApprovalRejection_Body;"订单审批拒绝的 Body 邮件";$jarEmailResource/email-orderApprovalRejectionBody.vm
- ;ncipb2b_Email_Order_ApprovalRejection_Subject;"订单审批拒绝的邮件主题";$jarEmailResource/email-orderApprovalRejectionSubject.vm
- ;ncipb2b_Email_Order_PendingApproval_Body;"等待批准订单的 Body 邮件";$jarEmailResource/email-orderPendingApprovalBody.vm
- ;ncipb2b_Email_Order_PendingApproval_Subject;"等待批准订单的邮件主题";$jarEmailResource/email-orderPendingApprovalSubject.vm
- ;ncipb2b_Email_Replenishment_Order_Confirmation_Body;"订单确认 Body 邮件";$jarEmailResource/email-replenishmentOrderConfirmationBody.vm
- ;ncipb2b_Email_Replenishment_Order_Confirmation_Subject;"订单确认邮件主题";$jarEmailResource/email-replenishmentOrderConfirmationSubject.vm
- ;ncipb2b_Email_Replenishment_Order_Placed_Body;"订单确认邮件主题";$jarEmailResource/email-replenishmentOrderPlacedBody.vm
- ;ncipb2b_Email_Replenishment_Order_Placed_Subject;"订单确认邮件主题";$jarEmailResource/email-replenishmentOrderPlacedSubject.vm
+                       ;ncipb2b_Email_Order_ApprovalRejection_Body;"訂單審批拒絕的 Body 郵件";$jarEmailResource/email-orderApprovalRejectionBody.vm
+                       ;ncipb2b_Email_Order_ApprovalRejection_Subject;"訂單審批拒絕的郵件主題";$jarEmailResource/email-orderApprovalRejectionSubject.vm
+                       ;ncipb2b_Email_Order_PendingApproval_Body;"等待批准訂單的 Body 郵件";$jarEmailResource/email-orderPendingApprovalBody.vm
+                       ;ncipb2b_Email_Order_PendingApproval_Subject;"等待批准訂單的郵件主題";$jarEmailResource/email-orderPendingApprovalSubject.vm
+                       ;ncipb2b_Email_Replenishment_Order_Confirmation_Body;"訂單確認 Body 郵件";$jarEmailResource/email-replenishmentOrderConfirmationBody.vm
+                       ;ncipb2b_Email_Replenishment_Order_Confirmation_Subject;"訂單確認郵件主題";$jarEmailResource/email-replenishmentOrderConfirmationSubject.vm
+                       ;ncipb2b_Email_Replenishment_Order_Placed_Body;"訂單確認郵件主題";$jarEmailResource/email-replenishmentOrderPlacedBody.vm
+                       ;ncipb2b_Email_Replenishment_Order_Placed_Subject;"訂單確認郵件主題";$jarEmailResource/email-replenishmentOrderPlacedSubject.vm
 
 # Email Pages
 UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
- ;;CustomerRegistrationEmail;"customerservices@hybris.com";"客服团队"
- ;;DeliverySentEmail;"customerservices@hybris.com";"客服团队"
- ;;ForgottenPasswordEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderApprovalRejectionEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderCancelledEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderCollectionReminderEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderConfirmationEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderMoveToCsEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderPartiallyCanceledEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderPartiallyRefundedEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderPendingApprovalEmail;"customerservices@hybris.com";"客服团队"
- ;;OrderRefundEmail;"customerservices@hybris.com";"客服团队"
- ;;ReadyForPickupEmail;"customerservices@hybris.com";"客服团队"
- ;;ReplenishmentOrderConfirmationEmail;"customerservices@hybris.com";"客服团队"
- ;;ReplenishmentOrderPlacedEmail;"customerservices@hybris.com";"客服团队"
+                ;;CustomerRegistrationEmail;"customerservices@hybris.com";"客服團隊"
+                ;;DeliverySentEmail;"customerservices@hybris.com";"客服團隊"
+                ;;ForgottenPasswordEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderApprovalRejectionEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderCancelledEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderCollectionReminderEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderConfirmationEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderMoveToCsEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderPartiallyCanceledEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderPartiallyRefundedEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderPendingApprovalEmail;"customerservices@hybris.com";"客服團隊"
+                ;;OrderRefundEmail;"customerservices@hybris.com";"客服團隊"
+                ;;ReadyForPickupEmail;"customerservices@hybris.com";"客服團隊"
+                ;;ReplenishmentOrderConfirmationEmail;"customerservices@hybris.com";"客服團隊"
+                ;;ReplenishmentOrderPlacedEmail;"customerservices@hybris.com";"客服團隊"

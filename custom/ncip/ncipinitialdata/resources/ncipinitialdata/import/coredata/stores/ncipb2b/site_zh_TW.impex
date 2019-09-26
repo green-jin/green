@@ -17,4 +17,4 @@ $lang=zh_TW
 
 # Create CMS Site
 UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
- ;ncipb2b;"电动工具站点";$lang
+ ;ncipb2b;"海廷頓B2B";$lang

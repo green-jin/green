@@ -41,8 +41,8 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
                        ;                          ; DocumentationLink          ; "Documentation"
                        ;                          ; FAQLink                    ; "FAQ"
                        ;                          ; FacebookLink               ; "Facebook"
-                       ;                          ; FootwearMensCategoryLink   ; "Men's"
-                       ;                          ; FootwearWomensCategoryLink ; "Women's"
+#                       ;                          ; FootwearMensCategoryLink   ; "Men's"
+#                       ;                          ; FootwearWomensCategoryLink ; "Women's"
                        ;                          ; HomepageNavLink            ; "Home"
                        ;                          ; ImportSavedCartLink        ; "Import Saved Cart"
                        ;                          ; LinkedInLink               ; "Linked In"
@@ -53,7 +53,7 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
 #                       ;                          ; PaymentDetailsLink         ; "Payment Details"
                        ;                          ; PersonalDetailsLink        ; "Personal Details"
                        ;                          ; QuickOrderLink             ; "Quick Order"
-                       ;                          ; SafetyCategoryLink         ; "Safety"
+#                       ;                          ; SafetyCategoryLink         ; "Safety"
                        ;                          ; SavedCartsLink             ; "Saved Carts"
 #                       ;                          ; TwitterLink                ; "Twitter"
                        ;                          ; UpdateEmailLink            ; "Email Address"
@@ -67,18 +67,18 @@ UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ;
 
 # CMS Link Components
 UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]               ; linkName[lang = $lang]
-                       ;                          ; AngleGrindersCategoryLink        ; "Angle Grinders"
-                       ;                          ; HandSawsCategoryLink             ; "Hand Saws"
-                       ;                          ; HandToolsCategoryLink            ; "Hand Tools"
-                       ;                          ; JigsawsCategoryLink              ; "Jigsaws"
-                       ;                          ; MeasuringLayoutToolsCategoryLink ; "Measuring & Layout Tools"
-                       ;                          ; NutDriversCategoryLink           ; "Nut Drivers"
-                       ;                          ; PowerDrillsCategoryLink          ; "Power Drills"
-                       ;                          ; PunchesCategoryLink              ; "Punches"
-                       ;                          ; RotaryHammersCategoryLink        ; "Rotary Hammers"
-                       ;                          ; SandersCategoryLink              ; "Sanders"
-                       ;                          ; ScrewdriversCategoryLink         ; "Screwdrivers"
-                       ;                          ; StrippingToolsCategoryLink       ; "Stripping Tools"
+#                       ;                          ; AngleGrindersCategoryLink        ; "Angle Grinders"
+#                       ;                          ; HandSawsCategoryLink             ; "Hand Saws"
+#                       ;                          ; HandToolsCategoryLink            ; "Hand Tools"
+#                       ;                          ; JigsawsCategoryLink              ; "Jigsaws"
+#                      ;                          ; MeasuringLayoutToolsCategoryLink ; "Measuring & Layout Tools"
+#                       ;                          ; NutDriversCategoryLink           ; "Nut Drivers"
+#                       ;                          ; PowerDrillsCategoryLink          ; "Power Drills"
+#                       ;                          ; PunchesCategoryLink              ; "Punches"
+#                       ;                          ; RotaryHammersCategoryLink        ; "Rotary Hammers"
+#                       ;                          ; SandersCategoryLink              ; "Sanders"
+#                       ;                          ; ScrewdriversCategoryLink         ; "Screwdrivers"
+#                       ;                          ; StrippingToolsCategoryLink       ; "Stripping Tools"
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]                            ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]     ; mime[default = 'image/jpeg']; &imageRef                                      ; folder(qualifier)[default = 'images']; altText
@@ -129,7 +129,7 @@ UPDATE CategoryPage; $contentCV[unique = true]; uid[unique = true]; title[lang =
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]           ; title[lang = $lang]
-                        ;                          ; FollowUsNavNode              ; "Follow Us"
+                        ;                          ; FollowUsNavNode              ; "Follow Us1"
                         ;                          ; MyAccountNavNode             ; "My Account"
                         ;                          ; ncipb2bNavNode               ; "ncipb2b Site"
                         ;                          ; SAPCommerceNavNode           ; "SAP Commerce Cloud"
@@ -138,15 +138,15 @@ UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]         
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]          ; title[lang = $lang]
-                        ;                          ; AngleGrindersNavNode        ; "Angle Grinders"
-                        ;                          ; FootwearLinksNavNode        ; "Footwear"
-                        ;                          ; HandToolsLinksNavNode       ; "Hand Tools"
-                        ;                          ; HandToolsNavNode            ; "Hand Tools"
-                        ;                          ; MeasuringLayoutToolsNavNode ; "Measuring & Layout Tools"
-                        ;                          ; PowerDrillsNavNode          ; "Power Drills"
-                        ;                          ; SafetyNavNode               ; "Safety"
-                        ;                          ; SandersNavNode              ; "Sanders"
-                        ;                          ; ScrewdriversNavNode         ; "Screwdrivers"
+#                        ;                          ; AngleGrindersNavNode        ; "Angle Grinders"
+#                        ;                          ; FootwearLinksNavNode        ; "Footwear"
+#                        ;                          ; HandToolsLinksNavNode       ; "Hand Tools"
+#                        ;                          ; HandToolsNavNode            ; "Hand Tools"
+#                        ;                          ; MeasuringLayoutToolsNavNode ; "Measuring & Layout Tools"
+#                        ;                          ; PowerDrillsNavNode          ; "Power Drills"
+#                        ;                          ; SafetyNavNode               ; "Safety"
+#                       ;                          ; SandersNavNode              ; "Sanders"
+#                        ;                          ; ScrewdriversNavNode         ; "Screwdrivers"
 
 # ncipb2b FAQ Page
 
