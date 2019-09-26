@@ -12,12 +12,10 @@ import java.util.Locale;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import com.ncip.core.data.ZData;
-import com.ncip.core.model.TransferOrderCronJobModel;
 import com.ncip.core.service.TransferOrderService;
 import com.ncip.core.service.ZdataService;
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUserGroupModel;
-import de.hybris.platform.core.GenericSearchConstants.LOG;
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
@@ -29,7 +27,7 @@ import de.hybris.platform.servicelayer.cronjob.AbstractJobPerformable;
 import de.hybris.platform.servicelayer.cronjob.PerformResult;
 
 public class TransferOrderJob extends AbstractJobPerformable<CronJobModel>{
-  
+
   /*
    *parameters setting
    */
@@ -57,7 +55,7 @@ public class TransferOrderJob extends AbstractJobPerformable<CronJobModel>{
 }
 
 
-public void setConfigurationService(ConfigurationService configurationService) {
+public void setConfigurationService(final ConfigurationService configurationService) {
     this.configurationService = configurationService;
 }
 
@@ -126,7 +124,7 @@ public ZdataService getZdataService() {
                 final B2BUserGroupModel b2BUGroup = transferOrderService.getB2BUserGroupByUGUID(zdata.getVkGRP());
 
 
-                zdata.setZTERM(b2BUGroup.getUnit().getZTerm());
+          // zdata.setZTERM(b2BUGroup.getUnit().getZTerm());
                 zdata.setInCO1(b2BUGroup.getUnit().getInco1());
                 zdata.setInCO2(b2BUGroup.getUnit().getInco2());
                 zdata.setPerNR(b2BUGroup.getUnit().getPernr());
@@ -208,7 +206,7 @@ private String zDataDateTransform(final String date)
  * The function is to check the execution time and return the different date data
  *
  * @return the execTime for system to add ModifyTime condition in flexibleSearch.
- * @throws ParseException 
+ * @throws ParseException
  */
 private String getExecutionPeriod()
 {
@@ -218,11 +216,11 @@ private String getExecutionPeriod()
     final String sdfForYesterDate = new SimpleDateFormat("yyyy/MM/dd").format(currentDay.getTime());
     final SimpleDateFormat sdfForDate = new SimpleDateFormat("yyyy/MM/dd");
     final SimpleDateFormat sdfForTime = new SimpleDateFormat("HH:mm:ss");
-    
+
     final String formatedExecTime = sdfForTime.format(date);
     final String sdfForToday = sdfForDate.format(date);
-    
-    
+
+
      Calendar currentTime= null;
      Calendar sectionAt11= null;
      Calendar sectionAt14= null;
@@ -239,7 +237,7 @@ private String getExecutionPeriod()
       sectionAt23 = Calendar.getInstance();
       sectionAt23.setTime(sdfForTime.parse(configurationService
           .getConfiguration().getString("sendOrdersExecutionSectionAt23")));
-    } catch (ParseException e) {
+    } catch (final ParseException e) {
       e.printStackTrace();
     }
     String execTime = null;
@@ -249,7 +247,7 @@ private String getExecutionPeriod()
       execTime = sdfForYesterDate + " "
           + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23")+";"+
           sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt11");
-      
+
     }else if(currentTime.after(sectionAt14) && currentTime.before(sectionAt23)) {
       execTime = sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt11")+";"+
       sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14");
