@@ -55,8 +55,8 @@ config/local/backup/.project
 config/local/*.project
 
 .*
-**/.classpath
-**/.project
+!**/.classpath
+!**/.project
 *.bak
 *.class
 *.log
