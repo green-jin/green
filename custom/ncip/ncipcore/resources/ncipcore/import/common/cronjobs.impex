@@ -60,6 +60,7 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second[default=0];minute[defaul
 ;ordersRetentionCronJob;
 ;ticketsRetentionCronJob;
 
+#
 # Run CronJobs at 3:05 AM every day   
 INSERT_UPDATE Trigger ; cronJob(code)[unique=true]             ; second[default=0] ; minute[default=5] ; hour[default=3] ; day[default=-1] ; month[default=-1] ; year[default=-1] ; relative[default=false] ; active[default=false] ; maxAcceptableDelay[default=-1] 
                       ; customersWithOrdersRetentionCronJob    ;                   
