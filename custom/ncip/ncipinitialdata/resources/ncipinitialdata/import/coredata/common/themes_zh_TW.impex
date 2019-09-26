@@ -17,5 +17,6 @@ $lang=zh_TW
 
 # SiteTheme
 UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;black;"黑"
- ;blue;"蓝"
+;black;"黑"
+;blue;"藍"
+

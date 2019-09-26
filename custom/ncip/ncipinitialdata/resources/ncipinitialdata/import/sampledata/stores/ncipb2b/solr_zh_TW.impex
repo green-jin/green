@@ -20,7 +20,7 @@ $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),versi
 $lang=zh_TW
 
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
- ;;Colour of product, 1766;"颜色"
+ ;;Colour of product, 1766;"顏色"
 
 # Redirect page URL (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrURIRedirect;url[unique=true];&redirectRefID
