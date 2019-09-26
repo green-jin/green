@@ -32,8 +32,7 @@ public class WaitForLogisticsAction extends AbstractProceduralAction<Consignment
 
     process2ReadyShipAdapter.waitForConsignment(consignmentProcessModel.getConsignment());
     consignmentProcessModel.setWaitingForConsignment(true);
-    getModelService().save(consignmentProcessModel);
-    LOG.info("Setting waitForConsignment to true");
+    getModelService().save(consignmentProcessModel); 
   }
 
   public Process2ReadyShipAdapter getProcess2ReadyShipAdapter() {

@@ -110,9 +110,9 @@ public class MockProcess2WarehouseAdapter implements Process2WarehouseAdapter
 				getModelService().save(entry);
 			}
 			getModelService().save(consignment);
-			if (LOG.isInfoEnabled())
+			if (LOG.isDebugEnabled())
 			{
-				LOG.info("Consignment [" + consignment.getCode() + "] shipped");
+				LOG.debug("Consignment [" + consignment.getCode() + "] shipped");
 			}
 		}
 	}

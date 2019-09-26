@@ -43,6 +43,13 @@ public class CheckOrderAction extends AbstractSimpleDecisionAction<OrderProcessM
     }
 
     if (getCheckB2BOrderService().check(order)) {
+      
+      LOG.debug(" Vkorg:" +order.getStore().getVkorg()+" , Pernr:"+ order.getUnit().getPernr()+" , Lifnr:"+order.getUnit().getLifnr());
+      
+      order.setVkorg(order.getStore().getVkorg());//銷售組織
+      order.setPernr(order.getUnit().getPernr());//負責業務
+      order.setLifnr(order.getUnit().getLifnr());//負責經銷商
+        
       setOrderStatus(order, OrderStatus.CHECKED_VALID);
       return Transition.OK;
     } else {
