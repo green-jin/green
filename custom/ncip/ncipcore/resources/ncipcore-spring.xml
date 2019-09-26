@@ -18,6 +18,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
      <context:annotation-config/>
+     <context:component-scan base-package="com.ncip.core"/>
 
 	<!-- Spring Integration -->
 	<import resource="classpath:/ncipcore/integration/hot-folder-store-electronics-spring.xml"/>
@@ -690,6 +691,7 @@
 	</bean>
 	<!-- green CronJob  -->
 
+
 	<!-- Logistics CronJob -->
 	<bean id="ncipDefaultConsignmentService" class="com.ncip.core.consignment.impl.DefaultConsignmentService">
 		<property name="ncipDefaultConsignmentDao" ref="ncipDefaultConsignmentDao"/>
@@ -713,6 +715,7 @@
 		<property name="hctFtpService" ref="hctFtpService"></property>
 	</bean>
 	<!-- Logistics CronJob -->
+
 
 	<!-- Arom CronJob  -->
 	<!-- defaultTransferOrderDao action -->
@@ -745,5 +748,23 @@
 	<property name="zdataService" ref="zdataService"/>
 	</bean>
 	<!-- Arom CronJob  -->
+
+	
+	<!-- Test Consignments 2 ZTable Sync Job -->
+<!-- 	<bean id="consignmentSyncJobPerformable" class="com.ncip.core.job.ConsignmentSyncJobPerformable" parent="abstractJobPerformable"/> -->
+<!-- 	<bean id="consignmentSyncService" class="com.ncip.core.service.impl.DefaultConsignmentSyncService"/> -->
+<!-- 	<bean id="testDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="org.h2.Driver"/> -->
+<!-- 		<property name="url" value=""/> -->
+<!-- 		<property name="username" value="sa"/> -->
+<!-- 		<property name="password" value="1234"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="testJDBCTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 		<property name="dataSource" ref="testDataSource"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="testNamedParamJDBCTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"> -->
+<!-- 		<constructor-arg name="dataSource" ref="testDataSource"/> -->
+<!-- 	</bean>  -->
+	
 
 </beans>
