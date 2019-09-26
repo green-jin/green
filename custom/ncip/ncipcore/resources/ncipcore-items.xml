@@ -82,6 +82,16 @@
     </enumtype>
 
   </enumtypes>
+  
+  <relations>
+  
+  	<relation localized="false" code="Company2OrgUnit" autocreate="true" generate="true">
+  		<description>Company 2 OrgUnit</description>
+  		<sourceElement type="Company" cardinality="one" qualifier="unit"/>
+  		<targetElement type="OrgUnit" cardinality="many" collectiontype="list" qualifier="orgUnit"/>
+  	</relation>
+  
+  </relations>
 
   <itemtypes>
     <!-- Add your item definitions here -->
@@ -651,6 +661,18 @@
 					</attribute>
 					<attribute type="java.lang.String" qualifier="poc_wechat">
 						<description>聯絡人WeChat</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+		
+		<!-- New Employee -->
+		<typegroup name="newEmployee">
+			<itemtype code="Employee" autocreate="false" generate="true">
+				<description>Employee</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="email">
 						<persistence type="property"/>
 					</attribute>
 				</attributes>
