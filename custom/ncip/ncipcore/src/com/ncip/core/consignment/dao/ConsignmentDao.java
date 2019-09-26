@@ -10,7 +10,7 @@ public interface ConsignmentDao {
   ConsignmentModel GetConsignment(ConsignmentProcessModel consignmentProcessModel) throws ConsignmentException;
 
   List<ConsignmentModel> GetConsignments() throws ConsignmentException;
-  List<ConsignmentModel> GetConsignmentsByTime(String time) throws ConsignmentException;
+  List<ConsignmentModel> GetConsignmentsByTimeAndType(String time, String type) throws ConsignmentException;
   List<ConsignmentModel> GetConsignmentsByType(String type) throws ConsignmentException;
   List<ConsignmentModel> GetConsignmentsByCode(String code) throws ConsignmentException;
 

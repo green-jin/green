@@ -1,6 +1,7 @@
 package com.ncip.core.consignment.dao.impl;
 
 import com.ncip.core.consignment.dao.ConsignmentDao;
+import com.ncip.core.enums.DeliveryType;
 import com.ncip.core.exception.ConsignmentException;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
@@ -29,6 +30,7 @@ public class DefaultConsignmentDao implements ConsignmentDao {
   final String YESTERDAY = "yesterday";
   final String CODE = "code";
   final String TYPE = "type";
+  final String TIME_REGEX = "#^((19|20)?[0-9]{2}[- /.](0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01]))*$#";
   
 
   @Override
@@ -46,24 +48,22 @@ public class DefaultConsignmentDao implements ConsignmentDao {
   }
 
   @Override
-  public List<ConsignmentModel> GetConsignmentsByTime(String time) throws ConsignmentException {
-    String sendTime = time.substring(time.indexOf(" "));
-    Calendar cal = Calendar.getInstance();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    try {
-      cal.setTime(sdf.parse(time));
-    } catch (ParseException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+  public List<ConsignmentModel> GetConsignmentsByTimeAndType(String time, String type) throws ConsignmentException {
+    if(type != null && (type.trim().equals(DeliveryType.LOGISTICS.toString()) || type.trim().equals(DeliveryType.FREIGHT.toString()))) {
+      if(time.matches(TIME_REGEX)) {
+        final String selectString = "select {pk} from {consignment as c} where {c.shippingDate} between TO_DATE(?timeS,'YYYY-MM-DD HH24:MI:SS') and TO_DATE(?timeE,'YYYY-MM-DD HH24:MI:SS') and {c.ncipdelivery}=?type";
+        final FlexibleSearchQuery query = new FlexibleSearchQuery(selectString);
+        query.addQueryParameter("timeS", time + " 00:00:00");
+        query.addQueryParameter("timeE", time + " 23:59:59");
+        query.addQueryParameter(TYPE, type);
+        final SearchResult<ConsignmentModel> result = getFlexibleSearchService().search(query);
+        return result.getResult();
+      } else {
+        return null;
+      }
+    } else {
+      return null;
     }
-    cal.add(Calendar.DATE, -1);
-    String yesterday = sdf.format(cal.getTime());
-    final String selectString = "select {pk} from {consignment as c} where {c.shippingDate} between TO_DATE(?yesterday,'YYYY-MM-DD HH24:MI:SS') and TO_DATE(?time,'YYYY-MM-DD HH24:MI:SS') and {c.status}='" + ConsignmentStatus.READY + "'";
-    final FlexibleSearchQuery query = new FlexibleSearchQuery(selectString);
-    query.addQueryParameter(YESTERDAY, yesterday + sendTime);
-    query.addQueryParameter(TIME, time);
-    final SearchResult<ConsignmentModel> result = getFlexibleSearchService().search(query);
-    return result.getResult();
   }
 
   @Override

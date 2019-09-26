@@ -19,6 +19,6 @@ public interface HctFtpService {
 	
 	void getFileFromFTP();
 	
-	void readTXT(File file);
+	boolean readTXT(File file);
 
 }

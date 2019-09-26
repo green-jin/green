@@ -13,7 +13,6 @@ import java.net.SocketException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -28,8 +27,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import com.ncip.core.consignment.ConsignmentService;
-import com.ncip.core.consignment.impl.DefaultConsignmentService;
 import com.ncip.core.constants.GeneratedNcipCoreConstants.Enumerations.ProductType;
+import com.ncip.core.enums.DeliveryType;
 import com.ncip.core.service.HctFtpService;
 import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
@@ -65,6 +64,7 @@ public class HctFtpServiceImpl implements HctFtpService {
   private String homeDeliveryBackupPath;
   private String frightBackPath;
   private String frightBackupPath;
+  private String type;
 
   private List<String> excelTitle = new ArrayList<>();
   private List<List<String>> excelDatas = new ArrayList<>();
@@ -84,12 +84,12 @@ public class HctFtpServiceImpl implements HctFtpService {
     todayWithSymbol = sdf.format(date);
     if (sendType.trim().equals("HomeDelivery")) {
       ftpFilePath = configurationService.getConfiguration().getString("homeDeliverySendFolder", "");
-      time = todayWithSymbol + " " + configurationService.getConfiguration().getString("homeDeliveryTime", "");
-      // productSize = ProductSize.SMALL.getCode();
+      time = todayWithSymbol;
+      type = DeliveryType.LOGISTICS.toString();
     } else if (sendType.trim().equals("Fright")) {
       ftpFilePath = configurationService.getConfiguration().getString("frightSendFolder", "");
-      time = todayWithSymbol + " " + configurationService.getConfiguration().getString("frightTime", "");
-      // productSize = ProductSize.BIG.getCode();
+      time = todayWithSymbol;
+      type = DeliveryType.FREIGHT.toString();
     } else if (sendType.trim().equals("Get")) {
       homeDeliveryBackPath =
           configurationService.getConfiguration().getString("homeDeliveryBackFolder", "");
@@ -99,8 +99,13 @@ public class HctFtpServiceImpl implements HctFtpService {
           configurationService.getConfiguration().getString("frightBackFolder", "");
       frightBackupPath =
           configurationService.getConfiguration().getString("frightBackBackupFolder", "");
+      System.out.println("homeDeliveryBackPath = " + homeDeliveryBackPath);
+      System.out.println("homeDeliveryBackupPath = " + homeDeliveryBackupPath);
+      System.out.println("frightBackPath = " + frightBackPath);
+      System.out.println("frightBackupPath = " + frightBackupPath);
       readBackFiles(homeDeliveryBackPath, homeDeliveryBackupPath);
       readBackFiles(frightBackPath, frightBackupPath);
+      return;
     } else {
       ftpFilePath = "/";
     }
@@ -134,29 +139,23 @@ public class HctFtpServiceImpl implements HctFtpService {
 
   private List<ConsignmentModel> setConsignmentData() {
     // TODO ConsignmentService
-    List<ConsignmentModel> consignmentModels = ncipDefaultConsignmentService.GetConsignmentsByTime(time);
+    List<ConsignmentModel> consignmentModels = ncipDefaultConsignmentService.GetConsignmentsByTimeAndType(time, type);
     final SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
     final Date date = new Date();
     final String todayYear = sdf.format(date);
-    if(consignmentModels != null){
+    if(consignmentModels != null) {
       for (int i = 0, len = consignmentModels.size(); i < len; i++) {
         
         
         final ConsignmentModel consignmentModel = consignmentModels.get(i);
         final List<ConsignmentEntryModel> consignmentEntryModels = new ArrayList<>();
         consignmentEntryModels.addAll(consignmentModel.getConsignmentEntries());
-        for(ConsignmentEntryModel cem : consignmentEntryModels){
-          String productType = cem.getOrderEntry().getProduct().getMa_type();
-          
-        }
         final List<String> excelData = new ArrayList<>();
         if (isDebug)
           log.debug("################################Start############################\n");
   
         if (isDebug)
           log.debug("consignmentEntryModels.size()      = " + consignmentEntryModels.size() + "\n");
-  
-        final AbstractOrderModel order = consignmentModel.getOrder();
         
         // final String orderCode = order.getCode();
         final String orderCode = consignmentModel.getCode();
@@ -228,6 +227,11 @@ public class HctFtpServiceImpl implements HctFtpService {
         int j = 0;
   
         for (final ConsignmentEntryModel cem : consignmentEntryModels) {
+          String productType = cem.getOrderEntry().getProduct().getMa_type();
+          if(productType.equals("B")) {
+            excelData.clear();
+            continue;
+          }
   
           final List<String> itemData = new ArrayList<>(excelData);
   
@@ -531,8 +535,8 @@ public class HctFtpServiceImpl implements HctFtpService {
       String[] filesName = file.list();
       for(String name : filesName){
         File backFile = new File(filePath + name);
-        readTXT(backFile);
-        if(removeToPath != null && removeToPath.trim().length() > 0){
+        
+        if(readTXT(backFile) && removeToPath != null && removeToPath.trim().length() > 0){
           backFile.renameTo(new File(removeToPath + name));
         }
       }
@@ -540,7 +544,8 @@ public class HctFtpServiceImpl implements HctFtpService {
   }
 
   @Override
-  public void readTXT(File file) {
+  public boolean readTXT(File file) {
+    boolean flag = true;
     List<String> txtDatas = new ArrayList<>();
     FileReader fr;
     try {
@@ -549,28 +554,39 @@ public class HctFtpServiceImpl implements HctFtpService {
       while (reader.ready()) {
         txtDatas.add(reader.readLine());
       }
-      analysisString(txtDatas);
+      flag = analysisString(txtDatas);
       reader.close();
     } catch (FileNotFoundException e) {
        
       e.printStackTrace();
+      flag = false;
     } catch (IOException e) {
        
       e.printStackTrace();
+      flag = false;
     }
+    return flag;
   }
 
-  private void analysisString(List<String> datas) {
+  private boolean analysisString(List<String> datas) {
+    boolean flag = true;
     if (datas != null && datas.size() > 0) {
+      Datas:
       for (int i = 1, len = datas.size(); i < len; i++) {
-        String[] dataStrings = datas.get(i).replaceAll(" ", "").split(",");
+        String[] dataStrings = datas.get(i).split(",", -1);
         if (dataStrings != null && dataStrings.length > 0) {
           // OrderNo
-          String code = dataStrings[0].substring(4);
+          String code = dataStrings[0];
           ConsignmentModel consignmentModel = 
-               ncipDefaultConsignmentService.GetConsignmentsByCode(code) != null
+               (ncipDefaultConsignmentService.GetConsignmentsByCode(code) != null && ncipDefaultConsignmentService.GetConsignmentsByCode(code).size() > 0)
                    ? ncipDefaultConsignmentService.GetConsignmentsByCode(code).get(0) : null;
           if (consignmentModel != null) {
+            List<ConsignmentEntryModel> consignmentEntryModels = new ArrayList<>(consignmentModel.getConsignmentEntries());
+            for(ConsignmentEntryModel cem : consignmentEntryModels) {
+              if(cem.getOrderEntry().getProduct().getMa_type().equals("B")) {
+                continue Datas;
+              }
+            }
             // ShipStatus
             String shipSataus = dataStrings[1];
             if (shipSataus != null && shipSataus.trim().length() > 0) {
@@ -581,34 +597,47 @@ public class HctFtpServiceImpl implements HctFtpService {
               String arrival_Data = dataStrings[3];
               Date date;
               try {
-                date = sdf.parse(arrival_Data);
                 switch (shipSataus) {
                   case "1":
                     consignmentModel.setStatus(ConsignmentStatus.SHIPPED);
                     consignmentModel.setShipping_number(shipping_number);
                     break;
                   case "2":
+                    if(arrival_Data != null && arrival_Data.length() > 0 && arrival_Data.matches("^\\d\\d\\d\\d-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (00|[0-9]|1[0-9]|2[0-3]):([0-9]|[0-5][0-9]):([0-9]|[0-5][0-9])$")) {
+                      date = sdf.parse(arrival_Data);
+                    } else {
+                      date = null;
+                      break;
+                    }
+                    consignmentModel.setShippingDate(date);
                     consignmentModel.setStatus(ConsignmentStatus.DELIVERY_COMPLETED);
                     consignmentModel.setShipping_number(shipping_number);
-                    consignmentModel.setShippingDate(date);
                     break;
                   case "3":
                     break;
-                  default:
-                    modelService.save(consignmentModel);
                 }
+                modelService.save(consignmentModel);
               } catch (ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                flag = false;
               }
 
+            } else {
+              flag = false;
             }
 
+          } else {
+            flag = false;
           }
+        } else {
+          flag = false;
         }
-
       }
+    } else {
+      flag = false;
     }
+    return flag;
   }
 
   public ConfigurationService getConfigurationService() {

@@ -25,9 +25,9 @@ public class DefaultConsignmentService implements ConsignmentService {
   }
 
   @Override
-  public List<ConsignmentModel> GetConsignmentsByTime(String time) throws ConsignmentException {
+  public List<ConsignmentModel> GetConsignmentsByTimeAndType(String time, String type) throws ConsignmentException {
     
-    return ncipDefaultConsignmentDao.GetConsignmentsByTime(time);
+    return ncipDefaultConsignmentDao.GetConsignmentsByTimeAndType(time, type);
   }
 
   @Override
