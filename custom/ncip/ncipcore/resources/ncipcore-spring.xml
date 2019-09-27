@@ -690,8 +690,7 @@
 	    <property name="configurationService" ref="configurationService" />
 	</bean>
 	<!-- green CronJob  -->
-
-
+	
 	<!-- Logistics CronJob -->
 	<bean id="ncipDefaultConsignmentService" class="com.ncip.core.consignment.impl.DefaultConsignmentService">
 		<property name="ncipDefaultConsignmentDao" ref="ncipDefaultConsignmentDao"/>
@@ -715,7 +714,6 @@
 		<property name="hctFtpService" ref="hctFtpService"></property>
 	</bean>
 	<!-- Logistics CronJob -->
-
 
 	<!-- Arom CronJob  -->
 	<!-- defaultTransferOrderDao action -->
@@ -748,7 +746,6 @@
 	<property name="zdataService" ref="zdataService"/>
 	</bean>
 	<!-- Arom CronJob  -->
-
 	
 	<!-- Test Consignments 2 ZTable Sync Job -->
 <!-- 	<bean id="consignmentSyncJobPerformable" class="com.ncip.core.job.ConsignmentSyncJobPerformable" parent="abstractJobPerformable"/> -->
@@ -766,5 +763,4 @@
 <!-- 		<constructor-arg name="dataSource" ref="testDataSource"/> -->
 <!-- 	</bean>  -->
 	
-
 </beans>

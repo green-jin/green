@@ -44,7 +44,7 @@ public class B2BCreditLimitModelValidateInterceptor implements ValidateIntercept
 			// 信用餘額應大於等於0
 			if (creditLimit.getAmount() != null && creditLimit.getAmount().compareTo(BigDecimal.ZERO) < 0)
 			{
-				throw new InterceptorException(getL10NService().getLocalizedString("error.amount.lessoreqaulszero"));
+				throw new InterceptorException(getL10NService().getLocalizedString("error.amount.lessthanzero"));
 			}
 			if (creditLimit.getAlertThreshold() != null && creditLimit.getAlertThreshold().compareTo(BigDecimal.ZERO) <= 0)
 			{

@@ -679,9 +679,9 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-		</typegroup>
-		
-		<typegroup>
+			
+		</typegroup>		
+				<typegroup>
 			<itemtype code="HomeDeliveryCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
 			</itemtype>
 		</typegroup>
@@ -693,6 +693,7 @@
 			<itemtype code="LogisticsInfoFromHCTCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
 			</itemtype>
 		</typegroup>
+		
 		<!-- New Employee -->
 		<typegroup name="newEmployee">
 			<itemtype code="Employee" autocreate="false" generate="true">
