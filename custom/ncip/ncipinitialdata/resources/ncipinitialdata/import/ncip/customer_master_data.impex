@@ -2,6 +2,7 @@
  
 $lang=zh_TW
 $dateFormat=yyyy/MM/dd
+$defaultPassword=123456
  
 ######### Enum #########
  
@@ -257,7 +258,7 @@ INSERT_UPDATE address ; Streetname[unique=true] ; Postalcode[unique=true] ; Town
                       
                       
 # B2BCustomer         
-INSERT_UPDATE b2bcustomer ; DESCRIPTION ; uid[unique=true] ; ORIGINALUID ; email                      ; name ; TITLE(code) ; sessionCurrency(isocode)[default=USD] ; POST ; CUSTOMERID ; LIFNR ; DEFAULTB2BUNIT(uid) ; CELL_NUMBER  ; POC_LINE  ; POC_WECHAT 
+INSERT_UPDATE b2bcustomer ; DESCRIPTION ; uid[unique=true] ; ORIGINALUID ; email                      ; name ; TITLE(code) ; sessionCurrency(isocode)[default=USD] ; POST ; CUSTOMERID ; LIFNR ; DEFAULTB2BUNIT(uid) ; CELL_NUMBER  ; POC_LINE  ; POC_WECHAT ; password[default=$defaultPassword] 
                           ; 光華家飾        ; 806978460001     ; 8069784600  ; sabhome2003@yahoo.com.tw   ; 王孟哲  ; mr          ; TWD                                   ;      ; ABTW000100 ;       ; 8069784600          ; 935662320    ;           ;            
                           ; 鴻霖實業        ; 542903160001     ; 5429031600  ; regio7520@gmail.com        ; 張國山  ; mr          ; TWD                                   ;      ; ABTW000200 ;       ; 5429031600          ; 0933-810725  ;           ;            
                           ; 凱煜國際        ; 290900000001     ; 2909000000  ; kaiyu.ltd@gmail.com        ; 黃月琴  ; ms          ; TWD                                   ;      ; ABTW000300 ;       ; 2909000000          ; 0909-927-596 ;           ;            

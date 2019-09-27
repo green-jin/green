@@ -605,7 +605,7 @@
 	</bean>
 	
 
-	<bean id="homeDeliverySendJob" class="com.ncip.core.job.HomeDeliverySendJob"  parent="abstractJobPerformable">
+	<!-- <bean id="homeDeliverySendJob" class="com.ncip.core.job.HomeDeliverySendJob"  parent="abstractJobPerformable">
 		<property name="hctFtpService" ref="hctFtpService"/>
 	</bean>
 	
@@ -630,7 +630,7 @@
 	<bean id="testDao" class="com.ncip.core.suggestion.dao.impl.TestDaoImpl" parent="abstractItemDao">
 		<property name="modelService" ref="modelService"/>
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
-	</bean>
+	</bean> -->
 
 	<!-- add ncipCommerceStockService -->
     <alias alias="ncipCommerceStockService" name="defaultNcipCommerceStockService"/>
@@ -690,6 +690,30 @@
 	    <property name="configurationService" ref="configurationService" />
 	</bean>
 	<!-- green CronJob  -->
+	
+	<!-- Logistics CronJob -->
+	<bean id="ncipDefaultConsignmentService" class="com.ncip.core.consignment.impl.DefaultConsignmentService">
+		<property name="ncipDefaultConsignmentDao" ref="ncipDefaultConsignmentDao"/>
+	</bean>
+	<bean id="ncipDefaultConsignmentDao" class="com.ncip.core.consignment.dao.impl.DefaultConsignmentDao">
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	<bean id="hctFtpService" class="com.ncip.core.service.impl.HctFtpServiceImpl">
+		<property name="configurationService" ref="configurationService"/>
+		<property name="ncipDefaultConsignmentService" ref="ncipDefaultConsignmentService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="homeDeliveryJob" class="com.ncip.core.job.HomeDeliveryJob" parent="abstractJobPerformable">
+		<property name="hctFtpService" ref="hctFtpService"></property>
+	</bean>
+	<bean id="frightJob" class="com.ncip.core.job.FrightJob" parent="abstractJobPerformable">
+		<property name="hctFtpService" ref="hctFtpService"></property>
+	</bean>
+	<bean id="logisticsInfoFromHCTJob" class="com.ncip.core.job.LogisticsInfoFromHCTJob" parent="abstractJobPerformable">
+		<property name="hctFtpService" ref="hctFtpService"></property>
+	</bean>
+	<!-- Logistics CronJob -->
 
 	<!-- Arom CronJob  -->
 	<!-- defaultTransferOrderDao action -->

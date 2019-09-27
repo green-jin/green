@@ -679,6 +679,19 @@
 					</attribute>
 				</attributes>
 			</itemtype>
+			
+		</typegroup>		
+				<typegroup>
+			<itemtype code="HomeDeliveryCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
+			</itemtype>
+		</typegroup>
+		<typegroup>
+			<itemtype code="FrightCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
+			</itemtype>
+		</typegroup>
+		<typegroup>
+			<itemtype code="LogisticsInfoFromHCTCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
+			</itemtype>
 		</typegroup>
 		
 		<!-- New Employee -->
