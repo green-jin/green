@@ -22,7 +22,6 @@
 	</div>
 </c:if>
 <c:if test="${not empty searchPageData.results}">
-	111111111111111111111111111111111111111111111111111111111111111111111111
 	<div class="account-section-content	">
 		<div class="account-orderhistory">
 			<div class="account-orderhistory-pagination">

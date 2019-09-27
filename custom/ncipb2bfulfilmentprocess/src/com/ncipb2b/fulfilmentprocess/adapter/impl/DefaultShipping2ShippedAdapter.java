@@ -25,10 +25,7 @@ public class DefaultShipping2ShippedAdapter implements Shipping2ShippedAdapter {
   @Override
   public void waitforShipped(ConsignmentModel ConsignmentModel) {
 
-    //ConsignmentModel.setStatus(ConsignmentStatus.READY);
-    //getModelService().save(ConsignmentModel);
-    final Runnable runnable = new Shipping(
-        Registry.getCurrentTenant().getTenantID(), ConsignmentModel.getPk().getLongValue());
+    final Runnable runnable = new Shipping(Registry.getCurrentTenant().getTenantID(), ConsignmentModel.getPk().getLongValue());
     new Thread(runnable).start();
   }
 
@@ -37,17 +34,13 @@ public class DefaultShipping2ShippedAdapter implements Shipping2ShippedAdapter {
 
     private Logger LOG = Logger.getLogger(DefaultProcess2ReadyShipAdapter.Shipping.class.getName());
 
-    //    private Logger LOG = (Shipping.class.toString());
     private final long consignment;
     private final String tenant;
 
     Shipping(final String tenant, final long consignment) {
       super();
-      LOG.info("Consignment wait shipping Start");
-
       this.consignment = consignment;
       this.tenant = tenant;
-//      this.consignmentProcess = consignmentProcess;
     }
 
     @Override
@@ -56,16 +49,18 @@ public class DefaultShipping2ShippedAdapter implements Shipping2ShippedAdapter {
       try {
 
         if (LOG.isDebugEnabled()) {
-          LOG.info("Consignment wait shipping Start");
-          LOG.info("WAIT_FOR_SHIPPING Start.");
+          LOG.debug("Consignment wait shipping Start");
+          LOG.debug("WAIT_FOR_SHIPPING Start.");
         }
 
         // TODO: 2019/8/29 Check Consignment Status
         while (true) {
           ConsignmentModel consignmentModel = getModelService().get(PK.fromLong(consignment));
-
+            
+          getModelService().refresh(consignmentModel);
+            
           if (LOG.isDebugEnabled()) {
-            LOG.info(consignmentModel.getCode() + " IS WAITING_FOR_SHIPPING Start : ");
+            LOG.debug(consignmentModel.getCode() + " IS WAITING_FOR_SHIPPING Start : "+consignmentModel.getStatus().getCode());
           }
 //          model = getModelService().get(PK.fromLong(processModel.getPk().getLongValue()));
 
@@ -74,9 +69,8 @@ public class DefaultShipping2ShippedAdapter implements Shipping2ShippedAdapter {
               .equals(ConsignmentStatus.DELIVERY_COMPLETED)) {
             for (ConsignmentProcessModel processModel : consignmentModel.getConsignmentProcesses()
             ) {
-              getBusinessProcessService().triggerEvent(
-                  processModel.getCode() + "_"
-                      + Ncipb2bFulfilmentProcessConstants.ALLREADY_SHIPPED);
+              getBusinessProcessService().triggerEvent(processModel.getCode() + "_" + Ncipb2bFulfilmentProcessConstants.ALLREADY_SHIPPED);
+              //LOG.info(consignmentModel.getCode() + " DefaultShipping2ShippedAdapter Consignment Status : "  + consignmentModel.getStatus().getCode());
             }
             break;
           } else {

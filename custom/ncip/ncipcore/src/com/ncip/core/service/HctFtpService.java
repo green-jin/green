@@ -13,12 +13,12 @@ public interface HctFtpService {
 	
 	FTPClient connectFTP();
 	
-	void createExcel() throws Exception;
+	void createExcel(List<ConsignmentModel> consignmentModels);
 	
 	void sendFileToFTP(List<ConsignmentModel> consignmentModels);
 	
 	void getFileFromFTP();
 	
-	void readTXT(File file);
+	boolean readTXT(File file);
 
 }

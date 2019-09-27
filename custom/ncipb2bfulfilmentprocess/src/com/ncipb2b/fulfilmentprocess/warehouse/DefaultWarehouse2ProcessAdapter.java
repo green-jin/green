@@ -43,8 +43,7 @@ public class DefaultWarehouse2ProcessAdapter implements Warehouse2ProcessAdapter
 			}
 			process.setWarehouseConsignmentState(state);
 			getModelService().save(process);
-			getBusinessProcessService().triggerEvent(
-					process.getCode() + "_" + Ncipb2bFulfilmentProcessConstants.WAIT_FOR_WAREHOUSE);
+			getBusinessProcessService().triggerEvent(process.getCode() + "_" + Ncipb2bFulfilmentProcessConstants.WAIT_FOR_WAREHOUSE);
 		}
 	}
 

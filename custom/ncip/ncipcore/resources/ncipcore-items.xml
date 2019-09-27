@@ -56,9 +56,50 @@
     </enumtype>
 
     <!-- Line of Business 行業別(動態加入) -->
-    <enumtype code="LineOfBusiness" autocreate="false" generate="true" dynamic="true"/>
+    <enumtype code="LineOfBusiness" autocreate="false" generate="true" dynamic="true">
+    	<description>行業別</description>
+    </enumtype>
+    
+    <!-- Payment Term 付款條件 -->
+    <enumtype code="PaymentTerm" autocreate="true" generate="true" dynamic="true">
+    	<description>付款條件</description>
+    	<value code="R081">
+    		<description>月結30天期票</description>
+    	</value>
+    	<value code="R082">
+    		<description>月結45天期票</description>
+    	</value>
+    	<value code="R083">
+    		<description>半月結15天匯款</description>
+    	</value>
+    	<value code="R084">
+    		<description>月結30天匯款</description>
+    	</value>
+    	<value code="R091">
+    		<description>預付貨款</description>
+    	</value>
+    	<value code="R092">
+    		<description>款到發貨現金付款</description>
+    	</value>
+    	<value code="R093">
+    		<description>信用卡</description>
+    	</value>
+    	<value code="R094">
+    		<description>貨到付款</description>
+    	</value>
+    </enumtype>
 
   </enumtypes>
+  
+  <relations>
+  
+  	<relation localized="false" code="Company2OrgUnit" autocreate="true" generate="true">
+  		<description>Company 2 OrgUnit</description>
+  		<sourceElement type="Company" cardinality="one" qualifier="unit"/>
+  		<targetElement type="OrgUnit" cardinality="many" collectiontype="list" qualifier="orgUnit"/>
+  	</relation>
+  
+  </relations>
 
   <itemtypes>
     <!-- Add your item definitions here -->
@@ -599,7 +640,7 @@
 						<description>停止交易日</description>
 						<persistence type="property"/>
 					</attribute>
-					<attribute type="java.lang.String" qualifier="zTerm">
+					<attribute type="PaymentTerm" qualifier="zTerm">
 						<description>收款條件</description>
 						<persistence type="property"/>
 					</attribute>
@@ -634,6 +675,31 @@
 					</attribute>
 					<attribute type="java.lang.String" qualifier="poc_wechat">
 						<description>聯絡人WeChat</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+		</typegroup>		
+				<typegroup>
+			<itemtype code="HomeDeliveryCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
+			</itemtype>
+		</typegroup>
+		<typegroup>
+			<itemtype code="FrightCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
+			</itemtype>
+		</typegroup>
+		<typegroup>
+			<itemtype code="LogisticsInfoFromHCTCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.HomeDeliveryCronJob" autocreate="false" generate="false">
+			</itemtype>
+		</typegroup>
+		
+		<!-- New Employee -->
+		<typegroup name="newEmployee">
+			<itemtype code="Employee" autocreate="false" generate="true">
+				<description>Employee</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="email">
 						<persistence type="property"/>
 					</attribute>
 				</attributes>

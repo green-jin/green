@@ -18,5 +18,5 @@ $lang=zh_TW
 
 $storeUid=ncipb2b
 
-UPDATE BaseStore;uid[unique=true];name[lang=$lang]
-;$storeUid;"和之合B2B網站";
+UPDATE BaseStore ; uid[unique=true] ; name[lang=$lang] ; vkorg
+                 ; $storeUid        ; "和之合B2B網站"   ; 1000 
