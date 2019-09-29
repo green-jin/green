@@ -15,7 +15,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <c:if test="${not empty deliveryAddresses}">
-	<button type="button" class="btn btn-default btn-block js-address-book">
+	<button type="button" class="btn btn-secondary btn-block">
 		<spring:theme code="checkout.checkout.multi.deliveryAddress.viewAddressBook" />
 	</button>
 	<br>

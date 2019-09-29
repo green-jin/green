@@ -83,13 +83,13 @@
 		</div>
 	</c:if>
 	<c:if test="${cartData.net && not showTax }">
-		<div class="realTotals">
-			<ycommerce:testId code="cart_taxes_label">
-				<p>
-					<spring:theme code="basket.page.totals.noNetTax"/>
-				</p>
-			</ycommerce:testId>
-		</div>
+<!-- 		<div class="realTotals" > -->
+<%-- 			<ycommerce:testId code="cart_taxes_label"> --%>
+<!-- 				<p> -->
+<%-- 					<spring:theme code="basket.page.totals.noNetTax"/> --%>
+<!-- 				</p> -->
+<%-- 			</ycommerce:testId> --%>
+<!-- 		</div> -->
 	</c:if>
 </div>
 	

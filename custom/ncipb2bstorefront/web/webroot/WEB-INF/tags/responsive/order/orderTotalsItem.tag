@@ -8,6 +8,8 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
+<!-- my-account/order -->
+
 <div class="orderTotal">
     <div class="row">
         <div class="col-xs-6">
@@ -65,10 +67,10 @@
                 </div>
             </div>
         </c:if>
-
+		  
         <div class="col-xs-6">
             <div class="totals">
-                <spring:theme code="text.account.order.orderTotals"/>
+               <spring:theme code="text.account.order.orderTotals"/>
             </div>
         </div>
 

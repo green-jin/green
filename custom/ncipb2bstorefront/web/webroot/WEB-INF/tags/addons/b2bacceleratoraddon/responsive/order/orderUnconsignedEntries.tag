@@ -8,7 +8,7 @@
 
 <!-- my-account/order -->
 
-orderUnconsignedEntries.tag start 
+<!-- addon orderUnconsignedEntries.tag start  -->
 <c:forEach items="${order.unconsignedEntries}" var="entry" varStatus="loop">
     <div class="well well-quinary well-xs">
         <div class="well-headline orderPending">
@@ -59,4 +59,4 @@ orderUnconsignedEntries.tag start
     </ul>
 </c:forEach>
 
-orderUnconsignedEntries.tag end
+<!-- addon orderUnconsignedEntries.tag end -->

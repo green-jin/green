@@ -21,125 +21,102 @@
 </c:if>
 
 <ul class="checkout-order-summary-list">
-<c:if test="${hasShippedItems}">
-	<li class="checkout-order-summary-list-heading">
-		<c:choose>
-			<c:when test="${showDeliveryAddress and not empty deliveryAddress}">
-				<div class="title"><spring:theme code="checkout.pickup.items.to.be.shipped"/></div>
-				<div class="address">
-					${fn:escapeXml(deliveryAddress.title)}&nbsp;${fn:escapeXml(deliveryAddress.firstName)}&nbsp;${fn:escapeXml(deliveryAddress.lastName)}
-					<br>
-					<c:if test="${ not empty deliveryAddress.line1 }">
-						${fn:escapeXml(deliveryAddress.line1)},&nbsp;
-					</c:if>
-					<c:if test="${ not empty deliveryAddress.line2 }">
-						${fn:escapeXml(deliveryAddress.line2)},&nbsp;
-					</c:if>
-					<c:if test="${not empty deliveryAddress.town }">
-						${fn:escapeXml(deliveryAddress.town)},&nbsp;
-					</c:if>
-					<c:if test="${ not empty deliveryAddress.region.name }">
-						${fn:escapeXml(deliveryAddress.region.name)},&nbsp;
-					</c:if>
-					<c:if test="${ not empty deliveryAddress.postalCode }">
-						${fn:escapeXml(deliveryAddress.postalCode)},&nbsp;
-					</c:if>
-					<c:if test="${ not empty deliveryAddress.country.name }">
-						${fn:escapeXml(deliveryAddress.country.name)}
-					</c:if>
-                    <br/>
-					<c:if test="${ not empty deliveryAddress.phone }">
-						${fn:escapeXml(deliveryAddress.phone)}
-					</c:if>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<spring:theme code="checkout.pickup.items.to.be.delivered" />
-			</c:otherwise>
-		</c:choose>
+<table class="table">
+	<c:if test="${hasShippedItems}">
+		<thead class="bg-dark text-white">
+			<tr>
+				<th class="text-center align-middle bg-dark text-white">
+					<spring:theme code="checkout.pickup.items.to.be.delivered" />
+				</th>
+				<th class="bg-dark text-white"></th>
+		 		<th class="bg-dark text-white"></th>   
+			</tr>
+		</thead>
+	</c:if>  
 
-	</li>
-</c:if>
-
-<c:forEach items="${cartData.entries}" var="entry" varStatus="loop">
-	<c:if test="${entry.deliveryPointOfService == null}">
-		<c:url value="${entry.product.url}" var="productUrl"/>
-		<li class="checkout-order-summary-list-items">
-			<div class="thumb">
-				<a href="${fn:escapeXml(productUrl)}">
-					<product:productPrimaryImage product="${entry.product}" format="thumbnail"/>
-				</a>
-			</div>
-			<div class="price"><format:price priceData="${entry.totalPrice}" displayFreeForZero="true"/></div>
-			<div class="details">
-				<div class="name"><a href="${fn:escapeXml(productUrl)}">${fn:escapeXml(entry.product.name)}</a></div>
-				<div>
-                    <span class="label-spacing"><spring:theme code="order.itemPrice" />:</span>
-					<c:if test="${entry.product.multidimensional}">
-						<%-- if product is multidimensional with different prices, show range, else, show unique price --%>
-						<c:choose>
-							<c:when test="${entry.product.priceRange.minPrice.value ne entry.product.priceRange.maxPrice.value}">
-								<format:price priceData="${entry.product.priceRange.minPrice}" /> - <format:price priceData="${entry.product.priceRange.maxPrice}" />
-							</c:when>
-                            <c:when test="${entry.product.priceRange.minPrice.value eq entry.product.priceRange.maxPrice.value}">
-                                <format:price priceData="${entry.product.priceRange.minPrice}" />
-                            </c:when>
-							<c:otherwise>
-								<format:price priceData="${entry.product.price}" />
-							</c:otherwise>
-						</c:choose>
-					</c:if>
-					<c:if test="${! entry.product.multidimensional}">
-						<format:price priceData="${entry.basePrice}" displayFreeForZero="true" />
-					</c:if>
-				</div>
-				<div class="qty"><span><spring:theme code="basket.page.qty"/>:</span>${fn:escapeXml(entry.quantity)}</div>
-				<div>
-					<c:forEach items="${entry.product.baseOptions}" var="option">
-						<c:if test="${not empty option.selected and option.selected.url eq entry.product.url}">
-							<c:forEach items="${option.selected.variantOptionQualifiers}" var="selectedOption">
-								<div>${fn:escapeXml(selectedOption.name)}: ${fn:escapeXml(selectedOption.value)}</div>
-							</c:forEach>
+	<tbody>    		
+		<c:forEach items="${cartData.entries}" var="entry" varStatus="loop">
+			<c:if test="${entry.deliveryPointOfService == null}">
+				<c:url value="${entry.product.url}" var="productUrl"/>
+				<tr>
+					<!-- product images and url -->
+					<th scope="row" class="text-center align-middle">
+						<a href="${fn:escapeXml(productUrl)}">
+							<product:productPrimaryImage product="${entry.product}" format="thumbnail"/>
+						</a>
+					</th> 
+					<td class="text-left align-middle">
+			        	<h6 class="text-primary">
+			          		<a href="${fn:escapeXml(productUrl)}">${fn:escapeXml(entry.product.name)}</a>
+			          	</h6> 
+			          	<!--add  prodcut code -->
+			          	${fn:escapeXml(entry.product.code)}<br>
+			          	<span class="label-spacing"><spring:theme code="order.itemPrice" />:</span>
+						<c:if test="${entry.product.multidimensional}">
+							<%-- if product is multidimensional with different prices, show range, else, show unique price --%>
+							<c:choose>
+								<c:when test="${entry.product.priceRange.minPrice.value ne entry.product.priceRange.maxPrice.value}">
+									<format:price priceData="${entry.product.priceRange.minPrice}" /> - <format:price priceData="${entry.product.priceRange.maxPrice}" />
+								</c:when>
+	                            <c:when test="${entry.product.priceRange.minPrice.value eq entry.product.priceRange.maxPrice.value}">
+	                                <format:price priceData="${entry.product.priceRange.minPrice}" />
+	                            </c:when>
+								<c:otherwise>
+									<format:price priceData="${entry.product.price}" />
+								</c:otherwise>
+							</c:choose>
+							<br>
+						</c:if> 
+						<c:if test="${! entry.product.multidimensional}">
+							<format:price priceData="${entry.basePrice}" displayFreeForZero="true" />
+						</c:if> 
+						<c:forEach items="${entry.product.baseOptions}" var="option">
+							<c:if test="${not empty option.selected and option.selected.url eq entry.product.url}">
+								<c:forEach items="${option.selected.variantOptionQualifiers}" var="selectedOption">
+									<div>${fn:escapeXml(selectedOption.name)}: ${fn:escapeXml(selectedOption.value)}</div>
+								</c:forEach>
+							</c:if>
+						</c:forEach> 
+						<c:if test="${ycommerce:doesPotentialPromotionExistForOrderEntryOrOrderEntryGroup(cartData, entry) && showPotentialPromotions}">
+	                        <c:forEach items="${cartData.potentialProductPromotions}" var="promotion">
+	                            <c:set var="displayed" value="false"/>
+	                            <c:forEach items="${promotion.consumedEntries}" var="consumedEntry">
+	                                <c:if test="${not displayed && ycommerce:isConsumedByEntry(consumedEntry,entry)}">
+	                                    <c:set var="displayed" value="true"/>
+	                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span>
+	                                </c:if>
+	                            </c:forEach>
+	                        </c:forEach>
+						</c:if> 
+						<c:if test="${ycommerce:doesAppliedPromotionExistForOrderEntryOrOrderEntryGroup(cartData, entry)}">
+	                        <c:forEach items="${cartData.appliedProductPromotions}" var="promotion">
+	                            <c:set var="displayed" value="false"/>
+	                            <c:forEach items="${promotion.consumedEntries}" var="consumedEntry">
+	                                <c:if test="${not displayed && ycommerce:isConsumedByEntry(consumedEntry,entry)}">
+	                                    <c:set var="displayed" value="true"/>
+	                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span>
+	                                </c:if>
+	                            </c:forEach>
+	                        </c:forEach>
 						</c:if>
-					</c:forEach>
-
-					<c:if test="${ycommerce:doesPotentialPromotionExistForOrderEntryOrOrderEntryGroup(cartData, entry) && showPotentialPromotions}">
-                        <c:forEach items="${cartData.potentialProductPromotions}" var="promotion">
-                            <c:set var="displayed" value="false"/>
-                            <c:forEach items="${promotion.consumedEntries}" var="consumedEntry">
-                                <c:if test="${not displayed && ycommerce:isConsumedByEntry(consumedEntry,entry)}">
-                                    <c:set var="displayed" value="true"/>
-                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span>
-                                </c:if>
-                            </c:forEach>
-                        </c:forEach>
-					</c:if>
-
-					<c:if test="${ycommerce:doesAppliedPromotionExistForOrderEntryOrOrderEntryGroup(cartData, entry)}">
-                        <c:forEach items="${cartData.appliedProductPromotions}" var="promotion">
-                            <c:set var="displayed" value="false"/>
-                            <c:forEach items="${promotion.consumedEntries}" var="consumedEntry">
-                                <c:if test="${not displayed && ycommerce:isConsumedByEntry(consumedEntry,entry)}">
-                                    <c:set var="displayed" value="true"/>
-                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span>
-                                </c:if>
-                            </c:forEach>
-                        </c:forEach>
-					</c:if>
-					<common:configurationInfos entry="${entry}"/>
-				</div>
-				<c:if test="${entry.product.multidimensional}" >
-					<a href="#" id="QuantityProductToggle" data-index="${loop.index}" class="showQuantityProductOverlay updateQuantityProduct-toggle">
-						<span><spring:theme code="order.product.seeDetails"/></span>
-					</a>
-				</c:if>
-
-				<spring:url value="/checkout/multi/getReadOnlyProductVariantMatrix" var="targetUrl" htmlEscape="false"/>
-				<grid:gridWrapper entry="${entry}" index="${loop.index}" styleClass="display-none"
-					targetUrl="${targetUrl}"/>
-			</div>
-		</li>
-	</c:if>
-</c:forEach>
-
+						<common:configurationInfos entry="${entry}"/>
+						<c:if test="${entry.product.multidimensional}" >
+							<a href="#" id="QuantityProductToggle" data-index="${loop.index}" class="showQuantityProductOverlay updateQuantityProduct-toggle">
+								<span><spring:theme code="order.product.seeDetails"/></span>
+							</a>
+						</c:if>
+<%-- 						<spring:url value="/checkout/multi/getReadOnlyProductVariantMatrix" var="targetUrl" htmlEscape="false"/> --%>
+<%-- 						<grid:gridWrapper entry="${entry}" index="${loop.index}" styleClass="display-none"targetUrl="${targetUrl}"/> --%>
+						<br>
+					   	<span><spring:theme code="basket.page.buy.qty"/>:</span>${fn:escapeXml(entry.quantity)}<br>
+					</td>  
+					<!-- price -->
+					<td class="text-right align-middle">
+						<format:price priceData="${entry.totalPrice}" displayFreeForZero="true"/>
+					</td> 
+				</tr>
+			</c:if>
+		</c:forEach>
+	</tbody>	
+</table>
 </ul>

@@ -11,19 +11,21 @@
 <%@ taglib prefix="order" tagdir="/WEB-INF/tags/responsive/order" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-
-<div class="checkout-summary-headline"><spring:theme code="checkout.multi.order.summary" /></div>
+  
+<h3 class="p-3"><spring:theme code="checkout.multi.order.summary" /></h3>	
 
 <div class="checkout-order-summary">
     <multi-checkout:deliveryCartItems cartData="${cartData}" showDeliveryAddress="${showDeliveryAddress}" />
 
     <c:forEach items="${cartData.pickupOrderGroups}" var="groupData" varStatus="status">
-        <multi-checkout:pickupCartItems cartData="${cartData}" groupData="${groupData}" showHead="true" />
+    	<multi-checkout:pickupCartItems cartData="${cartData}" groupData="${groupData}" showHead="true" />
     </c:forEach>
 
-    <order:appliedVouchers order="${cartData}" />
+    <order:appliedVouchers order="${cartData}" /><br/>
 
-    <multi-checkout:paymentInfo cartData="${cartData}" paymentInfo="${cartData.paymentInfo}" showPaymentInfo="${showPaymentInfo}" />
+    <multi-checkout:paymentInfo cartData="${cartData}" paymentInfo="${cartData.paymentInfo}" showPaymentInfo="${showPaymentInfo}" /><br/>
 
     <multi-checkout:orderTotals cartData="${cartData}" showTaxEstimate="${showTaxEstimate}" showTax="${showTax}" />
 </div>
+
+
