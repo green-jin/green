@@ -65,7 +65,7 @@ public class DefaultB2BApprovalBusinessProcessStrategy implements BusinessProces
 		this.getModelService().save(approvalProcess);
 		this.getBusinessProcessService().startProcess(approvalProcess);
 
-		LOG.info("############# DefaultB2BApprovalBusinessProcessStrategy ############# "
+    LOG.debug("############# DefaultB2BApprovalBusinessProcessStrategy ############# "
 				+ String.format("Started Business process '%s' code: %s for order %s placed by %s", approvalProcessCode,
 					approvalProcess.getCode(), order.getCode(), orderUser.getUid()));
 

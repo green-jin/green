@@ -13,7 +13,8 @@
 <spring:url value="/checkout/multi/termsAndConditions" var="getTermsAndConditionsUrl" htmlEscape="false"/>
 
 <template:page pageTitle="${pageTitle}" hideHeaderLinks="true">
-
+<!-- Step5: checkout/multi/payment-type/choose -->
+<!-- Step5: checkout/multi/payment-type/choose checkoutSummaryPage.jsp -->
 <div class="row">
     <div class="col-sm-6">
     	<div class="checkout-headline">
