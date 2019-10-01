@@ -19,6 +19,21 @@
 		<property name="my_type" type="java.lang.String"/>
 	</bean> -->
 	
+     <bean class="de.hybris.platform.commercefacades.user.data.CustomerData" extends="de.hybris.platform.commercefacades.user.data.PrincipalData">
+		<property name="name1" type="java.lang.String"/>
+		<property name="defaultb2bunit" type="java.lang.String"/>
+		<property name="tel_number" type="java.lang.String"/>
+		<property name="fax_number" type="java.lang.String"/>
+		<property name="conno" type="java.lang.String"/>
+		<property name="edate" type="java.util.Date"/>
+		<property name="cell_number" type="java.lang.String"/>
+	    <property name="poc_line" type="java.lang.String"/>
+	    <property name="poc_wechat" type="java.lang.String"/>
+	    <property name="uid" type="java.lang.String"/>
+	</bean>
+	
+	
+	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="genders" type="java.util.List&lt;com.ncip.facades.product.data.GenderData>" />
 		<property name="vkorg" type="java.lang.String"/>

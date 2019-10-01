@@ -29,6 +29,35 @@
 		<property name="cartService" ref="cartService"/>
 	</bean>
 	
+    <alias name="defaultNcipCustomerFacade" alias="customerFacade"/>
+	<bean id="defaultNcipCustomerFacade" class="com.ncip.facades.account.impl.DefaultNcipCustomerFacade" parent="defaultCustomerFacade" >
+		<property name="userService" ref="userService"/>
+		<property name="ncipCustomerAccountService" ref="customerAccountService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="commerceCartService" ref="commerceCartService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="userFacade" ref="userFacade"/>
+
+		<property name="addressReversePopulator" ref="addressReversePopulator"/>
+		<property name="customerReversePopulator" ref="customerReversePopulator"/>
+		<property name="customerConverter" ref="customerConverter"/>
+		<property name="addressConverter" ref="addressConverter"/>
+		<property name="titleConverter" ref="titleConverter"/>
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter"/>
+
+		<property name="customerNameStrategy" ref="customerNameStrategy"/>
+		<property name="passwordEncoderService" ref="passwordEncoderService"/>
+		<property name="orderFacade" ref="orderFacade"/>
+		<property name="cartCleanStrategy" ref="cartValidationStrategy" />
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	
 	<bean id="carouselProductConverter" parent="defaultProductConverter">
 		<property name="populators">
 			<list merge="true">
@@ -76,7 +105,18 @@
 	<bean id="defaultGenderDataPopulator" class="com.ncip.facades.populators.GenderDataPopulator" >
 		<property name="typeService" ref="typeService"/>
 	</bean>
-	
+    
+    <!-- add customerPopulator -->
+    <alias name="ncipCustomerPopulator" alias="customerPopulator"/>
+	<bean id="ncipCustomerPopulator"
+			class="com.ncip.facades.populators.NcipCustomerPopulator">
+		<property name="currencyConverter" ref="currencyConverter"/>
+		<property name="languageConverter" ref="languageConverter"/>
+		<property name="customerNameStrategy" ref="customerNameStrategy"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+    
+    
 	<!-- add ProductBasicPopulator -->
     <alias name="ncipProductBasicPopulator" alias="productBasicPopulator"/>
 	<bean id="ncipProductBasicPopulator" parent="defaultProductBasicPopulator"

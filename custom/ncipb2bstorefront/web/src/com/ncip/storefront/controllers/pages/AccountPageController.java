@@ -58,10 +58,13 @@ import de.hybris.platform.servicelayer.exceptions.AmbiguousIdentifierException;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
+import com.ncip.facades.account.NcipCustomerFacade;
 import com.ncip.storefront.controllers.ControllerConstants;
-
+import com.ncip.storefront.forms.NcipUpdateProfileForm;
+import com.ncip.storefront.forms.validation.impl.NcipProfileValidator;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -179,6 +182,9 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
 
+	@Resource(name = "ncipProfileValidator")
+	private NcipProfileValidator ncipProfileValidator;
+
 	@Resource(name = "emailValidator")
 	private EmailValidator emailValidator;
 
@@ -214,6 +220,11 @@ public class AccountPageController extends AbstractSearchPageController
 	{
 		return profileValidator;
 	}
+	
+	protected NcipProfileValidator getNcipProfileValidator()
+    {
+        return ncipProfileValidator;
+    }
 
 	protected EmailValidator getEmailValidator()
 	{
@@ -485,12 +496,27 @@ public class AccountPageController extends AbstractSearchPageController
 		model.addAttribute(TITLE_DATA_ATTR, userFacade.getTitles());
 
 		final CustomerData customerData = customerFacade.getCurrentCustomer();
-		final UpdateProfileForm updateProfileForm = new UpdateProfileForm();
+		
+	
+		final NcipUpdateProfileForm updateProfileForm = new NcipUpdateProfileForm();
 
 		updateProfileForm.setTitleCode(customerData.getTitleCode());
 		updateProfileForm.setFirstName(customerData.getFirstName());
 		updateProfileForm.setLastName(customerData.getLastName());
-
+		updateProfileForm.setDefaultb2bunit(customerData.getDefaultb2bunit());
+		updateProfileForm.setPoc_line(customerData.getPoc_line());
+		updateProfileForm.setTel_number(customerData.getTel_number());
+		updateProfileForm.setFax_number(customerData.getFax_number());
+		updateProfileForm.setName(customerData.getName());
+		updateProfileForm.setName1(customerData.getName1());
+		updateProfileForm.setConno(customerData.getConno());
+		updateProfileForm.setEdate(customerData.getEdate());
+		updateProfileForm.setCell_number(customerData.getCell_number());
+		updateProfileForm.setPoc_line(customerData.getPoc_line());
+		updateProfileForm.setPoc_wechat(customerData.getPoc_wechat());
+		updateProfileForm.setUid(customerData.getUid());
+		updateProfileForm.setEmail(customerData.getEmail());
+	
 		model.addAttribute("updateProfileForm", updateProfileForm);
 
 		storeCmsPageInModel(model, getContentPageForLabelOrId(UPDATE_PROFILE_CMS_PAGE));
@@ -503,10 +529,11 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/update-profile", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String updateProfile(final UpdateProfileForm updateProfileForm, final BindingResult bindingResult, final Model model,
+	public String updateProfile(final NcipUpdateProfileForm updateProfileForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
-		getProfileValidator().validate(updateProfileForm, bindingResult);
+		getNcipProfileValidator().validate(updateProfileForm, bindingResult);
+//		getProfileValidator().validate(updateProfileForm, bindingResult);
 
 		String returnAction = REDIRECT_TO_UPDATE_PROFILE;
 		final CustomerData currentCustomerData = customerFacade.getCurrentCustomer();
@@ -514,6 +541,19 @@ public class AccountPageController extends AbstractSearchPageController
 		customerData.setTitleCode(updateProfileForm.getTitleCode());
 		customerData.setFirstName(updateProfileForm.getFirstName());
 		customerData.setLastName(updateProfileForm.getLastName());
+		customerData.setDefaultb2bunit(updateProfileForm.getDefaultb2bunit());
+		customerData.setPoc_line(updateProfileForm.getPoc_line());
+		customerData.setTel_number(updateProfileForm.getTel_number());
+		customerData.setFax_number(updateProfileForm.getFax_number());
+		customerData.setName(updateProfileForm.getName());
+		customerData.setName1(updateProfileForm.getName1());
+		customerData.setConno(updateProfileForm.getConno());
+		customerData.setEdate(updateProfileForm.getEdate());
+		customerData.setCell_number(updateProfileForm.getCell_number());
+		customerData.setPoc_line(updateProfileForm.getPoc_line());
+		customerData.setPoc_wechat(updateProfileForm.getPoc_wechat());
+		customerData.setEmail(updateProfileForm.getEmail());
+		
 		customerData.setUid(currentCustomerData.getUid());
 		customerData.setDisplayUid(currentCustomerData.getDisplayUid());
 
@@ -524,7 +564,9 @@ public class AccountPageController extends AbstractSearchPageController
 
 		if (bindingResult.hasErrors())
 		{
-			returnAction = setErrorMessagesAndCMSPage(model, UPDATE_PROFILE_CMS_PAGE);
+//			returnAction = setErrorMessagesAndCMSPage(model, UPDATE_PROFILE_CMS_PAGE);
+		    GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.ERROR_MESSAGES_HOLDER,
+              "profile.validation.error", null);
 		}
 		else
 		{
@@ -537,8 +579,10 @@ public class AccountPageController extends AbstractSearchPageController
 			}
 			catch (final DuplicateUidException e)
 			{
-				bindingResult.rejectValue("email", "registration.error.account.exists.title");
-				returnAction = setErrorMessagesAndCMSPage(model, UPDATE_PROFILE_CMS_PAGE);
+			  GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.ERROR_MESSAGES_HOLDER,
+                  "registration.error.account.exists.title", null);
+//				bindingResult.rejectValue("email", "registration.error.account.exists.title");
+//				returnAction = setErrorMessagesAndCMSPage(model, UPDATE_PROFILE_CMS_PAGE);
 			}
 		}
 

@@ -13,11 +13,12 @@
 
 	<cart:cartValidation/>
 	<cart:cartPickupValidation/>
-
-	<div class="cart-top-bar">
+	<div class="col-lg-10 container-fluid">
+	<div class="cart-top-bar" style="background: 0 !important;">
         <div class="text-right">
             <spring:theme var="textHelpHtml" code="text.help" />
-            <a href="" class="help js-cart-help" data-help="${fn:escapeXml(textHelpHtml)}">${textHelpHtml}
+<%--             <a href="" class="help js-cart-help" data-help="${fn:escapeXml(textHelpHtml)}">${textHelpHtml} --%>
+		    <a href="" class="js-cart-help" data-help="${fn:escapeXml(textHelpHtml)}">${textHelpHtml}
                 <span class="glyphicon glyphicon-info-sign"></span>
             </a>
             <div class="help-popup-content-holder js-help-popup-content">
@@ -32,6 +33,7 @@
 	</div>
 
 	<div>
+			
 		<div>
             <cms:pageSlot position="TopContent" var="feature">
                 <cms:component component="${feature}" element="div" class="yComponentWrapper"/>
@@ -58,5 +60,6 @@
                 <cms:component component="${feature}" element="div" class="yComponentWrapper content__empty"/>
             </cms:pageSlot>
 		</c:if>
+	</div>
 	</div>
 </template:page>
