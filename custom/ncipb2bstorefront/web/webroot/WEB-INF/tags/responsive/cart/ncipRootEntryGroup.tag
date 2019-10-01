@@ -7,13 +7,14 @@
 <%@ taglib prefix="cart" tagdir="/WEB-INF/tags/responsive/cart" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <%--
    Represents root entry group on cart page
 --%>
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
-<table>
+<!-- <tbody> -->
     <c:if test="${entryGroup.groupType.code != 'STANDALONE'}">
         <tr class="entry-group-header">
             <th>
@@ -47,13 +48,9 @@
         <c:otherwise>
             <c:if test="${not empty entryGroup.orderEntries}">
                 <c:forEach items="${entryGroup.orderEntries}" var="entry">
-                    <tr>
-                        <td>
-                            <cart:cartItem cartData="${cartData}" entry="${entry}" index="${entryGroup.groupNumber}"/>
-                        </td>
-                    </tr>
+                     <cart:ncipCartItem cartData="${cartData}" entry="${entry}" index="${entryGroup.groupNumber}"/>
                 </c:forEach>
             </c:if>
         </c:otherwise>
     </c:choose>
-</table>
+<!-- </tbody> -->
