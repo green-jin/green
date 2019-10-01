@@ -18,4 +18,4 @@ $lang=zh_TW
  
 # Create Content Catalog
 UPDATE ContentCatalog ; id[unique=true] ; name[lang=$lang] 
-                      ; $contentCatalog ; 和之合產品目錄          
+                      ; $contentCatalog ; 和之合內容目錄
