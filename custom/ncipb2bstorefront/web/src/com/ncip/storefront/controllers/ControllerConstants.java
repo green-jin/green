@@ -65,7 +65,7 @@ public interface ControllerConstants
 			String SubCategoryListComponent = _Prefix + SubCategoryListComponentModel._TYPECODE + _Suffix; // NOSONAR
 			String SimpleResponsiveBannerComponent = _Prefix + SimpleResponsiveBannerComponentModel._TYPECODE + _Suffix; // NOSONAR
 			String CMSTabParagraphContainer = _Prefix + CMSTabParagraphContainerModel._TYPECODE + _Suffix; // NOSONAR
-			
+
 			String BrandContainerComponent = _Prefix + BrandContainerComponentModel._TYPECODE + _Suffix; //經銷商專區,我們的保證 Container
 			String HomeSimpleBannerComponent = _Prefix + HomeSimpleBannerComponentModel._TYPECODE + _Suffix; //經銷商專區,我們的保證 Component
 			 

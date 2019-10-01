@@ -2,10 +2,12 @@
 <%@ attribute name="code" required="true" type="java.lang.String" %>
 <%@ attribute name="alt" required="false" type="java.lang.String" %>
 <%@ attribute name="title" required="false" type="java.lang.String" %>
+<%@ attribute name="format" required="false" type="java.lang.String" %>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ attribute name="forOrderForm" required="false" type="java.lang.Boolean" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 <spring:theme code="${code}" text="/" var="imagePath" htmlEscape="false"/>
@@ -25,4 +27,16 @@
 	</c:otherwise>
 </c:choose>
 
-<img class="p-1" src="${fn:escapeXml(imageUrl)}" alt="${fn:escapeXml(alt)}" title="${fn:escapeXml(title)}" />
+	<c:choose>
+<%--        	For Ncip Orderform--%>
+		<c:when test="${forOrderForm}">
+			<img width="64" height="64" src="${fn:escapeXml(imageUrl)}" alt="${fn:escapeXml(alt)}" title="${fn:escapeXml(title)}" />
+		</c:when>
+        <%--			Hybris原生--%>
+		<c:otherwise>
+			<img class="p-1" src="${fn:escapeXml(imageUrl)}" alt="${fn:escapeXml(alt)}" title="${fn:escapeXml(title)}" />
+		</c:otherwise>
+	</c:choose>
+
+
+

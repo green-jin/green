@@ -26,11 +26,11 @@
 </c:if>
 
 <%--庫存不足，下單後30天(1.2階段)--%>
-<%--<input type="hidden" id="stockAmount" value="${product.stock.stockAmount}" ></input>--%>
+<input type="hidden" id="stockAmount" value="${product.stock.stockAmount}" ></input>
 
 <%--<span class="text-danger"><spring:theme code="product.product.produceMsg1" arguments="${product.plifz}" var="stockMsg"/></span>--%>
 
-<%--<input type="hidden" id="stockMessage" value="${stockMsg}" ></input>--%>
+<input type="hidden" id="stockMessage" value="${stockMsg}" ></input>
 
 
 <div class="row align-item-center my-3 addtocart-component">
@@ -172,19 +172,21 @@
 <%--</div>--%>
 
 
-<script type="text/javascript">
-  function ShowValue() {
-    var purchase = document.getElementById("pdpAddtoCartInput").value;
-    var stockAmount = document.getElementById("stockAmount").value;
-    var stockMsg = document.getElementById("stockMessage").value;
+<%--<script type="text/javascript">--%>
+<%--  function ShowValue() {--%>
+<%--    alert( document.getElementById("pdpAddtoCartInput").value);--%>
 
-    var purchaseAmt = parseInt(purchase, 10);
+<%--    var purchase = document.getElementById("pdpAddtoCartInput").value;--%>
+<%--    // var stockAmount = document.getElementById("stockAmount").value;--%>
+<%--    var stockMsg = document.getElementById("stockMessage").value;--%>
 
-    if (purchaseAmt > stockAmount) {
-      alert(stockMsg);
-    }
-  }
+<%--    var purchaseAmt = parseInt(purchase, 10);--%>
 
-</script>
+<%--    if (purchaseAmt > stockAmount) {--%>
+<%--      alert(stockMsg);--%>
+<%--    }--%>
+<%--  }--%>
+
+<%--</script>--%>
 
 

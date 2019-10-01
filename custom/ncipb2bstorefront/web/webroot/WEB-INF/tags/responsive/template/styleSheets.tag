@@ -30,11 +30,10 @@
         <!--<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/ncip/bootstrap.css.map"/>
         <link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/ncip/bootstrap.min.css.map"/>-->
 
-        <link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/style_ncip.css"/>
+<%--        <link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/style_ncip.css"/>--%>
 
-		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/hb_ncip.css"/>
-		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/hb_ncip0923.css"/>
-
+<%--		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/hb_ncip.css"/>--%>
+		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/hb_ncip0926.css"/>
 
 
 

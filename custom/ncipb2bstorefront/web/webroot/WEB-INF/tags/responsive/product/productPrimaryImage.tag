@@ -11,6 +11,7 @@
 <c:set value="${fn:escapeXml(product.name)}" var="productNameHtml"/>
 
 <c:choose>
+<%--	圖片非空--%>
 	<c:when test="${not empty primaryImage}">
 		<c:choose>
 			<c:when test='${fn:startsWith(primaryImage.url, originalContextPath)}'>
@@ -24,14 +25,44 @@
 		<c:choose>
 			<c:when test="${not empty primaryImage.altText}">
 				<c:set value="${fn:escapeXml(primaryImage.altText)}" var="altTextHtml"/>
-				<img class="card-img-top" src="${fn:escapeXml(primaryImageUrl)}" alt="${altTextHtml}" title="${altTextHtml}"/>
+				<c:choose>
+					<%--	For Ncip Orderform--%>
+					<c:when test="${format.equals('thumbnail')  || format.equals('cartIcon') }">
+						<img width="64" height="64" src="${fn:escapeXml(primaryImageUrl)}" alt="${altTextHtml}" title="${altTextHtml}"/>
+					</c:when>
+					<%--			Hybris原生--%>
+					<c:otherwise>
+						<img class="card-img-top" src="${fn:escapeXml(primaryImageUrl)}" alt="${altTextHtml}" title="${altTextHtml}"/>
+					</c:otherwise>
+				</c:choose>
 			</c:when>
+
 			<c:otherwise>
-                <img class="card-img-top" src="${fn:escapeXml(primaryImageUrl)}" alt="${productNameHtml}" title="${productNameHtml}"/>
+				<c:choose>
+					<%--	For Ncip Orderform--%>
+					<c:when test="${format.equals('thumbnail')  || format.equals('cartIcon') }">
+						<img width="64" height="64" src="${fn:escapeXml(primaryImageUrl)}" alt="${productNameHtml}" title="${productNameHtml}"/>
+					</c:when>
+					<%--			Hybris原生--%>
+					<c:otherwise>
+						<img class="card-img-top" src="${fn:escapeXml(primaryImageUrl)}" alt="${productNameHtml}" title="${productNameHtml}"/>
+					</c:otherwise>
+				</c:choose>
 			</c:otherwise>
 		</c:choose>
 	</c:when>
+
+<%--	圖片為空--%>
 	<c:otherwise>
-		<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
+		<c:choose>
+			<%--	For Ncip Orderform--%>
+			<c:when test="${format.equals('thumbnail') || format.equals('cartIcon') }">
+				<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}" forOrderForm="true"/>
+			</c:when>
+<%--			Hybris原生--%>
+			<c:otherwise>
+				<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
+			</c:otherwise>
+		</c:choose>
 	</c:otherwise>
 </c:choose>
