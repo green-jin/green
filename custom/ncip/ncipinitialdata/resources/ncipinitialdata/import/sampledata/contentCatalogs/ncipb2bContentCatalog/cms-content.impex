@@ -1381,57 +1381,48 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; n
 
 ############# NCIP Category End ##################
 
-
 ############ Product Page Add Tab ###################
 # JSP include components
 UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]       ; title[lang = en]
                           ;                          ; ProductDownloadComponent ; 相關下載
                           ;                          ; ProductVideoComponent    ; 產品3D影片
+                          ;                          ; ProductDeliveryComponent ; 運送(再議)
 
 # CMS tabs components
 INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]       ; name                          ; page                                                            ; actions(uid, $contentCV); &componentRef
                                  ;                          ; ProductDownloadComponent ; Product Related Downloads Tab ; /WEB-INF/views/responsive/pages/product/productDownloadsTab.jsp ;                         ; ProductDownloadComponent
                                  ;                          ; ProductVideoComponent    ; Product 3D Videos Tab         ; /WEB-INF/views/responsive/pages/product/productVideosTab.jsp    ;                         ; ProductVideoComponent
+                                 ;                          ; ProductDeliveryComponent ; Product Delivery Tab          ; /WEB-INF/views/responsive/pages/product/productDeliveryTab.jsp  ;                         ; ProductDeliveryComponent
 
-INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = true]; name          ; visible; simpleCMSComponents(uid, $contentCV)                                                                                                      ; &componentRef
-                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductSpecsTabComponent,ProductReviewsTabComponent,ProductDownloadComponent,ProductVideoComponent,deliveryTab ; TabPanelContainer
+
+INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = true]; name          ; visible; simpleCMSComponents(uid, $contentCV)                                                               ; &componentRef
+                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductDownloadComponent,ProductVideoComponent,ProductDeliveryComponent ; TabPanelContainer
 
 ######################################
 
 ############ Add Component ###################
-
-
 INSERT_UPDATE ComponentTypeGroups2ComponentType; source(code)[unique = true]; target(code)[unique = true]
                                                ; minicart                   ; NcipOrderToolsComponent
                                                ; headerlinks                ; NcipOrderToolsComponent
-                                               ; minicart                   ; NcipMiniCartComponent
                                                ; navigation                 ; NcipCategoryNavigationComponent
+                                               ; narrow                     ; NcipProductAddToCartComponent
+                                               ; wide                       ; NcipProductAddToCartComponent
 
-INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
-                         ;                          ; MiniCartSlot      ; NcipOrderToolsComponentA,NcipMiniCart
-#                         ;                          ; NavigationBarSlot ; Ncipb2bCategoryNavComponent,NcipbreadcrumbComponent
-                         ;                          ; NavigationBarSlot ; Ncipb2bCategoryNavComponent
+INSERT_UPDATE NcipProductAddToCartComponent; $contentCV[unique = true]; uid[unique = true]; name                     ; actions(&actionRef)                 ; &componentRef
+                                           ;                          ; AddToCart         ; Ncip Product Add To Cart ; AddToCartAction,PickUpInStoreAction ; AddToCart
+
 
 INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]       ; name                       ; styleClass      ; &componentRef            ; navigationNode(&nodeRef)
                                      ;                          ; NcipOrderToolsComponentA ; Ncip Order Tools Component ; nav-order-tools ; NcipOrderToolsComponentA ; OrderToolsNavNode
 
-INSERT_UPDATE NcipMiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name           ; &componentRef; totalDisplay(code); shownProductCount; lightboxBannerComponent(&componentRef)
-                                   ;                          ; NcipMiniCart      ; Ncip Mini Cart ; NcipMiniCart ; SUBTOTAL          ; 3                ; LightboxHomeDeliveryBannerComponent
+
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
+                         ;                          ; MiniCartSlot      ; NcipOrderToolsComponentA,MiniCart
+                         ;                          ; NavigationBarSlot ; Ncipb2bCategoryNavComponent
+
 
 INSERT_UPDATE NcipCategoryNavigationComponent; $contentCV[unique = true]; uid[unique = true]          ; name                               ; styleClass; &componentRef               ; navigationNode(&nodeRef); wrapAfter
                                              ;                          ; Ncipb2bCategoryNavComponent ; Ncip Category Navigation Component ;           ; Ncipb2bCategoryNavComponent ; ncipb2bCategoryNavNode  ; 10
-
-#INSERT_UPDATE NcipBreadcrumbComponent; $contentCV[unique = true]; uid[unique = true]      ; name                          ; &componentRef
-#                                     ;                          ; NcipbreadcrumbComponent ; Ncip Breadcrumb CMS Component ; NcipbreadcrumbComponent
-
-
-
-### components in slot 2A ##
-#INSERT_UPDATE NcipOrderToolsComponent; $contentCV[unique = true]; uid[unique = true]; name                ; &componentRef     ; urlLink
-#    ;                          ; NcipOrderToolsComponent ;Logo Component ; NcipLogoComponentA ; "/"
-#
-#INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; cmsComponents(&componentRef)
-#                         ;                          ; SiteLogoSlot      ; NcipLogoComponentA
 
 
 ############ Add Component End###################

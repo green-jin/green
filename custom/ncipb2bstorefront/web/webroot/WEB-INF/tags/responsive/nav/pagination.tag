@@ -38,11 +38,8 @@
 <c:set var="showTotals"
        value="${empty showTopTotals ? true : showTopTotals}" />
 
-<c:if test="${!top}">
-	<hr>
-</c:if>
-
-<c:if test="${searchPageData.pagination.totalNumberOfResults == 0 && top && showTotals}">
+<c:if
+        test="${searchPageData.pagination.totalNumberOfResults == 0 && top && showTotals}">
     <div class="paginationBar top clearfix">
         <ycommerce:testId code="searchResults_productsFound_label">
             <div class="totalResults">
@@ -67,7 +64,7 @@
         <form id="sortForm${top ? '1' : '2'}" name="sortForm${top ? '1' : '2'}" method="get"
               action="#">
             <select id="sortOptions${top ? '1' : '2'}" name="sort"  class="custom-select">
-                <option selected><spring:theme
+                <option selected disabled><spring:theme
                         code="${themeMsgKey}.sortTitle" /></option>
                 <c:forEach items="${searchPageData.sorts}" var="sort">
                     <option value="${fn:escapeXml(sort.code)}" ${sort.selected? 'selected="selected"' : ''}>
@@ -129,6 +126,8 @@
     </c:if>
     <c:if test="${top && showTotals}">
         <hr>
+        <h4><spring:theme
+                code="product.list.productlist"/></h4>
         <div class="row">
             <div class="col-lg-6">
                 <div class="text-left text-secondary">
@@ -141,8 +140,8 @@
                                         <spring:theme code="${themeMsgKey}.totalResultsSingleOrder" />
                                     </c:when>
                                     <c:when test="${searchPageData.pagination.numberOfPages <= 1}">
-                                        <spring:theme code="${themeMsgKey}.totalResultsSinglePag"
-                                                      arguments="${searchPageData.pagination.totalNumberOfResults}" />
+                                        <p><spring:theme code="${themeMsgKey}.totalResultsSinglePag"
+                                                      arguments="${searchPageData.pagination.totalNumberOfResults}" /></p>
                                     </c:when>
                                     <c:otherwise>
                                         <c:set var="currentPageItems"
@@ -151,14 +150,14 @@
                                                value="${(currentPageItems > searchPageData.pagination.totalNumberOfResults ? searchPageData.pagination.totalNumberOfResults : currentPageItems)}" />
                                         <c:set var="currentPage"
                                                value="${searchPageData.pagination.currentPage * searchPageData.pagination.pageSize + 1} - ${upTo}" />
-                                        <spring:theme code="${themeMsgKey}.totalResultsCurrPage"
-                                                      arguments="${currentPage},${searchPageData.pagination.totalNumberOfResults}" />
+                                        <p><spring:theme code="${themeMsgKey}.totalResultsCurrPage"
+                                                      arguments="${currentPage},${searchPageData.pagination.totalNumberOfResults}" /></p>
                                     </c:otherwise>
                                 </c:choose>
                             </c:when>
                             <c:otherwise>
-                                <spring:theme code="${themeMsgKey}.totalResults"
-                                              arguments="${searchPageData.pagination.totalNumberOfResults}" />
+                                <p><spring:theme code="${themeMsgKey}.totalResults"
+                                              arguments="${searchPageData.pagination.totalNumberOfResults}" /></p>
                             </c:otherwise>
                         </c:choose>
                     </ycommerce:testId>
