@@ -20,7 +20,7 @@
             <li class="item__quantity"><spring:theme code="basket.page.qty"/></li>
             <li class="item__delivery"><spring:theme code="basket.page.delivery"/></li>
             <li class="item__total--column"><spring:theme code="basket.page.total"/></li>
-            <li class="item__remove"></li>
+            <li class="item__remove"><spring:theme code="basket.page.delete"/></li>
         </ul>
     </li>
 

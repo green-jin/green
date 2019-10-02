@@ -10,27 +10,48 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <ycommerce:testId code="checkoutSteps">
-    <div class="checkout-steps ${fn:escapeXml(cssClass)}">
+${fn:escapeXml(cssClass)} 
+     <div class="checkout-steps ${fn:escapeXml(cssClass)}">
         <c:forEach items="${checkoutSteps}" var="checkoutStep" varStatus="status">
             <c:url value="${checkoutStep.url}" var="stepUrl"/>
             <c:choose>
                 <c:when test="${progressBarId eq checkoutStep.progressBarId}">
                     <c:set scope="page"  var="activeCheckoutStepNumber"  value="${checkoutStep.stepNumber}"/>
                     <a href="${fn:escapeXml(stepUrl)}" class="step-head js-checkout-step active">
-                        <div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>
+                        <h5>
+                        	<c:choose>
+								<c:when test="${checkoutStep.progressBarId eq 'deliveryAddress.noPickup'}">   
+									<div class="title"><spring:theme code="checkout.multi.deliveryAddress.shippingAddress"/></div>
+								</c:when> 
+								<c:otherwise>  
+									<div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>  
+								</c:otherwise>
+							</c:choose> 
+                        	
+                        </h5>
                     </a>
                     <div class="step-body"><jsp:doBody/></div>
                 </c:when>
                 <c:when test="${checkoutStep.stepNumber > activeCheckoutStepNumber}">
                     <a href="${fn:escapeXml(stepUrl)}" class="step-head js-checkout-step ">
-                        <div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>
+                    	<h5>
+                        	<c:choose>
+								<c:when test="${checkoutStep.progressBarId eq 'deliveryAddress.noPickup'}">   
+									<div class="title"><spring:theme code="checkout.multi.deliveryAddress.shippingAddress"/></div>
+								</c:when> 
+								<c:otherwise>  
+									<div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>  
+								</c:otherwise>
+							</c:choose> 
+                        	
+                        </h5> 
                     </a>
                 </c:when>
                 <c:otherwise>
                     <a href="${fn:escapeXml(stepUrl)}" class="step-head js-checkout-step ">
                         <div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>
                         <div class="edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="text-primary fa fa-pencil fa-2x"></span>
                         </div>
                     </a>
                 </c:otherwise>

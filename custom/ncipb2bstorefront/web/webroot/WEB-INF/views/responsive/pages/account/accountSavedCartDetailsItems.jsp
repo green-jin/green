@@ -5,7 +5,7 @@
 <%@ taglib prefix="order" tagdir="/WEB-INF/tags/responsive/order" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-		
+
 <ul class="item__list">
     <li class="hidden-xs hidden-sm">
         <ul class="item__list--header">

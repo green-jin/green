@@ -6,6 +6,9 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
+<!-- my-account/order -->
+
+<!-- addon orderUnconsignedEntries.tag start  -->
 <c:forEach items="${order.unconsignedEntries}" var="entry" varStatus="loop">
     <div class="well well-quinary well-xs">
         <div class="well-headline orderPending">
@@ -55,3 +58,5 @@
         <order:orderEntryDetails orderEntry="${entry}" order="${order}" itemIndex="${loop.index}"/>
     </ul>
 </c:forEach>
+
+<!-- addon orderUnconsignedEntries.tag end -->

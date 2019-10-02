@@ -7,47 +7,99 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<div class="account-section-header">
-	<div class="row">
-		<div class="container-lg col-md-6">
-			<spring:theme code="text.account.update.email.address"/>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="container-lg col-md-6">
-		<div class="account-section-content">
-			<div class="account-section-form">
-				<form:form action="update-email" method="post" commandName="updateEmailForm">
-					<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true"/>
-					<formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true"/>
-					<formElement:formPasswordBox idKey="profile.pwd" labelKey="profile.pwd" path="password" inputCSS="text form-control" mandatory="true"/>
-					<input type="hidden" id="recaptchaChallangeAnswered" value="${fn:escapeXml(requestScope.recaptchaChallangeAnswered)}"/>
-					<div class="form_field-elements control-group js-recaptcha-captchaaddon"></div>
-					<div class="form-actions">
-						<div class="row">
-							<div class="col-sm-6 col-sm-push-6">
-								<div class="accountActions">
-									<ycommerce:testId code="email_saveEmail_button">
+<div class="col-lg-10 container-fluid">
+
+  <!-- Page Content -->
+	<div class="row pb-3">
+	  <div class="col-md-3"></div>
+	  <div class="col-md-6">
+		  <h3 class="p-3"><spring:theme code="text.account.update.email.address"/></h3>
+		  
+		  <hr>
+  			<form:form action="update-email" method="post" commandName="updateEmailForm">
+  			<input type="hidden" id="recaptchaChallangeAnswered" value="${fn:escapeXml(requestScope.recaptchaChallangeAnswered)}"/>
+			<div class="form-group">
+				<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true"/>
+			</div>
+
+			<div class="form-group">
+			<formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true"/>
+			</div>
+
+			<div class="form-group">
+			<formElement:formPasswordBox idKey="profile.pwd" labelKey="profile.pwd" path="password" inputCSS="text form-control" mandatory="true"/>
+			</div>
+
+			
+
+			<div class="row">
+			<div class="col-lg-6 col-sm-12 mb-3">
+				<ycommerce:testId code="email_cancelEmail_button">
+										<button type="button" class="btn btn-secondary btn-block backToHome">
+											<spring:theme code="text.account.profile.cancel" />
+										</button>
+									</ycommerce:testId>
+			</div>
+			<div class="col-lg-6 col-sm-12 mb-3">
+												<ycommerce:testId code="email_saveEmail_button">
 										<button type="submit" class="btn btn-primary btn-block">
 											<spring:theme code="text.account.profile.saveUpdates" />
 										</button>
 									</ycommerce:testId>
-								</div>
-							</div>
-							<div class="col-sm-6 col-sm-pull-6">
-								<div class="accountActions">
-									<ycommerce:testId code="email_cancelEmail_button">
-										<button type="button" class="btn btn-default btn-block backToHome">
-											<spring:theme code="text.account.profile.cancel" />
-										</button>
-									</ycommerce:testId>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form:form>
 			</div>
-		</div>
-	</div>
+			</div>
+			</form:form>
+  	</div>
+				
 </div>
+		
+	  <div class="col-md-3"></div>
+	
+  <!-- /.container -->
+	</div>  
+
+
+<!-- <div class="account-section-header"> -->
+<!-- 	<div class="row"> -->
+<!-- 		<div class="container-lg col-md-6"> -->
+<%-- 			<spring:theme code="text.account.update.email.address"/> --%>
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+<!-- <div class="row"> -->
+<!-- 	<div class="container-lg col-md-6"> -->
+<!-- 		<div class="account-section-content"> -->
+<!-- 			<div class="account-section-form"> -->
+<%-- 				<form:form action="update-email" method="post" commandName="updateEmailForm"> --%>
+<%-- 					<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true"/> --%>
+<%-- 					<formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true"/> --%>
+<%-- 					<formElement:formPasswordBox idKey="profile.pwd" labelKey="profile.pwd" path="password" inputCSS="text form-control" mandatory="true"/> --%>
+<%-- 					<input type="hidden" id="recaptchaChallangeAnswered" value="${fn:escapeXml(requestScope.recaptchaChallangeAnswered)}"/> --%>
+<!-- 					<div class="form_field-elements control-group js-recaptcha-captchaaddon"></div> -->
+<!-- 					<div class="form-actions"> -->
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col-sm-6 col-sm-push-6"> -->
+<!-- 								<div class="accountActions"> -->
+<%-- 									<ycommerce:testId code="email_saveEmail_button"> --%>
+<!-- 										<button type="submit" class="btn btn-primary btn-block"> -->
+<%-- 											<spring:theme code="text.account.profile.saveUpdates" /> --%>
+<!-- 										</button> -->
+<%-- 									</ycommerce:testId> --%>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-sm-6 col-sm-pull-6"> -->
+<!-- 								<div class="accountActions"> -->
+<%-- 									<ycommerce:testId code="email_cancelEmail_button"> --%>
+<!-- 										<button type="button" class="btn btn-default btn-block backToHome"> -->
+<%-- 											<spring:theme code="text.account.profile.cancel" /> --%>
+<!-- 										</button> -->
+<%-- 									</ycommerce:testId> --%>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</form:form> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->

@@ -7,6 +7,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
+
 <spring:url value="/cart/voucher/apply" var="applyVoucherAction" htmlEscape="false"/>
 <spring:url value="/cart/voucher/remove" var="removeVoucherAction" htmlEscape="false"/>
 
@@ -20,16 +21,27 @@
 <c:if test="${empty cartData.quoteData}">
 <div class="form-group js-voucher-respond ${containerClass}">
     <spring:theme code="text.voucher.apply.input.placeholder" var="voucherInputPlaceholder" htmlEscape="false"/>
-    <label class="control-label cart-voucher__label" for="voucher-code"><spring:theme
-            code="text.voucher.apply.input.label"/></label>
+<%--     <label class="control-label cart-voucher__label" for="voucher-code"><spring:theme --%>
+<%--             code="text.voucher.apply.input.label"/></label> --%>
+    <h6><spring:theme code="text.voucher.apply.input.label"/></h6>       
+            
+		  
+	  
     <form:form id="applyVoucherForm" action="${applyVoucherAction}" method="post" commandName="voucherForm">
-        <form:input cssClass="js-voucher-code cart-voucher__input form-control input-sm" name="voucher-code"
+     <div class="input-group pb-3">
+<%--         <form:input cssClass="js-voucher-code cart-voucher__input form-control input-sm" name="voucher-code" --%>
+<%--                     id="js-voucher-code-text" maxlength="100" placeholder="${voucherInputPlaceholder}" --%>
+<%--                     path="voucherCode" disabled="${disableUpdate}"/> --%>
+        <form:input cssClass="js-voucher-code  form-control input-sm" name="voucher-code"
                     id="js-voucher-code-text" maxlength="100" placeholder="${voucherInputPlaceholder}"
                     path="voucherCode" disabled="${disableUpdate}"/>
-		<c:if test="${not disableUpdate}">
-	        <button type="button" id="js-voucher-apply-btn" class="btn btn-primary btn-small cart-voucher__btn">
-	            <spring:theme code="text.voucher.apply.button.label"/></button>
-		</c:if>
+        <div class="input-group-append">
+	        <c:if test="${not disableUpdate}">
+		        <button type="button" id="js-voucher-apply-btn" class="btn btn-primary disabled">
+		            <spring:theme code="text.voucher.apply.button.label"/></button>
+			</c:if>
+		</div>
+     </div>
     </form:form>
 
     <div class="js-voucher-validation-container help-block cart-voucher__help-block">

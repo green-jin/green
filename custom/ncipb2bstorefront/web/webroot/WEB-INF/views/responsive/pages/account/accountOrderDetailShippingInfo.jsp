@@ -6,26 +6,29 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<div class="account-orderdetail well well-tertiary">
-    <div class="well-headline">
-        <spring:theme code="text.account.order.orderDetails.billingInformtion" />
-    </div>
-    <ycommerce:testId code="orderDetails_paymentDetails_section">
-        <div class="well-content">
-            <div class="row">
-                <div class="col-sm-12 col-md-9">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 order-billing-address">
-                            <order:billingAddressItem order="${orderData}"/>
-                        </div>
-                        <c:if test="${not empty orderData.paymentInfo}">
-                            <div class="col-sm-6 col-md-4 order-payment-data">
-                                <order:paymentDetailsItem order="${orderData}"/>
-                            </div>
-                        </c:if>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ycommerce:testId>
-</div>
+<!-- my-account/order -->
+<!-- accountOrderDetailShippingInfo.jsp -->
+
+<!-- <div class="account-orderdetail well well-tertiary"> -->
+<!--     <div class="well-headline"> -->
+<%--         <spring:theme code="text.account.order.orderDetails.billingInformtion" /> --%>
+<!--     </div> -->
+<%--     <ycommerce:testId code="orderDetails_paymentDetails_section"> --%>
+<!--         <div class="well-content"> -->
+<!--             <div class="row"> -->
+<!--                 <div class="col-sm-12 col-md-9"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-sm-6 col-md-4 order-billing-address"> -->
+<%--                             <order:billingAddressItem order="${orderData}"/> --%>
+<!--                         </div> -->
+<%--                         <c:if test="${not empty orderData.paymentInfo}"> --%>
+<!--                             <div class="col-sm-6 col-md-4 order-payment-data"> -->
+<%--                                 <order:paymentDetailsItem order="${orderData}"/> --%>
+<!--                             </div> -->
+<%--                         </c:if> --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<%--     </ycommerce:testId> --%>
+<!-- </div> -->

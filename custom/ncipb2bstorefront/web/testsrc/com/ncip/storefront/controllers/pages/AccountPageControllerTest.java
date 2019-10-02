@@ -483,38 +483,38 @@ public class AccountPageControllerTest
 		assertEquals(FULL_VIEW_PATH, profilePage);
 	}
 
-	@Test
-	public void shouldNotUpdateProfile() throws CMSItemNotFoundException, DuplicateUidException
-	{
-		BDDMockito.given(Boolean.valueOf(bindingResult.hasErrors())).willReturn(Boolean.TRUE);
-
-		final String profilePage = accountController.updateProfile(profileForm, bindingResult, page, redirectModel);
-
-		BDDMockito.verify(customerFacade, BDDMockito.times(0)).updateProfile(Mockito.any(CustomerData.class));
-		BDDMockito.verify(accountController).setErrorMessagesAndCMSPage(page, UPDATE_PROFILE_CMS_PAGE);
-		assertEquals(FULL_VIEW_PATH, profilePage);
-	}
-
-	@Test
-	public void shouldNotUpdateDuplicateUidProfile() throws CMSItemNotFoundException, DuplicateUidException
-	{
-		BDDMockito.doThrow(new DuplicateUidException()).when(customerFacade).updateProfile(Mockito.any(CustomerData.class));
-
-		final String profilePage = accountController.updateProfile(profileForm, bindingResult, page, redirectModel);
-
-		BDDMockito.verify(customerFacade).updateProfile(Mockito.any(CustomerData.class));
-		BDDMockito.verify(accountController).setErrorMessagesAndCMSPage(page, UPDATE_PROFILE_CMS_PAGE);
-		assertEquals(FULL_VIEW_PATH, profilePage);
-	}
-
-	@Test
-	public void shouldUpdateProfile() throws CMSItemNotFoundException, DuplicateUidException
-	{
-		final String profilePage = accountController.updateProfile(profileForm, bindingResult, page, redirectModel);
-
-		BDDMockito.verify(customerFacade).updateProfile(Mockito.any(CustomerData.class));
-		assertEquals(REDIRECT_TO_UPDATE_PROFILE, profilePage);
-	}
+//	@Test
+//	public void shouldNotUpdateProfile() throws CMSItemNotFoundException, DuplicateUidException
+//	{
+//		BDDMockito.given(Boolean.valueOf(bindingResult.hasErrors())).willReturn(Boolean.TRUE);
+//
+//		final String profilePage = accountController.updateProfile(profileForm, bindingResult, page, redirectModel);
+//
+//		BDDMockito.verify(customerFacade, BDDMockito.times(0)).updateProfile(Mockito.any(CustomerData.class));
+//		BDDMockito.verify(accountController).setErrorMessagesAndCMSPage(page, UPDATE_PROFILE_CMS_PAGE);
+//		assertEquals(FULL_VIEW_PATH, profilePage);
+//	}
+//
+//	@Test
+//	public void shouldNotUpdateDuplicateUidProfile() throws CMSItemNotFoundException, DuplicateUidException
+//	{
+//		BDDMockito.doThrow(new DuplicateUidException()).when(customerFacade).updateProfile(Mockito.any(CustomerData.class));
+//
+//		final String profilePage = accountController.updateProfile(profileForm, bindingResult, page, redirectModel);
+//
+//		BDDMockito.verify(customerFacade).updateProfile(Mockito.any(CustomerData.class));
+//		BDDMockito.verify(accountController).setErrorMessagesAndCMSPage(page, UPDATE_PROFILE_CMS_PAGE);
+//		assertEquals(FULL_VIEW_PATH, profilePage);
+//	}
+//
+//	@Test
+//	public void shouldUpdateProfile() throws CMSItemNotFoundException, DuplicateUidException
+//	{
+//		final String profilePage = accountController.updateProfile(profileForm, bindingResult, page, redirectModel);
+//
+//		BDDMockito.verify(customerFacade).updateProfile(Mockito.any(CustomerData.class));
+//		assertEquals(REDIRECT_TO_UPDATE_PROFILE, profilePage);
+//	}
 
 	// E-mail Tests
 	@Test

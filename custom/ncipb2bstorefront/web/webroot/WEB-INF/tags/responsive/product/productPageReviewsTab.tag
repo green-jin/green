@@ -12,7 +12,12 @@
 <c:url value="${product.url}/reviewhtml/all" var="getAllReviewsUrl"/>
 <c:url value="${product.url}/review" var="productReviewActionUrl"/>
 
+
+<i class="fa fa-file-pdf-o">1111111111</i>
+
 	<div class="tab-review">
+	
+	
 	<div class="review-pagination-bar">
 		<button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button>
 		<div class="right">

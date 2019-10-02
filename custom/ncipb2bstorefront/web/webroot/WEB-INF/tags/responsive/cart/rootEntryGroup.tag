@@ -29,7 +29,7 @@
 
                             <form:form id="removeGroup${entryGroup.groupNumber}"
                                        action="${removeGroupAction}" method="post">
-                                <a class=item__remove" onclick="$(this).closest('form').submit()"
+                                <a class="item__remove" onclick="$(this).closest('form').submit()"
                                    style="cursor: pointer"><spring:theme code="cart.groups.remove"/></a>
                             </form:form>
                         </c:if>

@@ -14,7 +14,7 @@
         <product:productVariantStockThreshold variant="${variant}"/>
     </c:when>
     <c:otherwise>
-        <spring:theme code="product.grid.outOfStock"/>
+<%--         <spring:theme code="product.grid.outOfStock"/> --%>
     </c:otherwise>
 </c:choose>
 </span>
