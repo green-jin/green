@@ -19502,4 +19502,8 @@ width : 10%;
 .product__facet {
 	  border-right: 0px;
 }
+.open > .dropdown-menu{
+	padding: .5rem 0;
+}
+
 /* For Ncip End */

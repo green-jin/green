@@ -21,7 +21,7 @@ $approved = approvalstatus(code)[default=' approved']
 # Language
 $lang = en, zh_TW, zh
 
-# Insert Products
+## Insert Products
 #INSERT_UPDATE Product; code[unique = true]; $supercategories ; manufacturerName ; manufacturerAID; ean    ; variantType(code); unit(code)[default = pieces]; $catalogVersion
 #                     ; 637227             ; 1359, brand_32   ; Belkin           ; F8E096         ; 0722868137406
 #                     ; 693923             ; 1358, brand_1518 ; StarTech.com     ; CTK500         ; 065030781343
@@ -925,64 +925,5 @@ INSERT_UPDATE GenericVariantProduct; code[unique = true]; $baseProduct  ; $catal
                                    ; W8181838-TW4       ; W8181801-TW4A ;                ; color_99        ; approved
                                    ; W3181301-TW1       ; W3181301-TW1A ;                ; color_01        ; approved
                                    ; W3181331-TW1       ; W3181301-TW1A ;                ; color_02        ; approved
-
-############# NCIP Category End ##################
-
-############# NCIP Category Start ##################
-# Insert Products
-##INSERT_UPDATE Product; code[unique = true]; $supercategories; manufacturerName; manufacturerAID; ean; variantType(code); unit(code)[default = pieces]; $catalogVersion
-##                     ; 1234567            ; 1101            ; Single          ;                ;
-##                     ; 7654321            ; 1102            ; Pull_UP         ;                ;
-##                     ; 2345678            ; 1103            ; Pull_Down       ;                ;
-#INSERT_UPDATE Product; code[unique = true]; $supercategories        ; variantType(code)     ; $catalogVersion; unit(code)[default = pieces]
-#                     ; 1234567            ; 1101, B2B_Var1,B2B_Var2 ; GenericVariantProduct ;                ;
-#                     ; 7654321            ; 1102, B2B_Var1,B2B_Var2 ; GenericVariantProduct ;                ;
-#                     ; 2345678            ; 1103, B2B_Var1,B2B_Var2 ; GenericVariantProduct ;                ;
-#
-#
-#UPDATE Product; code[unique = true]; name[lang = $lang] ; description[lang = $lang] ; summary[lang = $lang]; $catalogVersion;
-#              ; 1234567            ; Lancy1_productname ; Lancy1Product Describtion ; Lanct Test Product Summary
-#              ; 7654321            ; Lancy2_productname ; Lancy2Product Describtion ; Lanct Test2 Product Summary
-#              ; 2345678            ; Lancy3_productname ; Lancy3Product Describtion ; Lanct Test3 Product Summary
-
-############################################################################################################################
-#Product Relation
-#INSERT_UPDATE ProductReference; source(code, $catalogVersion)[unique = true]; target(code, $catalogVersion)[unique = true]; referenceType(code); active; preselected
-#                              ; 1234567                                     ; 2345678                                     ; SIMILAR            ; true  ; false
-#                              ; 2345678                                     ; 7654321                                     ; OTHERS             ; true  ; false
-#                              ; 7654321                                     ; 1234567                                     ; SIMILAR            ; true  ; false
-
-#########################################################################################################################
-# Product VariantCategory
-# note: Insert Product時， $supercategories & variantType 欄位需填入以下
-#INSERT_UPDATE VariantCategory; code[unique = true]; name  ; $supercategories; hasImage; $catalogVersion; allowedPrincipals(uid)[default = 'customergroup']
-#                             ; B2B_Var1           ; Color ;                 ; true
-#                             ; B2B_Var2           ; Size  ;                 ; true
-#
-##Insert Variant Value Category
-#INSERT_UPDATE VariantValueCategory; code[unique = true]; name      ; $supercategories; sequence; $catalogVersion; allowedPrincipals(uid)[default = 'customergroup']
-#                                  ; NCIP_6             ; 6         ; B2B_Var2        ; 1
-#                                  ; NCIP_7             ; 7         ; B2B_Var2        ; 2
-#                                  ; NCIP_8             ; 8         ; B2B_Var2        ; 3
-#                                  ; NCIP_9             ; 9         ; B2B_Var2        ; 4
-#                                  ; NCIP_10            ; 10        ; B2B_Var2        ; 5
-#                                  ; NCIP_Black         ; Black     ; B2B_Var1        ; 1
-#                                  ; NCIP_Brown         ; Brown     ; B2B_Var1        ; 2
-#                                  ; NCIP_Dark_Grey     ; Dark Grey ; B2B_Var1        ; 3
-#                                  ; NCIP_Yellow        ; Yellow    ; B2B_Var1        ; 4
-#                                  ; NCIP_White         ; White     ; B2B_Var1        ; 5
-#
-#
-#INSERT_UPDATE GenericVariantProduct; code[unique = true]; $baseProduct; $catalogVersion; name                      ; summary                           ; ean; $supercategories      ; $approved; description
-#                                   ; 1234567_1_1        ; 1234567     ;                ; LancyTest1_1 6M Yellow    ; LancyTest1_1 6M Yellow_summary    ;    ; NCIP_6,NCIP_Yellow    ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 1234567_1_2        ; 1234567     ;                ; LancyTest1_2 7M Yellow    ; LancyTest1_2 7M Yellow_summary    ;    ; NCIP_7,NCIP_Yellow    ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 1234567_1_3        ; 1234567     ;                ; LancyTest1_3 8M Yellow    ; LancyTest1_3 8M Yellow_summary    ;    ; NCIP_8,NCIP_Yellow    ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 1234567_2_1        ; 1234567     ;                ; LancyTest2_1 6M White     ; LancyTest1_1 6M White_summary     ;    ; NCIP_6,NCIP_White     ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 1234567_2_2        ; 1234567     ;                ; LancyTest2_2 7M White     ; LancyTest1_2 7M White_summary     ;    ; NCIP_7,NCIP_White     ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 1234567_2_3        ; 1234567     ;                ; LancyTest2_3 8M White     ; LancyTest1_3 8M White_summary     ;    ; NCIP_8,NCIP_White     ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#
-#                                   ; 2345678_1_1        ; 2345678     ;                ; LancyTest3_1 9M Black     ; LancyTest3_1 9M Black_summary     ;    ; NCIP_9,NCIP_Black     ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 2345678_2_2        ; 2345678     ;                ; LancyTest3_2 9M Dark_Grey ; LancyTest3_2 9M Dark_Grey_summary ;    ; NCIP_9,NCIP_Dark_Grey ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
-#                                   ; 7654321_1_1        ; 7654321     ;                ; LancyTest2_1 10M White    ; LancyTest2_1 10M White_summary    ;    ; NCIP_10,NCIP_White    ; approved ; <strong>Powerwelt Steel Toe</strong><br /><br />Rancher Brown Oiled Full-Grain with Ever-Guard&trade
 
 ############# NCIP Category End ##################
