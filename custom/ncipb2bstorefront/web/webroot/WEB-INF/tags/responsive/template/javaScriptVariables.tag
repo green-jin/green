@@ -31,7 +31,8 @@
 			ACC.accessibilityStoresLoaded = '<spring:theme code="aria.pickupinstore.storesloaded" htmlEscape="false" javaScriptEscape="true" />';
 			ACC.config.googleApiKey='${ycommerce:encodeJavaScript(googleApiKey)}';
 			ACC.config.googleApiVersion='${ycommerce:encodeJavaScript(googleApiVersion)}';
-
+			var ncipProductCode = 0;
+			
 			<c:if test="${request.secure}">
 				<c:url var="autocompleteUrl" value="/search/autocompleteSecure" />
 			</c:if>

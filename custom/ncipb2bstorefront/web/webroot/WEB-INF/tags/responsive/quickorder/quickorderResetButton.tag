@@ -6,6 +6,10 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<button id="${(empty resetBtnId) ? 'resetBtn' : fn:escapeXml(resetBtnId)}" type="button" class="${(empty resetBtnClass) ? 'reset-btn' : fn:escapeXml(resetBtnClass)}">
+<%-- <button id="${(empty resetBtnId) ? 'resetBtn' : fn:escapeXml(resetBtnId)}" type="button" class="${(empty resetBtnClass) ? 'reset-btn' : fn:escapeXml(resetBtnClass)}">
+    <spring:theme code="text.quick.order.reset.form" />
+</button> --%>
+
+<button id="${(empty resetBtnId) ? 'resetBtn' : fn:escapeXml(resetBtnId)}" type="button" class="btn btn-link">
     <spring:theme code="text.quick.order.reset.form" />
 </button>
