@@ -51,7 +51,7 @@
 			                        
 			                        <c:if test="${cartData.quoteData eq null}">
 				                        <button id="scheduleReplenishment" type="button" class="btn btn-secondary btn-default btn-block disabled scheduleReplenishmentButton checkoutSummaryButton" disabled="disabled">
-				                            <spring:theme code="checkout.summary.scheduleReplenishment"/>
+				                            <spring:theme code="checkout.summary.schedule.replenishment"/>
 				                        </button>
 				
 				                        <b2b-multi-checkout:replenishmentScheduleForm/>

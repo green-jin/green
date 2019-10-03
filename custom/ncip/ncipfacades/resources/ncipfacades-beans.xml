@@ -18,7 +18,22 @@
 		<property name="plifz" type="java.math.BigDecimal"/>
 		<property name="my_type" type="java.lang.String"/>
 	</bean> -->
-	
+	 
+	 <bean class="de.hybris.platform.commercefacades.order.data.OrderData"> 
+		 <property name="vkorg" type="String"/> 
+		 <property name="pernr" type="String"/> 
+		 <property name="lifnr" type="String"/> 
+	 </bean>
+	 
+	 <bean class="de.hybris.platform.commercefacades.order.data.ConsignmentData">   
+		<property name="dely_type" type="String"/> 
+		<property name="lfdat" type="Date"/> 
+		<property name="arrivalDate" type="Date"/> 
+		<property name="remark" type="String"/> 
+		<property name="shipping_number" type="String"/> 
+		<property name="ncipdelivery" type="com.ncip.core.enums.DeliveryType"/> 
+	 </bean>	
+	 
      <bean class="de.hybris.platform.commercefacades.user.data.CustomerData" extends="de.hybris.platform.commercefacades.user.data.PrincipalData">
 		<property name="name1" type="java.lang.String"/>
 		<property name="defaultb2bunit" type="java.lang.String"/>

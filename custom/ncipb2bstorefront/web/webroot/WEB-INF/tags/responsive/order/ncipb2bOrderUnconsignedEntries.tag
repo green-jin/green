@@ -45,13 +45,20 @@
 		</div>
 		<div class="col-md-4 row align-content-center no-gutters border border-white">
 			<div class="col-4 l-gray text-center p-2 border border-secondary bg-secondary text-white">
-				<spring:theme code="text.account.order.lfdat.date" />
+				 <spring:theme code="text.account.order.lfdat.date" />
 			</div>
 			<div class="col-8 col-md-7 bg-light p-2 border border-secondary">
 				<ycommerce:testId code="orderDetail_consignmentStatusDate_label">
 					<span class="well-headline-sub">
-	                    <fmt:formatDate value="${consignment.statusDate}" dateStyle="medium" timeStyle="short" type="both"/>
+	                    <fmt:formatDate value="${consignment.statusDate}" dateStyle="medium" timeStyle="short" type="both"/> 
 	                </span>
+	                bbbb:<br/>
+	                dely_type:${consignment.dely_type}<br/>
+					ncipdelivery:${consignment.ncipdelivery}<br/>
+					lfdat:${consignment.lfdat}<br/>
+					shippingDate:${consignment.shippingDate}<br/> 
+					remark:${consignment.remark}<br/>
+					shipping_number:${consignment.shipping_number}<br/>
 				</ycommerce:testId>
 			</div>
 		</div>

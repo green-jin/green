@@ -10,6 +10,7 @@
 	<div class="m-0 mb-4 p-4 bg-light border border-secondary">
 	    <ycommerce:testId code="orderDetail_overview_section">
 	        <order:accountOrderDetailsOverview order="${orderData}"/>
+<%-- 	     <b2b-order:accountOrderDetailsOverview order="${orderData}"/> --%>
 	    </ycommerce:testId>
 	</div>
 

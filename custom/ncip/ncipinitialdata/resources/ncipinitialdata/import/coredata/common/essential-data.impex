@@ -65,7 +65,7 @@ if (warehouse != null)
 {
     line.clear();
 }"
-;default;Default NCIP B2B2 Warehouse;
+;1110;Default NCIP B2B2 Warehouse;
 ;pw_warehouse_s;;ncipb2b
 ;pw_warehouse_e;;ncipb2b
 ;pw_warehouse_w;;ncipb2b

@@ -2,6 +2,8 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/responsive/template"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
+
+<!-- checkoutConfirmationLayoutPage.jsp start -->
 <template:page pageTitle="${pageTitle}">
     <cms:pageSlot position="SideContent" var="feature" class="accountPageSideContent" element="div">
         <cms:component component="${feature}" element="div" class="accountPageSideContent-component"/>
@@ -9,7 +11,7 @@
     <cms:pageSlot position="TopContent" var="feature" element="div" class="accountPageTopContent">
         <cms:component component="${feature}" element="div" class="accountPageTopContent-component"/>
     </cms:pageSlot>
-    <div class="account-section">
+    <div class="col-lg-10 container-fluid">
         <cms:pageSlot position="BodyContent" var="feature" element="div" class="account-section-content checkout__confirmation__content">
             <cms:component component="${feature}" element="div" class="checkout__confirmation__content--component"/>
         </cms:pageSlot>
@@ -18,3 +20,4 @@
         <cms:component component="${feature}" element="div" class="accountPageBottomContent-component"/>
     </cms:pageSlot>
 </template:page>
+<!-- checkoutConfirmationLayoutPage.jsp end -->
