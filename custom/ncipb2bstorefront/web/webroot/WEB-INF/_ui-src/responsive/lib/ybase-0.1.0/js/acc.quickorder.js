@@ -18,7 +18,7 @@ if ($("#quickOrder").length > 0) {
         $addToCartBtn: $('#js-add-to-cart-quick-order-btn-top, #js-add-to-cart-quick-order-btn-bottom'),
         $resetFormBtn: $('#js-reset-quick-order-form-btn-top, #js-reset-quick-order-form-btn-bottom'),
         $productInfoContainer: '.js-product-info',
-        $skuInputField: '.js-sku-input-field',
+        $skuInputField: '.form-control',
         $qtyInputField: '.js-quick-order-qty',
         $jsLiContainer: 'li.js-li-container',
         $removeQuickOrderRowBtn: '.js-remove-quick-order-row',
@@ -168,16 +168,34 @@ if ($("#quickOrder").length > 0) {
 
         clearQuickOrderRow: function () {
             var quickOrderMinRows = ACC.quickorder.$quickOrderMinRows;
-            var parentLi = ACC.quickorder.getCurrentParentLi(this);
+            var parentLi;
+            if(this.clearQuickOrderRow == "undefined"){
+            	parentLi = ACC.quickorder.getCurrentParentLi(this);
+            } else {
+            	parentLi = ACC.quickorder.getCurrentParentLi(document.getElementById(ncipProductCode));
+            }
             if ($('.js-ul-container li.js-li-container').length > quickOrderMinRows) {
-                parentLi.remove();
+            	console.log("hi");
+                // parentLi.remove();
+            	ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("row");
+                // ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("item__remove");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("d-flex");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("display-none");
                 ACC.quickorder.bindClearQuickOrderRow();
+                ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text(result.errorMsg);
+                ACC.quickorder.findElement(parentLi, ".col-md-9.row.mb-2.no-gutters").remove();
             }
             else {
+            	console.log("hihi");
+            	ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("row");
+                // ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("item__remove");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("d-flex");
+                ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("display-none");
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$productInfoContainer).remove();
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text('');
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuInputField).val('');
                 ACC.quickorder.findElement(parentLi, ACC.quickorder.$hiddenSkuInput).val('');
+                ACC.quickorder.findElement(parentLi, ".col-md-9.row.mb-2.no-gutters").remove();
             }
             ACC.quickorder.enableDisableAddToCartBtn();
             ACC.quickorder.handleBeforeUnloadEvent();
@@ -246,9 +264,16 @@ if ($("#quickOrder").length > 0) {
                     ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text(result.errorMsg);
                 }
                 else {
+                	
                     $(event.target).removeClass(ACC.quickorder.$classHasError);
                     ACC.quickorder.findElement(parentLi, ACC.quickorder.$skuValidationContainer).text('');
-                    $('#quickOrderRowTemplate').tmpl(result.productData).insertAfter(ACC.quickorder.findElement(parentLi, '.js-sku-container'));
+                    $('#quickOrderRowTemplate').tmpl(result.productData).insertAfter(ACC.quickorder.findElement(parentLi, '.col-md-3'));
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("row");
+                    // ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("item__remove");
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').removeClass("d-flex");
+                    ACC.quickorder.findElement(parentLi, '.justify-content-end').addClass("display-none");
+                    
+                    // ACC.quickorder.findElement(ACC.quickorder.findElement(parentLi, '.mr-4'), ".btn").removeClass("js-remove-quick-order-row");
                     var qtyInputField = ACC.quickorder.findElement(parentLi, ACC.quickorder.$qtyInputField);
                     qtyInputField.focusout(ACC.quickorder.handleFocusOutOnQtyInput).keydown(ACC.quickorder.handleFocusOutOnQtyInput);
                     var stockLevelStatus = result.productData.stock.stockLevelStatus.code;
