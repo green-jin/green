@@ -18,7 +18,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 		
 	<context:annotation-config/> 
-
+	 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
 	<bean id="defaultSimpleSuggestionFacade" class="com.ncip.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
 		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
@@ -27,6 +27,16 @@
 		<property name="productService" ref="productService"/>
 		<property name="productConverter" ref="carouselProductConverter"/>
 		<property name="cartService" ref="cartService"/>
+	</bean>
+	
+	<alias name="defaultNcipb2bOrderPopulator" alias="ncipb2bOrderPopulator"/>
+	<bean id="defaultNcipb2bOrderPopulator" class="com.ncip.facades.populators.Ncipb2bOrderPopulator" parent="defaultOrderPopulator"/>
+	
+	<alias name="defaultConsignmentPopulator" alias="consignmentPopulator"/>
+	<bean id="defaultConsignmentPopulator" class="com.ncip.facades.populators.Ncipb2bConsignmentPopulator">
+		<property name="consignmentEntryConverter" ref="consignmentEntryConverter"/>
+		<property name="addressConverter" ref="addressConverter"/>
+		<property name="pointOfServiceConverter" ref="pointOfServiceConverter"/>
 	</bean>
 	
     <alias name="defaultNcipCustomerFacade" alias="customerFacade"/>
