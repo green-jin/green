@@ -18,6 +18,8 @@
 <spring:url value="/checkout/multi/summary/placeOrder" var="placeOrderUrl" htmlEscape="false"/>
 <spring:url value="/checkout/multi/termsAndConditions" var="getTermsAndConditionsUrl" htmlEscape="false"/>
 
+<!-- Step5: addon checkout/multi/summary/view -->
+<!-- addon checkoutOrderSummary.tag -->
 
 <div class="checkout-order-summary checkout-review-xs">
     <ycommerce:testId code="orderSummary">
@@ -33,12 +35,12 @@
 
         <order:appliedVouchers order="${cartData}" />
 
-        <c:if test="${cartData.paymentType.code eq 'CARD'}">
-            <multi-checkout:paymentInfo cartData="${cartData}" paymentInfo="${cartData.paymentInfo}" showPaymentInfo="${showPaymentInfo}" />
-        </c:if>
-        <c:if test="${cartData.paymentType.code eq 'ACCOUNT'}">
-            <b2b-multi-checkout:accountPaymentInfo cartData="${cartData}" />
-        </c:if>
+<%--         <c:if test="${cartData.paymentType.code eq 'CARD'}"> --%>
+<%--             <multi-checkout:paymentInfo cartData="${cartData}" paymentInfo="${cartData.paymentInfo}" showPaymentInfo="${showPaymentInfo}" /> --%>
+<%--         </c:if> --%>
+<%--         <c:if test="${cartData.paymentType.code eq 'ACCOUNT'}"> --%>
+<%--             <b2b-multi-checkout:accountPaymentInfo cartData="${cartData}" /> --%>
+<%--         </c:if> --%>
 
         <multi-checkout:orderTotals cartData="${cartData}" showTaxEstimate="${showTaxEstimate}" showTax="${showTax}" />
     </ycommerce:testId>
@@ -57,7 +59,7 @@
             <spring:theme code="checkout.summary.placeOrder"/>
         </button>
         <button id="scheduleReplenishment" type="button" class="btn btn-default btn-block scheduleReplenishmentButton checkoutSummaryButton" disabled="disabled">
-            <spring:theme code="checkout.summary.scheduleReplenishment"/>
+        	<spring:theme code="checkout.summary.scheduleReplenishment"/>
         </button>
     </form:form>
 </div>

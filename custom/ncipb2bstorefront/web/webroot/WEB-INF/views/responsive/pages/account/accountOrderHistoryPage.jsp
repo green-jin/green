@@ -7,7 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-accountOrderHistoryPage.jsp start
+<!-- accountOrderHistoryPage.jsp start -->
 <c:set var="searchUrl" value="/my-account/orders?sort=${ycommerce:encodeUrl(searchPageData.pagination.sort)}"/>
 
 <div class="col-lg-10 container-fluid"> 
