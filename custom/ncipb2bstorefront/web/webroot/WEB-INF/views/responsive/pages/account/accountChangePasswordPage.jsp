@@ -7,7 +7,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-
+<!-- modify accountChangePasswordPage.jsp -->
 
 <div class="col-lg-10 container-fluid">
 
@@ -15,7 +15,7 @@
 	<div class="row pb-3">
 	  <div class="col-md-3"></div>
 	  <div class="col-md-6">
-		  <h3 class="p-3"><spring:theme code="text.account.profile.updatePasswordForm"/></h3>
+		  <h3 class="p-3"><spring:theme code="text.account.profile.update.password.form"/></h3>
 		  
 		  <hr>
   			<form:form action="${action}" method="post" commandName="updatePasswordForm">
@@ -27,13 +27,13 @@
 
 			<div class="form-group">
 				<formElement:formPasswordBox idKey="newPassword"
-								 labelKey="profile.newPassword" path="newPassword" inputCSS="form-control"
+								 labelKey="addon.profile.newPassword" path="newPassword" inputCSS="form-control"
 								 mandatory="true" />
 			</div>
 
 			<div class="form-group">
 				<formElement:formPasswordBox idKey="checkNewPassword"
-								 labelKey="profile.checkNewPassword" path="checkNewPassword" inputCSS="form-control"
+								 labelKey="addon.profile.checkNewPassword" path="checkNewPassword" inputCSS="form-control"
 								 mandatory="true" />
 			</div>
 
