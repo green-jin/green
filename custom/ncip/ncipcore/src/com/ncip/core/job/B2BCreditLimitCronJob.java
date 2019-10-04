@@ -77,13 +77,11 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 				}
 				else
 				{
-				  LOG.warn(" do PerformResult getSAPERPZHYToZHYCLData zhyclData.isEmpty() ");
 					return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
 				}
 			}
 			else
 			{
-			  LOG.error(" do PerformResult getSAPERPZHYToZHYCLData zhyclData is null ");
 				return new PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED);
 			}
 
@@ -93,7 +91,6 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 		{
 
 			// In case of exception return result: ERROR and status: ABORTED
-		  LOG.error(" do PerformResult getSAPERPZHYToZHYCLData In case of exception return result: ERROR and status: ABORTED ");
 			return new PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED);
 
 		}
@@ -107,10 +104,10 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 		final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
 		final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
 		final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
-
+		final String driver = configurationService.getConfiguration().getString("jdbc.driver");
 		try
 		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
 			try (Connection conn = DriverManager.getConnection(url, username, password);)
 			{
@@ -124,7 +121,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 					UPDATESQL = UPDATESQL + " and KUNNR = '" + zhyclData.getKunNR() + "'";
 					UPDATESQL = UPDATESQL + " and FRM_SYS = '" + zhyclData.getFrm_SYS() + "'";
 					UPDATESQL = UPDATESQL + " and TO_SYS = '" + zhyclData.getTo_SYS() + "'";
-					LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
+					//LOG.info(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
 					try
 					{
 						final PreparedStatement ps = conn.prepareStatement(UPDATESQL);
@@ -178,6 +175,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 		final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
 		final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
 		final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
+		final String driver = configurationService.getConfiguration().getString("jdbc.driver");
 		String SELECTSQL = "select * from sap.zhycl ";
 		final String FRSYS = configurationService.getConfiguration().getString("sap.zhycl.fr_sys");//"SAP";
 		final String TOSYS = configurationService.getConfiguration().getString("sap.zhycl.to_sys");//"Hybris";
@@ -187,7 +185,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 //		LOG.info(" do getSAPERPZHYToZHYCLData STATUS = [" + STATUS + "] getconnection");
 		try
 		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 			//Get current date time
 			final LocalDateTime now = LocalDateTime.now();
 			final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -197,7 +195,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
 			SELECTSQL = SELECTSQL + "and FRM_SYS = '" + FRSYS + "'";
 			SELECTSQL = SELECTSQL + "and TO_SYS = '" + TOSYS + "'";
 			//SELECTSQL = SELECTSQL + "and {CRT_DAT} like '" + formatDateTime + "%'";
-			LOG.debug(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
+			LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
 			//final ResultSet rs = stmt.executeQuery(SELECTSQL);
 			try (Connection conn = DriverManager.getConnection(url, username, password);
 					PreparedStatement ps = conn.prepareStatement(SELECTSQL);

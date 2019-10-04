@@ -364,7 +364,7 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 						catch (final Exception e)
 						{
 							final String STK_STAT = configurationService.getConfiguration().getString("sap.zhystk.STK_STAT");//"SAP";
-							LOG.warn(" zhyclData(" + i + ").getStk_STAT() whitout InStockStatus="+zhystkData.getStk_STAT()+" Exception = [" + e.getStackTrace()
+							LOG.warn(" zhyclData(" + i + ") whitout RANGE_DAT Exception = [" + e.getStackTrace()
 									+ "] use default sap.zhycl.RANGE_DAT==" + STK_STAT);
 							stocklevel.setInStockStatus(InStockStatus.valueOf(STK_STAT.toUpperCase()));
 						}

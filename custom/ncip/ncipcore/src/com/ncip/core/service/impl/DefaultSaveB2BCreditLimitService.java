@@ -102,7 +102,6 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 		else
 		{
 			final String WAERK = configurationService.getConfiguration().getString("sap.zhycl.WAERK");//"SAP";
-			LOG.warn(" zhyclData.getWaeRK()= [" + zhyclData.getWaeRK() + "]");
 			LOG.warn(" zhyclData() whitout WAERK use default sap.zhycl.WAERK==" + WAERK);
 			b2bCreditLimit.setCurrency(this.getB2bCreditLimitDao().getCurrencyModelByISOCODE(WAERK.toUpperCase()));
 
@@ -114,7 +113,6 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 		catch (final Exception e)
 		{
 			final String RANGE_DAT = configurationService.getConfiguration().getString("sap.zhycl.RANGE_DAT");//"SAP";
-			LOG.warn(" zhyclData.getWaeRK()= [" + zhyclData.getWaeRK() + "]");
 			LOG.warn(" zhyclData() whitout RANGE_DAT Exception = [" + e.getStackTrace() + "] use default sap.zhycl.RANGE_DAT=="
 					+ RANGE_DAT);
 			b2bCreditLimit.setDateRange(B2BPeriodRange.valueOf(RANGE_DAT.toUpperCase()));
@@ -153,9 +151,9 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 			final ZHYCLData zhyclData = zhyclDataList.get(i);
 			B2BCreditLimitModel b2bCreditLimit = (B2BCreditLimitModel) getModelService().create(B2BCreditLimitModel.class);
 			//zhyclData.getVkORG();
-			LOG.debug(" zhyclData(" + i + ").getRange_DAT()= [" + zhyclData.getRange_DAT() + "]");
+			LOG.debug(" zhyclData(" + i + ").getVkORG()= [" + zhyclData.getVkORG() + "]");
 //			LOG.info(" zhyclData(" + i + ").getKunNR()= [" + zhyclData.getKunNR() + "]");
-			LOG.debug(" zhyclData(" + i + ").getWaeRK()= [" + zhyclData.getWaeRK() + "]");
+//			LOG.info(" zhyclData(" + i + ").getWaeRK()= [" + zhyclData.getWaeRK() + "]");
 			final String Code = zhyclData.getKunNR();
 			if (this.getB2bCreditLimitDao().hasB2BCreditLimitModelByCode(Code))
 			{
@@ -180,7 +178,6 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 			else
 			{
 				final String WAERK = configurationService.getConfiguration().getString("sap.zhycl.WAERK");//"SAP";
-				LOG.warn(" zhyclData(" + i + ").getWaeRK()= [" + zhyclData.getWaeRK() + "]");
 				LOG.warn(" zhyclData(" + i + ") whitout WAERK use default sap.zhycl.WAERK==" + WAERK);
 				b2bCreditLimit.setCurrency(this.getB2bCreditLimitDao().getCurrencyModelByISOCODE(WAERK.toUpperCase()));
 
@@ -192,7 +189,6 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 			catch (final Exception e)
 			{
 				final String RANGE_DAT = configurationService.getConfiguration().getString("sap.zhycl.RANGE_DAT");//"SAP";
-				LOG.warn(" zhyclData(" + i + ").getRange_DAT()= [" + zhyclData.getRange_DAT() + "]");
 				LOG.warn(" zhyclData(" + i + ") whitout RANGE_DAT Exception = [" + e.getStackTrace()
 						+ "] use default sap.zhycl.RANGE_DAT==" + RANGE_DAT);
 				b2bCreditLimit.setDateRange(B2BPeriodRange.valueOf(RANGE_DAT.toUpperCase()));
@@ -210,7 +206,7 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 			}
 			catch (final Exception e)
 			{
-				LOG.error(" zhyclData(" + i + ") getModelService().save(b2bCreditLimit) Exception = [" + e.getStackTrace() + "]");
+				LOG.error(" zhyclData(" + i + ") Exception = [" + e.getStackTrace() + "]");
 				zhyclData.setStatus("F");
 			}
 
