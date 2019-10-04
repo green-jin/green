@@ -8,7 +8,7 @@
 
 <c:if test="${not empty order}">
     <div class="account-orderdetail">
-        <div class="account-orderdetail__footer">
+<!--         <div class="account-orderdetail__footer"> -->
             <div class="row">
                 <div class="col-sm-6 col-md-7 col-lg-8">
                     <order:appliedVouchers order="${order}" />
@@ -18,6 +18,6 @@
                     <order:orderTotalsItem order="${order}" />
                 </div>
             </div>
-        </div>
+<!--         </div> -->
     </div>
 </c:if>

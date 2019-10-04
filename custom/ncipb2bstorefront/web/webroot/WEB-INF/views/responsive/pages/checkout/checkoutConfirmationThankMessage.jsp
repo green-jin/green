@@ -9,7 +9,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 <spring:url value="/login/register/termsandconditions" var="getTermsAndConditionsUrl" htmlEscape="false"/>
-
+<!-- checkoutConfirmationThankMessage.jsp start -->
 <div class="checkout-success">
 	<div class="checkout-success__body">
 		<div class="checkout-success__body__headline">
@@ -73,8 +73,9 @@
 	</c:if>
 </div>
 
-<div class="well well-tertiary well-single-headline">
-    <div class="well-headline">
-        <spring:theme code="checkout.multi.order.summary" />
-    </div>
-</div>
+<!-- <div class="well well-tertiary well-single-headline"> -->
+<!--     <div class="well-headline"> -->
+<%--         <spring:theme code="checkout.multi.order.summary" /> --%>
+<!--     </div> -->
+<!-- </div> -->
+<!-- checkoutConfirmationThankMessage.jsp end -->

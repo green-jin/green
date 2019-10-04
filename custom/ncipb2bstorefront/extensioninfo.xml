@@ -11,11 +11,14 @@
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
 
 	<extension abstractclassprefix="Generated" classprefix="Ncipb2bstorefront" name="ncipb2bstorefront" usemaven="false">		
-        <requires-extension name="b2bacceleratoraddon"/>
+
+
+<requires-extension name="orderselfserviceaddon"/>
+<requires-extension name="ordermanagementaddon"/>
+<requires-extension name="b2bacceleratoraddon"/>
 <requires-extension name="commerceorgaddon"/>
-
 <requires-extension name="multicountrysampledataaddon"/>
-
+<requires-extension name="commercefacades"/>
 
 
 
@@ -25,31 +28,11 @@
 
 <requires-extension name="assistedservicestorefront"/>
 <requires-extension name="consignmenttrackingaddon"/>
-<requires-extension name="orderselfserviceaddon"/>
-<requires-extension name="ordermanagementaddon"/>
 <requires-extension name="pcmbackofficesamplesaddon"/>
 <requires-extension name="adaptivesearchsamplesaddon"/>
 <requires-extension name="promotionenginesamplesaddon"/>
 <requires-extension name="customerticketingaddon"/>
 <requires-extension name="commerceorgsamplesaddon"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <requires-extension name="acceleratorstorefrontcommons"/>
 		<requires-extension name="ncipfacades"/>
 

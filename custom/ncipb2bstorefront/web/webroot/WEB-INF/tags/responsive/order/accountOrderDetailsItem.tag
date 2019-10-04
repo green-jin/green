@@ -11,12 +11,14 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
  
+<!--  accountOrderDetailsItem.tag start  -->
 <div class="row p-4 border border-secondary no-gutters mb-4">
 	<div class="row col-12 no-gutters mb-4">
+		<c:set var="consignment" scope="request" value="${consignment}" />  
 		<div class="col-md-4 align-content-center">
 			<h4 class="text-danger">
-				<ycommerce:testId code="orderDetail_consignmentStatus_label">
-	                <spring:theme code="text.account.order.consignment.status.${consignment.statusDisplay}" />
+				<ycommerce:testId code="orderDetail_consignmentStatus_label"> 
+	            	<spring:theme code="text.account.order.consignment.status.${consignment.statusDisplay}" />
 	            </ycommerce:testId>
 			</h4>
 		</div>
@@ -24,10 +26,17 @@
 			<div class="col-4 l-gray text-center p-2 border border-secondary bg-secondary text-white">
 				<spring:theme code="text.account.order.lfdat.date" />
 			</div>
+<!-- 			aaaa:<br/> -->
+<%-- 			dely_type:${consignment.dely_type}<br/> --%>
+<%-- 			ncipdelivery:${consignment.ncipdelivery}<br/> --%>
+<%-- 			lfdat:${consignment.lfdat}<br/> --%>
+<%-- 			shippingDate:${consignment.shippingDate}<br/>  --%>
+<%-- 			remark:${consignment.remark}<br/> --%>
+<%-- 			shipping_number:${consignment.shipping_number}<br/> --%>
 			<div class="col-8 col-md-7 bg-light p-2 border border-secondary">
 				<ycommerce:testId code="orderDetail_consignmentStatusDate_label">
 					<span class="well-headline-sub">
-	                    <fmt:formatDate value="${consignment.statusDate}" dateStyle="medium" timeStyle="short" type="both"/>
+	                  <fmt:formatDate  value="${consignment.lfdat}" dateStyle="medium" timeStyle="short" type="both"/>
 	                </span>
 				</ycommerce:testId>
 			</div>
@@ -39,7 +48,7 @@
 			<div class="col-8 bg-light p-2 border border-secondary">
 				<ycommerce:testId code="orderDetail_consignmentStatusDate_label">
 					<span class="well-headline-sub">
-	                    <fmt:formatDate value="${consignment.shippingDate}" dateStyle="medium" timeStyle="short" type="both"/>
+	                   <fmt:formatDate value="${consignment.shippingDate}" dateStyle="medium" timeStyle="short" type="both"/>
 	                </span>
 				</ycommerce:testId>
 			</div>

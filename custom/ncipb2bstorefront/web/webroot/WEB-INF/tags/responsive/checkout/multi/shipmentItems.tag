@@ -30,28 +30,28 @@
 
         <c:if test="${showDeliveryAddress and not empty deliveryAddress}">
             <div class="col-sm-12 col-lg-6">
-                <div class="checkout-shipping-items-header"><spring:theme code="checkout.summary.shippingAddress" /></div>
+                <div class="checkout-shipping-items-header"><spring:theme code="checkout.summary.recipient.information" /></div>
                 <span>
                     <b>${fn:escapeXml(deliveryAddress.title)}&nbsp;${fn:escapeXml(deliveryAddress.firstName)}&nbsp;${fn:escapeXml(deliveryAddress.lastName)}</b>
                     <br/>
-                    <c:if test="${ not empty deliveryAddress.line1 }">
-                        ${fn:escapeXml(deliveryAddress.line1)},&nbsp;
+                    <c:if test="${ not empty deliveryAddress.country.name }">
+                        ${fn:escapeXml(deliveryAddress.country.name)},&nbsp;
                     </c:if>
-                    <c:if test="${ not empty deliveryAddress.line2 }">
-                        ${fn:escapeXml(deliveryAddress.line2)},&nbsp;
-                    </c:if>
-                    <c:if test="${not empty deliveryAddress.town }">
+                       <c:if test="${not empty deliveryAddress.town }">
                         ${fn:escapeXml(deliveryAddress.town)},&nbsp;
                     </c:if>
-                    <c:if test="${ not empty deliveryAddress.region.name }">
+                      <c:if test="${ not empty deliveryAddress.region.name }">
                         ${fn:escapeXml(deliveryAddress.region.name)},&nbsp;
                     </c:if>
-                    <c:if test="${ not empty deliveryAddress.postalCode }">
-                        ${fn:escapeXml(deliveryAddress.postalCode)},&nbsp;
+                    <c:if test="${ not empty deliveryAddress.line1 }">
+                        ${fn:escapeXml(deliveryAddress.line1)}
                     </c:if>
-                    <c:if test="${ not empty deliveryAddress.country.name }">
-                        ${fn:escapeXml(deliveryAddress.country.name)}
-                    </c:if>
+                    <c:if test="${ not empty deliveryAddress.line2 }">
+                        ${fn:escapeXml(deliveryAddress.line2)}
+                    </c:if> 
+<%--                     <c:if test="${ not empty deliveryAddress.postalCode }"> --%>
+<%--                         ${fn:escapeXml(deliveryAddress.postalCode)},&nbsp; --%>
+<%--                     </c:if> --%>
                     <br/>
                     <c:if test="${ not empty deliveryAddress.phone }">
                         ${fn:escapeXml(deliveryAddress.phone)}
