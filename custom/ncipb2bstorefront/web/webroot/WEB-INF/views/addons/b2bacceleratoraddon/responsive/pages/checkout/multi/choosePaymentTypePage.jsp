@@ -8,27 +8,41 @@
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 <template:page pageTitle="${pageTitle}" hideHeaderLinks="true">
-<div class="row">
-    <div class="col-sm-6">
-        <div class="checkout-headline">
-            <span class="glyphicon glyphicon-lock"></span>
-            <spring:theme code="checkout.multi.secure.checkout"></spring:theme>
-        </div>
 
-        <multi-checkout:checkoutSteps checkoutSteps="${checkoutSteps}" progressBarId="${progressBarId}">
-            <jsp:body>
-                <b2b-multi-checkout:paymentTypeForm/>
-            </jsp:body>
-        </multi-checkout:checkoutSteps>
-    </div>
-    <div class="col-sm-6 hidden-xs">
-        <multi-checkout:checkoutOrderDetails cartData="${cartData}" showDeliveryAddress="false" showPaymentInfo="false" showTaxEstimate="false" showTax="true" />
-    </div>
-
-    <div class="col-sm-12 col-lg-12">
-        <cms:pageSlot position="SideContent" var="feature" element="div" class="checkout-help">
-            <cms:component component="${feature}"/>
-        </cms:pageSlot>
-    </div>
+<div class="col-lg-10 container-fluid">
+	<!-- Step1: addon checkout/multi/payment-type/choose -->
+<!-- 	Step1: checkout/multi/payment-type/choose addon choosePaymentTypePage.jsp -->
+	
+	<div class="row pb-3">
+	    <div class="col-md-6">
+	        <div class="checkout-headline">
+	        	 <h3 class="p-3">
+	        	 	<i class="fa fa-lock pr-2"></i>
+	        	 	<spring:theme code="checkout.multi.secure.checkout"></spring:theme>
+	        	 </h3>
+	        </div>
+			
+			<div id="accordion">
+<!-- 				<div class="card"> -->
+					<multi-checkout:checkoutSteps checkoutSteps="${checkoutSteps}" progressBarId="${progressBarId}">
+			            <jsp:body>
+			                <b2b-multi-checkout:paymentTypeForm/>
+			            </jsp:body>
+		        	</multi-checkout:checkoutSteps>
+<!-- 				</div>	 -->
+			</div> 
+	    </div>
+	    
+	    <div class="col-md-6"> 
+	        <multi-checkout:checkoutOrderDetails cartData="${cartData}" showDeliveryAddress="false" showPaymentInfo="false" showTaxEstimate="false" showTax="true" />
+	    </div>
+	
+	<!--     <div class="col-sm-12 col-lg-12">  -->
+	<!--         cms:pageSlot position="SideContent" var="feature" element="div" class="checkout-help" -->
+	<%--             cms:component component="${feature}"/ --%>
+	<!--         /cms:pageSlot -->
+	<!--     </div> -->
+	    
+	</div>
 </div>
 </template:page>

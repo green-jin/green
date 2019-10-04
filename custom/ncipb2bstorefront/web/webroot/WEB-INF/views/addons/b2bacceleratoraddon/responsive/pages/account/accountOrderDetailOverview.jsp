@@ -5,20 +5,21 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-<div class="well-lg well well-tertiary">
+<!-- addon b2bacceleratoraddon accountOrderDetailOverview.jsp start -->
+<div class="m-0 mb-4 p-4 bg-light border border-secondary">
     <ycommerce:testId code="orderDetail_overview_section">
         <b2b-order:accountOrderDetailsOverview order="${orderData}"/>
     </ycommerce:testId>
 </div>
-<c:if test="${not empty orderData.placedBy}">
-	<div class="alert alert-info order-placedby">
-	<c:choose>
-		<c:when test="${not empty agent}">
-			<spring:theme code="text.account.order.placedBy" arguments="${orderData.placedBy}"/>
-		</c:when>
-		<c:otherwise>
-			<spring:theme code="text.account.order.placedByText"/>
-		</c:otherwise>
-	</c:choose>
-	</div>
-</c:if>
+<%-- <c:if test="${not empty orderData.placedBy}"> --%>
+<!-- 	<div class="alert alert-info order-placedby"> -->
+<%-- 	<c:choose> --%>
+<%-- 		<c:when test="${not empty agent}"> --%>
+<%-- 			<spring:theme code="text.account.order.placedBy" arguments="${orderData.placedBy}"/> --%>
+<%-- 		</c:when> --%>
+<%-- 		<c:otherwise> --%>
+<%-- 			<spring:theme code="text.account.order.placedByText"/> --%>
+<%-- 		</c:otherwise> --%>
+<%-- 	</c:choose> --%>
+<!-- 	</div> -->
+<%-- </c:if> --%>
