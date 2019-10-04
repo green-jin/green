@@ -513,7 +513,7 @@
             <modifiers read="true" write="true" optional="true" unique="false"/>
             <persistence type="property"/>
           </attribute>
-          <attribute qualifier="arrivalDate" type="java.lang.String">
+          <attribute qualifier="arrivalDate" type="java.util.Date">
             <description>配達日期(格式: YYYYMMDD)</description>
             <modifiers read="true" write="true" optional="true" unique="false"/>
             <persistence type="property"/>
@@ -528,14 +528,11 @@
             <modifiers read="true" write="true" optional="true" unique="false" />
             <persistence type="property" />
           </attribute>
-
           <attribute qualifier="ncipdelivery" type="DeliveryType">
             <description>貨運或者是物流</description>
             <modifiers read="true" write="true" optional="true" unique="false" />
             <persistence type="property" />
           </attribute>
-
-
         </attributes>
       </itemtype>
     </typegroup>

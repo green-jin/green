@@ -59,7 +59,6 @@
 <%--         <formElement:formInputBox idKey="address.phone" labelKey="address.phone" path="phone" inputCSS="form-control" mandatory="false" /> --%>
 <%-- 	</c:when> --%>
 	<c:otherwise>
-		other 
 		<formElement:formInputBox idKey="address.postcode" labelKey="address.postcode" path="postcode" inputCSS="form-control" mandatory="true" placeholder="address.postcode"/>
 		<formElement:formInputBox idKey="address.townCity" labelKey="address.townCity" path="townCity" inputCSS="form-control" mandatory="true" placeholder="address.townCity"/>
 		<formElement:formInputBox idKey="address.line1" labelKey="address.street" path="line1" inputCSS="form-control" mandatory="true" placeholder="address.street"/>

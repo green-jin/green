@@ -107,10 +107,10 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 			final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
 			final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
 			final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
-
+			final String driver = configurationService.getConfiguration().getString("jdbc.driver");
 			try
 			{
-				Class.forName("com.mysql.cj.jdbc.Driver");
+				Class.forName(driver);
 
 				try (Connection conn = DriverManager.getConnection(url, username, password);)
 				{
@@ -191,6 +191,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 			final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
 			final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
 			final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
+			final String driver = configurationService.getConfiguration().getString("jdbc.driver");
 			String SELECTSQL = "select * from sap.zhystk ";
 			final String FRSYS = configurationService.getConfiguration().getString("sap.zhystk.fr_sys");//"SAP";
 			final String TOSYS = configurationService.getConfiguration().getString("sap.zhystk.to_sys");//"Hybris";
@@ -200,7 +201,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 			LOG.info(" do getSAPERPZHYToZHYSTKData STATUS = [" + STATUS + "] getconnection");
 			try
 			{
-				Class.forName("com.mysql.cj.jdbc.Driver");
+				Class.forName(driver);
 				//Get current date time
 				final LocalDateTime now = LocalDateTime.now();
 				final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");

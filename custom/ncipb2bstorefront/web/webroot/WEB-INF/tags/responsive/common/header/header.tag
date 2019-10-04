@@ -11,6 +11,7 @@
 <%@ taglib prefix="breadcrumb" tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
+<!-- header.tag -->
 <!-- nav -->
 <%--<link href="ncipb2bstorefront/_ui/responsive/theme-lambda/css/style.css" rel="stylesheet">--%>
 <%--<link href="ncipb2bstorefront/_ui/responsive/theme-lambda/css/bootstrap.min.css" rel="stylesheet">--%>
@@ -25,17 +26,17 @@
 
 
         <div class="navbar-toggler-right">
-            <!--頁面縮小的menu button-->
+            <!--é é¢ç¸®å°çmenu button-->
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbar" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!--頁面縮小的menu button-->
+            <!--é é¢ç¸®å°çmenu button-->
         </div>
         <div class="collapse navbar-collapse flex-column" id="navbar">
 
-            <!--第一條 Navbar 	-->
+            <!--ç¬¬ä¸æ¢ Navbar 	-->
             <ul class="navbar-nav w-100 justify-content-end px-3">
 
                 <c:if test="${empty hideHeaderLinks}">
@@ -50,16 +51,16 @@
                                         code="header.link.aboutus"/></a>
                             </li>
 
-                            <%--                            登入--%>
+                            <%--                            ç»å¥--%>
                             <c:url value="/login" var="loginUrl"/>
                             <a class="nav-link text-white" href="${fn:escapeXml(loginUrl)}">
                                 <i class="fa fa-sign-in px-2"></i><spring:theme
-                                    code="header.link.login"/></a>
+                                    code="addon.header.link.login"/></a>
                         </ycommerce:testId>
                     </sec:authorize>
-                    <%--                    登入 End--%>
+                    <%--                    ç»å¥ End--%>
 
-                    <%--   你好xxx經銷商--%>
+                    <%--   ä½ å¥½xxxç¶é·å--%>
                     <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
                         <c:set var="maxNumberChars" value="25"/>
                         <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
@@ -79,16 +80,16 @@
                             </ycommerce:testId>
                         </li>
                     </sec:authorize>
-                    <%--   你好xxx經銷商 End--%>
+                    <%--   ä½ å¥½xxxç¶é·å End--%>
 
-                    <%--                    我的帳戶--%>
+                    <%--                    æçå¸³æ¶--%>
 
                     <cms:pageSlot position="HeaderLinks" var="link">
                         <cms:component component="${link}"/>
                     </cms:pageSlot>
-                    <%--                    我的帳戶--%>
+                    <%--                    æçå¸³æ¶--%>
 
-                    <%--                    登出--%>
+                    <%--                    ç»åº--%>
                     <li class="nav-item">
                         <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
                             <ycommerce:testId code="header_signOut">
@@ -100,7 +101,7 @@
                             </ycommerce:testId>
                         </sec:authorize>
                     </li>
-                    <%--                    登出--%>
+                    <%--                    ç»åº--%>
                 </c:if>
 
                 <%--Quick Order & Mini Cart--%>
@@ -111,7 +112,7 @@
 
             </ul>
 
-            <!--第二條 Navbar -->
+            <!--ç¬¬äºæ¢ Navbar -->
             <nav:topNavigation/>
         </div>
 
@@ -121,7 +122,7 @@
 
 <c:if test="${fn:length(breadcrumbs) > 0}">
     <header>
-        <!-- 麵包屑 -->
+        <!-- éºµåå± -->
         <div class="container-fluid l-gray">
             <div class="container">
                 <breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />

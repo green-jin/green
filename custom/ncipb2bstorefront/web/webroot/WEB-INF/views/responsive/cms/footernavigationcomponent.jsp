@@ -49,6 +49,16 @@
 				<small>  
 					<a class="text-white" href="${component.serviceStatementUrlLike}">${component.serviceStatement}</a>
 				</small>
+<%-- 				<c:if test="${showLanguageCurrency}"> --%>
+<!--                    <div class="row"> -->
+<!--                        <div class="col-xs-6 col-md-6 footer__dropdown"> -->
+<%--                            <footer:languageSelector languages="${languages}" currentLanguage="${currentLanguage}" /> --%>
+<!--                        </div> -->
+<!--                        <div class="col-xs-6 col-md-6 footer__dropdown"> -->
+<%--                            <footer:currencySelector currencies="${currencies}" currentCurrency="${currentCurrency}" /> --%>
+<!--                        </div> -->
+<!--                    </div> -->
+<%--                </c:if> --%>
 			</div>
 		</div>
 	</div>

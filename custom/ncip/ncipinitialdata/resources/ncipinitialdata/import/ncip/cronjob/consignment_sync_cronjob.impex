@@ -1,0 +1,9 @@
+#Consignment Hybris to SAP Sync
+INSERT_UPDATE cronjob;code[unique=true];job(code);sessionlanguage(isocode);sessioncurrency(isocode)
+;consignmentSyncTestCronJob;consignmentSyncJobPerformable;zh_TW;TWD
+
+#早上11:10，下午2:10 ，晚上11:30
+INSERT_UPDATE trigger;cronjob[unique=true](code);cronexpression[unique=true]
+;consignmentSyncTestCronJob;0 10 11 ? * * *
+;consignmentSyncTestCronJob;0 10 14 ? * * *
+;consignmentSyncTestCronJob;0 30 23 ? * * *

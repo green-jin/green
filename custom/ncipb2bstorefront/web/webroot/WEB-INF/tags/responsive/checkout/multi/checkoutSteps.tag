@@ -23,8 +23,17 @@ ${fn:escapeXml(cssClass)}
 								<c:when test="${checkoutStep.progressBarId eq 'deliveryAddress.noPickup'}">   
 									<div class="title"><spring:theme code="checkout.multi.deliveryAddress.shippingAddress"/></div>
 								</c:when> 
-								<c:otherwise>  
-									<div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>  
+								<c:otherwise>   
+									<div class="title">
+										<c:choose> 
+										  <c:when test="${checkoutStep.progressBarId eq 'paymentType'}">
+										     <spring:theme code="checkout.multi.paymentType.title"/>
+										  </c:when>
+										  <c:otherwise> 
+										  	<spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/>
+										  </c:otherwise>
+										</c:choose> 
+									</div>  
 								</c:otherwise>
 							</c:choose> 
                         	
@@ -48,8 +57,24 @@ ${fn:escapeXml(cssClass)}
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${fn:escapeXml(stepUrl)}" class="step-head js-checkout-step ">
-                        <div class="title"><spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/></div>
+                    <a href="${fn:escapeXml(stepUrl)}" class="step-head js-checkout-step "> 
+						<c:choose>
+							<c:when test="${checkoutStep.progressBarId eq 'paymentType'}">   
+								 <div class="title">
+		                        	<spring:theme code="checkout.multi.paymentType.title"/>
+		                        </div>
+							</c:when>  
+							<c:when test="${checkoutStep.progressBarId eq 'deliveryAddress.noPickup'}">   
+								 <div class="title">
+		                        	<spring:theme code="checkout.multi.deliveryAddress.noPickup.title"/>
+		                        </div>
+							</c:when>  
+							<c:otherwise> 
+							 	 <div class="title">
+		                        	<spring:theme code="checkout.multi.${checkoutStep.progressBarId}"/>
+		                        </div>
+							</c:otherwise>  
+						</c:choose>  
                         <div class="edit">
                             <span class="text-primary fa fa-pencil fa-2x"></span>
                         </div>

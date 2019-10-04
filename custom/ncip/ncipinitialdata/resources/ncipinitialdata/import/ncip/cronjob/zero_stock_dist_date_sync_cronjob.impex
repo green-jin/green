@@ -1,0 +1,8 @@
+#Zero Stcok Distribution SAP to Hybris Sync
+INSERT_UPDATE cronjob;code[unique=true];job(code);sessionlanguage(isocode);sessioncurrency(isocode)
+;zeroStockDist2ConsignTestCronJob;zeroStockDistribution2ConsignmentJob;zh_TW;TWD
+
+#排程時間為11:40及14:40
+INSERT_UPDATE trigger;cronjob[unique=true](code);cronexpression[unique=true]
+;zeroStockDist2ConsignTestCronJob;0 40 11 ? * * *
+;zeroStockDist2ConsignTestCronJob;0 40 14 ? * * *

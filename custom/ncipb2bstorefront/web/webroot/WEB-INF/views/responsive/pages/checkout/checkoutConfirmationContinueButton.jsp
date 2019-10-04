@@ -5,13 +5,14 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:url value="${continueUrl}" var="continueShoppingUrl" scope="session" htmlEscape="false"/>
-
-<div class="row">
-    <div class="pull-right col-xs-12 col-sm-6 col-md-5 col-lg-4">
-        <div class="continue__shopping">
-            <button class="btn btn-primary btn-block btn--continue-shopping js-continue-shopping-button" data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
+<!-- addin checkoutConfirmationContinueButton.jsp  -->
+ <div class="row p-3"> 
+      <div class="col-md-3"></div> 
+      <div class="col-md-3"></div> 
+      <div class="col-md-3 mb-3"></div> 
+      <div class="col-md-3 mb-3">
+      		<button class="btn btn-primary btn-block btn--continue-shopping js-continue-shopping-button" data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
                 <spring:theme code="checkout.orderConfirmation.continueShopping" />
-            </button>
-        </div>
-    </div>
+            </button> 
+      </div> 
 </div>
