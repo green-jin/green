@@ -4,8 +4,8 @@
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
 <div class="cancel-complete-order-btn">
-<!--     <a href="#" class="js-cancel-complete-order-link pull-right"> -->
-<%--         <spring:theme code="text.cancel.complete.order"/> --%>
-<!--     </a> -->
+    <a href="#" class="js-cancel-complete-order-link pull-right">
+        <spring:theme code="text.cancel.complete.order"/>
+    </a>
 </div>
 
