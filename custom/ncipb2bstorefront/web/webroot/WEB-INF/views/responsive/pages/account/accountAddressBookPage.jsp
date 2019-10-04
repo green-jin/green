@@ -11,7 +11,7 @@
     <c:set var="dataSize" value="${fn:length(addressData)}"/>
 </c:if>
 
-<div class="col-lg-10 container-fluid">
+<!-- <div class="col-lg-10 container-fluid"> -->
 
   <!-- Page Content -->
 	<div class="row justify-content-between p-3">
@@ -34,15 +34,27 @@
 			    ${fn:escapeXml(address.phone)}
 			    </div>
 			    
-				<div class="col-3 text-right text-secondary">
+				<!-- <div class="col-3 text-right text-secondary">
 					<a href="#" class="text-secondary"><i class="fa fa-pencil"></i></a><br>
 			    	<a href="#" class="text-secondary"><i class="fa fa-times"></i></a>
-			    </div>
+			    </div> -->
+                <div class="col-3 text-right text-secondary">
+                	<a class="text-secondary" data-address-id="${fn:escapeXml(address.id)}">
+						<i class="fa fa-pencil"></i>
+						<%-- <spring:theme code="text.button.cancel"/> --%>
+					</a><br>
+					<ycommerce:testId code="addressRemove_delete_button">
+					<a class="text-secondary" data-address-id="${fn:escapeXml(address.id)}" href="remove-address/${fn:escapeXml(ycommerce:encodeUrl(address.id))}">
+						<i class="fa fa-times"></i>
+						<%-- <spring:theme code="text.address.delete" /> --%>
+					</a>
+					</ycommerce:testId>
+				</div>
 			  </div>
 		  </div>
 		</c:forEach>
 	</div>
-</div>
+<!-- </div> -->
 
 
 <%-- <div class="account-addressbook account-list">
