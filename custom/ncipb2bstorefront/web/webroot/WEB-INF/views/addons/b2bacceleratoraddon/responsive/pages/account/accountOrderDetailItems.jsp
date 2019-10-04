@@ -5,7 +5,6 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- add on b2bacceleratoraddon accountOrderDetailItems.jsp   -->
 <div class="account-orderdetail account-consignment">
     <ycommerce:testId code="orderDetail_itemList_section">
         <c:if test="${not empty orderData.unconsignedEntries}">
@@ -21,7 +20,7 @@
         <c:forEach items="${orderData.consignments}" var="consignment">
             <c:if test="${consignment.status.code ne 'WAITING' and consignment.status.code ne 'PICKPACK' and consignment.status.code ne 'READY'}">
                 <div class="fulfilment-states-${fn:escapeXml(consignment.status.code)}">
-                   <order:accountOrderDetailsItem order="${orderData}" consignment="${consignment}"/>
+                    <order:accountOrderDetailsItem order="${orderData}" consignment="${consignment}"/>
                 </div>
             </c:if>
         </c:forEach>

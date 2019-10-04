@@ -21,10 +21,11 @@
             <ul class="item__list--header">
                 <li class="item__toggle"></li>
                 <li class="item__image"></li>
-                 <li class="item__info text-white"><spring:theme code="basket.page.item"/></li>
-                <li class="item__price text-white"><spring:theme code="basket.page.price"/></li>
-                <li class="item__quantity text-white"><spring:theme code="basket.page.qty"/></li>
-                <li class="item__quantity text-white"><spring:theme code="text.account.cancel.qty"/></li> 
+                <li class="item__info"><spring:theme code="basket.page.item"/></li>
+                <li class="item__deliverymode"><spring:theme code="text.account.cancel.delivery"/></li>
+                <li class="item__price"><spring:theme code="basket.page.price"/></li>
+                <li class="item__quantity"><spring:theme code="text.account.cancel.qty"/></li>
+                <li class="item__total--column"><spring:theme code="basket.page.total"/></li>
             </ul>
         </li>
         <c:forEach items="${order.entries}" var="entry" varStatus="loop">
@@ -85,6 +86,20 @@
                                 </div>
                             </c:if>
                         </c:if>
+                    </div>
+
+                        <%-- delivery mode --%>
+                    <div class="item__delivery">
+                        <span class="visible-xs visible-sm"><spring:theme code="text.account.cancel.delivery"/>: </span>
+                        <c:choose>
+                            <c:when test="${entry.deliveryPointOfService eq null}">
+                                <spring:theme code="text.account.cancel.standard.shipping"/>
+                            </c:when>
+                            <c:otherwise>
+                                        <span><spring:theme
+                                                code="text.account.cancel.pickup.from"/><span></span>${fn:escapeXml(entry.deliveryPointOfService.name)}</span>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
 
                         <%-- price --%>
@@ -183,6 +198,20 @@
                                         </div>
                                     </c:if>
                                 </c:if>
+                            </div>
+
+                                <%-- delivery mode --%>
+                            <div class="item__delivery">
+                                <span class="visible-xs visible-sm"><spring:theme code="text.account.cancel.delivery"/>: </span>
+                                <c:choose>
+                                    <c:when test="${entry.deliveryPointOfService eq null}">
+                                        <spring:theme code="text.account.cancel.standard.shipping"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span><spring:theme
+                                                code="text.account.cancel.pickup.from"/><span></span>${fn:escapeXml(entry.deliveryPointOfService.name)}</span>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 
                                 <%-- price --%>

@@ -7,11 +7,11 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <c:url var="cancelOrderUrl" value="${fn:escapeXml(fn:replace(url, '{orderCode}', orderCode))}" scope="page"/>
-<!--  add on orderselfserviceaddon cancelorderaction.jsp start -->
+
 <c:if test="${orderCancellable}">
     <form:form action="${cancelOrderUrl}" id="cancelorderForm" commandName="cancelorderForm"
                class="cancelorderForm--ButtonWrapper">
-            <button type="submit" class="btn btn-outline-dark btn-block" id="cancelOrderButton">
+            <button type="submit" class="btn btn-default btn-block" id="cancelOrderButton">
                 <spring:theme code="text.order.cancelorderbutton"/>
             </button>
     </form:form>
