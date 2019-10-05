@@ -26,11 +26,11 @@ public class DefaultPropertiesZhydelyDao implements ZhydelyDao {
   private NamedParameterJdbcTemplate namedParamJDBCTemplate;
 
   private static final String INSERT_BY_MODEL =
-      "INSERT INTO ZHYDELY VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      "INSERT INTO sapabap1.ZHYDELY VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   private static final String IS_EXISTED =
-      "SELECT count(1) FROM ZHYDELY t WHERE t.VKORG=:VKORG AND t.VBELN_D=:VBELN_D AND t.POSNR=:POSNR";
+      "SELECT count(1) FROM sapabap1.ZHYDELY t WHERE t.VKORG=:VKORG AND t.VBELN_D=:VBELN_D AND t.POSNR=:POSNR";
   private static final String UPDATE_BY_MODEL =
-      "UPDATE ZHYDELY t\r\n" + "SET\r\n" + "t.VKORG=?,\r\n" + "t.VBELN_D=?,\r\n" + "t.VBELN=?,\r\n"
+      "UPDATE sapabap1.ZHYDELY t\r\n" + "SET\r\n" + "t.VKORG=?,\r\n" + "t.VBELN_D=?,\r\n" + "t.VBELN=?,\r\n"
           + "t.POSNR=?,\r\n" + "t.MATNR=?,\r\n" + "t.LFIMG=?,\r\n" + "t.MEINS=?,\r\n"
           + "t.WADAT_IST=?,\r\n" + "t.LGORT=?,\r\n" + "t.LFSTK=?,\r\n" + "t.DELY_TYPE=?,\r\n"
           + "t.LFDAT=?,\r\n" + "t.CRT_DATE=?,\r\n" + "t.FRM_SYS=?,\r\n" + "t.TO_SYS=?,\r\n"
@@ -41,7 +41,7 @@ public class DefaultPropertiesZhydelyDao implements ZhydelyDao {
       + ") AND t.FRM_SYS='" + ConsignmentSyncConstants.SAP + "'  AND t.TO_SYS='"
       + ConsignmentSyncConstants.HYBRIS + "'";
   private static final String UPDATE_STATUS =
-      "UPDATE ZHYDELY t SET t.STATUS=:status WHERE t.VBELN_D=:code";
+      "UPDATE sapabap1.ZHYDELY t SET t.STATUS=:status WHERE t.VBELN_D=:code";
 
   @Override
   public void insertByModel(final ZhydelyBean model) {

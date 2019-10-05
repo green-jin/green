@@ -5,6 +5,8 @@
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
+<!-- addon productaddtocartcomponent.jsp -->
+
 <c:set var="isForceInStock"
        value="${product.stock.stockLevelStatus.code eq 'inStock' and empty product.stock.stockLevel}"/>
 

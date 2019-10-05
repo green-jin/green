@@ -3,6 +3,7 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags" %>
 <%@ taglib prefix="storepickup" tagdir="/WEB-INF/tags/responsive/storepickup" %>
 
+<!-- addon searchGridPage.jsp -->
 
 <template:page pageTitle="${pageTitle}">
     <div class="col-lg-10 container-fluid">
