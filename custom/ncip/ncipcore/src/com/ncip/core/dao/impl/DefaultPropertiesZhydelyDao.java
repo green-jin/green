@@ -127,10 +127,11 @@ public class DefaultPropertiesZhydelyDao implements ZhydelyDao {
   /* DataSource for local test only. */
   private DataSource getDataSource() {
     final DriverManagerDataSource ds = new DriverManagerDataSource();
-    ds.setDriverClassName(configurationService.getConfiguration().getString("jdbc.driver"));
-    ds.setUrl(configurationService.getConfiguration().getString("jdbc.mysql.url"));
-    ds.setUsername(configurationService.getConfiguration().getString("jdbc.mysql.username"));
-    ds.setPassword(configurationService.getConfiguration().getString("jdbc.mysql.password"));
+    ds.setDriverClassName(
+        configurationService.getConfiguration().getString("jdbc.driverClassName"));
+    ds.setUrl(configurationService.getConfiguration().getString("jdbc.url"));
+    ds.setUsername(configurationService.getConfiguration().getString("jdbc.username"));
+    ds.setPassword(configurationService.getConfiguration().getString("jdbc.password"));
     return ds;
   }
 
