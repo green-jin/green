@@ -41,6 +41,7 @@ UPDATE BaseSite;uid[unique=true];solrFacetSearchConfiguration(name)
 INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID)
 ;ncipb2bPriceRangeUSD;USD;double;rangeRefUSD1,rangeRefUSD2,rangeRefUSD3,rangeRefUSD4,rangeRefUSD5
 ;ncipb2bPriceRangeCAD;CAD;double;rangeRefCAD1,rangeRefCAD2,rangeRefCAD3,rangeRefCAD4,rangeRefCAD5
+;ncipb2bPriceRangeTWD;TWD;double;rangeRefTWD1,rangeRefTWD2,rangeRefTWD3,rangeRefTWD4,rangeRefTWD5,rangeRefTWD6
 
 # Define price ranges
 INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
@@ -55,6 +56,13 @@ INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=tru
 ;rangeRefCAD3;ncipb2bPriceRangeCAD;   C$200-C$499.99; 200; 499.99
 ;rangeRefCAD4;ncipb2bPriceRangeCAD;   C$500-C$999.99; 500; 999.99
 ;rangeRefCAD5;ncipb2bPriceRangeCAD;C$1,000-C$100,000;1000; 100000
+
+;rangeRefTWD1;ncipb2bPriceRangeTWD;       $0-$3000;     0;   3000
+;rangeRefTWD2;ncipb2bPriceRangeTWD;    $3001-$6000;  3001;   6000
+;rangeRefTWD3;ncipb2bPriceRangeTWD;    $6001-$3000;  6001;  12000
+;rangeRefTWD4;ncipb2bPriceRangeTWD;  $12001-$18000; 12001;  18000
+;rangeRefTWD5;ncipb2bPriceRangeTWD;  $18001-$24000; 18001;  24000
+;rangeRefTWD6;ncipb2bPriceRangeTWD;  $24001~      ; 24001; 100000
 
 # Non-facet properties
 INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength
