@@ -144,7 +144,10 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 		private ProductModel getProductForCode(final String code)
 		{
 			ProductModel rtProductModel = null;
-			LOG.debug(" do getProductForCode code = [" + code + "]validateParameterNotNull");
+			if(LOG.isDebugEnabled()) {
+			  LOG.debug(" do getProductForCode code = [" + code + "]validateParameterNotNull");
+			}
+			
 			validateParameterNotNull(code, "Parameter code must not be null");
 
 
@@ -191,7 +194,10 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 			validateParameterNotNull(code, "Parameter code must not be null");
 			try
 			{
-				LOG.debug(" do getWarehouseForCode code = [" + code + "]");
+			  if(LOG.isDebugEnabled()) {
+			    LOG.debug(" do getWarehouseForCode code = [" + code + "]");
+			  }
+				
 				rtpk = this.getWarehouseService().getWarehouseForCode(code);
 				if (rtpk.getPk() != null)
 				{
@@ -338,24 +344,20 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 				final ZHYSTKData zhystkData = zhystkDataList.get(i);
 				StockLevelModel stocklevel = (StockLevelModel) getModelService().create(StockLevelModel.class);
 				zhystkData.getVkORG();
-				LOG.debug(" zhystkData(" + i + ").getVkORG()= [" + zhystkData.getVkORG() + "]");
-//				LOG.info(" zhystkData(" + i + ").getMatNR()= [" + zhystkData.getMatNR() + "]");
-//				LOG.info(" zhystkData(" + i + ").getLgORT()= [" + zhystkData.getLgORT() + "]");
+				if(LOG.isDebugEnabled()) {
+				  LOG.debug(" zhystkData(" + i + ").getVkORG()= [" + zhystkData.getVkORG() + "]");
+				}
+				
 				final ProductModel tmpProductModel = this.getProductForCode(zhystkData.getMatNR());
-//				LOG.info(" zhystkData(" + i + ").tmpProductModel= [" + tmpProductModel + "]");
 				if (tmpProductModel != null)
 				{
 					final WarehouseModel tmpwarehouse = this.getWarehouseForCode(zhystkData.getLgORT());
-//					LOG.info(" zhystkData(" + i + ").tmpwarehouse= [" + tmpwarehouse + "]");
 					if (tmpwarehouse != null)
 					{
 
 						final StockLevelModel chkStocklevel = getStockLevel(tmpProductModel, tmpwarehouse);
-//						LOG.info(" zhystkData(" + i + ").chkStocklevel= [" + chkStocklevel + "]");
-						if (chkStocklevel == null)
-						{
-//							LOG.info(" zhystkData(" + i + ").getStk_STAT= [" + zhystkData.getStk_STAT() + "]");
-						
+				      if (chkStocklevel == null)
+				      {
 
 						try
 						{
@@ -364,16 +366,16 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 						catch (final Exception e)
 						{
 							final String STK_STAT = configurationService.getConfiguration().getString("sap.zhystk.STK_STAT");//"SAP";
-							LOG.warn(" zhyclData(" + i + ") whitout RANGE_DAT Exception = [" + e.getStackTrace()
+							LOG.warn(" zhyclData(" + i + ").getStk_STAT() whitout InStockStatus="+zhystkData.getStk_STAT()+" Exception = [" + e.getStackTrace()
 									+ "] use default sap.zhycl.RANGE_DAT==" + STK_STAT);
 							stocklevel.setInStockStatus(InStockStatus.valueOf(STK_STAT.toUpperCase()));
 						}
-						}
-						else
-						{
+					  }
+					  else
+					  {
 							stocklevel = chkStocklevel;
-						}
-						stocklevel.setVkORG(zhystkData.getVkORG());
+					  }
+					  stocklevel.setVkORG(zhystkData.getVkORG());
 
 						stocklevel.setProductCode(zhystkData.getMatNR());
 						stocklevel.setAvailable(zhystkData.getMenGE());
@@ -418,18 +420,10 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 							try
 							{
 
-							//stocklevel.setStockLevelHistoryEntries(historyEntries);
 								stocklevel.setIcType("MODIFY");
-//								LOG.info(" zhystkData(" + i + ").getCrt_DATE()= [" + zhystkData.getCrt_DATE() + "]");
-//								LOG.info(" zhystkData(" + i + ") MODIFY  stocklevel.getCreateDate()= [" + stocklevel.getCreateDate() + "]");
-//
-//								LOG.info(" zhystkData(" + i + ") MODIFY  stocklevel.getWarehouse()= [" + stocklevel.getWarehouse() + "]");
-//								LOG.info(" stocklevel.setIcType(\"MODIFY\")= [MODIFY] to do updateSyncAmountBySAP(stocklevel,zhyData.getMenGE())");
 								try
 								{
 									getStockLevelSyncDao().updateSyncAmountBySAP(stocklevel, zhystkData.getMenGE());
-									//getModelService().save(stocklevel);
-//									LOG.info(" zhystkData(" + i + ").setIcType(\"MODIFY\")= [MODIFY] after getModelService().save(stocklevel)");
 								clearCacheForItem(stocklevel);
 								final List<StockLevelHistoryEntryModel> historyEntries = new ArrayList<StockLevelHistoryEntryModel>();
 								final StockLevelHistoryEntryModel entry = this.createStockLevelHistoryEntry(stocklevel,
@@ -460,12 +454,14 @@ public class DefaultSaveStockLevelService extends AbstractBusinessService implem
 					}
 					else
 					{
+					  LOG.warn("this.getWarehouseForCode(zhystkData.getLgORT())==null  zhystkData(" + i + ").getLgORT()=="+zhystkData.getLgORT());
 						zhystkData.setStatus("F");
 					}
 
 				}
 				else
 				{
+				  LOG.warn("this.getProductForCode(zhystkData.getMatNR())==null zhystkData(" + i + ").getMatNR()=="+zhystkData.getMatNR());
 					zhystkData.setStatus("F");
 				}
 

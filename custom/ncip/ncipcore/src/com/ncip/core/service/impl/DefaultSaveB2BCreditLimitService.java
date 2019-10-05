@@ -75,9 +75,10 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 		//final B2BCreditLimitModel b2bCreditLimit = new B2BCreditLimitModel();
 		B2BCreditLimitModel b2bCreditLimit = (B2BCreditLimitModel) getModelService().create(B2BCreditLimitModel.class);
 		//zhyclData.getVkORG();
-		LOG.debug(" zhyclData.getVkORG()= [" + zhyclData.getVkORG() + "]");
-//		LOG.info(" zhyclData.getKunNR()= [" + zhyclData.getKunNR() + "]");
-//		LOG.info(" zhyclData.getWaeRK()= [" + zhyclData.getWaeRK() + "]");
+		if(LOG.isDebugEnabled()) {
+		  LOG.debug(" zhyclData.getVkORG()= [" + zhyclData.getVkORG() + "]");
+		}
+		
 		final String Code = zhyclData.getKunNR();
 		if (this.getB2bCreditLimitDao().hasB2BCreditLimitModelByCode(Code))
 		{
@@ -151,9 +152,10 @@ public class DefaultSaveB2BCreditLimitService extends AbstractBusinessService im
 			final ZHYCLData zhyclData = zhyclDataList.get(i);
 			B2BCreditLimitModel b2bCreditLimit = (B2BCreditLimitModel) getModelService().create(B2BCreditLimitModel.class);
 			//zhyclData.getVkORG();
-			LOG.debug(" zhyclData(" + i + ").getVkORG()= [" + zhyclData.getVkORG() + "]");
-//			LOG.info(" zhyclData(" + i + ").getKunNR()= [" + zhyclData.getKunNR() + "]");
-//			LOG.info(" zhyclData(" + i + ").getWaeRK()= [" + zhyclData.getWaeRK() + "]");
+			if(LOG.isDebugEnabled()) {
+			  LOG.debug(" zhyclData(" + i + ").getVkORG()= [" + zhyclData.getVkORG() + "]");
+			}
+			
 			final String Code = zhyclData.getKunNR();
 			if (this.getB2bCreditLimitDao().hasB2BCreditLimitModelByCode(Code))
 			{
