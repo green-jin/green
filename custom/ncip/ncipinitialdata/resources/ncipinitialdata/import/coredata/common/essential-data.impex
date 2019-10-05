@@ -37,7 +37,7 @@ INSERT_UPDATE Currency ; isocode[unique=true] ; conversion ; digits ; symbol
                        ; EUR                  ; 1          ; 2      ; €      
                        ; USD                  ; 1,4        ; 2      ; $      
                        ; CAD                  ; 1,4        ; 2      ; C$     
-                       ; TWD                  ; 1,4        ; 2      ; NT$    
+                       ; TWD                  ; 1,4        ; 0      ; $
                        
 # Vendor               
 INSERT_UPDATE Vendor ; code[unique=true] ; name                
@@ -65,7 +65,7 @@ if (warehouse != null)
 {
     line.clear();
 }"
-;1110;Default NCIP B2B2 Warehouse;
+;1110;Default NCIP B2B2 Warehouse;ncipb2b
 ;pw_warehouse_s;;ncipb2b
 ;pw_warehouse_e;;ncipb2b
 ;pw_warehouse_w;;ncipb2b

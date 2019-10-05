@@ -14,17 +14,17 @@
 
 $productCatalog=ncipb2bProductCatalog
 $classificationCatalog=ncipb2bClassification
-$currencies=USD,TWD
+$currencies=TWD
 $net=true
 $storeUid=ncipb2b
 $defaultCurrency=TWD
-$languages=en,zh,zh_TW
+$languages=zh_TW
 $defaultLanguage=zh_TW
 $unitedKingdom=GB,GG,IM,JE
 $europeNotUK=AD,AL,AT,BA,BE,BG,BY,CH,CY,CZ,DE,DK,EE,ES,FI,FO,FR,GI,GL,GR,HR,HU,IE,IS,IT,LI,LT,LU,LV,MC,MD,ME,MK,MT,NL,NO,PL,PT,RO,RS,RU,SE,SI,SK,SM,TR,UA,VA
 $asianCountries=CN,JP,VN,HK,KP,KR
-$deliveryCountries=$unitedKingdom,$europeNotUK,$asianCountries,US,CA
-$billingCountries=$unitedKingdom,$europeNotUK,CN,JP,VN,HK,KR,US,CA
+$deliveryCountries=TW
+$billingCountries=TW
 $orderProcessCode=order-b2bprocess
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
