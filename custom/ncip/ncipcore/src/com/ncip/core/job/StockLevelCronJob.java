@@ -47,11 +47,17 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 
 		private String getConnetcionURL()
 		 {
-			LOG.debug(" do PerformResult getConnetcionURL");
-			final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
-			final String username = "user=" + configurationService.getConfiguration().getString("jdbc.mysql.username");
-			final String password = "password=" + configurationService.getConfiguration().getString("jdbc.mysql.password");
-			LOG.debug(" do PerformResult getConnetcionURL  url=" + url + " username=" + username + " password=" + password);
+		  if(LOG.isDebugEnabled()) {
+		    LOG.debug(" do PerformResult getConnetcionURL");
+		  }
+			
+			final String url = configurationService.getConfiguration().getString("jdbc.url");
+			final String username = "user=" + configurationService.getConfiguration().getString("jdbc.username");
+			final String password = "password=" + configurationService.getConfiguration().getString("jdbc.password");
+			if(LOG.isDebugEnabled()) {
+			  LOG.debug(" do PerformResult getConnetcionURL  url=" + url + " username=" + username + " password=" + password);
+	            
+			}
 			return url + username + password;
 		 }
 
@@ -62,29 +68,34 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 		  try
 		  {
 				//LOG.debug(" do PerformResult = [" + zhyData.getVkORG() + "]");
-				LOG.info(" do PerformResult getSAPERPZHYToZHYData");
+				 if(LOG.isDebugEnabled()) {
+					LOG.debug(" do PerformResult getSAPERPZHYToZHYData");
+                 }
+				
 				final List<ZHYSTKData> zhystkData = getSAPERPZHYToZHYSTKData();
-				LOG.info(" do PerformResult List<ZHYSTKData> zhyData = [" + zhystkData + "]");
-				LOG.info(" do PerformResult saveStockLevelService.saveStockLevel(zhyData)");
+//				LOG.info(" do PerformResult List<ZHYSTKData> zhyData = [" + zhystkData + "]");
+//				LOG.info(" do PerformResult saveStockLevelService.saveStockLevel(zhyData)");
 				if (zhystkData != null)
 				{
 					if (!zhystkData.isEmpty())
 					{
 						final List<ZHYSTKData> rtzhystkData = saveStockLevelService.saveStockLevel(zhystkData);
-						LOG.info(" do PerformResult saveStockLevelService.saveStockLevel(zhystkData) = [" + zhystkData + "]");
+//						LOG.info(" do PerformResult saveStockLevelService.saveStockLevel(zhystkData) = [" + zhystkData + "]");
 						//stockLevelSyncService.saveStockLevel(zhystkData);
 						this.updateSAPERPZHYToZHYSTKData(rtzhystkData);
-						LOG.info(" do PerformResult updateSAPERPZHYToZHYData  CronJobResult.SUCCESS, CronJobStatus.FINISHED");
+                        LOG.info(" do PerformResult updateSAPERPZHYToZHYData  CronJobResult.SUCCESS, CronJobStatus.FINISHED");
 						// In case of success return result: SUCCESS and status: FINISHED
 						return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
 					}
 					else
 					{
+					  LOG.warn(" do PerformResult getSAPERPZHYToZHYData zhystkData.isEmpty() ");
 						return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
 					}
 				}
 				else
 				{
+				  LOG.error(" do PerformResult getSAPERPZHYToZHYData zhystkData is null ");
 					return new PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED);
 				}
 
@@ -94,6 +105,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 		  {
 
 		   // In case of exception return result: ERROR and status: ABORTED
+		    LOG.error(" saveStockLevelService do PerformResult PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED) Exception=="+e.getStackTrace());
 		   return new PerformResult(CronJobResult.ERROR, CronJobStatus.ABORTED);
 
 		  }
@@ -102,22 +114,26 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 		private void updateSAPERPZHYToZHYSTKData(final List<ZHYSTKData> zhystkDataList) throws SQLException
 		{
 			String UPDATESQL = " ";
-			LOG.info(" do PerformResult UPDATESQL = [" + UPDATESQL + "] getconnection");
+			if(LOG.isDebugEnabled()) {
+				LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "] getconnection");
+			}
+			
 
-			final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
-			final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
-			final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
-			final String driver = configurationService.getConfiguration().getString("jdbc.driver");
+			final String url = configurationService.getConfiguration().getString("jdbc.url");
+			final String username = configurationService.getConfiguration().getString("jdbc.username");
+			final String password = configurationService.getConfiguration().getString("jdbc.password");
+            final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
 			try
 			{
+			  LOG.info("do before Class.forName(driver) driver=="+driver);
 				Class.forName(driver);
-
+				LOG.info("do finish Class.forName(driver) driver=="+driver);
 				try (Connection conn = DriverManager.getConnection(url, username, password);)
 				{
 					for (int i = 0; i < zhystkDataList.size(); i++)
 					{
 						final ZHYSTKData zhystkData = zhystkDataList.get(i);
-						UPDATESQL = UPDATESQL + " UPDATE sap.zhystk ";
+						UPDATESQL = UPDATESQL + " UPDATE zhystk ";
 						UPDATESQL = UPDATESQL + " SET STATUS  = '" + zhystkData.getStatus() + "'";
 					UPDATESQL = UPDATESQL + "  , ICTYPE  = '" + zhystkData.getIcType() + "'";
 						UPDATESQL = UPDATESQL + " where VKORG = '" + zhystkData.getVkORG() + "'";
@@ -125,7 +141,10 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 						UPDATESQL = UPDATESQL + " and LGORT = '" + zhystkData.getLgORT() + "'";
 						UPDATESQL = UPDATESQL + " and FRM_SYS = '" + zhystkData.getFrm_SYS() + "'";
 						UPDATESQL = UPDATESQL + " and TO_SYS = '" + zhystkData.getTo_SYS() + "'";
-						LOG.info(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
+						if(LOG.isDebugEnabled()) {
+						  LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
+						}
+						
 						try
 						{
 							final PreparedStatement ps = conn.prepareStatement(UPDATESQL);
@@ -134,7 +153,8 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 						catch (final Exception e)
 						{
 							e.printStackTrace();
-							UPDATESQL = "";
+							LOG.error(" do updateSAPERPZHYToZHYSTKData Exception=="+e.getStackTrace());
+					           UPDATESQL = "";
 						}
 
 						UPDATESQL = "";
@@ -142,13 +162,15 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 				}
 				catch (final SQLException e)
 				{
-					e.printStackTrace();
+				  LOG.error(" do updateSAPERPZHYToZHYSTKData SQLException=="+e.getStackTrace());
+                  e.printStackTrace();
 				}
 
 			}
 			catch (final ClassNotFoundException e)
 			{
-				e.printStackTrace();
+			  LOG.error(" do updateSAPERPZHYToZHYSTKData ClassNotFoundException=="+e.getStackTrace());
+              e.printStackTrace();
 			}
 		}
 
@@ -188,20 +210,25 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 
 		private List<ZHYSTKData> getSAPERPZHYToZHYSTKData() throws SQLException
 		 {
-			final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
-			final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
-			final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
-			final String driver = configurationService.getConfiguration().getString("jdbc.driver");
-			String SELECTSQL = "select * from sap.zhystk ";
+			final String url = configurationService.getConfiguration().getString("jdbc.url");
+			final String username = configurationService.getConfiguration().getString("jdbc.username");
+			final String password = configurationService.getConfiguration().getString("jdbc.password");
+			String SELECTSQL = "select * from zhystk ";
 			final String FRSYS = configurationService.getConfiguration().getString("sap.zhystk.fr_sys");//"SAP";
 			final String TOSYS = configurationService.getConfiguration().getString("sap.zhystk.to_sys");//"Hybris";
 			final String STATUS = configurationService.getConfiguration().getString("sap.zhystk.status");//"-";
-			LOG.info(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
-			LOG.info(" do getSAPERPZHYToZHYSTKData TOSYS = [" + TOSYS + "]");
-			LOG.info(" do getSAPERPZHYToZHYSTKData STATUS = [" + STATUS + "] getconnection");
+			final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
+			if(LOG.isDebugEnabled()) {
+			  LOG.debug(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
+			}
+			LOG.debug(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
+//			LOG.info(" do getSAPERPZHYToZHYSTKData TOSYS = [" + TOSYS + "]");
+//			LOG.info(" do getSAPERPZHYToZHYSTKData STATUS = [" + STATUS + "] getconnection");
 			try
 			{
-				Class.forName(driver);
+			  LOG.info("do before Class.forName(driver) driver=="+driver);
+              Class.forName(driver);
+              LOG.info("do finish Class.forName(driver) driver=="+driver);
 				//Get current date time
 				final LocalDateTime now = LocalDateTime.now();
 				final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -211,13 +238,13 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 				SELECTSQL = SELECTSQL + "and FRM_SYS = '" + FRSYS + "'";
 				SELECTSQL = SELECTSQL + "and TO_SYS = '" + TOSYS + "'";
 				//SELECTSQL = SELECTSQL + "and {CRT_DAT} like '" + formatDateTime + "%'";
-				LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
+//				LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
 					//final ResultSet rs = stmt.executeQuery(SELECTSQL);
 				try (Connection conn = DriverManager.getConnection(url, username, password);
 						PreparedStatement ps = conn.prepareStatement(SELECTSQL);
 						ResultSet rs = ps.executeQuery();)
 				{
-					LOG.info(" do getSAPERPZHYToZHYSTKData rs = [" + rs + "] getconnection");
+//					LOG.info(" do getSAPERPZHYToZHYSTKData rs = [" + rs + "] getconnection");
 
 					final List<ZHYSTKData> ZHYSTKDataList = new ArrayList<ZHYSTKData>();
 					String vkORG = "";
@@ -240,9 +267,9 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 						lgORT = rs.getString("LGORT");
 						menGE = rs.getInt("MENGE");
 						stk_STAT = rs.getString("STK_STAT");
-						LOG.info(" do crt_DATE rs(" + i + ")= [" + rs.getString("CRT_DATE") + "] .getString(\"CRT_DATE\")");
+//						LOG.info(" do crt_DATE rs(" + i + ")= [" + rs.getString("CRT_DATE") + "] .getString(\"CRT_DATE\")");
 						crt_DATE = rs.getString("CRT_DATE");
-						LOG.info(" do crt_DATE rs(" + i + ")crt_DATE= [" + crt_DATE + "] ");
+//						LOG.info(" do crt_DATE rs(" + i + ")crt_DATE= [" + crt_DATE + "] ");
 						frm_SYS = rs.getString("FRM_SYS");
 						to_SYS = rs.getString("TO_SYS");
 						icType = rs.getString("ICTYPE");
@@ -259,7 +286,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 						zhystkData.setIcType(icType);
 						zhystkData.setStatus(status);
 						ZHYSTKDataList.add(zhystkData);
-						LOG.info(" do zhyData(" + i + ").getCrt_DATE()= [" + zhystkData.getCrt_DATE() + "] ");
+//						LOG.info(" do zhyData(" + i + ").getCrt_DATE()= [" + zhystkData.getCrt_DATE() + "] ");
 						i++;
 					}
 					return ZHYSTKDataList;
@@ -268,14 +295,16 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
 				}
 				catch (final SQLException e)
 				{
-					e.printStackTrace();
+				  LOG.error(" do getSAPERPZHYToZHYSTKData SQLException=="+e.getStackTrace());
+	              e.printStackTrace();
 					return null;
 				}
 
 			}
 			catch (final ClassNotFoundException e)
 			{
-				e.printStackTrace();
+			  LOG.error(" do getSAPERPZHYToZHYSTKData ClassNotFoundException=="+e.getStackTrace());
+              e.printStackTrace();
 				return null;
 			}
 		}
