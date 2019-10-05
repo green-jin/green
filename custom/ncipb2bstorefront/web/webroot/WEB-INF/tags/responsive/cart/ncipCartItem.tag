@@ -242,22 +242,23 @@
 							</ycommerce:testId>
 
 							<div class="addtocart-component">
-								<div class="qty-selector input-group js-qty-selector">
+								<div class="qty-selector input-group js-qty-selector" >
 									<span class="input-group-btn">
 										<button id="button_minus"
-											class="btn btn-default js-qty-selector-minus" type="button">
+											class="btn btn-secondary js-qty-selector-minus" type="button">
 											<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 										</button>
 									</span>
 
 									<form:input type="text" data-max="1000" data-min="1"
-										cssClass="form-control js-qty-selector-input js-update-entry-quantity-input"
+										cssClass=" js-qty-selector-input js-update-entry-quantity-input"
+										style="text-align: center;"
 										disabled="${not entry.updateable}" size="1"
 										id="quantity_${entry.entryNumber}" path="quantity" />
 
 									<span class="input-group-btn">
 										<button id="button_plus"
-											class="btn btn-default js-qty-selector-plus" type="button"
+											class="btn btn-secondary js-qty-selector-plus" type="button"
 											formaction="${cartUpdateFormAction}">
 											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 										</button>

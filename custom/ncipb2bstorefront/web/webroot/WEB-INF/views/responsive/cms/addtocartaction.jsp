@@ -46,12 +46,14 @@
 		</c:choose>
 	</c:if>
 </form:form>
+
+
 <form:form method="post" id="addToCartForm" class="add_to_cart_form" action="${addToCartUrl}">
 	<c:if test="${product.purchasable}">
 		<input type="hidden" maxlength="3" size="1" id="qty" name="qty" class="qty js-qty-selector-input" value="1">
 	</c:if>
 	<input type="hidden" name="productCodePost" value="${fn:escapeXml(product.code)}"/>
-
+	
 	<c:if test="${empty showAddToCart ? true : showAddToCart}">
 		<c:set var="buttonType">button</c:set>
 		<c:if test="${product.purchasable and product.stock.stockLevelStatus.code ne 'outOfStock' }">
