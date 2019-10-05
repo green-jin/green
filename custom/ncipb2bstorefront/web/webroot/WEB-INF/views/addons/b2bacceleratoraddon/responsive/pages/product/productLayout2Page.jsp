@@ -4,6 +4,9 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 
+
+<!-- add on productLayout2Page.jsp  -->
+
 <template:page pageTitle="${pageTitle}">
 	<cms:pageSlot position="Section1" var="comp" element="div" class="productDetailsPageSection1">
 		<cms:component component="${comp}" element="div" class="productDetailsPageSection1-component"/>
@@ -15,10 +18,10 @@
 	<cms:pageSlot position="Section3" var="comp" element="div" class="productDetailsPageSection3">
 		<cms:component component="${comp}" element="div" class="productDetailsPageSection3-component"/>
 	</cms:pageSlot>
-	<cms:pageSlot position="UpSelling" var="comp" element="div" class="productDetailsPageSectionUpSelling">
-		<cms:component component="${comp}" element="div" class="productDetailsPageSectionUpSelling-component"/>
-	</cms:pageSlot>
-	<product:productPageTabs />
+<%--	<cms:pageSlot position="UpSelling" var="comp" element="div" class="productDetailsPageSectionUpSelling">--%>
+<%--		<cms:component component="${comp}" element="div" class="productDetailsPageSectionUpSelling-component"/>--%>
+<%--	</cms:pageSlot>--%>
+<%--	<product:productPageTabs />--%>
 	<cms:pageSlot position="Section4" var="comp" element="div" class="productDetailsPageSection4">
 		<cms:component component="${comp}" element="div" class="productDetailsPageSection4-component"/>
 	</cms:pageSlot>

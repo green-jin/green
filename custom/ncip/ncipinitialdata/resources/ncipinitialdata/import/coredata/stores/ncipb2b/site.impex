@@ -48,6 +48,7 @@ INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)
 ;deCad;de;CAD
 ;zhUsd;zh;USD
 ;zhCad;zh;CAD
+;zh_TW;zh_TW;TWD
 
 INSERT_UPDATE CatalogUnawareMedia;&siteMapMediaId;code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='text/plain']
 ;$siteUid-siteMapMedia;$siteUid-siteMapMedia;siteMapTemplate.vm;$jarResource/site-siteMapTemplate.vm;
