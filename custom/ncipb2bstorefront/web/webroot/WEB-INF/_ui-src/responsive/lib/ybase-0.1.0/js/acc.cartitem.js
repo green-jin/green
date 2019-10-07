@@ -41,7 +41,7 @@ ACC.cartitem = {
 		// 2019/09/26 minus
 		$('#button_minus').on("click", function (e)
 		{
-			ACC.cartitem.handleUpdateQuantity_plus(this, e);
+			ACC.cartitem.handleUpdateQuantity_minus(this, e);
 		});
 		
 		$('.js-update-entry-quantity-input').on("blur", function (e)

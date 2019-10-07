@@ -16,24 +16,41 @@
         <c:set var="headline"><spring:theme code="text.account.addressBook.addAddress" /></c:set>
 	</c:otherwise>
 </c:choose>
-<div class="back-link border">
-    <div class="row">
-        <div class="container-lg col-md-6">
-            <button type="button" class="addressBackBtn" data-back-to-addresses="${fn:escapeXml(addressBookUrl)}">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </button>
-            <span class="label">${headline}</span>
-        </div>
-    </div>
+
+<div class="col-lg-10 container-fluid"> 
+	  <div class="row">
+	  	 <div class="col-3"></div>
+	     <div class="col-6">
+	     	<h4><a href="${fn:escapeXml(addressBookUrl)}"><i class="fa fa-chevron-left mr-2 mb-2 mt-4"></i></a>${headline}</h4>
+			<hr>
+
+	          <address:addressFormSelector supportedCountries="${countries}" regions="${regions}" cancelUrl="/my-account/address-book" addressBook="true" />
+
+	      </div>
+	     <div class="col-3"></div>
+      </div>
 </div>
-<div class="row">
-    <div class="container-lg col-md-6">
-        <div class="account-section-content">
-            <div class="account-section-form">
-                <address:addressFormSelector supportedCountries="${countries}" regions="${regions}" cancelUrl="/my-account/address-book" addressBook="true" />
-            </div>
-        </div>
-    </div>
-</div>
+
+<!-- Origin Code -->
+<!-- <div class="back-link border"> -->
+<!--     <div class="row"> -->
+<!--         <div class="container-lg col-md-6"> -->
+<%--             <button type="button" class="addressBackBtn" data-back-to-addresses="${fn:escapeXml(addressBookUrl)}"> --%>
+<!--                 <span class="glyphicon glyphicon-chevron-left"></span> -->
+<!--             </button> -->
+<%--             <span class="label">${headline}</span> --%>
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+<!-- <div class="row"> -->
+<!--     <div class="container-lg col-md-6"> -->
+<!--         <div class="account-section-content"> -->
+<!--             <div class="account-section-form"> -->
+<%--                 <address:addressFormSelector supportedCountries="${countries}" regions="${regions}" cancelUrl="/my-account/address-book" addressBook="true" /> --%>
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+
 <address:suggestedAddresses selectedAddressUrl="/my-account/select-suggested-address" />
 

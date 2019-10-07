@@ -10,8 +10,10 @@ import de.hybris.platform.commerceservices.product.ProductConfigurableChecker;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import de.hybris.platform.variants.model.VariantProductModel;
-
+import java.math.BigDecimal;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
+import com.ncip.core.job.TransferOrderJob;
 
 
 /**
@@ -23,17 +25,29 @@ public class NcipProductBasicPopulator<SOURCE extends ProductModel, TARGET exten
 {
 
 	private ProductConfigurableChecker productConfigurableChecker;
+	private static final Logger LOG = Logger.getLogger(NcipProductBasicPopulator.class);
+	
 
 	@Override
 	public void populate(final SOURCE productModel, final TARGET productData) throws ConversionException
 	{
-		productData.setListpr(productModel.getListpr());
-		productData.setVkorg(productModel.getVkorg());
-		productData.setPlifz(productModel.getPlifz());
-		productData.setMa_type(productModel.getMa_type());
+		//if(productData.getPrice().getCurrencyIso().equals("TWD")) {
+	    //  productData.setListpr(productModel.getListpr().setScale(2, BigDecimal.ROUND_HALF_UP)); // 牌價
+		//} else {
+		  productData.setListpr(productModel.getListpr());
+		//}
+	    productData.setVkorg(productModel.getVkorg()); // 銷售組織
+		productData.setPlifz(productModel.getPlifz()); // 標準交期
+		productData.setMa_type(productModel.getMa_type()); // 物料類型
 		productData.setName((String) getProductAttribute(productModel, ProductModel.NAME));
 		productData.setManufacturer((String) getProductAttribute(productModel, ProductModel.MANUFACTURERNAME));
-
+		
+		
+		
+		 if(LOG.isDebugEnabled()) {
+           LOG.debug("");
+         }
+		
 		productData.setAverageRating(productModel.getAverageRating());
 		if (productModel.getVariantType() != null)
 		{
@@ -47,6 +61,8 @@ public class NcipProductBasicPopulator<SOURCE extends ProductModel, TARGET exten
 		productData.setPurchasable(Boolean.valueOf(productModel.getVariantType() == null && isApproved(productModel)));
 		productData.setConfigurable(Boolean.valueOf(getProductConfigurableChecker().isProductConfigurable(productModel)));
 		productData.setConfiguratorType(getProductConfigurableChecker().getFirstConfiguratorType(productModel));
+		
+		
 	}
 
 	protected Object getProductAttribute1(final ProductModel productModel, final String attribute)

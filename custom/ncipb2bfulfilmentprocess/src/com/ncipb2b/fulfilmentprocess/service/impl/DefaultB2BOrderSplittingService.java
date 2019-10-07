@@ -82,8 +82,8 @@ public class DefaultB2BOrderSplittingService implements B2BOrderSplittingService
           
           //query max product listpr day
           if (cosignmentEntry1.getOrderEntry().getProduct().getListpr() != null) {
-            if (cosignmentEntry1.getOrderEntry().getProduct().getListpr().intValue() > addDay) {
-              addDay = cosignmentEntry1.getOrderEntry().getProduct().getListpr().intValue();
+            if (Integer.valueOf(cosignmentEntry1.getOrderEntry().getProduct().getListpr()) > addDay) {
+              addDay = Integer.valueOf(cosignmentEntry1.getOrderEntry().getProduct().getListpr());
             }
           }
           

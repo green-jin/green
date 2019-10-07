@@ -63,7 +63,7 @@
 		<formElement:formInputBox idKey="address.townCity" labelKey="address.townCity" path="townCity" inputCSS="form-control" mandatory="true" placeholder="address.townCity"/>
 		<formElement:formInputBox idKey="address.line1" labelKey="address.street" path="line1" inputCSS="form-control" mandatory="true" placeholder="address.street"/>
 		<formElement:formInputBox idKey="address.line2" labelKey="address.building" path="line2" inputCSS="form-control" mandatory="false" placeholder="address.building"/>
-		<formElement:formInputBox idKey="address.firstName" labelKey="address.firstName" path="" inputCSS="form-control" mandatory="true" placeholder="address.firstName"/>
+		<formElement:formInputBox idKey="address.firstName" labelKey="address.firstName" path="firstName" inputCSS="form-control" mandatory="true" placeholder="address.firstName"/>
 		<formElement:formInputBox idKey="address.surname" labelKey="address.surname" path="lastName" inputCSS="form-control" mandatory="true" placeholder="address.surname"/>
 		<formElement:formSelectBox idKey="address.title" labelKey="address.title" path="titleCode" mandatory="true" skipBlank="false" skipBlankMessageKey="address.title.pleaseSelect" items="${titles}" selectedValue="${addressForm.titleCode}" selectCSSClass="form-control"/>
         <formElement:formInputBox idKey="address.phone" labelKey="address.phone" path="phone" inputCSS="form-control" mandatory="false" placeholder="address.phone"/>
