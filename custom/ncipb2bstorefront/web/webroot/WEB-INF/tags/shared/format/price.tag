@@ -13,7 +13,6 @@
  Includes the currency symbol for the specific currency.
 --%>
 <c:set value="${fn:escapeXml(priceData.formattedValue)}" var="formattedPrice"/>
-<c:set value="${fn:substring(formattedPrice, 0, 1)}" var="formattedPrice"/>
 <c:choose>
 	<c:when test="${priceData.value > 0}">
 		<c:if test="${displayNegationForDiscount}">
