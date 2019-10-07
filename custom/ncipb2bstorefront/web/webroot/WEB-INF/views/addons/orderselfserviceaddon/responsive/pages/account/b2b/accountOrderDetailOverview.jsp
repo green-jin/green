@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-<!-- add on orderselfserviceaddon  accountOrderDetailOverview.jsp start -->
+<!-- add on orderselfserviceaddon  accountOrderDetailOverview.jsp -->
 
 <div class="m-0 mb-4 p-4 bg-light border border-secondary">
     <ycommerce:testId code="orderDetail_overview_section">

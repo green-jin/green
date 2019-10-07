@@ -21,6 +21,7 @@
 <c:set target="${additionalParams}" property="onlyProductIds"
        value="${advancedSearchForm.onlyProductIds}"/>
 
+<!-- addon searchAdvancedEmptyPage.jsp -->
 
 <template:page pageTitle="${pageTitle}">
     <jsp:body>

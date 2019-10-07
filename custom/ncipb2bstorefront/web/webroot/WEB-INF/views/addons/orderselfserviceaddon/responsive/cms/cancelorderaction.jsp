@@ -7,7 +7,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <c:url var="cancelOrderUrl" value="${fn:escapeXml(fn:replace(url, '{orderCode}', orderCode))}" scope="page"/>
-<!--  add on orderselfserviceaddon cancelorderaction.jsp start -->
+<!--  add on orderselfserviceaddon cancelorderaction.jspstart -->
 <c:if test="${orderCancellable}">
     <form:form action="${cancelOrderUrl}" id="cancelorderForm" commandName="cancelorderForm"
                class="cancelorderForm--ButtonWrapper">

@@ -4,6 +4,9 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 
+
+<!-- add on productLayout2Page.jsp  -->
+
 <template:page pageTitle="${pageTitle}">
 	<cms:pageSlot position="Section1" var="comp" element="div" class="productDetailsPageSection1">
 		<cms:component component="${comp}" element="div" class="productDetailsPageSection1-component"/>

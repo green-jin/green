@@ -11,6 +11,8 @@
 
 <spring:url value="${product.url}" var="searchUrl" htmlEscape="false"/>
 
+<!-- addon productListerItemDetails.tag -->
+
 <div class="row p-2 no-gutters">
     <%-- chevron for multi-d products --%>
     <%--展開顯示未來庫存--%>

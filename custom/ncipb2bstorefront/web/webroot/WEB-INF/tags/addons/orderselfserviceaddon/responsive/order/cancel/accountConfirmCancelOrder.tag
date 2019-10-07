@@ -11,7 +11,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-
+<!-- add on accountConfirmCancelOrder.tag  -->
 <form:form action="${request.contextPath}/my-account/order/${fn:escapeXml(order.code)}/cancel/submit"
            id="submitcancelorderform"
            commandName="orderEntryCancelForm"

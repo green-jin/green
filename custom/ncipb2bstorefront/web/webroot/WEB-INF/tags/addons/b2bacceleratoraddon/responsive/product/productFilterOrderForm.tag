@@ -12,6 +12,7 @@
 <c:url value="${product.url}" var="productUrl"/>
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
+<!-- add on productFilterOrderForm.tag  -->
 <%-- product image --%>
 <div class="col-4 col-md-2 d-flex justify-content-center align-self-center">
     <c:if test="${not empty product.averageRating}">

@@ -9,7 +9,7 @@
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/responsive/action" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-<!--  add on b2bacceleratoraddon  accountOrderDetailsOverview.tag start -->
+<!--  add on orderselfserviceaddon  accountOrderDetailsOverview.tag start -->
 <div class="row">
  <div class="col-sm-12 col-md-9 col-no-padding">
         <div class="row">

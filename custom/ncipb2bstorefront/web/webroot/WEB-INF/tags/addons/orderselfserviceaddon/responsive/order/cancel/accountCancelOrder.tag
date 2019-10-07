@@ -18,7 +18,7 @@
            class="account-cancel-order-form">
 
 
-    <ordercancel:cancelCompleteOrder/>
+<%--     <ordercancel:cancelCompleteOrder/> --%>
 
     <ul class="item__list cart__list cancel-order__list">
 
@@ -240,7 +240,7 @@
 
     </ul>
 
-    <ordercancel:cancelCompleteOrder/>
+<%--     <ordercancel:cancelCompleteOrder/> --%>
 
     <!--Button begins-->
     <div class="row">

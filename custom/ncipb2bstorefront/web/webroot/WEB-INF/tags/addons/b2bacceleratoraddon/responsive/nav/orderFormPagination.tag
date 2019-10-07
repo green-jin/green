@@ -16,6 +16,8 @@
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
+<!-- add on orderFormPagination.tag -->
+
 <c:set var="themeMsgKey" value="${not empty msgKey ? msgKey : 'search.page'}"/>
 <c:if test="${searchPageData.pagination.totalNumberOfResults == 0 && top }">
     <div class="pagination-bar pagination-empty">

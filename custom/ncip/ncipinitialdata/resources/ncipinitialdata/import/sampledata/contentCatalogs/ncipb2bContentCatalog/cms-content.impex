@@ -867,16 +867,50 @@ INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]      ; 
 INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]                          ; name                                             ; page                                                                                                     ; actions(uid, $contentCV); &componentRef
                                  ;                          ; AccountOrderDetailsHeadlineComponent        ; Account Order Details Headline Component         ; accountOrderDetailHeadline.jsp                                                                           ;                         ; AccountOrderDetailsHeadlineComponent
                                  ;                          ; AccountOrderDetailsTotalsComponent          ; Account Order Details Order Totals Component     ; accountOrderDetailOrderTotals.jsp                                                                        ;                         ; AccountOrderDetailsTotalsComponent
-                                 ;                          ; AccountOrderDetailsShippingComponent        ; Account Order Details Shipping Info Component    ; /WEB-INF/views/responsive/pages/account/accountOrderDetailShippingInfo.jsp								;                         ; AccountOrderDetailsShippingComponent
-                                 ;                          ; AccountOrderDetailsItemsComponent           ; Account Order Details Items Info Component       ; /WEB-INF/views/responsive/pages/account/accountOrderDetailItems.jsp           ;                          ; AccountOrderDetailsItemsComponent
-                                 ;                          ; AccountOrderDetailsOverviewComponent        ; Account Order Details Overview Info Component    ; /WEB-INF/views/responsive/pages/account/accountOrderDetailOverview.jsp        							; ReorderAction           ; AccountOrderDetailsOverviewComponent
-                                 ;                          ; AccountOrderDetailsReorderComponent         ; Account Order Details Reorder Component          ; /WEB-INF/views/responsive/pages/account/accountOrderDetailReorder.jsp         							; ReorderAction           ; AccountOrderDetailsReorderComponent
-                                 ;                          ; AccountOrderDetailsApprovalDetailsComponent ; Account Order Details Approval Details Component ; /WEB-INF/views/responsive/pages/account/accountOrderDetailApprovalDetails.jsp ;                         ; AccountOrderDetailsApprovalDetailsComponent
+                                 ;                          ; AccountOrderDetailsShippingComponent        ; Account Order Details Shipping Info Component    ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailShippingInfo.jsp    ;                         ; AccountOrderDetailsShippingComponent
+                                 ;                          ; AccountOrderDetailsItemsComponent           ; Account Order Details Items Info Component       ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailItems.jsp           ;                         ; AccountOrderDetailsItemsComponent
+                                 ;                          ; AccountOrderDetailsOverviewComponent        ; Account Order Details Overview Info Component    ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailOverview.jsp        ; ReorderAction           ; AccountOrderDetailsOverviewComponent
+                                 ;                          ; AccountOrderDetailsReorderComponent         ; Account Order Details Reorder Component          ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailReorder.jsp         ; ReorderAction           ; AccountOrderDetailsReorderComponent
+                                 ;                          ; AccountOrderDetailsApprovalDetailsComponent ; Account Order Details Approval Details Component ; /WEB-INF/views/addons/b2bacceleratoraddon/responsive/pages/account/accountOrderDetailApprovalDetails.jsp ;                         ; AccountOrderDetailsApprovalDetailsComponent
 
 INSERT_UPDATE ReorderAction; $contentCV[unique = true]; uid[unique = true]; url                       ; name           ; &actionRef
                            ;                          ; ReorderAction     ; /checkout/summary/reorder ; Reorder Action ; ReorderAction
 ###### Account Order Details End ######
 
+###### ADD Cancel order page Start ######
+INSERT_UPDATE ApplicableCmsActionsTypeForCmsComponent ; target(code)[unique=true] ; source(code)[unique=true] ;  
+                                                      ; JspIncludeComponent       ; CancelOrderAction         ;  
+# CMS Cancel Order Action                             
+INSERT_UPDATE CancelOrderAction ; $contentCV[unique=true] ; uid[unique=true]  ; url                                  ; name                ; restrictions(uid,$contentCV) ; &actionRef        
+                                ;                         ; CancelOrderAction ; /my-account/order/{orderCode}/cancel ; Cancel Order Action ;                              ; CancelOrderAction 
+INSERT_UPDATE JspIncludeComponent ; $contentCV[unique=true] ; uid[unique=true]                     ; name                                          ; page                                                                                                    ; actions(uid,$contentCV)[mode=append] ; &componentRef                        
+                                  ;                         ; AccountOrderDetailsOverviewComponent ; Account Order Details Overview Info Component ; /WEB-INF/views/addons/orderselfserviceaddon/responsive/pages/account/b2b/accountOrderDetailOverview.jsp ; CancelOrderAction                    ; AccountOrderDetailsOverviewComponent 
+###### Cancel order page End ######
+
+# Functional Content Pages        
+INSERT_UPDATE ContentPage ; $contentCV[unique=true] ; uid[unique=true] ; name              ; masterTemplate(uid,$contentCV) ; label        ; defaultPage[default='true'] ; approvalStatus(code)[default='approved'] ; homepage[default='false'] ; title[lang=$lang] 
+                          ;                         ; cancel-order     ; Cancel Order Page ; AccountPageTemplate            ; cancel-order ;                             ;                                          ;                           ; Cancel Order      
+
+INSERT_UPDATE ContentSlot ; $contentCV[unique=true] ; uid[unique=true]         ; name                                          ; active ; cmsComponents(&componentRef)                      ;  ;  ;  
+                          ;                         ; SideContent-cancel-order ; Side Content Slot for My Account cancel-order ; true   ;                                                   ;  ;  ;  
+                          ;                         ; BodyContent-cancel-order ; Body Content Slot for My Account cancel-order ; true   ; CancelOrderHeadlineComponent,CancelOrderComponent ;  ;  ;  
+
+INSERT_UPDATE ContentSlotForPage ; $contentCV[unique=true] ; uid[unique=true]         ; position[unique=true] ; page(uid,$contentCV)[unique=true][default='cancel-order'] ; contentSlot(uid,$contentCV)[unique=true] ;  ;  ;  
+                                 ;                         ; SideContent-cancel-order ; SideContent           ;                                                           ; SideContent-cancel-order                 ;  ;  ;  
+                                 ;                         ; BodyContent-cancel-order ; BodyContent           ;                                                           ; BodyContent-cancel-order                 ;  ;  ;  
+
+INSERT_UPDATE JspIncludeComponent ; $contentCV[unique=true] ; uid[unique=true]             ; name                            ; page                                                                                                   ; actions(uid,$contentCV)[mode=append] ; &componentRef                
+                                  ;                         ; CancelOrderComponent         ; Cancel Order Component          ; /WEB-INF/views/addons/orderselfserviceaddon/responsive/pages/account/cancel/accountCancelOrderPage.jsp ;                                      ; CancelOrderComponent         
+                                  ;                         ; CancelOrderHeadlineComponent ; Cancel Order Headline Component ; /WEB-INF/views/addons/orderselfserviceaddon/responsive/pages/account/cancel/cancelOrderHeadline.jsp    ;                                      ; CancelOrderHeadlineComponent 
+
+# Preview Image for use in the CMS Cockpit for special ContentPages
+#INSERT_UPDATE Media ; $contentCV[unique=true] ; code[unique=true]      ; mime     ; realfilename        ; @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true] ; folder(qualifier)[default='images'] 
+#                    ;                         ; cancelOrderPagePreview ; text/png ; cancelOrderPage.png ; $siteResource/documents/images/cancelOrderPage.png                                          ;                                     
+                    
+# Functional Content Pages
+INSERT_UPDATE ContentPage ; $contentCV[unique=true] ; uid[unique=true] ; previewImage(code, $contentCV) ; title[lang=$lang] 
+                          ;                         ; cancel-order     ;          ; Cancel Order      
+######ADD Cancel order page End ######
 
 ###### Account Update Password Start ######
 INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]         ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'updatePassword']; contentSlot(uid, $contentCV)[unique = true]; ; ;

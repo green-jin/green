@@ -21,7 +21,7 @@
         <c:forEach items="${orderData.consignments}" var="consignment">
             <c:if test="${consignment.status.code ne 'WAITING' and consignment.status.code ne 'PICKPACK' and consignment.status.code ne 'READY'}">
                 <div class="fulfilment-states-${fn:escapeXml(consignment.status.code)}">
-                   <order:accountOrderDetailsItem order="${orderData}" consignment="${consignment}"/>
+                    <order:accountOrderDetailsItem order="${orderData}" consignment="${consignment}"/>
                 </div>
             </c:if>
         </c:forEach>
