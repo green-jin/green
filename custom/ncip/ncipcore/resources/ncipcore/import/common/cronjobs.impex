@@ -34,6 +34,7 @@ INSERT_UPDATE ServicelayerJob	;code[unique=true]	;springId
 								;homeDeliveryJob    ;homeDeliveryJob
 								;frightJob          ;frightJob
 								;logisticsInfoFromHCTJob ;logisticsInfoFromHCTJob
+								;updateFutureStockJob    ;updateFutureStockJob
 
 INSERT_UPDATE HomeDeliveryCronJob	;code[unique=true]	;job(code)
 									;homeDeliveryCronJob;homeDeliveryJob
@@ -41,6 +42,9 @@ INSERT_UPDATE FrightCronJob	;code[unique=true]	;job(code)
 ;frightCronJob;frightJob
 INSERT_UPDATE LogisticsInfoFromHCTCronJob	;code[unique=true]	;job(code)
 ;logisticsInfoFromHCTCronJob;logisticsInfoFromHCTJob
+
+INSERT_UPDATE UpdateFutureStockCronJob	;code[unique=true]	;job(code)
+;updateFutureStockCronJob;updateFutureStockJob
 
 # FS CRON JOB
 INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isoCode)[default=en]
@@ -52,6 +56,7 @@ INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isoCode)[defau
 ;homeDeliveryCronJob;homeDeliveryJob;
 ;frightCronJob;frightJob;
 ;logisticsInfoFromHCTCronJob;logisticsInfoFromHCTJob;
+;updateFutureStockCronJob;updateFutureStockJob
 
 # Run CronJobs at 3:05 AM every day
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second[default=0];minute[default=5];hour[default=3];day[default=-1];month[default=-1];year[default=-1];relative[default=false];active[default=false];maxAcceptableDelay[default=-1]
@@ -73,3 +78,4 @@ INSERT_UPDATE Trigger ; cronJob(code)[unique=true]             ; second[default=
 					  ; homeDeliveryCronJob                    ;
 					  ; frightCronJob                          ;
 					  ; logisticsInfoFromHCTCronJob            ;
+					  ; updateFutureStockCronJob              ;

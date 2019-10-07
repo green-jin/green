@@ -793,5 +793,22 @@
 <!-- 	<bean id="testNamedParamJDBCTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"> -->
 <!-- 		<constructor-arg name="dataSource" ref="testDataSource"/> -->
 <!-- 	</bean>  -->
-	
+
+	<!-- Update FutureStock CronJob -->
+	<bean id="ncipFutureStockService" class="com.ncip.core.futureStock.impl.DefaultNcipFutureStockService">
+		<property name="ncipFutureStockDao" ref="ncipFutureStockDao"/>
+	</bean>
+	<bean id="ncipFutureStockDao" class="com.ncip.core.futureStock.dao.impl.DefaultFutureStockDao">
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	<bean id="updateFutureStockService" class="com.ncip.core.service.impl.UpdateFutureStockServiceImpl">
+		<property name="configurationService" ref="configurationService"/>
+		<property name="ncipFutureStockService" ref="ncipFutureStockService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="updateFutureStockJob" class="com.ncip.core.job.UpdateFutureStockJob" parent="abstractJobPerformable">
+		<!-- <property name="updateFutureStockService" ref="updateFutureStockService"></property> -->
+	</bean>
+	<!-- Update FutureStock CronJob -->
 </beans>

@@ -702,6 +702,11 @@
 				</attributes>
 			</itemtype>
 		</typegroup>
+		
+		<typegroup>
+			<itemtype code="UpdateFutureStockCronJob" extends="CronJob" jaloclass="com.ncip.core.jalo.UpdateFutureStockCronJob" autocreate="false" generate="false">
+			</itemtype>
+		</typegroup>
 
   </itemtypes>
 
