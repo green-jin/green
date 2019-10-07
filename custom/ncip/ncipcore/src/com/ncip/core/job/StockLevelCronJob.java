@@ -80,9 +80,13 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
                     if (!zhystkData.isEmpty())
                     {
                         final List<ZHYSTKData> rtzhystkData = saveStockLevelService.saveStockLevel(zhystkData);
-//                      LOG.info(" do PerformResult saveStockLevelService.saveStockLevel(zhystkData) = [" + zhystkData + "]");
+						if(LOG.isDebugEnabled()) {
+							LOG.debug(" do PerformResult saveStockLevelService.saveStockLevel(zhystkData) respone zhystkData = [" + zhystkData + "]");
+						}
+                        
                         //stockLevelSyncService.saveStockLevel(zhystkData);
                         this.updateSAPERPZHYToZHYSTKData(rtzhystkData);
+						
                         LOG.info(" do PerformResult updateSAPERPZHYToZHYData  CronJobResult.SUCCESS, CronJobStatus.FINISHED");
                         // In case of success return result: SUCCESS and status: FINISHED
                         return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
@@ -123,6 +127,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
             final String username = configurationService.getConfiguration().getString("jdbc.username");
             final String password = configurationService.getConfiguration().getString("jdbc.password");
             final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
+			final String dfmandt = configurationService.getConfiguration().getString("erp.mandt");
             try
             {
               LOG.info("do before Class.forName(driver) driver=="+driver);
@@ -140,7 +145,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
                         UPDATESQL = UPDATESQL + " and MATNR = '" + zhystkData.getMatNR() + "'";
                         UPDATESQL = UPDATESQL + " and LGORT = '" + zhystkData.getLgORT() + "'";
                         UPDATESQL = UPDATESQL + " and FRM_SYS = '" + zhystkData.getFrm_SYS() + "'";
-                        UPDATESQL = UPDATESQL + " and TO_SYS = '" + zhystkData.getTo_SYS() + "'";
+                        UPDATESQL = UPDATESQL + " and MANDT = '" + dfmandt + "'";
                         if(LOG.isDebugEnabled()) {
                           LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
                         }
@@ -218,6 +223,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
             final String TOSYS = configurationService.getConfiguration().getString("sap.zhystk.to_sys");//"Hybris";
             final String STATUS = configurationService.getConfiguration().getString("sap.zhystk.status");//"-";
             final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
+			final String dfmandt = configurationService.getConfiguration().getString("erp.mandt");
             if(LOG.isDebugEnabled()) {
               LOG.debug(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
             }
@@ -235,8 +241,9 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
                 final String formatDateTime = now.format(formatter);
 
                 SELECTSQL = SELECTSQL + " where STATUS = '" + STATUS + "'";
-                SELECTSQL = SELECTSQL + "and FRM_SYS = '" + FRSYS + "'";
-                SELECTSQL = SELECTSQL + "and TO_SYS = '" + TOSYS + "'";
+                SELECTSQL = SELECTSQL + " and FRM_SYS = '" + FRSYS + "'";
+                SELECTSQL = SELECTSQL + " and TO_SYS = '" + TOSYS + "'";
+				SELECTSQL = SELECTSQL + " and MANDT = '" + dfmandt + "'";
                 //SELECTSQL = SELECTSQL + "and {CRT_DAT} like '" + formatDateTime + "%'";
 //              LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
                     //final ResultSet rs = stmt.executeQuery(SELECTSQL);

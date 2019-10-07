@@ -116,6 +116,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
         final String username = configurationService.getConfiguration().getString("jdbc.username");
         final String password = configurationService.getConfiguration().getString("jdbc.password");
         final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
+		final String dfmandt = configurationService.getConfiguration().getString("erp.mandt");
         try
         {
           LOG.info("do before Class.forName(driver) driver=="+driver);
@@ -133,6 +134,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
                     UPDATESQL = UPDATESQL + " and KUNNR = '" + zhyclData.getKunNR() + "'";
                     UPDATESQL = UPDATESQL + " and FRM_SYS = '" + zhyclData.getFrm_SYS() + "'";
                     UPDATESQL = UPDATESQL + " and TO_SYS = '" + zhyclData.getTo_SYS() + "'";
+					UPDATESQL = UPDATESQL + " and MANDT = '" + dfmandt + "'";
                     if(LOG.isDebugEnabled()) {
                       LOG.debug(" do PerformResult UPDATESQL = [" + UPDATESQL + "]");
                     }
@@ -191,6 +193,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
         final String username = configurationService.getConfiguration().getString("jdbc.username");
         final String password = configurationService.getConfiguration().getString("jdbc.password");
         final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
+		final String dfmandt = configurationService.getConfiguration().getString("erp.mandt");
         String SELECTSQL = "select * from sapabap1.zhycl ";
         final String FRSYS = configurationService.getConfiguration().getString("sap.zhycl.fr_sys");//"SAP";
         final String TOSYS = configurationService.getConfiguration().getString("sap.zhycl.to_sys");//"Hybris";
@@ -210,8 +213,9 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
             final String formatDateTime = now.format(formatter);
 
             SELECTSQL = SELECTSQL + " where STATUS = '" + STATUS + "'";
-            SELECTSQL = SELECTSQL + "and FRM_SYS = '" + FRSYS + "'";
-            SELECTSQL = SELECTSQL + "and TO_SYS = '" + TOSYS + "'";
+            SELECTSQL = SELECTSQL + " and FRM_SYS = '" + FRSYS + "'";
+            SELECTSQL = SELECTSQL + " and TO_SYS = '" + TOSYS + "'";
+			SELECTSQL = SELECTSQL + " and MANDT = '" + dfmandt + "'";
             //SELECTSQL = SELECTSQL + "and {CRT_DAT} like '" + formatDateTime + "%'";
             if(LOG.isDebugEnabled()) {
               LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
