@@ -59,6 +59,7 @@ UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
                   ;;update-email;"更新電子郵件"
                   ;;update-profile;"更新個人資料"
                   ;;updatePassword;"更新忘記的密碼"
+                  ;;login;"登入"
 
 
 # Category Pages
