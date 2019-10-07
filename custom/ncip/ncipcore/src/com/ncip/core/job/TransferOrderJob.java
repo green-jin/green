@@ -143,7 +143,7 @@ public ZdataService getZdataService() {
                 zdata.setProduct(Double.valueOf(entry.getProduct().getCode()));
                 zdata.setBasePrice(entry.getBasePrice());
                 zdata.setQuantity(entry.getQuantity());
-                zdata.setMa_TYPE(entry.getProduct().getMaType());
+                zdata.setMa_TYPE(entry.getProduct().getMa_type());
 
                 zdataList.add(zdata);
             }
