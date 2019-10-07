@@ -35,7 +35,8 @@ public class DefaultPropertiesZhydelyDao implements ZhydelyDao {
           + "t.WADAT_IST=?,\r\n" + "t.LGORT=?,\r\n" + "t.LFSTK=?,\r\n" + "t.DELY_TYPE=?,\r\n"
           + "t.LFDAT=?,\r\n" + "t.CRT_DATE=?,\r\n" + "t.FRM_SYS=?,\r\n" + "t.TO_SYS=?,\r\n"
           + "t.ICTYPE=?,\r\n" + "t.STATUS=?\r\n" + "WHERE t.VKORG=? AND t.VBELN_D=? AND t.POSNR=?";
-  private static final String ZERO_STOCK_CONSIGNMENT_SQL = "SELECT * FROM ZHYDELY t " + "WHERE 1=1 "
+  private static final String ZERO_STOCK_CONSIGNMENT_SQL = "SELECT * FROM sapabap1.ZHYDELY t "
+      + "WHERE 1=1 "
       + " AND t.STATUS='" + ConsignmentSyncConstants.SAP_ZHYDELY_STATUS_UNPROCESSED
       + "' AND t.DELY_TYPE in (" + ConsignmentSyncConstants.ZERO_STOCK_2_CONSIGNMENT_DELY_TYPE
       + ") AND t.FRM_SYS='" + ConsignmentSyncConstants.SAP + "'  AND t.TO_SYS='"
