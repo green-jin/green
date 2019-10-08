@@ -30,9 +30,9 @@
 									<div class="checkout-shipping">
 										<multi-checkout:shipmentItems cartData="${cartData}"
 												showDeliveryAddress="true" />
-										<div class="checkout-indent" style="display:none">
+										<div class="checkout-indent">
 											<div class="headline">
-													<spring:theme code="checkout.summary.deliveryMode.selectDeliveryMethodForOrder" />
+													<h5><spring:theme code="checkout.summary.deliveryMode.selectDeliveryMethodForOrder" /></h5>
 												</div>
 											<spring:url var="selectDeliveryMethodUrl"
 													value="{contextPath}/checkout/multi/delivery-method/select"

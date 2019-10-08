@@ -50,9 +50,9 @@
 			                        </button>
 			                        
 			                        <c:if test="${cartData.quoteData eq null}">
-				                        <button id="scheduleReplenishment" type="button" class="btn btn-secondary btn-default btn-block disabled scheduleReplenishmentButton checkoutSummaryButton" disabled="disabled">
-				                            <spring:theme code="addon.checkout.summary.scheduleReplenishment"/>
-				                        </button>
+<!-- 				                        <button id="scheduleReplenishment" type="button" class="btn btn-secondary btn-default btn-block disabled scheduleReplenishmentButton checkoutSummaryButton" disabled="disabled"> -->
+<%-- 				                            <spring:theme code="addon.checkout.summary.scheduleReplenishment"/> --%>
+<!-- 				                        </button> -->
 				
 				                        <b2b-multi-checkout:replenishmentScheduleForm/>
 			                        </c:if>

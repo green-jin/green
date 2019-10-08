@@ -35,8 +35,8 @@
 					-->
 
 <c:if test="${not empty deliveryAddresses}">
-	<button type="button" class="btn btn-secondary btn-block">
-		<spring:theme
+	<button type="button" class="btn btn-secondary btn-block js-address-book">
+	<spring:theme
 			code="checkout.checkout.multi.deliveryAddress.viewAddressBook" />
 	</button>
 	<br>

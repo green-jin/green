@@ -105,17 +105,20 @@ INSERT_UPDATE MediaFormat ; qualifier[unique=true]
 INSERT_UPDATE UserTaxGroup ; code[unique=true] 
                            ; us-taxes          
                            ; ca-taxes          
-                           ; zh_tw-taxes       
+                           ; zh_tw-taxes   
+                           ; tw_vat_taxes   
                            
 INSERT_UPDATE ProductTaxGroup ; code[unique=true] 
                               ; us-sales-tax-full 
                               ; ca-sales-tax-full 
                               ; zh_tw-vat-full    
+                              ; tw_vat_full
                               
 INSERT_UPDATE Tax ; code[unique=true] ; value ; currency(isocode) 
                   ; us-sales-tax-full ; 0     
                   ; ca-sales-tax-full ; 0     
-                  ; zh_tw-vat-full    ; 5     ; TWD               
+                  ; zh_tw-vat-full    ; 5     ; TWD    
+                  ; tw_vat_full 	  ; 0     ; TWD           
                   
 INSERT_UPDATE ServicelayerJob ; code[unique=true] ; springId[unique=true] 
                               ; cartRemovalJob    ; cartRemovalJob        

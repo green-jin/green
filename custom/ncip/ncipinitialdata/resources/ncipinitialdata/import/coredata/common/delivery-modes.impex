@@ -19,6 +19,17 @@ $jpCurrency=JPY
 $usCurrency=USD
 $europeCurrency=EUR
 $taiwanCurrency=TWD
+$storeUid=ncipb2b
+$lang=zh_TW
+
+##### Ncip 運費設定 #####        
+# Zone Delivery Modes        
+INSERT_UPDATE ZoneDeliveryMode ; code[unique=true]     ; net   ; active[default=true] ; stores(uid) ; name[lang=$lang] ; description[lang=$lang] 
+                               ; ncipb2b-free-shipping ; false ;                      ; "ncipb2b"   ; "送貨"                      ;  "免運"                  
+# taiwan                       
+INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='taiwan'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true] 
+                                    ; ncipb2b-free-shipping           ;                                           ; $taiwanCurrency                ; 0     ; 0,00                 
+                                    
  
 # Delivery Zones
 INSERT_UPDATE Zone ; code[unique=true] ; countries(isocode)                                                                                                                              
@@ -136,23 +147,23 @@ INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(cod
                                     ; standard-gross                  ;                                          ; $usCurrency                    ; 7,49  ; 0,00                 
                                     ; standard-gross                  ;                                          ; $jpCurrency                    ; 59,99 ; 0,00                 
                                     ; standard-net                    ;                                          ; $jpCurrency                    ; 59,99 ; 0,00                 
-                                    ; standard-net                    ;                                          ; $usCurrency                    ; 18,49 ; 0,00          
-
-# Taiwan                             
-INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='taiwan'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true] 
-                                    ; premium-gross                   ;                                          ; $usCurrency                    ; 14,49 ; 0,00                 
-                                    ; premium-gross                   ;                                          ; $jpCurrency                    ; 99,49 ; 0,00                 
-                                    ; premium-gross                   ;                                          ; $ukCurrency                    ; 18,49 ; 0,00                 
-                                    ; premium-gross                   ;                                          ; $europeCurrency                ; 27,99 ; 0,00                 
-                                    ; premium-net                     ;                                          ; $jpCurrency                    ; 99,99 ; 0,00                 
-                                    ; premium-net                     ;                                          ; $usCurrency                    ; 26,49 ; 0,00                 
-                                    ; standard-gross                  ;                                          ; $europeCurrency                ; 18,99 ; 0,00                 
-                                    ; standard-gross                  ;                                          ; $ukCurrency                    ; 9,49  ; 0,00                 
-                                    ; standard-gross                  ;                                          ; $usCurrency                    ; 7,49  ; 0,00                 
-                                    ; standard-gross                  ;                                          ; $jpCurrency                    ; 59,99 ; 0,00                 
-                                    ; standard-net                    ;                                          ; $jpCurrency                    ; 59,99 ; 0,00                 
                                     ; standard-net                    ;                                          ; $usCurrency                    ; 18,49 ; 0,00                 
-                                                                               
+                                    
+# Taiwan                            
+INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='taiwan'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true] 
+                                    ; premium-gross                   ;                                           ; $usCurrency                    ; 14,49 ; 0,00                 
+                                    ; premium-gross                   ;                                           ; $jpCurrency                    ; 99,49 ; 0,00                 
+                                    ; premium-gross                   ;                                           ; $ukCurrency                    ; 18,49 ; 0,00                 
+                                    ; premium-gross                   ;                                           ; $europeCurrency                ; 27,99 ; 0,00                 
+                                    ; premium-net                     ;                                           ; $jpCurrency                    ; 99,99 ; 0,00                 
+                                    ; premium-net                     ;                                           ; $usCurrency                    ; 26,49 ; 0,00                 
+                                    ; standard-gross                  ;                                           ; $europeCurrency                ; 18,99 ; 0,00                 
+                                    ; standard-gross                  ;                                           ; $ukCurrency                    ; 9,49  ; 0,00                 
+                                    ; standard-gross                  ;                                           ; $usCurrency                    ; 7,49  ; 0,00                 
+                                    ; standard-gross                  ;                                           ; $jpCurrency                    ; 59,99 ; 0,00                 
+                                    ; standard-net                    ;                                           ; $jpCurrency                    ; 59,99 ; 0,00                 
+                                    ; standard-net                    ;                                           ; $usCurrency                    ; 18,49 ; 0,00                 
+                                    
                                     
 # otherAsianRegions                 
 INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='otherAsianRegions'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true] 
@@ -219,3 +230,5 @@ INSERT_UPDATE ProductTaxCode ; productCode[unique=true] ; taxCode  ; taxArea[uni
                              ; premium-net              ; FR000000 ; CN                   
                              
                              
+
+                                    
