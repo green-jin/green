@@ -32,9 +32,9 @@ public class DefaultTransferOrderService implements TransferOrderService {
 	}
 
 	@Override
-	public List<OrderModel> getAllOldersAfterSpecifiedTime(final String execTime)
+	public List<OrderModel> getAllOrdersAfterSpecifiedTime(final String execTime)
 	{
-		return transferOrderDao.findAllOldersAfterSpecifiedTime(execTime);
+		return transferOrderDao.findAllOrdersAfterSpecifiedTime(execTime);
 	}
 
 	/**

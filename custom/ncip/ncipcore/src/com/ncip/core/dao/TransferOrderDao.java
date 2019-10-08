@@ -18,7 +18,7 @@ public interface TransferOrderDao extends Dao{
 	 *
 	 * @return List of matching order data.
 	 */
-	List<OrderModel> findAllOldersAfterSpecifiedTime(final String execTime);
+	List<OrderModel> findAllOrdersAfterSpecifiedTime(final String execTime);
 
 	/**
 	 * Returns value of B2BCustomerModel which is queried from Hybris Table by matching user PK value.

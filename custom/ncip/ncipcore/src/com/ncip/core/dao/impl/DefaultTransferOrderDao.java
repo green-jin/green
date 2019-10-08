@@ -46,7 +46,7 @@ public class DefaultTransferOrderDao extends AbstractItemDao implements Transfer
      * @return connection of Z Table
      */
 	@Override
-	public List<OrderModel> findAllOldersAfterSpecifiedTime(String execTime) {
+	public List<OrderModel> findAllOrdersAfterSpecifiedTime(String execTime) {
 	  final String startTime=execTime.substring(0, execTime.indexOf(";"));
 	  final String endTime=execTime.substring(execTime.indexOf(";")+1);
 		final StringBuilder query = new StringBuilder(
@@ -55,6 +55,7 @@ public class DefaultTransferOrderDao extends AbstractItemDao implements Transfer
 		
 		System.out.println(query);
 		final FlexibleSearchQuery searchQuery = new FlexibleSearchQuery(query.toString());
+		System.out.println(searchQuery);
 		final SearchResult searchResult = getFlexibleSearchService().search(searchQuery);
 		return searchResult.getResult();
 	}

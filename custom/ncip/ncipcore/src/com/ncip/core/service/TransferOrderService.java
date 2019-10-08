@@ -13,7 +13,7 @@ public interface TransferOrderService {
 	 *           the specified time
 	 * @return List<OrderModel>
 	 */
-	List<OrderModel> getAllOldersAfterSpecifiedTime(final String execTime);
+	List<OrderModel> getAllOrdersAfterSpecifiedTime(final String execTime);
 
 	/**
 	 * Query the B2BCustomer data with the given user PK value. This method focuses on query B2BCustomer data.

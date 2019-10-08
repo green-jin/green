@@ -33,7 +33,7 @@ public class DefaultZdataDao implements ZdataDao
 	private ConfigurationService configurationService;
 	private ModelService modelService;
 	private FlexibleSearchService flexibleSearchService;
-	private static final Logger LOG = Logger.getLogger(TransferOrderJob.class);
+	private static final Logger LOG = Logger.getLogger(DefaultZdataDao.class);
 	
 	public FlexibleSearchService getFlexibleSearchService() {
 		return flexibleSearchService;
@@ -63,7 +63,9 @@ public class DefaultZdataDao implements ZdataDao
 			"INSERT INTO sapabap1.zhydo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String GET_ALL_STMT = //SQL select
-			"SELECT * FROM sapabap1.zhydo";
+			"SELECT `VKORG`,`VKGRP`,`KUNNR`,`ZTERM`,`INCO1`,`INCO2`,`VBELN`,`POSNR`,`MATNR`,`KWMENG`,"
+			+ "`VRKME`,`NETWR`,`WAERK`,`PERNR`,`LIFNR`,`LFSTK`,`MA_TYPE`,`CRT_DATE`,`FRM_SYS`,`TO_SYS`,"
+			+ "`ICTYPE`,`DATAEXCHANGESTATUSS`,`MANDT` FROM sapabap1.zhydo";
 
 	private Connection conn = null;
 
@@ -75,9 +77,9 @@ public class DefaultZdataDao implements ZdataDao
 	@Override
 	public Connection getConnection() throws SQLException
 	{
-		final String url = configurationService.getConfiguration().getString("jdbc.mysql.url");
-		final String username = configurationService.getConfiguration().getString("jdbc.mysql.username");
-		final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
+		final String url = configurationService.getConfiguration().getString("jdbc.url");
+		final String username = configurationService.getConfiguration().getString("jdbc.username");
+		final String password = configurationService.getConfiguration().getString("jdbc.password");
 		try
 		{
 			Class.forName(configurationService.getConfiguration().getString("jdbc.driverClassName"));
@@ -85,7 +87,7 @@ public class DefaultZdataDao implements ZdataDao
 			try
 			{
 				final Connection conn = DriverManager.getConnection(url, username, password);
-				System.out.println("DB connected successful");
+				LOG.info("DB connected successful");
 				return conn;
 
 			}
@@ -199,6 +201,8 @@ public class DefaultZdataDao implements ZdataDao
 			zdata.setMandt(rs.getString("mandt"));
 			zdatalist.add(zdata);
 		}
+		LOG.info("Got all data from table ZHYDO");
+        
 		closeConn();
 		return zdatalist;
 

@@ -78,7 +78,7 @@ public ZdataService getZdataService() {
   public PerformResult perform(final CronJobModel cronjob) {
 
     final String exectime = getExecutionPeriod();
-    final List<OrderModel> orderItems = transferOrderService.getAllOldersAfterSpecifiedTime(exectime);
+    final List<OrderModel> orderItems = transferOrderService.getAllOrdersAfterSpecifiedTime(exectime);
     final HashMap<Integer, ZData> zdataHM = new HashMap<>();
     final List<ZData> zdataList = new ArrayList();
 
@@ -95,7 +95,9 @@ public ZdataService getZdataService() {
     }
     catch (final SQLException e)
     {
+        LOG.error("System can't get existed data from Z table");
         e.printStackTrace();
+        return new PerformResult(CronJobResult.FAILURE, CronJobStatus.PAUSED);
     }
 
 
@@ -242,6 +244,12 @@ private String getExecutionPeriod()
      Calendar sectionAt11= null;
      Calendar sectionAt14= null;
      Calendar sectionAt23= null;
+     
+     /***
+      * sendOrdersExecutionSectionAt11¡BsendOrdersExecutionSectionAt14 and sendOrdersExecutionSectionAt23 are
+      * respectively mapping to the local.properties file, and its corresponding values are '11:00'¡B'14:00'
+      * and '23:00'.
+      */
      try {
       currentTime = Calendar.getInstance();
       currentTime.setTime((sdfForTime.parse(sdfForTime.format(date))));
@@ -262,20 +270,20 @@ private String getExecutionPeriod()
     if(currentTime.after(sectionAt11) && currentTime.before(sectionAt14)) {
       execTime = sdfForYesterDate + " "
           + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23")+";"+
-          sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14");
+          sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt11");
 
     }else if(currentTime.after(sectionAt14) && currentTime.before(sectionAt23)) {
       execTime = sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt11")+";"+
-      sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23");
+      sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14");
 
     }else {
-      execTime = //sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14")+";"+
-      sdfForYesterDate + " "
-      + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23")+";"+
+      execTime = sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14")+";"+
+//      sdfForYesterDate + " "
+//      + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23")+";"+
       sdfForToday+" "+ configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23");
     }
 
-
+    LOG.info("The period of execution is between"+execTime);
     return execTime;
 
 }
@@ -331,6 +339,7 @@ private Boolean checkZtable(final String ordercode)
 
         if (ordercode.equals(oriZdata.getCode()))
         {
+          LOG.info("The order's status which is 'CANCELLED' has a same order-code data in the Z table ");
             return true;
         }
     }
