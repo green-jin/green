@@ -240,12 +240,12 @@
 									for="quantity${entry.entryNumber}"></form:label>
 								<%--                                 <form:input cssClass="form-control js-update-entry-quantity-input" disabled="${not entry.updateable}" type="text" size="1" id="quantity_${entry.entryNumber}" path="quantity" /> --%>
 							</ycommerce:testId>
-
+							<div style="text-align:center;">
 							<div class="addtocart-component">
 								<div class="qty-selector input-group js-qty-selector" >
 									<span class="input-group-btn">
 										<button id="button_minus"
-											class="btn btn-secondary js-qty-selector-minus" type="button">
+											class="btn btn-secondary" type="button">
 											<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 										</button>
 									</span>
@@ -258,12 +258,13 @@
 
 									<span class="input-group-btn">
 										<button id="button_plus"
-											class="btn btn-secondary js-qty-selector-plus" type="button"
+											class="btn btn-secondary" type="button"
 											formaction="${cartUpdateFormAction}">
 											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 										</button>
 									</span>
 								</div>
+							</div>
 							</div>
 
 
