@@ -45,6 +45,8 @@
 	    <property name="poc_line" type="java.lang.String"/>
 	    <property name="poc_wechat" type="java.lang.String"/>
 	    <property name="uid" type="java.lang.String"/>
+			 <property name="zterm" type="java.lang.String"/>
+			 <property name="unitname" type="java.lang.String"/>
 	</bean>
 	
 	
@@ -94,6 +96,16 @@
 		</property>
 		<property name="galleryIndex" type="Integer"/>
 	</bean>
+
+  <bean class="com.ncip.facades.product.data.DownloadPdfData">
+    <property name="filename" type="String"/>
+    <property name="url" type="String"/>
+		<property name="date_year" type="String"/>
+		<property name="date_month" type="String"/>
+    <property name="filterdate" type="String">
+      <description>For Sort PDF File by Month</description>
+    </property>
+  </bean>
 
 
 </beans>

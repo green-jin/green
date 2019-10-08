@@ -10,7 +10,7 @@
 # -----------------------------------------------------------------------
 ##******************************This file is generated - please do not edit it. It will be regenerated after every build.********************************#
 # Language
-$lang =zh_TW
+$lang = zh_TW
 
 $contentCatalog = ncipb2bContentCatalog
 $contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
@@ -89,7 +89,7 @@ UPDATE MiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name  ;
 
 # CMS tabs components
 UPDATE CMSTabParagraphComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]; content[lang = $lang]
-#                               ;                          ; deliveryTab       ; 送貨                 ; "<div class=""tab-delivery"">Lorem ipsum dolor sit amet, dolor sed, ut nam ut. Senectus mauris egestas a massa, enim placeat wisi congue purus fermentum. Ut aptent mauris dapibus congue in sit. Sed dolor varius amet feugiat volutpat dignissim, pede a rhoncus sodales aliquam adipiscing, dapibus massa fusce. Dui egestas ornare urna nibh facilisi, cras posuere. Lorem aliquam accumsan eleifend sem libero lorem, aliquam sequi sed urna nec. Eget dolor quisque dolor, amet suspendisse ullamcorper minus elit lectus nunc, est mattis dui id eu et facilisis, conubia sit tristique. Ac fusce gravida condimentum iaculis neque, a platea curabitur accumsan porttitor vel justo. Amet potenti ac, eget amet ducimus sit nulla, ac porttitor rhoncus, justo proin tortor integer turpis nulla vitae. Egestas mollis litora nunc platea dui, eu semper mauris diam, erat quam, porta maecenas fusce libero non aliquet. Amet tellus taciti ligula sed sollicitudin, nonummy cursus enim, hendrerit nec, sed lacus sed at sit quis, semper a arcu mollis sapien nec pretium. Ante mauris eros nec, nonummy mauris, nulla lacinia vel. Volutpat luctus velit eu.</div>"
+                               ;                          ; deliveryTab       ; 送貨                 ; "<div id=""work"" class=""tab-delivery"">Lorem ipsum dolor sit amet, dolor sed, ut nam ut. Senectus mauris egestas a massa, enim placeat wisi congue purus fermentum. Ut aptent mauris dapibus congue in sit. Sed dolor varius amet feugiat volutpat dignissim, pede a rhoncus sodales aliquam adipiscing, dapibus massa fusce. Dui egestas ornare urna nibh facilisi, cras posuere. Lorem aliquam accumsan eleifend sem libero lorem, aliquam sequi sed urna nec. Eget dolor quisque dolor, amet suspendisse ullamcorper minus elit lectus nunc, est mattis dui id eu et facilisis, conubia sit tristique. Ac fusce gravida condimentum iaculis neque, a platea curabitur accumsan porttitor vel justo. Amet potenti ac, eget amet ducimus sit nulla, ac porttitor rhoncus, justo proin tortor integer turpis nulla vitae. Egestas mollis litora nunc platea dui, eu semper mauris diam, erat quam, porta maecenas fusce libero non aliquet. Amet tellus taciti ligula sed sollicitudin, nonummy cursus enim, hendrerit nec, sed lacus sed at sit quis, semper a arcu mollis sapien nec pretium. Ante mauris eros nec, nonummy mauris, nulla lacinia vel. Volutpat luctus velit eu.</div>"
 
 # JSP include components
 UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]
@@ -104,7 +104,8 @@ UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]     
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent; $contentCV[unique = true]; uid[unique = true]; title[lang = $lang]
-                                 ;                          ; Similar           ; "您可能還會喜歡..."
+#                                 ;                          ; Similar           ; "您可能还会喜欢..."
+                                 ;                          ; Similar           ; "推薦/相關連產品"
                                  ;                          ; accessories       ; "配件"
 
 # CMS PurchasedCategorySuggestion Components
@@ -148,7 +149,7 @@ UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]; con
 
 # Powertools Order Expired Page
 
-UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]        ; content[lang = $lang]                                                                                                                                                                                                                                                                                                                                                                                                                          ;
+UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]        ; content[lang = $lang]                                                                                                                                                                                                                                                                                                                                                                                                                       ;
                             ;                          ; orderExpiredMenuParagraph ;                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
                             ;                          ; orderExpiredTextParagraph ; "<div class='cms-content order-expired'><div class='information_message neutral'><span class='single'></span><p>此頁面已過期。</p></div><h2>尊敬的客戶，</h2><p>自下單之日起，訪客使用者的訂單狀態將僅保存 3 個月。<br>如果您尚未收到貨物或由其他問題，請聯繫客戶服務部門。</p><h3>聯繫前請準備:</h3><ul class='bullet-list'><li>您的姓名</li><li>訂單編號(訂單編號位於下單後不久收到的確認電子郵件中。)</li><li>訂單送貨位址或店內自取的具體位置</li></ul><p>我們的客戶服務專家會熱忱為您服務，解答訂單狀態問題。</p><p class='cms-content-emphasized-big'>感謝您惠臨 hybrisstore。</p></div>" ;
 
@@ -208,7 +209,7 @@ INSERT_UPDATE Media; mediaFormat(qualifier); code[unique = true]                
                    ; desktop               ; Powertools_960x400_BigSplash_ZH_01_960W.jpg     ; $siteResource/images/banners/homepage/responsive/Powertools_960x400_BigSplash_ZH_01_960W.jpg     ; Powertools_960x400_BigSplash_ZH_01_960W.jpg     ; "一樣的價位，不一樣的至臻功能"                                    ;
                    ; desktop               ; Powertools_960x70_Brands_ZH_01_960W.jpg         ; $siteResource/images/banners/homepage/responsive/Powertools_960x70_Brands_ZH_01_960W.jpg         ; Powertools_960x70_Brands_ZH_01_960W.jpg         ; "Bosch | Black & Decker | Einhall | Skil | Hitachi" ;
 
-INSERT_UPDATE MediaContainer; qualifier[unique = true]          ; $medias; $contentCV[unique = true]
+INSERT_UPDATE MediaContainer; qualifier[unique = true]                   ; $medias; $contentCV[unique = true]
 #                            ; ncipb2b-homepage-24/7service-en   ; Powertools_350x280_24Service_EN_01_350W.jpg,Powertools_240x200_24Service_EN_01_240W.jpg,Powertools_160x139_24Service_EN_01_160W.jpg,Powertools_385x280_24Service_EN_01_385W.jpg
 #                            ; ncipb2b-homepage-25%-deal-en      ; Powertools_350x280_25Deal_EN_01_350W.jpg,Powertools_240x200_25Deal_EN_01_240W.jpg,Powertools_160x139_25Deal_EN_01_160W.jpg,Powertools_385x280_25Deal_EN_01_385W.jpg
 #                            ; ncipb2b-homepage-30Day-en         ; Powertools_350x280_30Day_EN_01_350W.jpg,Powertools_240x200_30Day_EN_01_240W.jpg,Powertools_160x139_30Day_EN_01_160W.jpg,Powertools_385x280_30Day_EN_01_385W.jpg
@@ -234,11 +235,11 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
 #                                             ;                          ; ncipb2bHompage30dayBannerComponent         ; ncipb2b-homepage-30Day-en
 #                                             ;                          ; ncipb2bHompage6pmBannerComponent           ; ncipb2b-homepage-6pm-en
 #                                             ;                          ; ncipb2bHompageAngleGrindersBannerComponent ; ncipb2b-homepage-anglegranders-en
-                                             ;                          ; ncipb2bHompageBrandsBannerComponent        ; ncipb2b-homepage-brands-en
+                                             ;                          ; ncipb2bHompageBrandsBannerComponent ; ncipb2b-homepage-brands-en
 #                                             ;                          ; ncipb2bHompagePowerDrillsBannerComponent   ; ncipb2b-homepage-powerdrills-en
 #                                             ;                          ; ncipb2bHompageSandersBannerComponent       ; ncipb2b-homepage-sanders-en
 #                                             ;                          ; ncipb2bHompageScrewdriversBannerComponent  ; ncipb2b-homepage-screwdrivers-en
-                                             ;                          ; ncipb2bHompageSplashBannerComponent        ; ncipb2b-homepage-spalsh-en
+                                             ;                          ; ncipb2bHompageSplashBannerComponent ; ncipb2b-homepage-spalsh-en
 ## components in slot 2A ##
 INSERT_UPDATE HomeSimpleBannerComponent     ; $contentCV[unique=true] ; uid[unique=true]                            ; $mediaContainer
                                             ;                         ; homeSimpleDealerAreaBannerComponentA       	; ncipb2b-homepage-simpleDealerAreaA-zh_TW
@@ -303,109 +304,117 @@ INSERT_UPDATE SimpleResponsiveBannerComponent; $contentCV[unique = true]; uid[un
 
 
 ############ NCIP Start
-UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; linkName[lang = $lang]
-                       ;                          ; A0CategoryLink    ; "最新產品"
-                       ;                          ; B0CategoryLink    ; "活動促銷"
-                       ;                          ; D0CategoryLink    ; "浴室"
-                       ;                          ; E0CategoryLink    ; "廚房"
-                       ;                          ; G0CategoryLink    ; "風格"
-                       ;                          ; C0CategoryLink    ; "套間"
-                       ;                          ; F0CategoryLink    ; "訂製品"
-                       ;                          ; H0CategoryLink    ; "零件"
+UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]  ; linkName[lang = $lang]
+                       ;                          ; A0CategoryLink      ; "最新產品"
+                       ;                          ; B0CategoryLink      ; "活動促銷"
+                       ;                          ; D0CategoryLink      ; "浴室"
+                       ;                          ; E0CategoryLink      ; "廚房"
+                       ;                          ; G0CategoryLink      ; "風格"
+                       ;                          ; C0CategoryLink      ; "套間"
+                       ;                          ; F0CategoryLink      ; "訂製品"
+                       ;                          ; H0CategoryLink      ; "零件"
 #Bathroom
-                       ;                          ; D001CategoryLink  ; "臉盆龍頭類"
-                       ;                          ; D002CategoryLink  ; "羅馬浴缸龍頭類"
-                       ;                          ; D003CategoryLink  ; "掛牆淋浴/浴缸類龍頭"
-                       ;                          ; D004CategoryLink  ; "入牆淋浴/浴缸類龍頭"
-                       ;                          ; D005CategoryLink  ; "浴室配件"
-                       ;                          ; D006CategoryLink  ; "成品浴櫃"
-                       ;                          ; D007CategoryLink  ; "浴缸"
-                       ;                          ; D008CategoryLink  ; "智能浴室產品"
-                       ;                          ; D009CategoryLink  ; "陶瓷製品"
-                       ;                          ; D010CategoryLink  ; "鏡子/鏡櫃"
+                       ;                          ; D001CategoryLink    ; "臉盆龍頭類"
+                       ;                          ; D002CategoryLink    ; "羅馬浴缸龍頭類"
+                       ;                          ; D003CategoryLink    ; "掛牆淋浴/浴缸類龍頭"
+                       ;                          ; D004CategoryLink    ; "入牆淋浴/浴缸類龍頭"
+                       ;                          ; D005CategoryLink    ; "浴室配件"
+                       ;                          ; D006CategoryLink    ; "成品浴櫃"
+                       ;                          ; D007CategoryLink    ; "浴缸"
+                       ;                          ; D008CategoryLink    ; "智能浴室產品"
+                       ;                          ; D009CategoryLink    ; "陶瓷製品"
+                       ;                          ; D010CategoryLink    ; "鏡子/鏡櫃"
 
 #Kitchen
-                       ;                          ; E001CategoryLink  ; "單把式廚房龍頭"
-                       ;                          ; E002CategoryLink  ; "上拉式廚房龍頭"
-                       ;                          ; E003CategoryLink  ; "下拉式廚房龍頭"
+                       ;                          ; E001CategoryLink    ; "單把式廚房龍頭"
+                       ;                          ; E002CategoryLink    ; "上拉式廚房龍頭"
+                       ;                          ; E003CategoryLink    ; "下拉式廚房龍頭"
 #Style
-                       ;                          ; G001CategoryLink  ; "Chic 時尚"
-                       ;                          ; G002CategoryLink  ; "Mimimal 簡約"
-                       ;                          ; G003CategoryLink  ; "Contempo 當代"
-                       ;                          ; G004CategoryLink  ; "Neo-Classic 新古典"
-                       ;                          ; G005CategoryLink  ; "Classic 古典"
+                       ;                          ; G001CategoryLink    ; "Chic 時尚"
+                       ;                          ; G002CategoryLink    ; "Mimimal 簡約"
+                       ;                          ; G003CategoryLink    ; "Contempo 當代"
+                       ;                          ; G004CategoryLink    ; "Neo-Classic 新古典"
+                       ;                          ; G005CategoryLink    ; "Classic 古典"
 #Suite
-                       ;                          ; C001CategoryLink  ; "S"
-                       ;                          ; C002CategoryLink  ; "M"
-                       ;                          ; C003CategoryLink  ; "L"
+                       ;                          ; C001CategoryLink    ; "S"
+                       ;                          ; C002CategoryLink    ; "M"
+                       ;                          ; C003CategoryLink    ; "L"
 #Order
-                       ;                          ; F001CategoryLink  ; "訂製浴櫃"
-                       ;                          ; F002CategoryLink  ; "淋浴拉門"
+                       ;                          ; F001CategoryLink    ; "訂製浴櫃"
+                       ;                          ; F002CategoryLink    ; "淋浴拉門"
 #Parts
-                       ;                          ; H001CategoryLink  ; "排水組"
-                       ;                          ; H002CategoryLink  ; "手握花灑"
-                       ;                          ; H003CategoryLink  ; "頂噴"
-                       ;                          ; H004CategoryLink  ; "花灑插座"
-                       ;                          ; H005CategoryLink  ; "出水接頭/入牆"
-                       ;                          ; H006CategoryLink  ; "花灑壁管/入牆"
-                       ;                          ; H007CategoryLink  ; "浴缸出水口"
-                       ;                          ; H008CategoryLink  ; "入牆龍頭面板閥體組"
-                       ;                          ; H009CategoryLink  ; "軟管"
-                       ;                          ; H010CategoryLink  ; "升降杆"
-                       ;                          ; H011CategoryLink  ; "噴頭"
-                       ;                          ; H012CategoryLink  ; "手握花灑組"
-                       ;                          ; H013CategoryLink  ; "雙花灑組"
-                       ;                          ; H014CategoryLink  ; "水龍頭配件"
-                       ;                          ; H015CategoryLink  ; "其他"
+                       ;                          ; H001CategoryLink    ; "排水組"
+                       ;                          ; H002CategoryLink    ; "手握花灑"
+                       ;                          ; H003CategoryLink    ; "頂噴"
+                       ;                          ; H004CategoryLink    ; "花灑插座"
+                       ;                          ; H005CategoryLink    ; "出水接頭/入牆"
+                       ;                          ; H006CategoryLink    ; "花灑壁管/入牆"
+                       ;                          ; H007CategoryLink    ; "浴缸出水口"
+                       ;                          ; H008CategoryLink    ; "入牆龍頭面板閥體組"
+                       ;                          ; H009CategoryLink    ; "軟管"
+                       ;                          ; H010CategoryLink    ; "升降杆"
+                       ;                          ; H011CategoryLink    ; "噴頭"
+                       ;                          ; H012CategoryLink    ; "手握花灑組"
+                       ;                          ; H013CategoryLink    ; "雙花灑組"
+                       ;                          ; H014CategoryLink    ; "水龍頭配件"
+                       ;                          ; H015CategoryLink    ; "其他"
+#快速訂購
+                       ;                          ; OrderFormsLink      ; "訂貨單"
+                       ;                          ; QuickOrderLink      ; "快速訂單"
+                       ;                          ; ImportSavedCartLink ; "導入已保存購物車"
 
-UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]  ; title[lang = $lang]
-                        ;                          ; A0NavNode           ; "最新產品"
-                        ;                          ; B0NavNode           ; "活動促銷"
-                        ;                          ; D0NavNode           ; "浴室"
-                        ;                          ; E0NavNode           ; "廚房"
-                        ;                          ; G0NavNode           ; "風格"
+UPDATE CMSNavigationNode; $contentCV[unique = true]; uid[unique = true]     ; title[lang = $lang]
+                        ;                          ; A0NavNode              ; "最新產品"
+                        ;                          ; B0NavNode              ; "活動促銷"
+                        ;                          ; D0NavNode              ; "浴室"
+                        ;                          ; E0NavNode              ; "廚房"
+                        ;                          ; G0NavNode              ; "風格"
 #Bathroom
-                        ;                          ; D001CategoryNavNode ; "臉盆龍頭類"
-                        ;                          ; D002CategoryNavNode ; "羅馬浴缸龍頭類"
-                        ;                          ; D003CategoryNavNode ; "掛牆淋浴/浴缸類龍頭"
-                        ;                          ; D004CategoryNavNode ; "入牆淋浴/浴缸類龍頭"
-                        ;                          ; D005CategoryNavNode ; "浴室配件"
-                        ;                          ; D006CategoryNavNode ; "成品浴櫃"
-                        ;                          ; D007CategoryNavNode ; "浴缸"
-                        ;                          ; D008CategoryNavNode ; "智能浴室產品"
-                        ;                          ; D009CategoryNavNode ; "陶瓷製品"
-                        ;                          ; D010CategoryNavNode ; "鏡子/鏡櫃"
+                        ;                          ; D001CategoryNavNode    ; "臉盆龍頭類"
+                        ;                          ; D002CategoryNavNode    ; "羅馬浴缸龍頭類"
+                        ;                          ; D003CategoryNavNode    ; "掛牆淋浴/浴缸類龍頭"
+                        ;                          ; D004CategoryNavNode    ; "入牆淋浴/浴缸類龍頭"
+                        ;                          ; D005CategoryNavNode    ; "浴室配件"
+                        ;                          ; D006CategoryNavNode    ; "成品浴櫃"
+                        ;                          ; D007CategoryNavNode    ; "浴缸"
+                        ;                          ; D008CategoryNavNode    ; "智能浴室產品"
+                        ;                          ; D009CategoryNavNode    ; "陶瓷製品"
+                        ;                          ; D010CategoryNavNode    ; "鏡子/鏡櫃"
 #Kitchen
-                        ;                          ; E001CategoryNavNode ; "單把式廚房龍頭"
-                        ;                          ; E002CategoryNavNode ; "上拉式廚房龍頭"
-                        ;                          ; E003CategoryNavNode ; "下拉式廚房龍頭"
+                        ;                          ; E001CategoryNavNode    ; "單把式廚房龍頭"
+                        ;                          ; E002CategoryNavNode    ; "上拉式廚房龍頭"
+                        ;                          ; E003CategoryNavNode    ; "下拉式廚房龍頭"
 #Style
-                        ;                          ; G001CategoryNavNode ; "Chic 時尚"
-                        ;                          ; G002CategoryNavNode ; "Mimimal 簡約"
-                        ;                          ; G003CategoryNavNode ; "Contempo 當代"
-                        ;                          ; G004CategoryNavNode ; "Neo-Classic 新古典"
-                        ;                          ; G005CategoryNavNode ; "Classic 古典"
+                        ;                          ; G001CategoryNavNode    ; "Chic 時尚"
+                        ;                          ; G002CategoryNavNode    ; "Mimimal 簡約"
+                        ;                          ; G003CategoryNavNode    ; "Contempo 當代"
+                        ;                          ; G004CategoryNavNode    ; "Neo-Classic 新古典"
+                        ;                          ; G005CategoryNavNode    ; "Classic 古典"
 #Suite
-                        ;                          ; C001CategoryNavNode ; "S"
-                        ;                          ; C002CategoryNavNode ; "M"
-                        ;                          ; C003CategoryNavNode ; "L"
+                        ;                          ; C001CategoryNavNode    ; "S"
+                        ;                          ; C002CategoryNavNode    ; "M"
+                        ;                          ; C003CategoryNavNode    ; "L"
 #Order
-                        ;                          ; F001CategoryNavNode ; "訂製浴櫃"
-                        ;                          ; F002CategoryNavNode ; "淋浴拉門"
+                        ;                          ; F001CategoryNavNode    ; "訂製浴櫃"
+                        ;                          ; F002CategoryNavNode    ; "淋浴拉門"
 #Parts
-                        ;                          ; H001CategoryNavNode ; "排水組"
-                        ;                          ; H002CategoryNavNode ; "手握花灑"
-                        ;                          ; H003CategoryNavNode ; "頂噴"
-                        ;                          ; H004CategoryNavNode ; "花灑插座"
-                        ;                          ; H005CategoryNavNode ; "出水接頭/入牆"
-                        ;                          ; H006CategoryNavNode ; "花灑壁管/入牆"
-                        ;                          ; H007CategoryNavNode ; "浴缸出水口"
-                        ;                          ; H008CategoryNavNode ; "入牆龍頭面板閥體組"
-                        ;                          ; H009CategoryNavNode ; "軟管"
-                        ;                          ; H010CategoryNavNode ; "升降杆"
-                        ;                          ; H011CategoryNavNode ; "噴頭"
-                        ;                          ; H012CategoryNavNode ; "手握花灑組"
-                        ;                          ; H013CategoryNavNode ; "雙花灑組"
-                        ;                          ; H014CategoryNavNode ; "水龍頭配件"
-                        ;                          ; H015CategoryNavNode ; "其他"
+                        ;                          ; H001CategoryNavNode    ; "排水組"
+                        ;                          ; H002CategoryNavNode    ; "手握花灑"
+                        ;                          ; H003CategoryNavNode    ; "頂噴"
+                        ;                          ; H004CategoryNavNode    ; "花灑插座"
+                        ;                          ; H005CategoryNavNode    ; "出水接頭/入牆"
+                        ;                          ; H006CategoryNavNode    ; "花灑壁管/入牆"
+                        ;                          ; H007CategoryNavNode    ; "浴缸出水口"
+                        ;                          ; H008CategoryNavNode    ; "入牆龍頭面板閥體組"
+                        ;                          ; H009CategoryNavNode    ; "軟管"
+                        ;                          ; H010CategoryNavNode    ; "升降杆"
+                        ;                          ; H011CategoryNavNode    ; "噴頭"
+                        ;                          ; H012CategoryNavNode    ; "手握花灑組"
+                        ;                          ; H013CategoryNavNode    ; "雙花灑組"
+                        ;                          ; H014CategoryNavNode    ; "水龍頭配件"
+                        ;                          ; H015CategoryNavNode    ; "其他"
+#快速訂單
+                        ;                          ; OrderFormsNavNode      ; "訂貨單"
+                        ;                          ; QuickOrderNavNode      ; "快速訂單"
+                        ;                          ; ImportSavedCartNavNode ; "導入已保存購物車"
 ############ NCIP End ######################
