@@ -6,7 +6,8 @@
 <%--<div class="tab-details">--%>
 	<ycommerce:testId code="productDetails_content_label">
 		<p>
-			${ycommerce:sanitizeHTML(product.description)}
+<%-- 			${ycommerce:sanitizeHTML(product.description)} --%>
 		<p>
+		${product.description}
 	</ycommerce:testId>
 <%--</div>--%>
