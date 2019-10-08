@@ -42,9 +42,17 @@ base.properties
 
 #  Addon specific copy folders
 **/_ui/addons
-**/views/addons
+**/views/addons/assistedservicestorefront
+**/views/addons/commerceorgaddon
+**/views/addons/commerceorgsamplesaddon
+**/views/addons/consignmenttrackingaddon
+**/views/addons/customerticketingaddon
 **/tld/addons
-**/tags/addons
+**/tags/addons/assistedservicestorefront
+**/tags/addons/commerceorgaddon
+**/tags/addons/commerceorgsamplesaddon
+**/tags/addons/consignmenttrackingaddon
+**/tags/addons/customerticketingaddon
 **/messages/addons
 *_bof.jar
 **/rebel.xml

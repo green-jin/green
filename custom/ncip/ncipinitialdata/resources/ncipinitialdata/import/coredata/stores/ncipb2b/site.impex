@@ -35,7 +35,7 @@ $storefrontContextRoot=$config-storefrontContextRoot
                                                                                                            
 # CMS Site                                                                                                 
 INSERT_UPDATE CMSSite ; uid[unique=true] ; theme(code) ; channel(code) ; stores(uid) ; contentCatalogs(id) ; defaultCatalog(id) ; defaultLanguage(isoCode) ; urlPatterns                                                                                                                                                                              ; active ; previewURL                            ; startingPage(uid,$contentCV) ; urlEncodingAttributes        ; defaultPromotionGroup(Identifier)[default=ncipb2bPromoGrp] 
-                      ; $siteUid         ; lambda      ; B2B           ; $storeUid   ; $contentCatalog     ; $productCatalog    ; $defaultLanguage         ; (?i)^https?://[^/]+(/[^?]*)?,(?i)^https?://192.168.191.30:9002/ncipb2bstorefront/,(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUid)(|\&.*)$,(?i)^https?://$siteUid\.[^/]+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUid ; homepage                     ; storefront,language,currency 
+                      ; $siteUid         ; lambda      ; B2B           ; $storeUid   ; $contentCatalog     ; $productCatalog    ; $defaultLanguage         ; (?i)^https?://[^/]+(/[^?]*)?,(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUid)(|\&.*)$,(?i)^https?://$siteUid\.[^/]+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUid ; homepage                     ; storefront,language,currency 
                       
 # SiteMap Configuration
 # SiteMap Language Currencies

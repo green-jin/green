@@ -150,50 +150,50 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]  ;
 #                              ;                          ; SafetyCategoryLink               ; Safety Category Link                   ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/c/1800                     ; SafetyCategoryLink               ; SafetyCategoryLink
 
 ##----- leve 5. children of HandToolsNavNode -----##
-INSERT_UPDATE CMSNavigationNode; uid[unique = true]    ; $contentCV[unique = true]; name                      ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-                               ; HandToolsLinksNavNode ;                          ; Hand Tools Category Links ; HandToolsNavNode       ;                ; HandToolsLinksNavNode
+#INSERT_UPDATE CMSNavigationNode; uid[unique = true]    ; $contentCV[unique = true]; name                      ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+#                               ; HandToolsLinksNavNode ;                          ; Hand Tools Category Links ; HandToolsNavNode       ;                ; HandToolsLinksNavNode
 
 ##------ level 6. children of HandToolsLinksNavNode ------##
-INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-                               ; HandSawsCategoryNavNode       ;                          ; Hand Saws Category       ; HandToolsLinksNavNode  ;                ; HandSawsCategoryNavNode
-                               ; JigsawsCategoryNavNode        ;                          ; Jigsaws Category         ; HandToolsLinksNavNode  ;                ; JigsawsCategoryNavNode
-                               ; NutDriversCategoryNavNode     ;                          ; Nut Drivers Category     ; HandToolsLinksNavNode  ;                ; NutDriversCategoryNavNode
-                               ; RotaryHammersCategoryNavNode  ;                          ; Rotary Hammers Category  ; HandToolsLinksNavNode  ;                ; RotaryHammersCategoryNavNode
-                               ; StrippingToolsCategoryNavNode ;                          ; Stripping Tools Category ; HandToolsLinksNavNode  ;                ; StrippingToolsCategoryNavNode
-                               ; PunchesCategoryNavNode        ;                          ; Punches Category         ; HandToolsLinksNavNode  ;                ; PunchesCategoryNavNode
+#INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+#                               ; HandSawsCategoryNavNode       ;                          ; Hand Saws Category       ; HandToolsLinksNavNode  ;                ; HandSawsCategoryNavNode
+#                               ; JigsawsCategoryNavNode        ;                          ; Jigsaws Category         ; HandToolsLinksNavNode  ;                ; JigsawsCategoryNavNode
+#                               ; NutDriversCategoryNavNode     ;                          ; Nut Drivers Category     ; HandToolsLinksNavNode  ;                ; NutDriversCategoryNavNode
+#                               ; RotaryHammersCategoryNavNode  ;                          ; Rotary Hammers Category  ; HandToolsLinksNavNode  ;                ; RotaryHammersCategoryNavNode
+#                               ; StrippingToolsCategoryNavNode ;                          ; Stripping Tools Category ; HandToolsLinksNavNode  ;                ; StrippingToolsCategoryNavNode
+#                               ; PunchesCategoryNavNode        ;                          ; Punches Category         ; HandToolsLinksNavNode  ;                ; PunchesCategoryNavNode
 ## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
-                                ; HandSawsCategoryNavNodeEntry       ;                          ; Hand Saws Category Navigation Node Entry       ; HandSawsCategoryNavNode       ; HandSawsCategoryLink                                   ;
-                                ; JigsawsCategoryNavNodeEntry        ;                          ; Jigsaws Category Navigation Node Entry         ; JigsawsCategoryNavNode        ; JigsawsCategoryLink                                    ;
-                                ; NutDriversCategoryNavNodeEntry     ;                          ; Nut Drivers Category Navigation Node Entry     ; NutDriversCategoryNavNode     ; NutDriversCategoryLink                                 ;
-                                ; RotaryHammersCategoryNavNodeEntry  ;                          ; Rotary Hammers Category Navigation Node Entry  ; RotaryHammersCategoryNavNode  ; RotaryHammersCategoryLink                              ;
-                                ; StrippingToolsCategoryNavNodeEntry ;                          ; Stripping Tools Category Navigation Node Entry ; StrippingToolsCategoryNavNode ; StrippingToolsCategoryLink                             ;
-                                ; PunchesCategoryNavNodeEntry        ;                          ; Punches Category Navigation Node Entry         ; PunchesCategoryNavNode        ; PunchesCategoryLink                                    ;
+#INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
+#                                ; HandSawsCategoryNavNodeEntry       ;                          ; Hand Saws Category Navigation Node Entry       ; HandSawsCategoryNavNode       ; HandSawsCategoryLink                                   ;
+#                                ; JigsawsCategoryNavNodeEntry        ;                          ; Jigsaws Category Navigation Node Entry         ; JigsawsCategoryNavNode        ; JigsawsCategoryLink                                    ;
+#                                ; NutDriversCategoryNavNodeEntry     ;                          ; Nut Drivers Category Navigation Node Entry     ; NutDriversCategoryNavNode     ; NutDriversCategoryLink                                 ;
+#                                ; RotaryHammersCategoryNavNodeEntry  ;                          ; Rotary Hammers Category Navigation Node Entry  ; RotaryHammersCategoryNavNode  ; RotaryHammersCategoryLink                              ;
+#                                ; StrippingToolsCategoryNavNodeEntry ;                          ; Stripping Tools Category Navigation Node Entry ; StrippingToolsCategoryNavNode ; StrippingToolsCategoryLink                             ;
+#                                ; PunchesCategoryNavNodeEntry        ;                          ; Punches Category Navigation Node Entry         ; PunchesCategoryNavNode        ; PunchesCategoryLink                                    ;
 ## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                          ; url                                                                                                 ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
-                              ;                          ; HandSawsCategoryLink       ; Hand Saws Category Link       ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354            ; HandSawsCategoryLink       ; HandSawsCategoryLink
-                              ;                          ; JigsawsCategoryLink        ; Jigsaws Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710              ; JigsawsCategoryLink        ; JigsawsCategoryLink
-                              ;                          ; NutDriversCategoryLink     ; Nut Drivers Category Link     ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641          ; NutDriversCategoryLink     ; NutDriversCategoryLink
-                              ;                          ; RotaryHammersCategoryLink  ; Rotary Hammers Category Link  ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711       ; RotaryHammersCategoryLink  ; RotaryHammersCategoryLink
-                              ;                          ; StrippingToolsCategoryLink ; Stripping Tools Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598      ; StrippingToolsCategoryLink ; StrippingToolsCategoryLink
-                              ;                          ; PunchesCategoryLink        ; Punches Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597 ; PunchesCategoryLink        ; PunchesCategoryLink
+#INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                          ; url                                                                                                 ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
+#                              ;                          ; HandSawsCategoryLink       ; Hand Saws Category Link       ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354            ; HandSawsCategoryLink       ; HandSawsCategoryLink
+#                              ;                          ; JigsawsCategoryLink        ; Jigsaws Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710              ; JigsawsCategoryLink        ; JigsawsCategoryLink
+#                              ;                          ; NutDriversCategoryLink     ; Nut Drivers Category Link     ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641          ; NutDriversCategoryLink     ; NutDriversCategoryLink
+#                              ;                          ; RotaryHammersCategoryLink  ; Rotary Hammers Category Link  ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711       ; RotaryHammersCategoryLink  ; RotaryHammersCategoryLink
+#                              ;                          ; StrippingToolsCategoryLink ; Stripping Tools Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598      ; StrippingToolsCategoryLink ; StrippingToolsCategoryLink
+#                              ;                          ; PunchesCategoryLink        ; Punches Category Link         ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597 ; PunchesCategoryLink        ; PunchesCategoryLink
 
 ##----- level 5. children of SafetyNavNode -----##
-INSERT_UPDATE CMSNavigationNode; uid[unique = true]   ; $contentCV[unique = true]; name                    ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-                               ; FootwearLinksNavNode ;                          ; Footwear Category Links ; SafetyNavNode          ;                ; FootwearLinksNavNode
+#INSERT_UPDATE CMSNavigationNode; uid[unique = true]   ; $contentCV[unique = true]; name                    ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+#                               ; FootwearLinksNavNode ;                          ; Footwear Category Links ; SafetyNavNode          ;                ; FootwearLinksNavNode
 
 ##------ level 6. children of FootwearLinksNavNode ------##
-INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
-                               ; FootwearMensCategoryNavNode   ;                          ; Footwear Mens Category   ; FootwearLinksNavNode   ;                ; FootwearMensCategoryNavNode
-                               ; FootwearWomensCategoryNavNode ;                          ; Footwear Womens Category ; FootwearLinksNavNode   ;                ; FootwearWomensCategoryNavNode
+#INSERT_UPDATE CMSNavigationNode; uid[unique = true]            ; $contentCV[unique = true]; name                     ; parent(uid, $contentCV); links(&linkRef); &nodeRef
+#                               ; FootwearMensCategoryNavNode   ;                          ; Footwear Mens Category   ; FootwearLinksNavNode   ;                ; FootwearMensCategoryNavNode
+#                               ; FootwearWomensCategoryNavNode ;                          ; Footwear Womens Category ; FootwearLinksNavNode   ;                ; FootwearWomensCategoryNavNode
 ## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
-                                ; FootwearMensCategoryNavNodeEntry   ;                          ; Footwear Mens Category Navigation Node Entry   ; FootwearMensCategoryNavNode   ; FootwearMensCategoryLink                               ;
-                                ; FootwearWomensCategoryNavNodeEntry ;                          ; Footwear Womens Category Navigation Node Entry ; FootwearWomensCategoryNavNode ; FootwearWomensCategoryLink                             ;
+#INSERT_UPDATE CMSNavigationEntry; uid[unique = true]                 ; $contentCV[unique = true]; name                                           ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid, CMSLinkComponent.$contentCV);
+#                                ; FootwearMensCategoryNavNodeEntry   ;                          ; Footwear Mens Category Navigation Node Entry   ; FootwearMensCategoryNavNode   ; FootwearMensCategoryLink                               ;
+#                                ; FootwearWomensCategoryNavNodeEntry ;                          ; Footwear Womens Category Navigation Node Entry ; FootwearWomensCategoryNavNode ; FootwearWomensCategoryLink                             ;
 ## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                           ; url                                                                                                   ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
-                              ;                          ; FootwearMensCategoryLink   ; Footwear Men's Category Link   ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805   ; FootwearMensCategoryLink   ; FootwearMensCategoryLink
-                              ;                          ; FootwearWomensCategoryLink ; Footwear Women's Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806 ; FootwearWomensCategoryLink ; FootwearWomensCategoryLink
+#INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]         ; name                           ; url                                                                                                   ; &linkRef                   ; &componentRef; target(code)[default = 'sameWindow']
+#                              ;                          ; FootwearMensCategoryLink   ; Footwear Men's Category Link   ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805   ; FootwearMensCategoryLink   ; FootwearMensCategoryLink
+#                              ;                          ; FootwearWomensCategoryLink ; Footwear Women's Category Link ; /Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806 ; FootwearWomensCategoryLink ; FootwearWomensCategoryLink
 
 
 ##---- level 4. children of FooterNavNode start ----##
@@ -912,6 +912,31 @@ INSERT_UPDATE ContentPage ; $contentCV[unique=true] ; uid[unique=true] ; preview
                           ;                         ; cancel-order     ;          ; Cancel Order      
 ######ADD Cancel order page End ######
 
+###### 20191008 Confirm Cancel order page starts ######
+# Functional Content Pages
+INSERT_UPDATE ContentPage ; $contentCV[unique=true] ; uid[unique=true]     ; name                      ; masterTemplate(uid,$contentCV) ; label                ; defaultPage[default='true'] ; approvalStatus(code)[default='approved'] ; homepage[default='false'] ; title[lang=$lang]    
+                          ;                         ; confirm-cancel-order ; Confirm Cancel Order Page ; AccountPageTemplate            ; confirm-cancel-order ;                             ;                                          ;                           ; Confirm Cancel Order 
+                          
+INSERT_UPDATE ContentSlot ; $contentCV[unique=true] ; uid[unique=true]                 ; name                                                  ; active ; cmsComponents(&componentRef)                                         ;  ;  ;  
+                          ;                         ; SideContent-confirm-cancel-order ; Side Content Slot for My Account confirm-cancel-order ; true   ;                                                                      ;  ;  ;  
+                          ;                         ; BodyContent-confirm-cancel-order ; Body Content Slot for My Account confirm-cancel-order ; true   ; ConfirmCancelOrderHeadlineComponent,CancelConfirmationOrderComponent ;  ;  ;  
+                          
+INSERT_UPDATE ContentSlotForPage ; $contentCV[unique=true] ; uid[unique=true]                 ; position[unique=true] ; page(uid,$contentCV)[unique=true][default='confirm-cancel-order'] ; contentSlot(uid,$contentCV)[unique=true] ;  ;  ;  
+                                 ;                         ; SideContent-confirm-cancel-order ; SideContent           ;                                                                   ; SideContent-confirm-cancel-order         ;  ;  ;  
+                                 ;                         ; BodyContent-confirm-cancel-order ; BodyContent           ;                                                                   ; BodyContent-confirm-cancel-order         ;  ;  ;  
+                                 
+INSERT_UPDATE JspIncludeComponent ; $contentCV[unique=true] ; uid[unique=true]                    ; name                                ; page                                                                                                          ; actions(uid,$contentCV)[mode=append] ; &componentRef                       
+                                  ;                         ; CancelConfirmationOrderComponent    ; Cancel Confirmation Order Component ; /WEB-INF/views/addons/orderselfserviceaddon/responsive/pages/account/cancel/accountCancelConfirmationPage.jsp ;                                      ; CancelConfirmationOrderComponent    
+                                  ;                         ; ConfirmCancelOrderHeadlineComponent ; Cancel Order Headline Component     ; /WEB-INF/views/addons/orderselfserviceaddon/responsive/pages/account/cancel/cancelConfirmOrderHeadline.jsp    ;                                      ; ConfirmCancelOrderHeadlineComponent 
+                                  
+# Preview Image for use in the CMS Cockpit for special ContentPages
+INSERT_UPDATE Media ; $contentCV[unique=true] ; code[unique=true]             ; mime     ; realfilename               ; @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true] ; folder(qualifier)[default='images'] 
+                    ;                         ; confirmCancelOrderPagePreview ; text/png ; confirmCancelOrderPage.png ; $siteResource/documents/images/confirmCancelOrderPage.png                                   ;                                     
+                    
+INSERT_UPDATE ContentPage ; $contentCV[unique=true] ; uid[unique=true]     ; previewImage(code, $contentCV) ; title[lang=$lang]    
+                          ;                         ; confirm-cancel-order ; confirmCancelOrderPagePreview  ; Confirm Cancel Order 				  
+###### 20191008 Confirm Cancel order page End ######		
+
 ###### Account Update Password Start ######
 INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]         ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'updatePassword']; contentSlot(uid, $contentCV)[unique = true]; ; ;
                                 ;                          ; SideContent-updatePassword ; SideContent            ;                                                                 ; SideContent-updatePassword                 ; ; ;
@@ -1097,9 +1122,9 @@ INSERT_UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = tru
 ###### Quick Order Page End ######
 
 ###### Accounting Detail Start ######
-INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]         ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'accounting-detail']; contentSlot(uid, $contentCV)[unique = true]; ; ;
-                                ;                          ; SideContent-accountingDetail ; SideContent            ;                                                                 ; SideContent-accountingDetail                 ; ; ;
-                                ;                          ; BodyContent-accountingDetail ; BodyContent            ;                                                                 ; BodyContent-accountingDetail                 ; ; ;
+#INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]         ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'accounting-detail']; contentSlot(uid, $contentCV)[unique = true]; ; ;
+#                                ;                          ; SideContent-accountingDetail ; SideContent            ;                                                                 ; SideContent-accountingDetail                 ; ; ;
+#                                ;                          ; BodyContent-accountingDetail ; BodyContent            ;                                                                 ; BodyContent-accountingDetail                 ; ; ;
 
 INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]         ; name                                  ; active; cmsComponents(&componentRef); ; ;
                          ;                          ; SideContent-accountingDetail ; Side Content Slot for Accounting Detail ; true  ;                             ; ; ;
@@ -1121,8 +1146,11 @@ INSERT_UPDATE CMSInverseRestriction; $contentCV[unique = true]; name           ;
                                    ;                          ; Logged in User ; anonymousUserRestriction                               ; loggedInUser      ; MyAccountComponent
 
 INSERT_UPDATE CMSUserGroupRestriction; $contentCV[unique = true]; uid[unique = true]                    ; name                                       ; userGroups(uid)  ; includeSubgroups; components(&linkRef)
-                                     ;                          ; MyAccountLinkCustomerGroupRestriction ; My Account Link Customer Group Restriction ; b2bcustomergroup ; true            ; AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,MyReplenishmentOrdersLink
-                                     ;                          ; MyAccountLinkApproverGroupRestriction ; My Account Link Approver Group Restriction ; b2bapprovergroup ; true            ; ApprovalDashboardLink
+INSERT_UPDATE CMSUserGroupRestriction; $contentCV[unique = true]; uid[unique = true]                    ; name                                       ; userGroups(uid)  ; includeSubgroups; components(&linkRef)
+                                     ;                          ; MyAccountLinkCustomerGroupRestriction ; My Account Link Customer Group Restriction ; b2bcustomergroup ; true            ; AddressBookLink,OrderHistoryLink
+                                     
+#                                     ;                          ; MyAccountLinkCustomerGroupRestriction ; My Account Link Customer Group Restriction ; b2bcustomergroup ; true            ; AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,MyReplenishmentOrdersLink
+#                                     ;                          ; MyAccountLinkApproverGroupRestriction ; My Account Link Approver Group Restriction ; b2bapprovergroup ; true            ; ApprovalDashboardLink
 ###### Restriction End ######
 
 

@@ -11,14 +11,18 @@
 #
 # Import Delivery Modes / Zones
 #
-
+ 
 # Language
 $lang=zh_TW
-
+ 
 # Zone Delivery Modes
-UPDATE ZoneDeliveryMode;code[unique=true];name[lang=$lang];description[lang=$lang]
-;premium-gross;"高級送貨";"1-2 工作日"
-;premium-net;"高級送貨";"1-2 工作日"
-;standard-gross;"標準送貨";"3-5 工作日"
-;standard-net;"標準送貨";"3-5 工作日"
-
+UPDATE ZoneDeliveryMode ; code[unique=true] ; name[lang=$lang] ; description[lang=$lang] 
+                        ; premium-gross     ; "高級送貨"           ; "1-2 工作日"               
+                        ; premium-net       ; "高級送貨"           ; "1-2 工作日"               
+                        ; standard-gross    ; "標準送貨"           ; "3-5 工作日"               
+                        ; standard-net      ; "標準送貨"           ; "3-5 工作日"               
+                        
+##### Ncip 運費設定 #####   
+# Zone Delivery Modes   
+UPDATE ZoneDeliveryMode ; code[unique=true]     ; name[lang=$lang] ; description[lang=$lang] 
+                        ; ncipb2b-free-shipping ; "送貨"             ; "免運"                    

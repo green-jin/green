@@ -84,6 +84,7 @@ INSERT_UPDATE UserTaxGroup;code[unique=true]
 ;uk-taxes
 ;us-taxes
 ;ca-taxes
+;zh_tw-taxes
 
 INSERT_UPDATE ProductTaxGroup;code[unique=true]
 ;jp-vat-full

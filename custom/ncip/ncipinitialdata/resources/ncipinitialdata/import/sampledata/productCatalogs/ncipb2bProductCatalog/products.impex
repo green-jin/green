@@ -17,6 +17,7 @@ $catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[d
 $supercategories = supercategories(code, $catalogVersion)
 $baseProduct = baseProduct(code, $catalogVersion)
 $approved = approvalstatus(code)[default=' approved']
+$taxGroup=Europe1PriceFactory_PTG(code)[default=zh_tw-sales-tax-full]
 
 # Language
 $lang = en, zh_TW, zh
@@ -907,7 +908,7 @@ INSERT_UPDATE VariantValueCategory; code[unique = true]; name[lang = $lang]     
 
 
 #無辨識商品
-INSERT_UPDATE Product; code[unique = true]; $supercategories    ; variantType(code)     ; $catalogVersion; unit(code)[default = pieces]; ma_type; $approved
+INSERT_UPDATE Product; code[unique = true]; $supercategories    ; variantType(code)     ; $catalogVersion; unit(code)[default = pieces]; ma_type; $approved ; $taxGroup ; europe1Taxes ;
                      ; K1822401-TWMPG     ; E003                ; GenericVariantProduct ;                ;                             ; A      ;
                      ; K1823501-TWSPM     ; E003                ; GenericVariantProduct ;                ;                             ; A      ;
                      ; K1902101-TWMP      ; E003                ; GenericVariantProduct ;                ;                             ; A      ;

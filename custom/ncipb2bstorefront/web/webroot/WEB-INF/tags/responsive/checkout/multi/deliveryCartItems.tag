@@ -83,7 +83,7 @@
 	                            <c:forEach items="${promotion.consumedEntries}" var="consumedEntry">
 	                                <c:if test="${not displayed && ycommerce:isConsumedByEntry(consumedEntry,entry)}">
 	                                    <c:set var="displayed" value="true"/>
-	                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span>
+<%-- 	                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span> --%>
 	                                </c:if>
 	                            </c:forEach>
 	                        </c:forEach>
@@ -94,7 +94,7 @@
 	                            <c:forEach items="${promotion.consumedEntries}" var="consumedEntry">
 	                                <c:if test="${not displayed && ycommerce:isConsumedByEntry(consumedEntry,entry)}">
 	                                    <c:set var="displayed" value="true"/>
-	                                    <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span>
+<%-- 	                                   <span class="promotion">${ycommerce:sanitizeHTML(promotion.description)}</span> --%>
 	                                </c:if>
 	                            </c:forEach>
 	                        </c:forEach>
