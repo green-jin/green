@@ -28,6 +28,7 @@ public class ZhydelyRowMapper implements RowMapper<ZhydelyBean> {
     bean.setTo_sys(rs.getString("TO_SYS"));
     bean.setIctype(rs.getString("ICTYPE"));
     bean.setStatus(rs.getString("STATUS"));
+    bean.setMandt(rs.getString("MANDT"));
 
     return bean;
   }
