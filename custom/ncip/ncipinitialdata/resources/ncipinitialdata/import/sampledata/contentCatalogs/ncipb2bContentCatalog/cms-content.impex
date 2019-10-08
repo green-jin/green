@@ -314,8 +314,8 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; n
 #                                 ;                          ; OrderToolsComponent     ; Order Tools Component ; nav-order-tools ; OrderToolsComponent     ; OrderToolsNavNode
 #                                 ;                          ; NcipOrderToolsComponent ; Ncip Order Tools Component ; nav-order-tools ; NcipOrderToolsComponent ; OrderToolsNavNode
 
-#INSERT_UPDATE MiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name      ; &componentRef; totalDisplay(code); shownProductCount; lightboxBannerComponent(&componentRef)
-#                               ;                          ; MiniCart          ; Mini Cart ; MiniCart     ; SUBTOTAL          ; 3                ; LightboxHomeDeliveryBannerComponent
+INSERT_UPDATE MiniCartComponent; $contentCV[unique = true]; uid[unique = true]; name      ; &componentRef; totalDisplay(code); shownProductCount; lightboxBannerComponent(&componentRef)
+                               ;                          ; MiniCart          ; Mini Cart ; MiniCart     ; SUBTOTAL          ; 3                ; LightboxHomeDeliveryBannerComponent
 
 INSERT_UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]                  ; name                                    ; &componentRef                       ; urlLink
                                    ;                          ; LightboxHomeDeliveryBannerComponent ; Lightbox Home Delivery Banner Component ; LightboxHomeDeliveryBannerComponent ;
@@ -1096,6 +1096,20 @@ INSERT_UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = tru
 
 ###### Quick Order Page End ######
 
+###### Accounting Detail Start ######
+INSERT_UPDATE ContentSlotForPage; $contentCV[unique = true]; uid[unique = true]         ; position[unique = true]; page(uid, $contentCV)[unique = true][default = 'accounting-detail']; contentSlot(uid, $contentCV)[unique = true]; ; ;
+                                ;                          ; SideContent-accountingDetail ; SideContent            ;                                                                 ; SideContent-accountingDetail                 ; ; ;
+                                ;                          ; BodyContent-accountingDetail ; BodyContent            ;                                                                 ; BodyContent-accountingDetail                 ; ; ;
+
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]         ; name                                  ; active; cmsComponents(&componentRef); ; ;
+                         ;                          ; SideContent-accountingDetail ; Side Content Slot for Accounting Detail ; true  ;                             ; ; ;
+                         ;                          ; BodyContent-accountingDetail ; Body Content Slot for Accounting Detail ; true  ; AccountingDetailComponent     ; ; ;
+
+INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]      ; name                      ; page                          ; actions(uid, $contentCV); &componentRef
+                                 ;                          ; AccountingDetailComponent ; Accounting Detail Component ; accountAccountingDetail.jsp ;                         ; AccountingDetailComponent
+###### Accounting Detail End ######
+
+
 ###### Restriction Start ######
 INSERT_UPDATE CMSActionRestriction; $contentCV[unique = true]; uid[unique = true]; name                    ;
                                   ;                          ; ActionRestriction ; A CMSAction restriction ;
@@ -1420,18 +1434,18 @@ INSERT_UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]; n
 UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]       ; title[lang = en]
                           ;                          ; ProductDownloadComponent ; 相關下載
                           ;                          ; ProductVideoComponent    ; 產品3D影片
-                          ;                          ; ProductDeliveryComponent ; 運送(再議)
+#                          ;                          ; ProductDeliveryComponent ; 運送(再議)
 
 # CMS tabs components
 INSERT_UPDATE JspIncludeComponent; $contentCV[unique = true]; uid[unique = true]       ; name                          ; page                                                            ; actions(uid, $contentCV); &componentRef
                                  ;                          ; ProductDownloadComponent ; Product Related Downloads Tab ; /WEB-INF/views/responsive/pages/product/productDownloadsTab.jsp ;                         ; ProductDownloadComponent
                                  ;                          ; ProductVideoComponent    ; Product 3D Videos Tab         ; /WEB-INF/views/responsive/pages/product/productVideosTab.jsp    ;                         ; ProductVideoComponent
-                                 ;                          ; ProductDeliveryComponent ; Product Delivery Tab          ; /WEB-INF/views/responsive/pages/product/productDeliveryTab.jsp  ;                         ; ProductDeliveryComponent
+#                                 ;                          ; ProductDeliveryComponent ; Product Delivery Tab          ; /WEB-INF/views/responsive/pages/product/productDeliveryTab.jsp  ;                         ; ProductDeliveryComponent
 
 
 INSERT_UPDATE CMSTabParagraphContainer; $contentCV[unique = true]; uid[unique = true]; name          ; visible; simpleCMSComponents(uid, $contentCV)                                                               ; &componentRef
-                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductDownloadComponent,ProductVideoComponent,ProductDeliveryComponent ; TabPanelContainer
-
+#                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductDownloadComponent,ProductVideoComponent,ProductDeliveryComponent ; TabPanelContainer
+                                      ;                          ; TabPanelContainer ; Tab container ; true   ; ProductDetailsTabComponent,ProductDownloadComponent,ProductVideoComponent,deliveryTab ; TabPanelContainer
 ######################################
 
 ############ Add Component ###################
