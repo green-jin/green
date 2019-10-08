@@ -4,6 +4,9 @@ public class ConsignmentSyncConstants {
 
   private ConsignmentSyncConstants() {};
 
+  /* 用戶端代碼(MANDT)正式區固定888 , 測試區250 */
+  // public static final String ERP_MANDT = "erp.mandt";
+
   public static final String CREATE = "CREATE";
   public static final String MODIFY = "MODIFY";
   public static final String HYBRIS = "Hybris";

@@ -1,40 +1,50 @@
 /*
  * [y] hybris Platform
  *
- * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
  *
  * This software is the confidential and proprietary information of SAP
- * ("Confidential Information"). You shall not disclose such Confidential
- * Information and shall use it only in accordance with the terms of the
- * license agreement you entered into with SAP.
+ * ("Confidential Information"). You shall not disclose such Confidential Information and shall use
+ * it only in accordance with the terms of the license agreement you entered into with SAP.
  */
 package com.ncip.core.constants;
 
 /**
- * Global class for all NcipCore constants. You can add global constants for your extension into this class.
+ * Global class for all NcipCore constants. You can add global constants for your extension into
+ * this class.
  */
-public final class NcipCoreConstants extends GeneratedNcipCoreConstants
-{
-	public static final String EXTENSIONNAME = "ncipcore";
+public final class NcipCoreConstants extends GeneratedNcipCoreConstants {
+  public static final String EXTENSIONNAME = "ncipcore";
 
 
-	private NcipCoreConstants()
-	{
-		//empty
-	}
+  private NcipCoreConstants() {
+    // empty
+  }
 
-	// implement here constants used by this extension
-	public static final String QUOTE_BUYER_PROCESS = "quote-buyer-process";
-	public static final String QUOTE_SALES_REP_PROCESS = "quote-salesrep-process";
-	public static final String QUOTE_USER_TYPE = "QUOTE_USER_TYPE";
-	public static final String QUOTE_SELLER_APPROVER_PROCESS = "quote-seller-approval-process";
-	public static final String QUOTE_TO_EXPIRE_SOON_EMAIL_PROCESS = "quote-to-expire-soon-email-process";
-	public static final String QUOTE_EXPIRED_EMAIL_PROCESS = "quote-expired-email-process";
-	public static final String QUOTE_POST_CANCELLATION_PROCESS = "quote-post-cancellation-process";
-	
-	//send emails for cc email address
-	public static final String ORDER_APPROVAL_REJECTION_EMAIL_PROCESS = "orderApprovalRejectionEmailProcess";
-	public static final String ORDER_PENDING_APPROVAL_EMAIL_PROCESS = "orderPendingApprovalEmailProcess";
-	public static final String SEND_DELIVERY_EMAIL_PROCESS = "sendDeliveryEmailProcess";
-	
+  // implement here constants used by this extension
+  public static final String QUOTE_BUYER_PROCESS = "quote-buyer-process";
+  public static final String QUOTE_SALES_REP_PROCESS = "quote-salesrep-process";
+  public static final String QUOTE_USER_TYPE = "QUOTE_USER_TYPE";
+  public static final String QUOTE_SELLER_APPROVER_PROCESS = "quote-seller-approval-process";
+  public static final String QUOTE_TO_EXPIRE_SOON_EMAIL_PROCESS =
+      "quote-to-expire-soon-email-process";
+  public static final String QUOTE_EXPIRED_EMAIL_PROCESS = "quote-expired-email-process";
+  public static final String QUOTE_POST_CANCELLATION_PROCESS = "quote-post-cancellation-process";
+
+  // send emails for cc email address
+  public static final String ORDER_APPROVAL_REJECTION_EMAIL_PROCESS =
+      "orderApprovalRejectionEmailProcess";
+  public static final String ORDER_PENDING_APPROVAL_EMAIL_PROCESS =
+      "orderPendingApprovalEmailProcess";
+  public static final String SEND_DELIVERY_EMAIL_PROCESS = "sendDeliveryEmailProcess";
+
+  // JDBC info properties names
+  public static final String JDBC_DRIVERCLASSNAME = "jdbc.driverClassName";
+  public static final String JDBC_URL = "jdbc.url";
+  public static final String JDBC_USERNAME = "jdbc.username";
+  public static final String JDBC_PASSWORD = "jdbc.password";
+
+  /* 用戶端代碼(MANDT)property name, 正式區固定888 , 測試區250 */
+  public static final String ERP_MANDT = "erp.mandt";
+
 }

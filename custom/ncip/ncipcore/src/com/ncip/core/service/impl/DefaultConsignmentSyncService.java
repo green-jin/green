@@ -19,6 +19,7 @@ import com.ncip.core.service.ConsignmentSyncService;
 import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
 import de.hybris.platform.ordersplitting.model.ConsignmentEntryModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.time.TimeService;
 import de.hybris.platform.tx.Transaction;
 
@@ -32,6 +33,8 @@ public class DefaultConsignmentSyncService implements ConsignmentSyncService {
   private ConsignmentSyncDao consignmentSyncDao;
   @Resource
   private ZhydelyDao zhydelyDao;
+  @Resource
+  private ConfigurationService configurationService;
 
   @Override
   public List<ConsignmentModel> prepareConsignments() {
@@ -76,6 +79,8 @@ public class DefaultConsignmentSyncService implements ConsignmentSyncService {
     ZhydelyBean zModel;
     String vkorg;
     String vbeln_d;
+    /* 用戶端代碼(MANDT)正式區固定888 , 測試區250，從local.properties取值 */
+    final String manDt = configurationService.getConfiguration().getString("erp.mandt");
 
 
     /* iterate consignments */
@@ -113,8 +118,9 @@ public class DefaultConsignmentSyncService implements ConsignmentSyncService {
         zModel.setDely_type(model.getDely_type());
         zModel.setLfdat(model.getLfdat());
         zModel.setStatus(ConsignmentSyncConstants.SAP_ZHYDELY_STATUS_UNPROCESSED);
+        zModel.setMandt(manDt);
 
-        System.out.println("Bean=" + zModel);
+        LOG.info("Bean=" + zModel);
 
         /* check if existed in ZTable */
         if (zhydelyDao.isExistedInZTable(zModel.getVkorg(), zModel.getVbeln_d(),
@@ -128,11 +134,15 @@ public class DefaultConsignmentSyncService implements ConsignmentSyncService {
         tx.begin();
         txSucceed = false;
         try {
-          if (ConsignmentSyncConstants.CREATE.equals(zModel.getIctype())) {
-            zhydelyDao.insertByModel(zModel);
-          } else if (ConsignmentSyncConstants.MODIFY.equals(zModel.getIctype())) {
-            zhydelyDao.updateByModel(zModel);
-          }
+
+          /* 不論有無存在ZTable，一律都用Insert，ZTable新舊紀錄同時存在 */
+          // if (ConsignmentSyncConstants.CREATE.equals(zModel.getIctype())) {
+          // zhydelyDao.insertByModel(zModel);
+          // } else if (ConsignmentSyncConstants.MODIFY.equals(zModel.getIctype())) {
+          // zhydelyDao.updateByModel(zModel);
+          // }
+          zhydelyDao.insertByModel(zModel);
+
           txSucceed = true;
         } catch (final Exception e) {
           e.printStackTrace();

@@ -31,6 +31,7 @@ public class ZhydelyBean {
   private String to_sys;
   private String ictype;
   private String status;
+  private String mandt;
 
   /**
    * @return the vkorg
@@ -298,14 +299,22 @@ public class ZhydelyBean {
     this.status = status;
   }
 
+  public String getMandt() {
+    return mandt;
+  }
+
+  public void setMandt(final String mandt) {
+    this.mandt = mandt;
+  }
+
   @Override
   public String toString() {
-    return "ZModel [vkorg=" + vkorg + ", vbeln_d=" + vbeln_d + ", vbeln=" + vbeln + ", posnr="
+    return "ZhydelyBean [vkorg=" + vkorg + ", vbeln_d=" + vbeln_d + ", vbeln=" + vbeln + ", posnr="
         + posnr + ", matnr=" + matnr + ", lfimg=" + lfimg + ", meins=" + meins + ", wadat_ist="
         + wadat_ist + ", lgort=" + lgort + ", lfstk=" + lfstk + ", dely_type=" + dely_type
         + ", arrivalDate=" + arrivalDate + ", lfdat=" + lfdat + ", logisticsStatus="
         + logisticsStatus + ", crt_date=" + crt_date + ", frm_sys=" + frm_sys + ", to_sys=" + to_sys
-        + ", ictype=" + ictype + ", status=" + status + "]";
+        + ", ictype=" + ictype + ", status=" + status + ", mandt=" + mandt + "]";
   }
 
 }
