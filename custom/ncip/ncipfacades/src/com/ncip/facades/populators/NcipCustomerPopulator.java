@@ -16,6 +16,7 @@ import de.hybris.platform.commercefacades.storesession.data.LanguageData;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
 import de.hybris.platform.converters.Populator;
+import de.hybris.platform.core.GenericSearchConstants.LOG;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
@@ -25,6 +26,7 @@ import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNull;
+
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
@@ -116,6 +118,8 @@ public class NcipCustomerPopulator implements Populator<CustomerModel, CustomerD
         target.setDefaultb2bunit(customer.getDefaultB2BUnit().getUid()); // 統一編號
         target.setTel_number(customer.getDefaultB2BUnit().getPhone1()); // 公司電話
         target.setFax_number(customer.getDefaultB2BUnit().getFax()); // 公司傳真
+        target.setZterm(customer.getDefaultB2BUnit().getZTerm().getCode());//收款條件
+        target.setUnitname(customer.getDefaultB2BUnit().getName()); //公司名稱
       }
  
       
