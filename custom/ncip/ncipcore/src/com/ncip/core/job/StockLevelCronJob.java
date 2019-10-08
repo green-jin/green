@@ -138,7 +138,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
                     for (int i = 0; i < zhystkDataList.size(); i++)
                     {
                         final ZHYSTKData zhystkData = zhystkDataList.get(i);
-                        UPDATESQL = UPDATESQL + " UPDATE sapabap1.zhystk ";
+                        UPDATESQL = UPDATESQL + " UPDATE SAPABAP1.ZHYSTK ";
                         UPDATESQL = UPDATESQL + " SET STATUS  = '" + zhystkData.getStatus() + "'";
                     UPDATESQL = UPDATESQL + "  , ICTYPE  = '" + zhystkData.getIcType() + "'";
                         UPDATESQL = UPDATESQL + " where VKORG = '" + zhystkData.getVkORG() + "'";
@@ -218,7 +218,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
             final String url = configurationService.getConfiguration().getString("jdbc.url");
             final String username = configurationService.getConfiguration().getString("jdbc.username");
             final String password = configurationService.getConfiguration().getString("jdbc.password");
-            String SELECTSQL = "select * from sapabap1.zhystk ";
+            String SELECTSQL = "select * from SAPABAP1.ZHYSTK ";
             final String FRSYS = configurationService.getConfiguration().getString("sap.zhystk.fr_sys");//"SAP";
             final String TOSYS = configurationService.getConfiguration().getString("sap.zhystk.to_sys");//"Hybris";
             final String STATUS = configurationService.getConfiguration().getString("sap.zhystk.status");//"-";

@@ -118,7 +118,9 @@ public class NcipCustomerPopulator implements Populator<CustomerModel, CustomerD
         target.setDefaultb2bunit(customer.getDefaultB2BUnit().getUid()); // 統一編號
         target.setTel_number(customer.getDefaultB2BUnit().getPhone1()); // 公司電話
         target.setFax_number(customer.getDefaultB2BUnit().getFax()); // 公司傳真
-        target.setZterm(customer.getDefaultB2BUnit().getZTerm().getCode());//收款條件
+        if(customer.getDefaultB2BUnit().getZTerm() != null) {
+          target.setZterm(customer.getDefaultB2BUnit().getZTerm().getCode());//收款條件
+        }
         target.setUnitname(customer.getDefaultB2BUnit().getName()); //公司名稱
       }
  

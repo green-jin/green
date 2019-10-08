@@ -27,18 +27,18 @@ public class DefaultPropertiesZhydelyDao implements ZhydelyDao {
   private NamedParameterJdbcTemplate namedParamJDBCTemplate;
 
   private static final String INSERT_BY_MODEL =
-      "INSERT INTO sapabap1.ZHYDELY(VKORG,VBELN_D,VBELN,POSNR,MATNR,LFIMG,MEINS,WADAT_IST,LGORT,LFSTK,DELY_TYPE,LFDAT,CRT_DATE,FRM_SYS,TO_SYS,ICTYPE,STATUS,MANDT) "
+      "INSERT INTO SAPABAP1.ZHYDELY(VKORG,VBELN_D,VBELN,POSNR,MATNR,LFIMG,MEINS,WADAT_IST,LGORT,LFSTK,DELY_TYPE,LFDAT,CRT_DATE,FRM_SYS,TO_SYS,ICTYPE,STATUS,MANDT) "
           + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
   private static final String IS_EXISTED =
-      "SELECT count(1) FROM sapabap1.ZHYDELY t WHERE t.VKORG=:VKORG AND t.VBELN_D=:VBELN_D AND t.POSNR=:POSNR AND t.MANDT=:MANDT";
+      "SELECT count(1) FROM SAPABAP1.ZHYDELY t WHERE t.VKORG=:VKORG AND t.VBELN_D=:VBELN_D AND t.POSNR=:POSNR AND t.MANDT=:MANDT";
   private static final String UPDATE_BY_MODEL =
-      "UPDATE sapabap1.ZHYDELY t\r\n" + "SET\r\n" + "t.VKORG=?,\r\n" + "t.VBELN_D=?,\r\n" + "t.VBELN=?,\r\n"
+      "UPDATE SAPABAP1.ZHYDELY t\r\n" + "SET\r\n" + "t.VKORG=?,\r\n" + "t.VBELN_D=?,\r\n" + "t.VBELN=?,\r\n"
           + "t.POSNR=?,\r\n" + "t.MATNR=?,\r\n" + "t.LFIMG=?,\r\n" + "t.MEINS=?,\r\n"
           + "t.WADAT_IST=?,\r\n" + "t.LGORT=?,\r\n" + "t.LFSTK=?,\r\n" + "t.DELY_TYPE=?,\r\n"
           + "t.LFDAT=?,\r\n" + "t.CRT_DATE=?,\r\n" + "t.FRM_SYS=?,\r\n" + "t.TO_SYS=?,\r\n"
           + "t.ICTYPE=?,\r\n" + "t.STATUS=?\r\n"
           + "WHERE t.VKORG=? AND t.VBELN_D=? AND t.POSNR=? AND t.MANDT=?";
-  private static final String ZERO_STOCK_CONSIGNMENT_SQL = "SELECT * FROM sapabap1.ZHYDELY t "
+  private static final String ZERO_STOCK_CONSIGNMENT_SQL = "SELECT * FROM SAPABAP1.ZHYDELY t "
       + "WHERE 1=1 "
       + " AND t.MANDT=:MANDT "
       + " AND t.STATUS='" + ConsignmentSyncConstants.SAP_ZHYDELY_STATUS_UNPROCESSED
@@ -46,7 +46,7 @@ public class DefaultPropertiesZhydelyDao implements ZhydelyDao {
       + ") AND t.FRM_SYS='" + ConsignmentSyncConstants.SAP + "'  AND t.TO_SYS='"
       + ConsignmentSyncConstants.HYBRIS + "'";
   private static final String UPDATE_STATUS =
-      "UPDATE sapabap1.ZHYDELY t SET t.STATUS=:status WHERE t.VBELN_D=:code AND t.MANDT=:MANDT";
+      "UPDATE SAPABAP1.ZHYDELY t SET t.STATUS=:status WHERE t.VBELN_D=:code AND t.MANDT=:MANDT";
 
   @Override
   public void insertByModel(final ZhydelyBean model) {
