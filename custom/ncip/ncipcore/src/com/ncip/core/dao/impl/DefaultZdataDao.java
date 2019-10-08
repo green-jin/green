@@ -60,10 +60,10 @@ public class DefaultZdataDao implements ZdataDao
 	}
 
 	private static final String INSERT_STMT = //SQL insert
-			"INSERT INTO sapabap1.zhydo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO SAPABAP1.ZHYDO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String GET_ALL_STMT = //SQL select
-			"SELECT * FROM sapabap1.zhydo";
+			"SELECT * FROM SAPABAP1.ZHYDO";
 
 	private Connection conn = null;
 

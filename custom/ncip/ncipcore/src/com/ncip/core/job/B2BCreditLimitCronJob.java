@@ -127,7 +127,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
                 for (int i = 0; i < zhyclDataList.size(); i++)
                 {
                     final ZHYCLData zhyclData = zhyclDataList.get(i);
-                    UPDATESQL = UPDATESQL + " UPDATE sapabap1.zhycl ";
+                    UPDATESQL = UPDATESQL + " UPDATE SAPABAP1.ZHYCL ";
                     UPDATESQL = UPDATESQL + " SET STATUS  = '" + zhyclData.getStatus() + "'";
                     UPDATESQL = UPDATESQL + "  , ICTYPE  = '" + zhyclData.getIcType() + "'";
                     UPDATESQL = UPDATESQL + " where VKORG = '" + zhyclData.getVkORG() + "'";
@@ -194,7 +194,7 @@ public class B2BCreditLimitCronJob extends AbstractJobPerformable<CronJobModel>
         final String password = configurationService.getConfiguration().getString("jdbc.password");
         final String driver = configurationService.getConfiguration().getString("jdbc.driverClassName");
 		final String dfmandt = configurationService.getConfiguration().getString("erp.mandt");
-        String SELECTSQL = "select * from sapabap1.zhycl ";
+        String SELECTSQL = "select * from SAPABAP1.ZHYCL ";
         final String FRSYS = configurationService.getConfiguration().getString("sap.zhycl.fr_sys");//"SAP";
         final String TOSYS = configurationService.getConfiguration().getString("sap.zhycl.to_sys");//"Hybris";
         final String STATUS = configurationService.getConfiguration().getString("sap.zhycl.status");//"-";
