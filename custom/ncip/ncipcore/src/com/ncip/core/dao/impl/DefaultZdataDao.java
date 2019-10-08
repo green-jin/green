@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import org.apache.log4j.Logger;
 import com.ncip.core.dao.ZdataDao;
 
 import com.ncip.core.data.ZData;
+import com.ncip.core.job.TransferOrderJob;
 
 /**
  * @author Aaron
@@ -32,6 +33,8 @@ public class DefaultZdataDao implements ZdataDao
 	private ConfigurationService configurationService;
 	private ModelService modelService;
 	private FlexibleSearchService flexibleSearchService;
+	private static final Logger LOG = Logger.getLogger(TransferOrderJob.class);
+	
 	public FlexibleSearchService getFlexibleSearchService() {
 		return flexibleSearchService;
 	}
@@ -56,11 +59,11 @@ public class DefaultZdataDao implements ZdataDao
 		this.configurationService = configurationService;
 	}
 
-	private static final String INSERT_STMT = //SQL inser
-			"INSERT INTO ZHYDELY VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = //SQL insert
+			"INSERT INTO sapabap1.zhydo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String GET_ALL_STMT = //SQL select
-			"SELECT * FROM ZHYDELY";
+			"SELECT * FROM sapabap1.zhydo";
 
 	private Connection conn = null;
 
@@ -77,7 +80,7 @@ public class DefaultZdataDao implements ZdataDao
 		final String password = configurationService.getConfiguration().getString("jdbc.mysql.password");
 		try
 		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(configurationService.getConfiguration().getString("jdbc.driverClassName"));
 
 			try
 			{
@@ -100,7 +103,6 @@ public class DefaultZdataDao implements ZdataDao
 
 
 	}
-
 	/**
      * Returns the result of inserting data into Z Table.
      *
@@ -119,7 +121,6 @@ public class DefaultZdataDao implements ZdataDao
 			final PreparedStatement pstmt = conn.prepareStatement(INSERT_STMT);
 			for (final ZData zData : zdataList)
 			{
-				System.out.println(zData.getEntryNUMBER());
 				pstmt.setString(1, zData.getVkORG());
 				pstmt.setString(2, zData.getVkGRP());
 				pstmt.setString(3, zData.getCustomerID());
@@ -142,7 +143,9 @@ public class DefaultZdataDao implements ZdataDao
 				pstmt.setString(20, zData.getTo_SYS());
 				pstmt.setString(21, zData.getIcType());
 				pstmt.setString(22, zData.getDataEXCHANGESTATUS());
+				pstmt.setString(23, zData.getMandt());
 				updateCount = pstmt.executeUpdate();
+				LOG.info("Order Number:"+zData.getCode()+"-Order EntryNumber:"+zData.getEntryNUMBER()+"is inserted into the Database");
 			}
 		}
 		catch (final SQLException e)
@@ -193,6 +196,7 @@ public class DefaultZdataDao implements ZdataDao
 			zdata.setTo_SYS(rs.getString("to_SYS"));
 			zdata.setIcType(rs.getString("icType"));
 			zdata.setDataEXCHANGESTATUS(rs.getString("dataEXCHANGESTATUSS"));
+			zdata.setMandt(rs.getString("mandt"));
 			zdatalist.add(zdata);
 		}
 		closeConn();
