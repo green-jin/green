@@ -227,7 +227,7 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
             if(LOG.isDebugEnabled()) {
               LOG.debug(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
             }
-            LOG.debug(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
+//            LOG.debug(" do getSAPERPZHYToZHYSTKData FRSYS = [" + FRSYS + "]");
 //          LOG.info(" do getSAPERPZHYToZHYSTKData TOSYS = [" + TOSYS + "]");
 //          LOG.info(" do getSAPERPZHYToZHYSTKData STATUS = [" + STATUS + "] getconnection");
             try
@@ -245,7 +245,10 @@ public class StockLevelCronJob extends AbstractJobPerformable<CronJobModel>
                 SELECTSQL = SELECTSQL + " and TO_SYS = '" + TOSYS + "'";
 				SELECTSQL = SELECTSQL + " and MANDT = '" + dfmandt + "'";
                 //SELECTSQL = SELECTSQL + "and {CRT_DAT} like '" + formatDateTime + "%'";
-//              LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
+//				if(LOG.isDebugEnabled()) {
+//				  LOG.debug(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
+//				}
+				LOG.info(" do PerformResult SELECTSQL = [" + SELECTSQL + "]");
                     //final ResultSet rs = stmt.executeQuery(SELECTSQL);
                 try (Connection conn = DriverManager.getConnection(url, username, password);
                         PreparedStatement ps = conn.prepareStatement(SELECTSQL);
