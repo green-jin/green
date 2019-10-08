@@ -62,6 +62,7 @@
        <property name = "to_SYS" type="String" />
        <property name = "icType" type="String" />
        <property name = "dataEXCHANGESTATUS" type="String" />
+       <property name = "mandt" type="String" />
    </bean>
   
 </beans>

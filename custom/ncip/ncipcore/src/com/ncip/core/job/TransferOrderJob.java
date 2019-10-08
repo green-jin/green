@@ -93,9 +93,9 @@ public ZdataService getZdataService() {
     {
         oriZdataList = zdataService.getAll();
     }
-    catch (final SQLException e1)
+    catch (final SQLException e)
     {
-        e1.printStackTrace();
+        e.printStackTrace();
     }
 
 
@@ -106,6 +106,7 @@ public ZdataService getZdataService() {
             final List<AbstractOrderEntryModel> entries = order.getEntries();
             for (final AbstractOrderEntryModel entry : entries)
             {
+              
                 final ZData zdata = new ZData();
 
                 zdata.setVkORG(order.getStore().getUid());
@@ -124,7 +125,13 @@ public ZdataService getZdataService() {
                 final B2BUserGroupModel b2BUGroup = transferOrderService.getB2BUserGroupByUGUID(zdata.getVkGRP());
 
 
-          // zdata.setZTERM(b2BUGroup.getUnit().getZTerm());
+               
+                try {
+                  zdata.setZTERM(b2BUGroup.getUnit().getZTerm().getCode());
+                } catch (Exception e) {
+                  LOG.error("The value of ZTERM is empty");
+                  e.printStackTrace();
+                }
                 zdata.setInCO1(b2BUGroup.getUnit().getInco1());
                 zdata.setInCO2(b2BUGroup.getUnit().getInco2());
                 zdata.setPerNR(b2BUGroup.getUnit().getPernr());
@@ -136,7 +143,15 @@ public ZdataService getZdataService() {
                 zdata.setUnit(order.getUnit().getId());
                 zdata.setFrm_SYS(configurationService.getConfiguration().getString("FRM_SYS"));
                 zdata.setTo_SYS(configurationService.getConfiguration().getString("TO_SYS"));
-                zdata.setIcType(order.getIcType());
+                
+                if(order.getStatus().getCode().toUpperCase().equals("CREATED")) {
+                  zdata.setIcType(configurationService.getConfiguration().getString("FUNC_TYPEC"));//order.getIcType());
+                }else {
+                  zdata.setIcType(configurationService.getConfiguration().getString("FUNC_TYPEM"));
+                }
+                  
+                
+                
                 zdata.setDataEXCHANGESTATUS(configurationService.getConfiguration().getString("DATAEXCHANGSTATUS"));
                 zdata.setCrt_DATE(zDataDateTransform(order.getDate().toString()));
                 zdata.setEntryNUMBER(entry.getEntryNumber());
@@ -144,6 +159,7 @@ public ZdataService getZdataService() {
                 zdata.setBasePrice(entry.getBasePrice());
                 zdata.setQuantity(entry.getQuantity());
                 zdata.setMa_TYPE(entry.getProduct().getMa_type());
+                zdata.setMandt(configurationService.getConfiguration().getString("erp.mandt"));
 
                 zdataList.add(zdata);
             }
@@ -157,6 +173,7 @@ public ZdataService getZdataService() {
     }
     try
     {
+ 
         if (zdataService.insert(zdataList))
         {
             LOG.info("Order items for this period was inserted into the Z Table successfully");
@@ -242,18 +259,19 @@ private String getExecutionPeriod()
     }
     String execTime = null;
 
-    System.out.println(currentTime);
     if(currentTime.after(sectionAt11) && currentTime.before(sectionAt14)) {
       execTime = sdfForYesterDate + " "
           + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23")+";"+
-          sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt11");
+          sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14");
 
     }else if(currentTime.after(sectionAt14) && currentTime.before(sectionAt23)) {
       execTime = sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt11")+";"+
-      sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14");
+      sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23");
 
     }else {
-      execTime = sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14")+";"+
+      execTime = //sdfForToday + " " + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt14")+";"+
+      sdfForYesterDate + " "
+      + configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23")+";"+
       sdfForToday+" "+ configurationService.getConfiguration().getString("sendOrdersExecutionSectionAt23");
     }
 
