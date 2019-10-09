@@ -60,12 +60,12 @@ public class DefaultZdataDao implements ZdataDao
 	}
 
 	private static final String INSERT_STMT = //SQL insert
-			"INSERT INTO sapabap1.zhydo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO SAPABAP1.ZHYDO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String GET_ALL_STMT = //SQL select
-			"SELECT `VKORG`,`VKGRP`,`KUNNR`,`ZTERM`,`INCO1`,`INCO2`,`VBELN`,`POSNR`,`MATNR`,`KWMENG`,"
-			+ "`VRKME`,`NETWR`,`WAERK`,`PERNR`,`LIFNR`,`LFSTK`,`MA_TYPE`,`CRT_DATE`,`FRM_SYS`,`TO_SYS`,"
-			+ "`ICTYPE`,`DATAEXCHANGESTATUSS`,`MANDT` FROM sapabap1.zhydo";
+			"SELECT VKORG,VKGRP,KUNNR,ZTERM,INCO1,INCO2,VBELN,POSNR,MATNR,KWMENG,"
+			+ "VRKME,NETWR,WAERK,PERNR,LIFNR,LFSTK,MA_TYPE,CRT_DATE,FRM_SYS,TO_SYS,"
+			+ "ICTYPE,DATAEXCHANGESTATUSS,MANDT FROM SAPABAP1.ZHYDO";
 
 	private Connection conn = null;
 
